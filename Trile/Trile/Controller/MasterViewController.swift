@@ -85,6 +85,13 @@ class MasterViewController: UITableViewController {
         }
     }
 
-
+    //MARK: - Insert Function
+    
+    func insertNewClient(_ client: Client) {
+        objects.insert(client, at: 0)
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
 }
 
