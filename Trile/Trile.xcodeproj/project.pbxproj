@@ -1,0 +1,623 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A511C1D823B5614900B9A771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1D723B5614900B9A771 /* AppDelegate.swift */; };
+		A511C1DA23B5614900B9A771 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1D923B5614900B9A771 /* SceneDelegate.swift */; };
+		A511C1DC23B5614900B9A771 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1DB23B5614900B9A771 /* MasterViewController.swift */; };
+		A511C1DE23B5614900B9A771 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1DD23B5614900B9A771 /* DetailViewController.swift */; };
+		A511C1E123B5614900B9A771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A511C1DF23B5614900B9A771 /* Main.storyboard */; };
+		A511C1E323B5614E00B9A771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A511C1E223B5614E00B9A771 /* Assets.xcassets */; };
+		A511C1E623B5614E00B9A771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A511C1E423B5614E00B9A771 /* LaunchScreen.storyboard */; };
+		A511C1F123B5614E00B9A771 /* TrileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1F023B5614E00B9A771 /* TrileTests.swift */; };
+		A511C1FC23B5614E00B9A771 /* TrileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1FB23B5614E00B9A771 /* TrileUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A511C1ED23B5614E00B9A771 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A511C1CC23B5614900B9A771 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A511C1D323B5614900B9A771;
+			remoteInfo = Trile;
+		};
+		A511C1F823B5614E00B9A771 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A511C1CC23B5614900B9A771 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A511C1D323B5614900B9A771;
+			remoteInfo = Trile;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A511C1D423B5614900B9A771 /* Trile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A511C1D723B5614900B9A771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A511C1D923B5614900B9A771 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A511C1DB23B5614900B9A771 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		A511C1DD23B5614900B9A771 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A511C1E023B5614900B9A771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A511C1E223B5614E00B9A771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A511C1E523B5614E00B9A771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A511C1E723B5614E00B9A771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A511C1EC23B5614E00B9A771 /* TrileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A511C1F023B5614E00B9A771 /* TrileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrileTests.swift; sourceTree = "<group>"; };
+		A511C1F223B5614E00B9A771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A511C1F723B5614E00B9A771 /* TrileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A511C1FB23B5614E00B9A771 /* TrileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrileUITests.swift; sourceTree = "<group>"; };
+		A511C1FD23B5614E00B9A771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A511C1D123B5614900B9A771 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A511C1E923B5614E00B9A771 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A511C1F423B5614E00B9A771 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A511C1CB23B5614900B9A771 = {
+			isa = PBXGroup;
+			children = (
+				A511C1D623B5614900B9A771 /* Trile */,
+				A511C1EF23B5614E00B9A771 /* TrileTests */,
+				A511C1FA23B5614E00B9A771 /* TrileUITests */,
+				A511C1D523B5614900B9A771 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A511C1D523B5614900B9A771 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A511C1D423B5614900B9A771 /* Trile.app */,
+				A511C1EC23B5614E00B9A771 /* TrileTests.xctest */,
+				A511C1F723B5614E00B9A771 /* TrileUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A511C1D623B5614900B9A771 /* Trile */ = {
+			isa = PBXGroup;
+			children = (
+				A511C1D723B5614900B9A771 /* AppDelegate.swift */,
+				A511C20A23B5619600B9A771 /* Data */,
+				A511C20B23B561A500B9A771 /* View */,
+				A511C20923B5618D00B9A771 /* Controller */,
+				A511C1E223B5614E00B9A771 /* Assets.xcassets */,
+				A511C1E723B5614E00B9A771 /* Info.plist */,
+			);
+			path = Trile;
+			sourceTree = "<group>";
+		};
+		A511C1EF23B5614E00B9A771 /* TrileTests */ = {
+			isa = PBXGroup;
+			children = (
+				A511C1F023B5614E00B9A771 /* TrileTests.swift */,
+				A511C1F223B5614E00B9A771 /* Info.plist */,
+			);
+			path = TrileTests;
+			sourceTree = "<group>";
+		};
+		A511C1FA23B5614E00B9A771 /* TrileUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A511C1FB23B5614E00B9A771 /* TrileUITests.swift */,
+				A511C1FD23B5614E00B9A771 /* Info.plist */,
+			);
+			path = TrileUITests;
+			sourceTree = "<group>";
+		};
+		A511C20923B5618D00B9A771 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A511C1D923B5614900B9A771 /* SceneDelegate.swift */,
+				A511C1DB23B5614900B9A771 /* MasterViewController.swift */,
+				A511C1DD23B5614900B9A771 /* DetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A511C20A23B5619600B9A771 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A511C20B23B561A500B9A771 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A511C1DF23B5614900B9A771 /* Main.storyboard */,
+				A511C1E423B5614E00B9A771 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A511C1D323B5614900B9A771 /* Trile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A511C20023B5614E00B9A771 /* Build configuration list for PBXNativeTarget "Trile" */;
+			buildPhases = (
+				A511C1D023B5614900B9A771 /* Sources */,
+				A511C1D123B5614900B9A771 /* Frameworks */,
+				A511C1D223B5614900B9A771 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Trile;
+			productName = Trile;
+			productReference = A511C1D423B5614900B9A771 /* Trile.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A511C1EB23B5614E00B9A771 /* TrileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A511C20323B5614E00B9A771 /* Build configuration list for PBXNativeTarget "TrileTests" */;
+			buildPhases = (
+				A511C1E823B5614E00B9A771 /* Sources */,
+				A511C1E923B5614E00B9A771 /* Frameworks */,
+				A511C1EA23B5614E00B9A771 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A511C1EE23B5614E00B9A771 /* PBXTargetDependency */,
+			);
+			name = TrileTests;
+			productName = TrileTests;
+			productReference = A511C1EC23B5614E00B9A771 /* TrileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A511C1F623B5614E00B9A771 /* TrileUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A511C20623B5614E00B9A771 /* Build configuration list for PBXNativeTarget "TrileUITests" */;
+			buildPhases = (
+				A511C1F323B5614E00B9A771 /* Sources */,
+				A511C1F423B5614E00B9A771 /* Frameworks */,
+				A511C1F523B5614E00B9A771 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A511C1F923B5614E00B9A771 /* PBXTargetDependency */,
+			);
+			name = TrileUITests;
+			productName = TrileUITests;
+			productReference = A511C1F723B5614E00B9A771 /* TrileUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A511C1CC23B5614900B9A771 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Trile;
+				TargetAttributes = {
+					A511C1D323B5614900B9A771 = {
+						CreatedOnToolsVersion = 11.3;
+					};
+					A511C1EB23B5614E00B9A771 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = A511C1D323B5614900B9A771;
+					};
+					A511C1F623B5614E00B9A771 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = A511C1D323B5614900B9A771;
+					};
+				};
+			};
+			buildConfigurationList = A511C1CF23B5614900B9A771 /* Build configuration list for PBXProject "Trile" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A511C1CB23B5614900B9A771;
+			productRefGroup = A511C1D523B5614900B9A771 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A511C1D323B5614900B9A771 /* Trile */,
+				A511C1EB23B5614E00B9A771 /* TrileTests */,
+				A511C1F623B5614E00B9A771 /* TrileUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A511C1D223B5614900B9A771 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A511C1E623B5614E00B9A771 /* LaunchScreen.storyboard in Resources */,
+				A511C1E323B5614E00B9A771 /* Assets.xcassets in Resources */,
+				A511C1E123B5614900B9A771 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A511C1EA23B5614E00B9A771 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A511C1F523B5614E00B9A771 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A511C1D023B5614900B9A771 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A511C1D823B5614900B9A771 /* AppDelegate.swift in Sources */,
+				A511C1DA23B5614900B9A771 /* SceneDelegate.swift in Sources */,
+				A511C1DC23B5614900B9A771 /* MasterViewController.swift in Sources */,
+				A511C1DE23B5614900B9A771 /* DetailViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A511C1E823B5614E00B9A771 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A511C1F123B5614E00B9A771 /* TrileTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A511C1F323B5614E00B9A771 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A511C1FC23B5614E00B9A771 /* TrileUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A511C1EE23B5614E00B9A771 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A511C1D323B5614900B9A771 /* Trile */;
+			targetProxy = A511C1ED23B5614E00B9A771 /* PBXContainerItemProxy */;
+		};
+		A511C1F923B5614E00B9A771 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A511C1D323B5614900B9A771 /* Trile */;
+			targetProxy = A511C1F823B5614E00B9A771 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A511C1DF23B5614900B9A771 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A511C1E023B5614900B9A771 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A511C1E423B5614E00B9A771 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A511C1E523B5614E00B9A771 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A511C1FE23B5614E00B9A771 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A511C1FF23B5614E00B9A771 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A511C20123B5614E00B9A771 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R834XYWGJT;
+				INFOPLIST_FILE = Trile/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = trile.Trile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A511C20223B5614E00B9A771 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R834XYWGJT;
+				INFOPLIST_FILE = Trile/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = trile.Trile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A511C20423B5614E00B9A771 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R834XYWGJT;
+				INFOPLIST_FILE = TrileTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = trile.TrileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trile.app/Trile";
+			};
+			name = Debug;
+		};
+		A511C20523B5614E00B9A771 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R834XYWGJT;
+				INFOPLIST_FILE = TrileTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = trile.TrileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Trile.app/Trile";
+			};
+			name = Release;
+		};
+		A511C20723B5614E00B9A771 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R834XYWGJT;
+				INFOPLIST_FILE = TrileUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = trile.TrileUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Trile;
+			};
+			name = Debug;
+		};
+		A511C20823B5614E00B9A771 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R834XYWGJT;
+				INFOPLIST_FILE = TrileUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = trile.TrileUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Trile;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A511C1CF23B5614900B9A771 /* Build configuration list for PBXProject "Trile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A511C1FE23B5614E00B9A771 /* Debug */,
+				A511C1FF23B5614E00B9A771 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A511C20023B5614E00B9A771 /* Build configuration list for PBXNativeTarget "Trile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A511C20123B5614E00B9A771 /* Debug */,
+				A511C20223B5614E00B9A771 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A511C20323B5614E00B9A771 /* Build configuration list for PBXNativeTarget "TrileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A511C20423B5614E00B9A771 /* Debug */,
+				A511C20523B5614E00B9A771 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A511C20623B5614E00B9A771 /* Build configuration list for PBXNativeTarget "TrileUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A511C20723B5614E00B9A771 /* Debug */,
+				A511C20823B5614E00B9A771 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A511C1CC23B5614900B9A771 /* Project object */;
+}
