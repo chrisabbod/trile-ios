@@ -49,4 +49,21 @@ class TrileUITests: XCTestCase {
         XCTAssertEqual(textField.value as! String, "New Client", "Text field value is not correct")
         addButton.tap()
     }
+    
+    func testClientDeletedOnSwipe() {
+        //given
+        let addClientButton = app.navigationBars["Master"].buttons["Add"]
+        let textField = app.alerts["Add New Client"].scrollViews.otherElements.collectionViews/*@START_MENU_TOKEN@*/.textFields["Enter Client Name"]/*[[".cells.textFields[\"Enter Client Name\"]",".textFields[\"Enter Client Name\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let addButton = app.alerts["Add New Client"].scrollViews.otherElements.buttons["Add"]
+        
+        //when
+        addClientButton.tap()
+        textField.typeText("New Client")
+        addButton.tap()
+        
+        //then
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["New Client"].swipeLeft()
+        tablesQuery.buttons["Delete"].tap()
+    }
 }
