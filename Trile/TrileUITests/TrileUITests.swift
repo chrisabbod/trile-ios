@@ -15,13 +15,22 @@ class TrileUITests: XCTestCase {
     override func setUp() {
         app = XCUIApplication()
         app.launch()
+        
     }
 
     override func tearDown() {
         
     }
     
+    func checkOrientationAndSwipeToShowMasterPane() {
+        let element = XCUIApplication().children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        element.swipeRight()
+    }
+    
     func testAddClientAlertDialogCancelButtonCancelsDialog() {
+        
+        checkOrientationAndSwipeToShowMasterPane()
+        
         //given
         let addClientButton = app.navigationBars["Master"].buttons["Add"]
         let alertDialog = app.alerts["Add New Client"]
@@ -36,6 +45,9 @@ class TrileUITests: XCTestCase {
     }
     
     func testClientDeletedOnSwipe() {
+        
+        checkOrientationAndSwipeToShowMasterPane()
+        
         //given
         let addClientButton = app.navigationBars["Master"].buttons["Add"]
         let textField = app.alerts["Add New Client"].scrollViews.otherElements.collectionViews/*@START_MENU_TOKEN@*/.textFields["Enter Client Name"]/*[[".cells.textFields[\"Enter Client Name\"]",".textFields[\"Enter Client Name\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
@@ -53,6 +65,9 @@ class TrileUITests: XCTestCase {
     }
     
     func testClientDeletedWithEditButton() {
+        
+        checkOrientationAndSwipeToShowMasterPane()
+        
         //given
         let addClientButton = app.navigationBars["Master"].buttons["Add"]
         let textField = app.alerts["Add New Client"].scrollViews.otherElements.collectionViews/*@START_MENU_TOKEN@*/.textFields["Enter Client Name"]/*[[".cells.textFields[\"Enter Client Name\"]",".textFields[\"Enter Client Name\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
@@ -73,6 +88,9 @@ class TrileUITests: XCTestCase {
     }
     
     func testEnableTestModeAndAddClientsThenDeleteClientsAndDisableTestMode() {
+        
+        checkOrientationAndSwipeToShowMasterPane()
+
         let masterStaticText = app.navigationBars["Master"].staticTexts["Master"]
         masterStaticText.tap()
         masterStaticText.tap()
@@ -91,6 +109,7 @@ class TrileUITests: XCTestCase {
         masterStaticText.tap()
         masterStaticText.tap()
         app.alerts["Test Menu"].scrollViews.otherElements.buttons["Disable"].tap()
+        
     }
     
     func testLaunchPerformance() {
