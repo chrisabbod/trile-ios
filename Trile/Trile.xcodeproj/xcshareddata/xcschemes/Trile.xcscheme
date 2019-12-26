@@ -52,6 +52,11 @@
                BlueprintName = "TrileUITests"
                ReferencedContainer = "container:Trile.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "TrileUITests/testLaunchPerformance()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

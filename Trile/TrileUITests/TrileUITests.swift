@@ -71,4 +71,34 @@ class TrileUITests: XCTestCase {
         navBar.buttons["Done"].tap()
         
     }
+    
+    func testEnableTestModeAndAddClientsThenDeleteClientsAndDisableTestMode() {
+        let masterStaticText = app.navigationBars["Master"].staticTexts["Master"]
+        masterStaticText.tap()
+        masterStaticText.tap()
+        masterStaticText.tap()
+        masterStaticText.tap()
+        masterStaticText.tap()
+        app.alerts["Test Menu"].scrollViews.otherElements.buttons["Enable"].tap()
+        
+        let masterNavigationBar = XCUIApplication().navigationBars["Master"]
+        masterNavigationBar.buttons["Share"].tap()
+        masterNavigationBar.buttons["Delete"].tap()
+        
+        masterStaticText.tap()
+        masterStaticText.tap()
+        masterStaticText.tap()
+        masterStaticText.tap()
+        masterStaticText.tap()
+        app.alerts["Test Menu"].scrollViews.otherElements.buttons["Disable"].tap()
+    }
+    
+    func testLaunchPerformance() {
+        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+            // This measures how long it takes to launch your application.
+            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+                XCUIApplication().launch()
+            }
+        }
+    }
 }
