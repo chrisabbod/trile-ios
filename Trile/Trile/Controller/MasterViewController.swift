@@ -12,15 +12,17 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = [Client]()
-
-
+    
+    var testModeCounter: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
+        
         navigationItem.leftBarButtonItem = editButtonItem
 
         let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientAlertDialog(_:)))
-        
         navigationItem.rightBarButtonItem = addClientButton
         
         if let split = splitViewController {
@@ -28,25 +30,25 @@ class MasterViewController: UITableViewController {
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
-
+    
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             print("Go to FileNumberTableVC")
-    //            if let indexPath = tableView.indexPathForSelectedRow {
-    //                let object = objects[indexPath.row] as! Client
-    //                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-    //                controller.detailItem = object
-    //                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-    //                controller.navigationItem.leftItemsSupplementBackButton = true
-    //                detailViewController = controller
-    //            }
+//            if let indexPath = tableView.indexPathForSelectedRow {
+//                let object = objects[indexPath.row] as! Client
+//                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+//                controller.detailItem = object
+//                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+//                controller.navigationItem.leftItemsSupplementBackButton = true
+//                detailViewController = controller
+//            }
         }
     }
 
@@ -80,7 +82,7 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-
+    
     //MARK: - Insert Function
     
     func insertNewClient(_ client: Client) {
@@ -121,5 +123,66 @@ class MasterViewController: UITableViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    //MARK: - Test Functions
+    
+    @objc
+    func insertTestClients() {
+        for i in (1...5).reversed() {
+            let newClient = Client()
+            newClient.name = "Client " + String(i)
+            
+            objects.insert(newClient, at: 0)
+            let indexPath = IndexPath(row: 0, section: 0)
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    @objc
+    func removeAllClients() {
+        objects.removeAll()
+        tableView.reloadData()
+    }
+    
+    func enableNavBarGestureRecognizer() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(countPresses))
+        self.navigationController?.navigationBar.addGestureRecognizer(tap)
+    }
+    
+    @objc
+    func countPresses() {
+        testModeCounter += 1
+        
+        if testModeCounter == 5 {
+            enableUserDebugModeAlertDialog()
+            testModeCounter = 0
+        }
+    }
+    
+    @objc
+    func enableUserDebugModeAlertDialog() {
+        let alert = UIAlertController(title: "Test Menu", message: "Enable Test Mode?", preferredStyle: .alert)
+        
+        let enableAction = UIAlertAction(title: "Enable", style: .default) { (action) in
+            let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
+            let addTestClientsButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.insertTestClients))
+            let removeClientsButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.removeAllClients))
+            
+            self.navigationItem.rightBarButtonItems = [addClientButton, addTestClientsButton, removeClientsButton]
+        }
+        
+        let disableAction = UIAlertAction(title: "Disable", style: .default) { (action) in
+            let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
+            
+            self.navigationItem.rightBarButtonItems = [addClientButton]
+        }
+        
+        alert.addAction(disableAction)
+        alert.addAction(enableAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+
 }
+
 
