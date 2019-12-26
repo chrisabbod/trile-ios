@@ -11,17 +11,39 @@ import XCTest
 
 class TrileTests: XCTestCase {
 
+    var sut: MasterViewController!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        sut = MasterViewController()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
+        super.tearDown()
     }
+    
+    func testInsertNewClientAddsClientWithNameProperty() {
+        //when
+        let clientOne = Client()
+        let clientTwo = Client()
+        let clientThree = Client()
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        //given
+        clientOne.name = "Client One"
+        sut.insertNewClient(clientOne)
+
+        clientTwo.name = "Client Two"
+        sut.insertNewClient(clientTwo)
+
+        clientThree.name = "Client Three"
+        sut.insertNewClient(clientThree)
+        
+        //then
+        XCTAssertEqual(3, sut.objects.count)
+        XCTAssertEqual(sut.objects[0].name, "Client Three")
+        XCTAssertEqual(sut.objects[1].name, "Client Two")
+        XCTAssertEqual(sut.objects[2].name, "Client One")
     }
 
     func testPerformanceExample() {
