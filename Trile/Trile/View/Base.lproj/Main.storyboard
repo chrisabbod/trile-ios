@@ -309,10 +309,10 @@
             </objects>
             <point key="canvasLocation" x="-1769" y="-331"/>
         </scene>
-        <!--View Controller-->
+        <!--Forgot Password Screen-->
         <scene sceneID="A32-SE-cpA">
             <objects>
-                <viewController id="bvk-Dk-pRF" sceneMemberID="viewController">
+                <viewController title="Forgot Password Screen" modalPresentationStyle="fullScreen" id="bvk-Dk-pRF" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CPc-D5-htH">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -364,7 +364,64 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OET-12-sC7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1788" y="356"/>
+            <point key="canvasLocation" x="-1770" y="379"/>
+        </scene>
+        <!--Forgot Username Screen-->
+        <scene sceneID="IXs-zm-B4k">
+            <objects>
+                <viewController title="Forgot Username Screen" modalPresentationStyle="fullScreen" id="Y8I-Tx-wDD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vT1-6T-r5T">
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ONS-Yz-SDe">
+                                <rect key="frame" x="0.0" y="0.0" width="1366" height="1004"/>
+                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Forgot Username?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSQ-Wv-BXl">
+                                <rect key="frame" x="433" y="432" width="238" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mx4-yt-5IQ">
+                                <rect key="frame" x="433" y="476" width="500" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gt2-nA-uff">
+                                <rect key="frame" x="436" y="530" width="155" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Forgot Password?">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzg-5W-E7b">
+                                <rect key="frame" x="683" y="524" width="250" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Send Username">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="tyG-e4-t25" firstAttribute="bottom" secondItem="ONS-Yz-SDe" secondAttribute="bottom" id="0WK-Un-uPU"/>
+                            <constraint firstItem="tyG-e4-t25" firstAttribute="trailing" secondItem="ONS-Yz-SDe" secondAttribute="trailing" id="CTT-88-SCm"/>
+                            <constraint firstItem="ONS-Yz-SDe" firstAttribute="top" secondItem="tyG-e4-t25" secondAttribute="top" id="ci5-RV-z9m"/>
+                            <constraint firstItem="ONS-Yz-SDe" firstAttribute="leading" secondItem="tyG-e4-t25" secondAttribute="leading" id="fkp-cr-0tS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tyG-e4-t25"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Ru-VU-bqi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1769" y="1059"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
