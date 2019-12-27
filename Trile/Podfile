@@ -7,7 +7,7 @@ target 'Trile' do
 
   # Pods for Trile
   pod 'Firebase/Analytics'
-
+  pod 'Firebase/Auth'
 
   target 'TrileTests' do
     inherit! :search_paths
