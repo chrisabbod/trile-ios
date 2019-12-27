@@ -200,6 +200,9 @@
                                 <state key="normal" title="Create Account">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="yCw-g9-kRO" kind="show" id="MIC-uE-byu"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -219,7 +222,7 @@
         <!--Account Creation-->
         <scene sceneID="MQg-SD-cOv">
             <objects>
-                <viewController title="Account Creation" id="yCw-g9-kRO" sceneMemberID="viewController">
+                <viewController title="Account Creation" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="yCw-g9-kRO" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W7T-6V-kY9">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -299,11 +302,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TDI-Dk-44e"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Ctu-Xs-DYF"/>
                     <size key="freeformSize" width="1366" height="1024"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cn9-bb-fWi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1800" y="-1020"/>
+            <point key="canvasLocation" x="-1769" y="-331"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
