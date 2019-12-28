@@ -22,6 +22,7 @@
 		A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C623B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C723B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
+		A5D6D8CD23B69F4E00F16E27 /* AccountCreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D6D8CC23B69F4E00F16E27 /* AccountCreationVC.swift */; };
 		F0F3EDF63735ADDB0559F603 /* Pods_Trile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DB2CFEB2FE8752AF088CE0 /* Pods_Trile.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		A511C1FD23B5614E00B9A771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A511C20C23B564CE00B9A771 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A5D6D8CC23B69F4E00F16E27 /* AccountCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVC.swift; sourceTree = "<group>"; };
 		BB59C60271A690FA7A90CA59 /* Pods-TrileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrileTests.debug.xcconfig"; path = "Target Support Files/Pods-TrileTests/Pods-TrileTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +174,7 @@
 				A511C1D923B5614900B9A771 /* SceneDelegate.swift */,
 				A511C1DB23B5614900B9A771 /* MasterViewController.swift */,
 				A511C1DD23B5614900B9A771 /* DetailViewController.swift */,
+				A5D6D8CC23B69F4E00F16E27 /* AccountCreationVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -187,8 +190,8 @@
 		A511C20B23B561A500B9A771 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A511C1DF23B5614900B9A771 /* Main.storyboard */,
 				A511C1E423B5614E00B9A771 /* LaunchScreen.storyboard */,
+				A511C1DF23B5614900B9A771 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A511C1D823B5614900B9A771 /* AppDelegate.swift in Sources */,
+				A5D6D8CD23B69F4E00F16E27 /* AccountCreationVC.swift in Sources */,
 				A511C1DA23B5614900B9A771 /* SceneDelegate.swift in Sources */,
 				A511C1DC23B5614900B9A771 /* MasterViewController.swift in Sources */,
 				A511C20D23B564CE00B9A771 /* Client.swift in Sources */,
