@@ -82,6 +82,9 @@
                                 <state key="normal" title="Create Account">
                                     <color key="titleColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="createAccountButton:" destination="U71-qz-yEX" eventType="touchUpInside" id="Ocx-og-CN7"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BuI-XZ-myQ">
                                 <rect key="frame" x="206" y="406" width="300" height="172"/>
@@ -125,6 +128,12 @@
                         <viewLayoutGuide key="safeArea" id="2lB-dx-z13"/>
                     </view>
                     <navigationItem key="navigationItem" id="HfJ-ja-29e"/>
+                    <connections>
+                        <outlet property="emailText" destination="eMI-xj-rvT" id="hcA-JT-CU5"/>
+                        <outlet property="fullNameText" destination="byg-Gd-NBi" id="lZ9-zL-dhh"/>
+                        <outlet property="passwordText" destination="NuE-VS-wNj" id="eFW-5S-2Sm"/>
+                        <outlet property="phoneNumberText" destination="EJw-zx-oMa" id="zeg-wQ-mlb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3U-lm-F0b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

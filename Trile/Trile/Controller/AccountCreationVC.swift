@@ -11,12 +11,16 @@ import FirebaseAuth
 
 class AccountCreationVC: UIViewController {
 
+    var fullName = ""
     var email = ""
     var password = ""
+    var phoneNumber = ""
     
-    @IBOutlet weak var usernameText: UITextField!
+
+    @IBOutlet weak var fullNameText: UITextField!
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var phoneNumberText: UITextField!
     
     
     override func viewDidLoad() {
@@ -27,6 +31,10 @@ class AccountCreationVC: UIViewController {
     
     @IBAction func createAccountButton(_ sender: Any) {
         
+        if let userFullName = fullNameText.text {
+            fullName = userFullName
+        }
+        
         if let userEmail = emailText.text {
             email = userEmail
         }
@@ -35,9 +43,15 @@ class AccountCreationVC: UIViewController {
             password = userPassword
         }
         
+        if let userPhoneNumber = phoneNumberText.text {
+            phoneNumber = userPhoneNumber
+        }
+        
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            print("Full Name: \(self.fullName)")
             print("Email: \(self.email)")
             print("Password: \(self.password)")
+            print("Phone Number: \(self.phoneNumber)")
         }
     }
     
