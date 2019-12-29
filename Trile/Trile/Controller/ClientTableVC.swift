@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 class ClientTableVC: UITableViewController {
+    
+    var testModeCounter: Int = 0
 
     var detailViewController: DetailViewController? = nil
     var objects = [Client]()
-    
-    var testModeCounter: Int = 0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
