@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import FirebaseFirestore
 
 class ClientTableVC: UITableViewController {
@@ -16,19 +15,21 @@ class ClientTableVC: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = [Client]()
-
+    
+    var docRef: DocumentReference!
+    var db: Firestore!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        db = Firestore.firestore()
+        
         enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
-        
-        
         
         navigationItem.leftBarButtonItem = editButtonItem
 
-        //let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientAlertDialog(_:)))
-        
-        //.rightBarButtonItem = addClientButton
+        let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientAlertDialog(_:)))
+        navigationItem.rightBarButtonItem = addClientButton
         
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -96,6 +97,22 @@ class ClientTableVC: UITableViewController {
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
+        //MARK: - Database CRUD Functions
+        
+    func addClientToDatabase(_ clientName : String) {
+        
+            db.collection("user").document("info").setData([
+                "name": clientName
+            ]) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+
+        }
+    
     //MARK: - Alert Dialog
     
     @objc
@@ -105,13 +122,17 @@ class ClientTableVC: UITableViewController {
         
         let alert = UIAlertController(title: "Add New Client", message: "Enter Client Name", preferredStyle: .alert)
         let addClientAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            let newClient = Client()
+//            let newClient = Client()
+//
+//            if let name = textField.text {
+//                newClient.name = name
+//            }
+//
+//            self.insertNewClient(newClient)
             
             if let name = textField.text {
-                newClient.name = name
+                self.addClientToDatabase(name)
             }
-
-            self.insertNewClient(newClient)
 
         }
         
