@@ -311,6 +311,9 @@
                                     <constraint firstAttribute="width" constant="100" id="G9j-Je-KIy"/>
                                     <constraint firstAttribute="height" constant="100" id="go8-22-ULB"/>
                                 </constraints>
+                                <state key="normal" title="TEST LOGIN">
+                                    <color key="titleColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="testLogin:" destination="8cR-9B-5uU" eventType="touchUpInside" id="DUC-9K-4rN"/>
                                 </connections>
