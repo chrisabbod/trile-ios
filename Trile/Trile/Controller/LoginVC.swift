@@ -21,6 +21,15 @@ class LoginVC: UIViewController {
     }
 
     @IBAction func LoginButton(_ sender: Any) {
+        loginAction()
+    }
+    
+    func display(alertController: UIAlertController) {
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    func loginAction() {
         let loginManager = FirebaseAuthManager()
         
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
@@ -41,9 +50,12 @@ class LoginVC: UIViewController {
             self.display(alertController: alertController)
         }
     }
+    //MARK: - Test Functions
     
-    func display(alertController: UIAlertController) {
-        self.present(alertController, animated: true, completion: nil)
+    @IBAction func testLogin(_ sender: Any) {
+        emailTextField.text = "chrisabbod@gmail.com"
+        passwordTextField.text = "Seraphim88"
+        loginAction()
     }
     
 }

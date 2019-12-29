@@ -101,7 +101,7 @@ class ClientTableVC: UITableViewController {
         
     func addClientToDatabase(_ clientName : String) {
         
-            db.collection("user").document("info").setData([
+            db.collection("user").document("id").setData([
                 "name": clientName
             ]) { err in
                 if let err = err {
