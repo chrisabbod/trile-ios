@@ -173,11 +173,11 @@
 		A511C20923B5618D00B9A771 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A5D6D8D523B872A100F16E27 /* Managers */,
 				A511C1D923B5614900B9A771 /* SceneDelegate.swift */,
 				A511C1DB23B5614900B9A771 /* MasterViewController.swift */,
 				A511C1DD23B5614900B9A771 /* DetailViewController.swift */,
 				A5D6D8CC23B69F4E00F16E27 /* AccountCreationVC.swift */,
-				A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -197,6 +197,14 @@
 				A511C1DF23B5614900B9A771 /* Main.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A5D6D8D523B872A100F16E27 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		B8B123E9BE352C282B2F6C29 /* Frameworks */ = {
