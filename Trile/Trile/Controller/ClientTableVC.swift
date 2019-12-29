@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 class ClientTableVC: UITableViewController {
     
@@ -21,10 +22,13 @@ class ClientTableVC: UITableViewController {
         
         enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
         
+        
+        
         navigationItem.leftBarButtonItem = editButtonItem
 
-        let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientAlertDialog(_:)))
-        navigationItem.rightBarButtonItem = addClientButton
+        //let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientAlertDialog(_:)))
+        
+        //.rightBarButtonItem = addClientButton
         
         if let split = splitViewController {
             let controllers = split.viewControllers
