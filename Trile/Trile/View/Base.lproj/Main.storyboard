@@ -157,7 +157,7 @@
         <!--Master-->
         <scene sceneID="smW-Zh-WAh">
             <objects>
-                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="MasterViewController" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="ClientTableVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7i-6Z-zg0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -215,7 +215,7 @@
         <!--Login Screen-->
         <scene sceneID="S6B-bk-P8l">
             <objects>
-                <viewController title="Login Screen" id="8cR-9B-5uU" sceneMemberID="viewController">
+                <viewController title="Login Screen" id="8cR-9B-5uU" customClass="LoginVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="712-YV-6YE">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -272,6 +272,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
+                                            <action selector="LoginButton:" destination="8cR-9B-5uU" eventType="touchUpInside" id="gkL-PJ-JJ4"/>
                                             <segue destination="H1p-Uh-vWS" kind="show" id="KlE-Le-w5e"/>
                                         </connections>
                                     </button>
@@ -328,6 +329,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9zb-TX-yc9"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="8dm-Qq-0Hp" id="wfm-vz-Flf"/>
+                        <outlet property="passwordTextField" destination="11Q-2W-1JI" id="72L-sA-nfi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kXc-BK-nfR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

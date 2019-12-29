@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+class ClientTableVC: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = [Client]()
@@ -39,8 +39,8 @@ class MasterViewController: UITableViewController {
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
-            print("Go to FileNumberTableVC")
+//        if segue.identifier == "showDetail" {
+//            print("Go to FileNumberTableVC")
 //            if let indexPath = tableView.indexPathForSelectedRow {
 //                let object = objects[indexPath.row] as! Client
 //                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
@@ -49,7 +49,7 @@ class MasterViewController: UITableViewController {
 //                controller.navigationItem.leftItemsSupplementBackButton = true
 //                detailViewController = controller
 //            }
-        }
+//        }
     }
 
     // MARK: - Table View

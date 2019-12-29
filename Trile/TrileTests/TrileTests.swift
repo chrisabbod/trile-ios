@@ -11,11 +11,11 @@ import XCTest
 
 class TrileTests: XCTestCase {
 
-    var sut: MasterViewController!
+    var sut: ClientTableVC!
     
     override func setUp() {
         super.setUp()
-        sut = MasterViewController()
+        sut = ClientTableVC()
     }
 
     override func tearDown() {
