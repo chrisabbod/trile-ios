@@ -11,48 +11,35 @@ import FirebaseAuth
 
 class AccountCreationVC: UIViewController {
 
-    var fullName = ""
-    var email = ""
-    var password = ""
-    var phoneNumber = ""
-    
-
-    @IBOutlet weak var fullNameText: UITextField!
-    @IBOutlet weak var emailText: UITextField!
-    @IBOutlet weak var passwordText: UITextField!
-    @IBOutlet weak var phoneNumberText: UITextField!
-    
+    @IBOutlet weak var fullNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
     }
     
     @IBAction func createAccountButton(_ sender: Any) {
-        
-        if let userFullName = fullNameText.text {
-            fullName = userFullName
-        }
-        
-        if let userEmail = emailText.text {
-            email = userEmail
-        }
-        
-        if let userPassword = passwordText.text {
-            password = userPassword
-        }
-        
-        if let userPhoneNumber = phoneNumberText.text {
-            phoneNumber = userPhoneNumber
-        }
-        
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-            print("Full Name: \(self.fullName)")
-            print("Email: \(self.email)")
-            print("Password: \(self.password)")
-            print("Phone Number: \(self.phoneNumber)")
+        let signUpManager = FirebaseAuthManager()
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            signUpManager.createUser(email: email, password: password) {[weak self] (success) in
+                guard let `self` = self else { return }
+                var message: String = ""
+                if (success) {
+                    message = "User was sucessfully created."
+                } else {
+                    message = "There was an error."
+                }
+                let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.display(alertController: alertController)
+            }
         }
     }
     
+    func display(alertController: UIAlertController) {
+        self.present(alertController, animated: true, completion: nil)
+    }
 }

@@ -129,10 +129,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="HfJ-ja-29e"/>
                     <connections>
-                        <outlet property="emailText" destination="eMI-xj-rvT" id="hcA-JT-CU5"/>
-                        <outlet property="fullNameText" destination="byg-Gd-NBi" id="lZ9-zL-dhh"/>
-                        <outlet property="passwordText" destination="NuE-VS-wNj" id="eFW-5S-2Sm"/>
-                        <outlet property="phoneNumberText" destination="EJw-zx-oMa" id="zeg-wQ-mlb"/>
+                        <outlet property="emailTextField" destination="eMI-xj-rvT" id="pfx-7A-y1t"/>
+                        <outlet property="fullNameTextField" destination="byg-Gd-NBi" id="YnQ-Wl-sqJ"/>
+                        <outlet property="passwordTextField" destination="NuE-VS-wNj" id="nLi-ip-zdm"/>
+                        <outlet property="phoneNumberTextField" destination="EJw-zx-oMa" id="wqC-VO-WkR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3U-lm-F0b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
