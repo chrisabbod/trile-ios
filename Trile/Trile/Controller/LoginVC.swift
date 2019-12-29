@@ -10,9 +10,10 @@ import UIKit
 
 class LoginVC: UIViewController {
 
+    let LOGIN_SEGUE = "showClientTableVC"
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +30,7 @@ class LoginVC: UIViewController {
             
             if (success) {
                 message = "User was sucessfully logged in."
-                
-//                let vc = ClientTableVC()
-//                self.present(vc, animated: true, completion: nil)
+                self.performSegue(withIdentifier: self.LOGIN_SEGUE, sender: self)
             } else {
                 message = "There was an error."
             }
@@ -46,4 +45,5 @@ class LoginVC: UIViewController {
     func display(alertController: UIAlertController) {
         self.present(alertController, animated: true, completion: nil)
     }
+    
 }

@@ -273,7 +273,6 @@
                                         </state>
                                         <connections>
                                             <action selector="LoginButton:" destination="8cR-9B-5uU" eventType="touchUpInside" id="gkL-PJ-JJ4"/>
-                                            <segue destination="H1p-Uh-vWS" kind="show" id="KlE-Le-w5e"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -332,6 +331,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="8dm-Qq-0Hp" id="wfm-vz-Flf"/>
                         <outlet property="passwordTextField" destination="11Q-2W-1JI" id="72L-sA-nfi"/>
+                        <segue destination="H1p-Uh-vWS" kind="show" identifier="showClientTableVC" id="cpo-B8-ucW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kXc-BK-nfR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
