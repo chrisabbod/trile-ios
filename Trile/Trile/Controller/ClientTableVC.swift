@@ -100,29 +100,17 @@ class ClientTableVC: UITableViewController {
         //MARK: - Database CRUD Functions
         
     func addClientToDatabase(_ clientName : String) {
-        
-        let chrisData: [String: Any] = ["user": ["first_name": "Chris", "last_name": "Abbod", "age": 31]]
-        
-        db.collection("users").document("8Dzaxgg0VAh4jjWd9meH").setData(chrisData, completion: { (error) in
+                
+        db.collection("users").document("PD9pLZwVQqa3LlMzdjh6").collection("clients").addDocument(data: [
+            "name": clientName
+        ]) { (error) in
             if let error = error {
                 print("Error writing document: \(error)")
             } else {
                 print("Document successfully written!")
             }
-        })
+        }
     }
-        
-//        db.collection("user").document("id").setData([
-//            "name": clientName
-//        ]) { err in
-//            if let err = err {
-//                print("Error writing document: \(err)")
-//            } else {
-//                print("Document successfully written!")
-//            }
-//        }
-//
-//    }
     
     //MARK: - Alert Dialog
     
@@ -133,13 +121,6 @@ class ClientTableVC: UITableViewController {
         
         let alert = UIAlertController(title: "Add New Client", message: "Enter Client Name", preferredStyle: .alert)
         let addClientAction = UIAlertAction(title: "Add", style: .default) { (action) in
-//            let newClient = Client()
-//
-//            if let name = textField.text {
-//                newClient.name = name
-//            }
-//
-//            self.insertNewClient(newClient)
             
             if let name = textField.text {
                 self.addClientToDatabase(name)
