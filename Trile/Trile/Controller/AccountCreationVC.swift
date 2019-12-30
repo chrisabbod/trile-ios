@@ -32,29 +32,37 @@ class AccountCreationVC: UIViewController {
         
         Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
             
-            var message: String = ""
+            let uid: String = Auth.auth().currentUser!.uid
+            //var message: String = ""
+            
             if err != nil {
-                message = "Error creating user"
+                //message = "Error creating user"
             }
             else {
                 
                 let db = Firestore.firestore()
-                message = "User was successfully created"
+                //message = "User was successfully created"
                 
-                db.collection("users").addDocument(data: [
+                db.collection("users").document(uid).setData([
                     "first_name":firstName,
                     "last_name":lastName,
                     "email": email,
-                    "uid": result!.user.uid ]
-                ) { (error) in
-                    if error != nil {
-                        message = "There was a problem storing data"
-                    }
-                }
+                    "uid": result!.user.uid])
                 
-                let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self.display(alertController: alertController)
+//                db.collection("users").addDocument(data: [
+//                    "first_name":firstName,
+//                    "last_name":lastName,
+//                    "email": email,
+//                    "uid": result!.user.uid ]
+//                ) { (error) in
+//                    if error != nil {
+//                        //message = "There was a problem storing data"
+//                    }
+//                }
+                
+//                let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+//                self.display(alertController: alertController)
                 
                 self.transitionToHome()
             }

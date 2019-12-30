@@ -19,9 +19,9 @@ class ClientTableVC: UITableViewController {
     var clients = [Client]()
     
     var db = Firestore.firestore()
-    let clientRef = Firestore.firestore().collection("users").document("PD9pLZwVQqa3LlMzdjh6").collection("clients")
+    let clientRef = Firestore.firestore().collection("users").document("4hj6XlcIueVNVjT8f7SY").collection("clients")
     
-    var currentUser = Auth.auth().currentUser
+    var currentUser = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
