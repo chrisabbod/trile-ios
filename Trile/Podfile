@@ -10,7 +10,6 @@ target 'Trile' do
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
-  pod 'FirebaseFirestoreSwift'
   
   target 'TrileTests' do
     inherit! :search_paths
