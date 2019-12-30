@@ -113,6 +113,8 @@ class ClientTableVC: UITableViewController {
     func readClientsFromDatabase() {
         let clientRef = db.collection("users").document(uid).collection("clients")
 
+        clients.removeAll()
+
         clientRef.getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -127,10 +129,7 @@ class ClientTableVC: UITableViewController {
                     
                     let id = document.documentID
                     newClient.documentID = id
-                    
                     self.clients.append(newClient)
-
-                    print("Name: \(newClient.name) ID: \(newClient.documentID)")
                 }
                 self.tableView.reloadData()
             }
@@ -149,6 +148,7 @@ class ClientTableVC: UITableViewController {
             
             if let name = textField.text {
                 self.addClientToDatabase(name)
+                self.readClientsFromDatabase()
             }
 
         }
