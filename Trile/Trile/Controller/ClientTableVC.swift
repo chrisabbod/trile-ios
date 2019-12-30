@@ -19,9 +19,8 @@ class ClientTableVC: UITableViewController {
     var clients = [Client]()
     
     var db = Firestore.firestore()
-    let clientRef = Firestore.firestore().collection("users").document("4hj6XlcIueVNVjT8f7SY").collection("clients")
     
-    var currentUser = Auth.auth().currentUser?.uid
+    let uid: String = Auth.auth().currentUser!.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +83,7 @@ class ClientTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let clientRef = db.collection("users").document(uid).collection("clients")
         let documentID = clients[indexPath.row].documentID
         clientRef.document(documentID).delete()
         
@@ -96,7 +96,8 @@ class ClientTableVC: UITableViewController {
     //MARK: - Database CRUD Functions
         
     func addClientToDatabase(_ clientName : String) {
-                
+        let clientRef = db.collection("users").document(uid).collection("clients")
+
         clientRef.addDocument(data: [
             "name": clientName
         ]) { (error) in
@@ -110,6 +111,8 @@ class ClientTableVC: UITableViewController {
     }
     
     func readClientsFromDatabase() {
+        let clientRef = db.collection("users").document(uid).collection("clients")
+
         clientRef.getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
