@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 import FirebaseFirestore
 
 class ClientTableVC: UITableViewController {
@@ -14,18 +15,20 @@ class ClientTableVC: UITableViewController {
     var testModeCounter: Int = 0
 
     var detailViewController: DetailViewController? = nil
-    var objects = [Client]()
+    //var objects = [Client]()
     
-    var docRef: DocumentReference!
+    var clients = [String]()
+    
     var db: Firestore!
+    var currentUser = Auth.auth().currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         db = Firestore.firestore()
         
-        enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
-        
+       // enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
+        readFromDatabase()
         navigationItem.leftBarButtonItem = editButtonItem
 
         let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientAlertDialog(_:)))
@@ -36,7 +39,7 @@ class ClientTableVC: UITableViewController {
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
     }
-    
+        
     override func viewWillAppear(_ animated: Bool) {
         //clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
@@ -65,13 +68,13 @@ class ClientTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return clients.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let object = objects[indexPath.row]
-        cell.textLabel!.text = object.name
+        let client = clients[indexPath.row]
+        cell.textLabel!.text = client
         return cell
     }
 
@@ -82,7 +85,7 @@ class ClientTableVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
+            clients.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -91,13 +94,13 @@ class ClientTableVC: UITableViewController {
     
     //MARK: - Insert Function
     
-    func insertNewClient(_ client: Client) {
-        objects.insert(client, at: 0)
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-    }
+//    func insertNewClient(_ client: Client) {
+//        clients.insert(client, at: 0)
+//        let indexPath = IndexPath(row: 0, section: 0)
+//        tableView.insertRows(at: [indexPath], with: .automatic)
+//    }
     
-        //MARK: - Database CRUD Functions
+    //MARK: - Database CRUD Functions
         
     func addClientToDatabase(_ clientName : String) {
                 
@@ -110,6 +113,38 @@ class ClientTableVC: UITableViewController {
                 print("Document successfully written!")
             }
         }
+        
+        //Add client names to separate collection just for names
+        db.collection("users").document("PD9pLZwVQqa3LlMzdjh6").collection("client_names").addDocument(data: [
+            "name": clientName
+        ]) { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+    }
+    
+    func readFromDatabase() {
+        let clientNamesRef = db.collection("users").document("PD9pLZwVQqa3LlMzdjh6").collection("client_names")
+        
+        clientNamesRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data())")
+                    
+                    if let name = document.get("name") {
+                        print(name)
+                        self.clients.append(name as! String)
+                    }
+                }
+                print(self.clients)
+            }
+        }
+        
     }
     
     //MARK: - Alert Dialog
@@ -144,62 +179,62 @@ class ClientTableVC: UITableViewController {
     
     //MARK: - Test Functions
     
-    @objc
-    func insertTestClients() {
-        for i in (1...5).reversed() {
-            let newClient = Client()
-            newClient.name = "Client " + String(i)
-            
-            objects.insert(newClient, at: 0)
-            let indexPath = IndexPath(row: 0, section: 0)
-            tableView.insertRows(at: [indexPath], with: .automatic)
-        }
-    }
-    
-    @objc
-    func removeAllClients() {
-        objects.removeAll()
-        tableView.reloadData()
-    }
-    
-    func enableNavBarGestureRecognizer() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(countPresses))
-        self.navigationController?.navigationBar.addGestureRecognizer(tap)
-    }
-    
-    @objc
-    func countPresses() {
-        testModeCounter += 1
-        
-        if testModeCounter == 5 {
-            enableUserDebugModeAlertDialog()
-            testModeCounter = 0
-        }
-    }
-    
-    @objc
-    func enableUserDebugModeAlertDialog() {
-        let alert = UIAlertController(title: "Test Menu", message: "Enable Test Mode?", preferredStyle: .alert)
-        
-        let enableAction = UIAlertAction(title: "Enable", style: .default) { (action) in
-            let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
-            let addTestClientsButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.insertTestClients))
-            let removeClientsButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.removeAllClients))
-            
-            self.navigationItem.rightBarButtonItems = [addClientButton, addTestClientsButton, removeClientsButton]
-        }
-        
-        let disableAction = UIAlertAction(title: "Disable", style: .default) { (action) in
-            let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
-            
-            self.navigationItem.rightBarButtonItems = [addClientButton]
-        }
-        
-        alert.addAction(disableAction)
-        alert.addAction(enableAction)
-        
-        present(alert, animated: true, completion: nil)
-    }
+//    @objc
+//    func insertTestClients() {
+//        for i in (1...5).reversed() {
+//            let newClient = Client()
+//            newClient.name = "Client " + String(i)
+//
+//            objects.insert(newClient, at: 0)
+//            let indexPath = IndexPath(row: 0, section: 0)
+//            tableView.insertRows(at: [indexPath], with: .automatic)
+//        }
+//    }
+//
+//    @objc
+//    func removeAllClients() {
+//        objects.removeAll()
+//        tableView.reloadData()
+//    }
+//
+//    func enableNavBarGestureRecognizer() {
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(countPresses))
+//        self.navigationController?.navigationBar.addGestureRecognizer(tap)
+//    }
+//
+//    @objc
+//    func countPresses() {
+//        testModeCounter += 1
+//
+//        if testModeCounter == 5 {
+//            enableUserDebugModeAlertDialog()
+//            testModeCounter = 0
+//        }
+//    }
+//
+//    @objc
+//    func enableUserDebugModeAlertDialog() {
+//        let alert = UIAlertController(title: "Test Menu", message: "Enable Test Mode?", preferredStyle: .alert)
+//
+//        let enableAction = UIAlertAction(title: "Enable", style: .default) { (action) in
+//            let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
+//            let addTestClientsButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.insertTestClients))
+//            let removeClientsButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.removeAllClients))
+//
+//            self.navigationItem.rightBarButtonItems = [addClientButton, addTestClientsButton, removeClientsButton]
+//        }
+//
+//        let disableAction = UIAlertAction(title: "Disable", style: .default) { (action) in
+//            let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
+//
+//            self.navigationItem.rightBarButtonItems = [addClientButton]
+//        }
+//
+//        alert.addAction(disableAction)
+//        alert.addAction(enableAction)
+//
+//        present(alert, animated: true, completion: nil)
+//    }
 
 }
 

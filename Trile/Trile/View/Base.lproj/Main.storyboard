@@ -244,7 +244,7 @@
                                         <rect key="frame" x="0.0" y="45" width="300" height="37"/>
                                         <color key="tintColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
