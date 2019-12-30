@@ -84,10 +84,13 @@ class ClientTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let documentID = clients[indexPath.row].documentID
+        clientRef.document(documentID).delete()
+        
         clients.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
         
-        
+
     }
 
     //MARK: - Database CRUD Functions
