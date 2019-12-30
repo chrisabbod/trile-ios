@@ -15,7 +15,6 @@ class ClientTableVC: UITableViewController {
     var testModeCounter: Int = 0
 
     var detailViewController: DetailViewController? = nil
-    //var objects = [Client]()
     
     var clients = [String]()
     
@@ -29,6 +28,7 @@ class ClientTableVC: UITableViewController {
         
        // enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
         readFromDatabase()
+                
         navigationItem.leftBarButtonItem = editButtonItem
 
         let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientAlertDialog(_:)))
@@ -38,6 +38,8 @@ class ClientTableVC: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        print("viewDidLoad: \(clients.count)")
+        tableView.reloadData()
     }
         
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +70,7 @@ class ClientTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("clients.count: \(clients.count)")
         return clients.count
     }
 
@@ -99,7 +102,7 @@ class ClientTableVC: UITableViewController {
 //        let indexPath = IndexPath(row: 0, section: 0)
 //        tableView.insertRows(at: [indexPath], with: .automatic)
 //    }
-    
+
     //MARK: - Database CRUD Functions
         
     func addClientToDatabase(_ clientName : String) {
@@ -114,22 +117,12 @@ class ClientTableVC: UITableViewController {
             }
         }
         
-        //Add client names to separate collection just for names
-        db.collection("users").document("PD9pLZwVQqa3LlMzdjh6").collection("client_names").addDocument(data: [
-            "name": clientName
-        ]) { (error) in
-            if let error = error {
-                print("Error writing document: \(error)")
-            } else {
-                print("Document successfully written!")
-            }
-        }
     }
     
     func readFromDatabase() {
-        let clientNamesRef = db.collection("users").document("PD9pLZwVQqa3LlMzdjh6").collection("client_names")
-        
-        clientNamesRef.getDocuments() { (querySnapshot, err) in
+        let clientRef = db.collection("users").document("PD9pLZwVQqa3LlMzdjh6").collection("clients")
+
+        clientRef.getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -137,14 +130,15 @@ class ClientTableVC: UITableViewController {
                     //print("\(document.documentID) => \(document.data())")
                     
                     if let name = document.get("name") {
-                        print(name)
                         self.clients.append(name as! String)
                     }
                 }
                 print(self.clients)
+                print("Inner loop: \(self.clients.count)")
+                self.tableView.reloadData()
             }
         }
-        
+        print("readFromDatabase: \(clients.count)")
     }
     
     //MARK: - Alert Dialog
