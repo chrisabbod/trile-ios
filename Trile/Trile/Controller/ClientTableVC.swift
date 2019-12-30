@@ -16,19 +16,19 @@ class ClientTableVC: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     
-    var clients = [String]()
+    var clients = [Client]()
     
-    var db: Firestore!
+    var db = Firestore.firestore()
+    let clientRef = Firestore.firestore().collection("users").document("PD9pLZwVQqa3LlMzdjh6").collection("clients")
+    
     var currentUser = Auth.auth().currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        db = Firestore.firestore()
+        // enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
+        readClientsFromDatabase()
         
-       // enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
-        readFromDatabase()
-                
         navigationItem.leftBarButtonItem = editButtonItem
 
         let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientAlertDialog(_:)))
@@ -38,10 +38,8 @@ class ClientTableVC: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
-        print("viewDidLoad: \(clients.count)")
-        tableView.reloadData()
     }
-        
+    
     override func viewWillAppear(_ animated: Bool) {
         //clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
@@ -70,13 +68,12 @@ class ClientTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("clients.count: \(clients.count)")
         return clients.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let client = clients[indexPath.row]
+        let client = clients[indexPath.row].name
         cell.textLabel!.text = client
         return cell
     }
@@ -87,27 +84,17 @@ class ClientTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            clients.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
+        clients.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+        
+        
     }
-    
-    //MARK: - Insert Function
-    
-//    func insertNewClient(_ client: Client) {
-//        clients.insert(client, at: 0)
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        tableView.insertRows(at: [indexPath], with: .automatic)
-//    }
 
     //MARK: - Database CRUD Functions
         
     func addClientToDatabase(_ clientName : String) {
                 
-        db.collection("users").document("PD9pLZwVQqa3LlMzdjh6").collection("clients").addDocument(data: [
+        clientRef.addDocument(data: [
             "name": clientName
         ]) { (error) in
             if let error = error {
@@ -119,26 +106,29 @@ class ClientTableVC: UITableViewController {
         
     }
     
-    func readFromDatabase() {
-        let clientRef = db.collection("users").document("PD9pLZwVQqa3LlMzdjh6").collection("clients")
-
+    func readClientsFromDatabase() {
         clientRef.getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
                     //print("\(document.documentID) => \(document.data())")
+                    let newClient = Client()
                     
                     if let name = document.get("name") {
-                        self.clients.append(name as! String)
+                        newClient.name = name as! String
                     }
+                    
+                    let id = document.documentID
+                    newClient.documentID = id
+                    
+                    self.clients.append(newClient)
+
+                    print("Name: \(newClient.name) ID: \(newClient.documentID)")
                 }
-                print(self.clients)
-                print("Inner loop: \(self.clients.count)")
                 self.tableView.reloadData()
             }
         }
-        print("readFromDatabase: \(clients.count)")
     }
     
     //MARK: - Alert Dialog

@@ -10,4 +10,5 @@ import Foundation
 
 class Client {
     var name: String = ""
+    var documentID: String = ""
 }
