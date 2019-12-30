@@ -51,11 +51,9 @@ class LoginVC: UIViewController {
         }
     }
     //MARK: - Test Functions
-    
     @IBAction func testLogin(_ sender: Any) {
         emailTextField.text = "chrisabbod@gmail.com"
         passwordTextField.text = "Seraphim88"
-        loginAction()
     }
     
 }

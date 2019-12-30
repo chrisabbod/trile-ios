@@ -23,21 +23,6 @@ class AccountCreationVC: UIViewController {
     }
     
     @IBAction func createAccountButton(_ sender: Any) {
-//        let signUpManager = FirebaseAuthManager()
-//        if let email = emailTextField.text, let password = passwordTextField.text {
-//            signUpManager.createUser(email: email, password: password) {[weak self] (success) in
-//                guard let `self` = self else { return }
-//                var message: String = ""
-//                if (success) {
-//                    message = "User was sucessfully created."
-//                } else {
-//                    message = "There was an error."
-//                }
-//                let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-//                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-//                self.display(alertController: alertController)
-//            }
-//        }
         
         // Create cleaned versions of the data
         let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)

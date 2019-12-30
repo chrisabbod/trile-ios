@@ -100,13 +100,16 @@ class ClientTableVC: UITableViewController {
         //MARK: - Database CRUD Functions
         
     func addClientToDatabase(_ clientName : String) {
-        db.collection("user").addDocument(data: ["name": clientName]) { error in
+        
+        let chrisData: [String: Any] = ["user": ["first_name": "Chris", "last_name": "Abbod", "age": 31]]
+        
+        db.collection("users").document("8Dzaxgg0VAh4jjWd9meH").setData(chrisData, completion: { (error) in
             if let error = error {
                 print("Error writing document: \(error)")
             } else {
                 print("Document successfully written!")
             }
-        }
+        })
     }
         
 //        db.collection("user").document("id").setData([

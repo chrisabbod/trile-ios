@@ -307,12 +307,16 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wme-dN-y1d">
                                 <rect key="frame" x="1258" y="8" width="100" height="100"/>
+                                <color key="backgroundColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="G9j-Je-KIy"/>
                                     <constraint firstAttribute="height" constant="100" id="go8-22-ULB"/>
                                 </constraints>
+                                <state key="normal" title="Test Login">
+                                    <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                </state>
                                 <connections>
-                                    <action selector="testLogIn:" destination="8cR-9B-5uU" eventType="touchUpInside" id="DUC-9K-4rN"/>
+                                    <action selector="testLogin:" destination="8cR-9B-5uU" eventType="touchUpInside" id="lbz-lg-KW5"/>
                                 </connections>
                             </button>
                         </subviews>
