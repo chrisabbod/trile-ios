@@ -89,22 +89,22 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BuI-XZ-myQ">
                                 <rect key="frame" x="206" y="406" width="300" height="172"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="byg-Gd-NBi">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="byg-Gd-NBi">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eMI-xj-rvT">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eMI-xj-rvT">
                                         <rect key="frame" x="0.0" y="45" width="300" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NuE-VS-wNj">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NuE-VS-wNj">
                                         <rect key="frame" x="0.0" y="90" width="300" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EJw-zx-oMa">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EJw-zx-oMa">
                                         <rect key="frame" x="0.0" y="135" width="300" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -129,10 +129,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="HfJ-ja-29e"/>
                     <connections>
-                        <outlet property="emailTextField" destination="eMI-xj-rvT" id="pfx-7A-y1t"/>
-                        <outlet property="fullNameTextField" destination="byg-Gd-NBi" id="YnQ-Wl-sqJ"/>
-                        <outlet property="passwordTextField" destination="NuE-VS-wNj" id="nLi-ip-zdm"/>
-                        <outlet property="phoneNumberTextField" destination="EJw-zx-oMa" id="wqC-VO-WkR"/>
+                        <outlet property="emailTextField" destination="NuE-VS-wNj" id="GyS-ow-7hs"/>
+                        <outlet property="firstNameTextField" destination="byg-Gd-NBi" id="7Tf-TD-aTF"/>
+                        <outlet property="lastNameTextField" destination="eMI-xj-rvT" id="2zd-ao-fJf"/>
+                        <outlet property="passwordTextField" destination="EJw-zx-oMa" id="WLb-4g-qaH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3U-lm-F0b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -215,7 +215,7 @@
         <!--Login Screen-->
         <scene sceneID="S6B-bk-P8l">
             <objects>
-                <viewController title="Login Screen" id="8cR-9B-5uU" customClass="LoginVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="Login Screen" id="8cR-9B-5uU" customClass="LoginVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="712-YV-6YE">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -311,11 +311,8 @@
                                     <constraint firstAttribute="width" constant="100" id="G9j-Je-KIy"/>
                                     <constraint firstAttribute="height" constant="100" id="go8-22-ULB"/>
                                 </constraints>
-                                <state key="normal" title="TEST LOGIN">
-                                    <color key="titleColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
                                 <connections>
-                                    <action selector="testLogin:" destination="8cR-9B-5uU" eventType="touchUpInside" id="DUC-9K-4rN"/>
+                                    <action selector="testLogIn:" destination="8cR-9B-5uU" eventType="touchUpInside" id="DUC-9K-4rN"/>
                                 </connections>
                             </button>
                         </subviews>
