@@ -16,9 +16,9 @@ class ClientTableVC: UITableViewController {
     let uid: String = Auth.auth().currentUser!.uid
     var clients = [Client]()
     var detailViewController: DetailViewController? = nil
-
+    
     let FILE_NUMBER_SEGUE = "goToFileNumberTableVC"
-
+    
     var testModeCounter: Int = 0
     
     
@@ -30,34 +30,34 @@ class ClientTableVC: UITableViewController {
         readClientsFromDatabase()
         
         navigationItem.leftBarButtonItem = editButtonItem
-
+        
         let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientAlertDialog(_:)))
         navigationItem.rightBarButtonItem = addClientButton
         
     }
-
+    
     // MARK: - Table View
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return clients.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let client = clients[indexPath.row].name
         cell.textLabel!.text = client
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         deleteClientFromDatabase(indexPath)
@@ -71,9 +71,17 @@ class ClientTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: FILE_NUMBER_SEGUE, sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! FileNumberTableVC
 
+        if let indexPath = tableView.indexPathForSelectedRow{
+            destinationVC.selectedClient = clients[indexPath.row]
+        }
+    }
+    
     //MARK: - Database CRUD Functions
-        
+    
     func addClientToDatabase(_ client : Client) {
         let clientRef = db.collection("users").document(uid).collection("clients")
         
@@ -96,10 +104,10 @@ class ClientTableVC: UITableViewController {
     
     func readClientsFromDatabase() {
         let clientRef = db.collection("users").document(uid).collection("clients")
-    
+        
         //Clients are completely removed and replaced in the array. Write this better in the future.
         clients.removeAll()
-
+        
         clientRef.getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -145,7 +153,7 @@ class ClientTableVC: UITableViewController {
                 self.addClientToDatabase(newClient)
                 self.readClientsFromDatabase()
             }
-
+            
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
@@ -174,11 +182,11 @@ class ClientTableVC: UITableViewController {
         }
         readClientsFromDatabase()
     }
-
+    
     @objc
     func removeAllClients() {
         let clientRef = db.collection("users").document(uid).collection("clients")
-
+        
         for client in clients {
             clientRef.document(client.documentID).delete()
         }
@@ -186,46 +194,46 @@ class ClientTableVC: UITableViewController {
         clients.removeAll()
         tableView.reloadData()
     }
-
+    
     func enableNavBarGestureRecognizer() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(countPresses))
         self.navigationController?.navigationBar.addGestureRecognizer(tap)
     }
-
+    
     @objc
     func countPresses() {
         testModeCounter += 1
-
+        
         if testModeCounter == 5 {
             enableUserDebugModeAlertDialog()
             testModeCounter = 0
         }
     }
-
+    
     @objc
     func enableUserDebugModeAlertDialog() {
         let alert = UIAlertController(title: "Test Menu", message: "Enable Test Mode?", preferredStyle: .alert)
-
+        
         let enableAction = UIAlertAction(title: "Enable", style: .default) { (action) in
             let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
             let addTestClientsButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.insertTestClients))
             let removeClientsButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.removeAllClients))
-
+            
             self.navigationItem.rightBarButtonItems = [addClientButton, addTestClientsButton, removeClientsButton]
         }
-
+        
         let disableAction = UIAlertAction(title: "Disable", style: .default) { (action) in
             let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
-
+            
             self.navigationItem.rightBarButtonItems = [addClientButton]
         }
-
+        
         alert.addAction(disableAction)
         alert.addAction(enableAction)
-
+        
         present(alert, animated: true, completion: nil)
     }
-
+    
 }
 
 
