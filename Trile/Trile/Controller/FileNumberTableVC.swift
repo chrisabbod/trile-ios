@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class FileNumberTableVC: UITableViewController {
+
+    var db = Firestore.firestore()
+    let uid: String = Auth.auth().currentUser!.uid
 
     let TAB_SEGUE = "goToTabVC"
     
@@ -19,9 +24,12 @@ class FileNumberTableVC: UITableViewController {
 
         let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFileNumberAlertDialog(_:)))
         navigationItem.rightBarButtonItem = addFileNumberButton
-        
-        self.tableView.reloadData()
 
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let clientDocumentID = clientRef.document().documentID
+        print(clientDocumentID)
+        
+       // self.tableView.reloadData()
     }
 
     //MARK: - Insert Function
@@ -96,7 +104,7 @@ class FileNumberTableVC: UITableViewController {
 //               print("Document successfully written!")
 //           }
 //       }
-//       
+//
 //   }
    
 //   func readClientsFromDatabase() {

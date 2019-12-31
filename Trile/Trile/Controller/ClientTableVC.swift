@@ -12,14 +12,15 @@ import FirebaseFirestore
 
 class ClientTableVC: UITableViewController {
     
-    var testModeCounter: Int = 0
-    
-    let FILE_NUMBER_SEGUE = "goToFileNumberTableVC"
-
-    var detailViewController: DetailViewController? = nil
-    var clients = [Client]()
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
+    var clients = [Client]()
+    var detailViewController: DetailViewController? = nil
+
+    let FILE_NUMBER_SEGUE = "goToFileNumberTableVC"
+
+    var testModeCounter: Int = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,15 +74,20 @@ class ClientTableVC: UITableViewController {
 
     //MARK: - Database CRUD Functions
         
-    func addClientToDatabase(_ clientName : String) {
+    func addClientToDatabase(_ client : Client) {
         let clientRef = db.collection("users").document(uid).collection("clients")
-
-        clientRef.addDocument(data: [
-            "name": clientName
+        
+        let newID = clientRef.document().documentID
+        client.documentID = newID
+        
+        clientRef.document(newID).setData([
+            "name": client.name,
+            "documentID": client.documentID
         ]) { (error) in
             if let error = error {
                 print("Error writing document: \(error)")
             } else {
+                print("New ID: \(newID)")
                 print("Document successfully written!")
             }
         }
@@ -131,8 +137,12 @@ class ClientTableVC: UITableViewController {
         let alert = UIAlertController(title: "Add New Client", message: "Enter Client Name", preferredStyle: .alert)
         let addClientAction = UIAlertAction(title: "Add", style: .default) { (action) in
             
+            let newClient = Client()
+            
             if let name = textField.text {
-                self.addClientToDatabase(name)
+                newClient.name = name
+                
+                self.addClientToDatabase(newClient)
                 self.readClientsFromDatabase()
             }
 
@@ -160,7 +170,7 @@ class ClientTableVC: UITableViewController {
             let newClient = Client()
             newClient.name = "Client " + String(i)
             
-            addClientToDatabase(newClient.name)
+            addClientToDatabase(newClient)
         }
         readClientsFromDatabase()
     }
