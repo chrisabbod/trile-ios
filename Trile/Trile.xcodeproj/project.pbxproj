@@ -26,6 +26,7 @@
 		A5D6D8CF23B8005F00F16E27 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */; };
 		A5D6D8D723B872DD00F16E27 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D6D8D623B872DD00F16E27 /* LoginVC.swift */; };
 		A5D6D8DB23BBBD9F00F16E27 /* FileNumberTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D6D8DA23BBBD9F00F16E27 /* FileNumberTableVC.swift */; };
+		A5D6D8DD23BBDF4200F16E27 /* FileNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D6D8DC23BBDF4200F16E27 /* FileNumber.swift */; };
 		F0F3EDF63735ADDB0559F603 /* Pods_Trile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DB2CFEB2FE8752AF088CE0 /* Pods_Trile.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		A5D6D8D623B872DD00F16E27 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		A5D6D8DA23BBBD9F00F16E27 /* FileNumberTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNumberTableVC.swift; sourceTree = "<group>"; };
+		A5D6D8DC23BBDF4200F16E27 /* FileNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNumber.swift; sourceTree = "<group>"; };
 		BB59C60271A690FA7A90CA59 /* Pods-TrileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrileTests.debug.xcconfig"; path = "Target Support Files/Pods-TrileTests/Pods-TrileTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				A511C20C23B564CE00B9A771 /* Client.swift */,
+				A5D6D8DC23BBDF4200F16E27 /* FileNumber.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 			files = (
 				A511C1D823B5614900B9A771 /* AppDelegate.swift in Sources */,
 				A5D6D8CF23B8005F00F16E27 /* FirebaseAuthManager.swift in Sources */,
+				A5D6D8DD23BBDF4200F16E27 /* FileNumber.swift in Sources */,
 				A5D6D8D723B872DD00F16E27 /* LoginVC.swift in Sources */,
 				A5D6D8DB23BBBD9F00F16E27 /* FileNumberTableVC.swift in Sources */,
 				A5D6D8CD23B69F4E00F16E27 /* AccountCreationVC.swift in Sources */,

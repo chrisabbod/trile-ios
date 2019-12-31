@@ -63,8 +63,6 @@ class ClientTableVC: UITableViewController {
         
         clients.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
-        
-
     }
     
     // MARK: - Segues
