@@ -15,6 +15,8 @@ class FileNumberTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFileNumberAlertDialog(_:)))
+        navigationItem.rightBarButtonItem = addFileNumberButton
     }
 
     //MARK: - Segues
@@ -35,5 +37,36 @@ class FileNumberTableVC: UITableViewController {
     //                detailViewController = controller
     //            }
     //        }
+    }
+    
+    //MARK: - Alert Dialog
+    
+    @objc
+    func addFileNumberAlertDialog(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Add New File Number", message: "Enter File Number", preferredStyle: .alert)
+        let addFileNumberAction = UIAlertAction(title: "Add", style: .default) { (action) in
+            
+            if let name = textField.text {
+//                self.addClientToDatabase(name)
+//                self.readClientsFromDatabase()
+            }
+
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            print("No file number added")
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(addFileNumberAction)
+        alert.addTextField { (field) in
+            textField = field
+            field.placeholder = "Enter File Number"
+        }
+        
+        present(alert, animated: true, completion: nil)
     }
 }
