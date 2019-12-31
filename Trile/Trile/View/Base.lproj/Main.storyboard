@@ -57,10 +57,10 @@
             </objects>
             <point key="canvasLocation" x="709" y="129"/>
         </scene>
-        <!--Account Creation-->
+        <!--AccountCreationVC-->
         <scene sceneID="6qV-vm-NXF">
             <objects>
-                <viewController title="Account Creation" id="U71-qz-yEX" customClass="AccountCreationVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="AccountCreationVC" id="U71-qz-yEX" customClass="AccountCreationVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VgA-PF-hwI">
                         <rect key="frame" x="0.0" y="0.0" width="712" height="984"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -137,7 +137,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3U-lm-F0b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-856" y="380"/>
+            <point key="canvasLocation" x="-1564" y="380"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -154,10 +154,10 @@
             </objects>
             <point key="canvasLocation" x="-856" y="-330"/>
         </scene>
-        <!--Master-->
+        <!--ClientTableVC-->
         <scene sceneID="smW-Zh-WAh">
             <objects>
-                <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="ClientTableVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="ClientTableVC" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="ClientTableVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7i-6Z-zg0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,9 +179,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <connections>
-                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="6S0-TO-JiA"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -190,7 +187,10 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="Clients" id="Zdf-7t-Un8"/>
+                    <connections>
+                        <segue destination="ggw-Mz-GcF" kind="show" identifier="goToFileNumberTableVC" id="ShU-MS-eT4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
@@ -212,10 +212,10 @@
             </objects>
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
-        <!--Login Screen-->
+        <!--LoginVC-->
         <scene sceneID="S6B-bk-P8l">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" title="Login Screen" id="8cR-9B-5uU" customClass="LoginVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="LoginVC" id="8cR-9B-5uU" customClass="LoginVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="712-YV-6YE">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -354,10 +354,10 @@
             </objects>
             <point key="canvasLocation" x="-1564" y="-330"/>
         </scene>
-        <!--Forgot Password Screen-->
+        <!--ForgotPasswordVC-->
         <scene sceneID="A32-SE-cpA">
             <objects>
-                <viewController title="Forgot Password Screen" id="bvk-Dk-pRF" sceneMemberID="viewController">
+                <viewController title="ForgotPasswordVC" id="bvk-Dk-pRF" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CPc-D5-htH">
                         <rect key="frame" x="0.0" y="0.0" width="712" height="984"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -423,12 +423,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OET-12-sC7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1564" y="429"/>
+            <point key="canvasLocation" x="-2218" y="380"/>
         </scene>
-        <!--Forgot Username Screen-->
+        <!--ForgotUsernameVC-->
         <scene sceneID="nba-UB-6jO">
             <objects>
-                <viewController title="Forgot Username Screen" id="g0m-Qq-RKI" sceneMemberID="viewController">
+                <viewController title="ForgotUsernameVC" id="g0m-Qq-RKI" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MPV-s5-rKK">
                         <rect key="frame" x="0.0" y="0.0" width="712" height="984"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -477,10 +477,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uDa-HQ-597" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1564" y="1163"/>
+            <point key="canvasLocation" x="-2218" y="1079"/>
+        </scene>
+        <!--FileNumberTableVC-->
+        <scene sceneID="5lT-qs-Abf">
+            <objects>
+                <tableViewController title="FileNumberTableVC" clearsSelectionOnViewWillAppear="NO" id="ggw-Mz-GcF" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Pwp-er-Jcd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="W8c-vQ-OJv" style="IBUITableViewCellStyleDefault" id="Pe2-u2-gDc">
+                                <rect key="frame" x="0.0" y="28" width="375" height="51.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pe2-u2-gDc" id="7oN-C2-PYn">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W8c-vQ-OJv">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="51.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="ggw-Mz-GcF" id="j91-Tt-hwl"/>
+                            <outlet property="delegate" destination="ggw-Mz-GcF" id="h9l-xk-fSq"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="File Numbers" id="ifz-LL-46z"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="INX-7b-NZE" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1443" y="-630"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="6S0-TO-JiA"/>
-    </inferredMetricsTieBreakers>
 </document>

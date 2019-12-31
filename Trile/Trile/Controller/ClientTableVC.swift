@@ -13,6 +13,8 @@ import FirebaseFirestore
 class ClientTableVC: UITableViewController {
     
     var testModeCounter: Int = 0
+    
+    let FILE_NUMBER_SEGUE = "goToFileNumberTableVC"
 
     var detailViewController: DetailViewController? = nil
     var clients = [Client]()
@@ -31,31 +33,6 @@ class ClientTableVC: UITableViewController {
         let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientAlertDialog(_:)))
         navigationItem.rightBarButtonItem = addClientButton
         
-        if let split = splitViewController {
-            let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
-        super.viewWillAppear(animated)
-    }
-    
-    // MARK: - Segues
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showDetail" {
-//            print("Go to FileNumberTableVC")
-//            if let indexPath = tableView.indexPathForSelectedRow {
-//                let object = objects[indexPath.row] as! Client
-//                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-//                controller.detailItem = object
-//                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-//                controller.navigationItem.leftItemsSupplementBackButton = true
-//                detailViewController = controller
-//            }
-//        }
     }
 
     // MARK: - Table View
@@ -88,6 +65,26 @@ class ClientTableVC: UITableViewController {
         tableView.deleteRows(at: [indexPath], with: .fade)
         
 
+    }
+    
+    // MARK: - Segues
+
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if segue.identifier == "showDetail" {
+    //            print("Go to FileNumberTableVC")
+    //            if let indexPath = tableView.indexPathForSelectedRow {
+    //                let object = objects[indexPath.row] as! Client
+    //                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+    //                controller.detailItem = object
+    //                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+    //                controller.navigationItem.leftItemsSupplementBackButton = true
+    //                detailViewController = controller
+    //            }
+    //        }
+        }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: FILE_NUMBER_SEGUE, sender: self)
     }
 
     //MARK: - Database CRUD Functions
