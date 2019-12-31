@@ -83,9 +83,8 @@ class ClientTableVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let documentID = clients[indexPath.row].documentID
-        clientRef.document(documentID).delete()
+        
+        deleteClientsFromDatabase(indexPath)
         
         clients.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
@@ -112,7 +111,8 @@ class ClientTableVC: UITableViewController {
     
     func readClientsFromDatabase() {
         let clientRef = db.collection("users").document(uid).collection("clients")
-
+    
+        //Clients are completely removed and replaced in the array. Write this better in the future.
         clients.removeAll()
 
         clientRef.getDocuments() { (querySnapshot, err) in
@@ -134,6 +134,12 @@ class ClientTableVC: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    func deleteClientsFromDatabase(_ indexPath: IndexPath) {
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let documentID = clients[indexPath.row].documentID
+        clientRef.document(documentID).delete()
     }
     
     //MARK: - Alert Dialog
