@@ -68,20 +68,6 @@ class ClientTableVC: UITableViewController {
     }
     
     // MARK: - Segues
-
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if segue.identifier == "showDetail" {
-    //            print("Go to FileNumberTableVC")
-    //            if let indexPath = tableView.indexPathForSelectedRow {
-    //                let object = objects[indexPath.row] as! Client
-    //                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-    //                controller.detailItem = object
-    //                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-    //                controller.navigationItem.leftItemsSupplementBackButton = true
-    //                detailViewController = controller
-    //            }
-    //        }
-        }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: FILE_NUMBER_SEGUE, sender: self)
