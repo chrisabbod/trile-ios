@@ -15,17 +15,15 @@ class ClientTableVC: UITableViewController {
     var testModeCounter: Int = 0
 
     var detailViewController: DetailViewController? = nil
-    
     var clients = [Client]()
-    
     var db = Firestore.firestore()
-    
     let uid: String = Auth.auth().currentUser!.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
+        
         readClientsFromDatabase()
         
         navigationItem.leftBarButtonItem = editButtonItem
@@ -84,7 +82,7 @@ class ClientTableVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        deleteClientsFromDatabase(indexPath)
+        deleteClientFromDatabase(indexPath)
         
         clients.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
@@ -136,7 +134,7 @@ class ClientTableVC: UITableViewController {
         }
     }
     
-    func deleteClientsFromDatabase(_ indexPath: IndexPath) {
+    func deleteClientFromDatabase(_ indexPath: IndexPath) {
         let clientRef = db.collection("users").document(uid).collection("clients")
         let documentID = clients[indexPath.row].documentID
         clientRef.document(documentID).delete()
