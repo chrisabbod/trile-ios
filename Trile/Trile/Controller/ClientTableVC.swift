@@ -25,7 +25,7 @@ class ClientTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
+        enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
         readClientsFromDatabase()
         
         navigationItem.leftBarButtonItem = editButtonItem
@@ -175,62 +175,67 @@ class ClientTableVC: UITableViewController {
     
     //MARK: - Test Functions
     
-//    @objc
-//    func insertTestClients() {
-//        for i in (1...5).reversed() {
-//            let newClient = Client()
-//            newClient.name = "Client " + String(i)
-//
-//            objects.insert(newClient, at: 0)
-//            let indexPath = IndexPath(row: 0, section: 0)
-//            tableView.insertRows(at: [indexPath], with: .automatic)
-//        }
-//    }
-//
-//    @objc
-//    func removeAllClients() {
-//        objects.removeAll()
-//        tableView.reloadData()
-//    }
-//
-//    func enableNavBarGestureRecognizer() {
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(countPresses))
-//        self.navigationController?.navigationBar.addGestureRecognizer(tap)
-//    }
-//
-//    @objc
-//    func countPresses() {
-//        testModeCounter += 1
-//
-//        if testModeCounter == 5 {
-//            enableUserDebugModeAlertDialog()
-//            testModeCounter = 0
-//        }
-//    }
-//
-//    @objc
-//    func enableUserDebugModeAlertDialog() {
-//        let alert = UIAlertController(title: "Test Menu", message: "Enable Test Mode?", preferredStyle: .alert)
-//
-//        let enableAction = UIAlertAction(title: "Enable", style: .default) { (action) in
-//            let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
-//            let addTestClientsButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.insertTestClients))
-//            let removeClientsButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.removeAllClients))
-//
-//            self.navigationItem.rightBarButtonItems = [addClientButton, addTestClientsButton, removeClientsButton]
-//        }
-//
-//        let disableAction = UIAlertAction(title: "Disable", style: .default) { (action) in
-//            let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
-//
-//            self.navigationItem.rightBarButtonItems = [addClientButton]
-//        }
-//
-//        alert.addAction(disableAction)
-//        alert.addAction(enableAction)
-//
-//        present(alert, animated: true, completion: nil)
-//    }
+    @objc
+    func insertTestClients() {
+        for i in (1...5).reversed() {
+            let newClient = Client()
+            newClient.name = "Client " + String(i)
+            
+            addClientToDatabase(newClient.name)
+        }
+        readClientsFromDatabase()
+    }
+
+    @objc
+    func removeAllClients() {
+        let clientRef = db.collection("users").document(uid).collection("clients")
+
+        for client in clients {
+            clientRef.document(client.documentID).delete()
+        }
+        
+        clients.removeAll()
+        tableView.reloadData()
+    }
+
+    func enableNavBarGestureRecognizer() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(countPresses))
+        self.navigationController?.navigationBar.addGestureRecognizer(tap)
+    }
+
+    @objc
+    func countPresses() {
+        testModeCounter += 1
+
+        if testModeCounter == 5 {
+            enableUserDebugModeAlertDialog()
+            testModeCounter = 0
+        }
+    }
+
+    @objc
+    func enableUserDebugModeAlertDialog() {
+        let alert = UIAlertController(title: "Test Menu", message: "Enable Test Mode?", preferredStyle: .alert)
+
+        let enableAction = UIAlertAction(title: "Enable", style: .default) { (action) in
+            let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
+            let addTestClientsButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.insertTestClients))
+            let removeClientsButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.removeAllClients))
+
+            self.navigationItem.rightBarButtonItems = [addClientButton, addTestClientsButton, removeClientsButton]
+        }
+
+        let disableAction = UIAlertAction(title: "Disable", style: .default) { (action) in
+            let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
+
+            self.navigationItem.rightBarButtonItems = [addClientButton]
+        }
+
+        alert.addAction(disableAction)
+        alert.addAction(enableAction)
+
+        present(alert, animated: true, completion: nil)
+    }
 
 }
 
