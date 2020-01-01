@@ -20,8 +20,12 @@ class FileNumberTableVC: UITableViewController {
     var selectedClient: Client?
     var fileNumbers = [FileNumber]()
     
+    var testModeCounter: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        enableNavBarGestureRecognizer()
         
         let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFileNumberAlertDialog(_:)))
         navigationItem.rightBarButtonItem = addFileNumberButton
@@ -173,6 +177,70 @@ class FileNumberTableVC: UITableViewController {
             textField = field
             field.placeholder = "Enter File Number"
         }
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: - Test Functions
+    
+    @objc
+    func insertTestFileNumbers() {
+        for i in (1...10).reversed() {
+            let newFileNumber = FileNumber()
+            newFileNumber.assignedFileNumber = "Filenumber " + String(i)
+            
+            addFileNumberToDatabase(newFileNumber)
+        }
+        readFileNumbersFromDatabase()
+    }
+    
+    @objc
+    func removeAllFileNumbers() {
+        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
+        let fileNumberRef = db.collection("users").document(uid).collection("clients").document(clientDocumentID).collection("file_numbers")
+        for fileNumber in fileNumbers {
+            fileNumberRef.document(fileNumber.documentID).delete()
+        }
+        
+        fileNumbers.removeAll()
+        tableView.reloadData()
+    }
+    
+    func enableNavBarGestureRecognizer() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(countPresses))
+        self.navigationController?.navigationBar.addGestureRecognizer(tap)
+    }
+    
+    @objc
+    func countPresses() {
+        testModeCounter += 1
+        
+        if testModeCounter == 5 {
+            enableUserDebugModeAlertDialog()
+            testModeCounter = 0
+        }
+    }
+    
+    @objc
+    func enableUserDebugModeAlertDialog() {
+        let alert = UIAlertController(title: "Test Menu", message: "Enable Test Mode?", preferredStyle: .alert)
+        
+        let enableAction = UIAlertAction(title: "Enable", style: .default) { (action) in
+            let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addFileNumberAlertDialog(_:)))
+            let addTestFileNumbersButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.insertTestFileNumbers))
+            let removeFileNumbersButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.removeAllFileNumbers))
+            
+            self.navigationItem.rightBarButtonItems = [addFileNumberButton, addTestFileNumbersButton, removeFileNumbersButton]
+        }
+        
+        let disableAction = UIAlertAction(title: "Disable", style: .default) { (action) in
+            let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addFileNumberAlertDialog(_:)))
+            
+            self.navigationItem.rightBarButtonItems = [addFileNumberButton]
+        }
+        
+        alert.addAction(disableAction)
+        alert.addAction(enableAction)
         
         present(alert, animated: true, completion: nil)
     }
