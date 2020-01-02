@@ -23,7 +23,15 @@ class ClientDetailsVC: UIViewController {
     
     @objc
     func signOut(_ sender: UIBarButtonItem) {
-        print("WORKING!")
+        transitionToHome()
     }
     
+    func transitionToHome() {
+        
+        let loginVC = storyboard?.instantiateViewController(identifier: "LoginViewController")
+        
+        view.window?.rootViewController = loginVC
+        view.window?.makeKeyAndVisible()
+        
+    }
 }
