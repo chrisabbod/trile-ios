@@ -906,12 +906,29 @@
             </objects>
             <point key="canvasLocation" x="2849" y="-330"/>
         </scene>
+        <!--Client Details-->
+        <scene sceneID="Xm4-TC-Qwt">
+            <objects>
+                <navigationController id="KW9-Cw-PGZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Client Details" id="9tk-lG-GS3"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="tV7-so-Bjb">
+                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="aZb-Va-hwO" kind="relationship" relationship="rootViewController" id="ZVB-hQ-PrR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W4o-EH-UxB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2849" y="-1172"/>
+        </scene>
         <!--ClientDetailsVC-->
         <scene sceneID="2O6-lO-Tag">
             <objects>
                 <viewController title="ClientDetailsVC" id="aZb-Va-hwO" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DnI-Lo-ozX">
-                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="948"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="AOq-Vx-Ymj" userLabel="Client Image View">
@@ -1294,13 +1311,13 @@
                                 <exclude reference="fkO-wy-arV"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="YWV-yw-v57"/>
+                                <exclude reference="reH-ab-m9L"/>
                                 <exclude reference="1Sc-A5-Pob"/>
                                 <exclude reference="KQQ-Y6-HCs"/>
                                 <exclude reference="bWf-Da-4E6"/>
                                 <exclude reference="Ln1-eX-16E"/>
                                 <exclude reference="n8p-aK-ckd"/>
-                                <exclude reference="YWV-yw-v57"/>
-                                <exclude reference="reH-ab-m9L"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -1308,23 +1325,24 @@
                                 <include reference="fkO-wy-arV"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="HBZ-94-F4A"/>
+                                <include reference="YWV-yw-v57"/>
+                                <include reference="reH-ab-m9L"/>
                                 <exclude reference="1Sc-A5-Pob"/>
                                 <include reference="KQQ-Y6-HCs"/>
                                 <include reference="bWf-Da-4E6"/>
                                 <include reference="Ln1-eX-16E"/>
                                 <exclude reference="Vbp-Bg-vHG"/>
                                 <include reference="n8p-aK-ckd"/>
-                                <exclude reference="HBZ-94-F4A"/>
-                                <include reference="YWV-yw-v57"/>
-                                <include reference="reH-ab-m9L"/>
                             </mask>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Client Details" id="qeN-pb-zWn"/>
+                    <navigationItem key="navigationItem" title="Client Details" id="Yle-z1-z5j"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oTb-tZ-Xpn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2848.9019033674963" y="-1175.390625"/>
+            <point key="canvasLocation" x="3550" y="-1172"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ruX-e5-sMv">
@@ -1335,9 +1353,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="aZb-Va-hwO" kind="relationship" relationship="viewControllers" id="XhZ-dT-NbV"/>
+                        <segue destination="KW9-Cw-PGZ" kind="relationship" relationship="viewControllers" id="Q8w-8n-Nk1"/>
                         <segue destination="Es9-pA-DHU" kind="relationship" relationship="viewControllers" id="v8z-a8-qlq"/>
                         <segue destination="zoo-7d-zqF" kind="relationship" relationship="viewControllers" id="XbF-2d-R5e"/>
                         <segue destination="QYh-2M-bCj" kind="relationship" relationship="viewControllers" id="sCY-nk-x3S"/>
