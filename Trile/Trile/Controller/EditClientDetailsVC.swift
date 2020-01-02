@@ -35,14 +35,15 @@ class EditClientDetailsVC: UIViewController {
         super.viewDidLoad()
         
         editViewCornerRadius()
+        
     }
     
-    @IBAction func camerButton(_ sender: Any) {
-        print("CLICKED CAMERA")
+    @IBAction func cameraButton(_ sender: Any) {
+        print("CAMERA BUTTON CLICKED!")
     }
     
-    //MARK: - UI Functions
-    
+    //MARK: - UI Beautification Functions
+
     func editViewCornerRadius() {
         let cornerRadiusValue: CGFloat = 20.0
         

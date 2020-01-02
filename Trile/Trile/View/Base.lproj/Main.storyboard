@@ -911,7 +911,7 @@
             <objects>
                 <viewController title="ClientDetailsVC" id="aZb-Va-hwO" customClass="ClientDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DnI-Lo-ozX">
-                        <rect key="frame" x="0.0" y="0.0" width="990" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="AOq-Vx-Ymj" userLabel="Client Image View">
@@ -1445,7 +1445,7 @@
             <objects>
                 <viewController title="EditClientDetailsVC" id="YCB-bz-aOe" customClass="EditClientDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PYz-wy-B8i">
-                        <rect key="frame" x="0.0" y="0.0" width="990" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="aWO-c0-yiK" userLabel="Client Image View">
@@ -1459,7 +1459,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
                                 <connections>
-                                    <action selector="camerButton:" destination="YCB-bz-aOe" eventType="touchUpInside" id="aMW-47-VGq"/>
+                                    <action selector="cameraButton:" destination="YCB-bz-aOe" eventType="touchUpInside" id="BNZ-xG-9yU"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="4a7-hc-fGQ" userLabel="Root Stack View">
@@ -1917,6 +1917,8 @@
                                 <exclude reference="t88-Uk-Eco"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="frf-9h-cUd"/>
+                                <exclude reference="p79-YO-hzg"/>
                                 <exclude reference="hvf-Rp-Ewb"/>
                                 <exclude reference="Xr1-H0-sKJ"/>
                                 <exclude reference="elm-8d-VAc"/>
@@ -1924,8 +1926,6 @@
                                 <exclude reference="rbV-H0-4As"/>
                                 <exclude reference="b4O-Ut-imF"/>
                                 <exclude reference="n0f-G8-PCs"/>
-                                <exclude reference="frf-9h-cUd"/>
-                                <exclude reference="p79-YO-hzg"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -1933,6 +1933,8 @@
                                 <include reference="t88-Uk-Eco"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="frf-9h-cUd"/>
+                                <include reference="p79-YO-hzg"/>
                                 <exclude reference="hvf-Rp-Ewb"/>
                                 <exclude reference="Xr1-H0-sKJ"/>
                                 <include reference="elm-8d-VAc"/>
@@ -1940,8 +1942,6 @@
                                 <exclude reference="rbV-H0-4As"/>
                                 <include reference="b4O-Ut-imF"/>
                                 <include reference="n0f-G8-PCs"/>
-                                <include reference="frf-9h-cUd"/>
-                                <include reference="p79-YO-hzg"/>
                             </mask>
                         </variation>
                     </view>

@@ -73,7 +73,7 @@ class ClientDetailsVC: UIViewController {
         transitionToHome()
     }
     
-    //MARK: - UI Functions
+    //MARK: - UI Beautification Functions
     
     func editViewCornerRadius() {
         let cornerRadiusValue: CGFloat = 20.0
