@@ -34,15 +34,24 @@ class EditClientDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createCircularClientImage()
+        editViewCornerRadius()
     }
     
     @IBAction func camerButton(_ sender: Any) {
         print("CLICKED CAMERA")
     }
     
-    func createCircularClientImage() {
+    func editViewCornerRadius() {
         clientPictureImageView.layer.masksToBounds = true
-        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2
+        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2  //Create circular view
+
+        clientInformationView.layer.masksToBounds = true
+        clientInformationView.layer.cornerRadius = 20.0
+
+        workHistoryView.layer.masksToBounds = true
+        workHistoryView.layer.cornerRadius = 20.0
+
+        householdResidentsView.layer.masksToBounds = true
+        householdResidentsView.layer.cornerRadius = 20.0
     }
 }
