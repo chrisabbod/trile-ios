@@ -1354,7 +1354,19 @@
                     <view key="view" contentMode="scaleToFill" id="6vt-eB-XgW">
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNDER CONSTRUCTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qwt-op-1zO">
+                                <rect key="frame" x="219.5" y="472" width="552" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Qwt-op-1zO" firstAttribute="centerY" secondItem="6vt-eB-XgW" secondAttribute="centerY" id="iRp-sL-4ql"/>
+                            <constraint firstItem="Qwt-op-1zO" firstAttribute="centerX" secondItem="6vt-eB-XgW" secondAttribute="centerX" id="mFw-6V-C9V"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZtQ-gd-4XF"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Documents" id="9Bo-qw-Wfh"/>
@@ -1370,7 +1382,19 @@
                     <view key="view" contentMode="scaleToFill" id="pa7-tB-qJm">
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNDER CONSTRUCTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pz0-sh-A6c">
+                                <rect key="frame" x="219.5" y="472" width="552" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="pz0-sh-A6c" firstAttribute="centerY" secondItem="pa7-tB-qJm" secondAttribute="centerY" id="TAR-4n-eDd"/>
+                            <constraint firstItem="pz0-sh-A6c" firstAttribute="centerX" secondItem="pa7-tB-qJm" secondAttribute="centerX" id="fuZ-tE-3dI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="u6Y-bl-7hQ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Fee Application" id="RBp-JQ-Ub3"/>
