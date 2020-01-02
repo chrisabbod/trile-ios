@@ -15,7 +15,7 @@ class FileNumberTableVC: UITableViewController {
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
-    let TAB_SEGUE = "goToTabVC"
+    let TAB_SEGUE = "goToTabBarVC"
     
     var selectedClient: Client?
     var fileNumbers = [FileNumber]()

@@ -460,7 +460,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="File Numbers" id="ifz-LL-46z"/>
                     <connections>
-                        <segue destination="FAa-8G-mS6" kind="showDetail" identifier="goToTabVC" id="fFr-mD-Ede"/>
+                        <segue destination="xgg-Ia-d1p" kind="showDetail" identifier="goToTabBarVC" id="b8A-8L-Ibq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INX-7b-NZE" sceneMemberID="firstResponder"/>
@@ -476,7 +476,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fws-yp-Fwf">
-                                <rect key="frame" x="95.5" y="136" width="799.5" height="658"/>
+                                <rect key="frame" x="95.5" y="80" width="799.5" height="658"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Case Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7X-7G-X7c">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
@@ -909,7 +909,7 @@
         <!--ClientDetailsVC-->
         <scene sceneID="2O6-lO-Tag">
             <objects>
-                <viewController title="ClientDetailsVC" id="aZb-Va-hwO" sceneMemberID="viewController">
+                <viewController title="ClientDetailsVC" id="aZb-Va-hwO" customClass="ClientDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DnI-Lo-ozX">
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1279,7 +1279,6 @@
                         <color key="backgroundColor" red="0.90588235289999997" green="0.8980392157" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="yBL-wx-SNw" firstAttribute="bottom" secondItem="LF3-vg-RiT" secondAttribute="bottom" constant="127" id="1Sc-A5-Pob"/>
-                            <constraint firstItem="fkO-wy-arV" firstAttribute="top" secondItem="AOq-Vx-Ymj" secondAttribute="bottom" constant="8" id="HBZ-94-F4A"/>
                             <constraint firstItem="LF3-vg-RiT" firstAttribute="top" secondItem="fkO-wy-arV" secondAttribute="bottom" constant="8" id="KQQ-Y6-HCs"/>
                             <constraint firstItem="AOq-Vx-Ymj" firstAttribute="top" secondItem="yBL-wx-SNw" secondAttribute="top" constant="8" id="Ln1-eX-16E"/>
                             <constraint firstItem="AOq-Vx-Ymj" firstAttribute="top" secondItem="yBL-wx-SNw" secondAttribute="top" constant="8" id="Vbp-Bg-vHG"/>
@@ -1308,7 +1307,6 @@
                                 <include reference="fkO-wy-arV"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="HBZ-94-F4A"/>
                                 <include reference="YWV-yw-v57"/>
                                 <include reference="reH-ab-m9L"/>
                                 <exclude reference="1Sc-A5-Pob"/>
@@ -1321,16 +1319,17 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Client Details" id="qeN-pb-zWn"/>
-                    <navigationItem key="navigationItem" title="Client Details" id="Yle-z1-z5j"/>
+                    <navigationItem key="navigationItem" id="9lh-a1-bU2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oTb-tZ-Xpn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3531" y="-1067"/>
+            <point key="canvasLocation" x="4292" y="-1082"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Client Details-->
         <scene sceneID="ara-ps-xPC">
             <objects>
                 <navigationController id="FAa-8G-mS6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Client Details" id="B9D-tb-cqf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ouh-YG-d5X">
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1340,12 +1339,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="xgg-Ia-d1p" kind="relationship" relationship="rootViewController" id="qib-hh-z1P"/>
+                        <segue destination="aZb-Va-hwO" kind="relationship" relationship="rootViewController" id="CbA-pJ-saZ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOM-xh-Jsv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2071" y="-330"/>
+            <point key="canvasLocation" x="3531" y="-1082"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ruX-e5-sMv">
@@ -1359,7 +1358,7 @@
                         <color key="selectedImageTintColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="aZb-Va-hwO" kind="relationship" relationship="viewControllers" id="TmO-Gh-sqh"/>
+                        <segue destination="FAa-8G-mS6" kind="relationship" relationship="viewControllers" id="uNU-bB-Hrn"/>
                         <segue destination="Es9-pA-DHU" kind="relationship" relationship="viewControllers" id="v8z-a8-qlq"/>
                         <segue destination="zoo-7d-zqF" kind="relationship" relationship="viewControllers" id="XbF-2d-R5e"/>
                         <segue destination="QYh-2M-bCj" kind="relationship" relationship="viewControllers" id="sCY-nk-x3S"/>

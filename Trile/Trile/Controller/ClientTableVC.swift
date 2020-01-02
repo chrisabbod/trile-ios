@@ -15,7 +15,6 @@ class ClientTableVC: UITableViewController {
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     var clients = [Client]()
-    var detailViewController: DetailViewController? = nil
     
     let FILE_NUMBER_SEGUE = "goToFileNumberTableVC"
     

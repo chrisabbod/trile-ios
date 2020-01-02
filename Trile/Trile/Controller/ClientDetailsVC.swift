@@ -9,23 +9,21 @@
 import UIKit
 
 class ClientDetailsVC: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        circularImage.layer.masksToBounds = true
-//        circularImage.layer.cornerRadius = circularImage.bounds.width / 2
+        
+        let signOutButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut(_:)))
+        
+        self.navigationItem.rightBarButtonItem = signOutButton
+        
+        //        circularImage.layer.masksToBounds = true
+        //        circularImage.layer.cornerRadius = circularImage.bounds.width / 2
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc
+    func signOut(_ sender: UIBarButtonItem) {
+        print("WORKING!")
     }
-    */
-
+    
 }
