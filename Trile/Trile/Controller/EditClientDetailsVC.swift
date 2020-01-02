@@ -9,7 +9,7 @@
 import UIKit
 
 class EditClientDetailsVC: UIViewController {
-
+    
     @IBOutlet weak var clientPictureImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
@@ -41,17 +41,21 @@ class EditClientDetailsVC: UIViewController {
         print("CLICKED CAMERA")
     }
     
+    //MARK: - UI Functions
+    
     func editViewCornerRadius() {
+        let cornerRadiusValue: CGFloat = 20.0
+        
         clientPictureImageView.layer.masksToBounds = true
         clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2  //Create circular view
-
+        
         clientInformationView.layer.masksToBounds = true
-        clientInformationView.layer.cornerRadius = 20.0
-
+        clientInformationView.layer.cornerRadius = cornerRadiusValue
+        
         workHistoryView.layer.masksToBounds = true
-        workHistoryView.layer.cornerRadius = 20.0
-
+        workHistoryView.layer.cornerRadius = cornerRadiusValue
+        
         householdResidentsView.layer.masksToBounds = true
-        householdResidentsView.layer.cornerRadius = 20.0
+        householdResidentsView.layer.cornerRadius = cornerRadiusValue
     }
 }

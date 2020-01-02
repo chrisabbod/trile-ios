@@ -47,28 +47,14 @@ class ClientDetailsVC: UIViewController {
         performSegue(withIdentifier: EDIT_CLIENT_DETAILS_SEGUE, sender: self)
     }
     
-    func editViewCornerRadius() {
-        clientPictureImageView.layer.masksToBounds = true
-        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2  //Create circular view
-
-        clientInformationView.layer.masksToBounds = true
-        clientInformationView.layer.cornerRadius = 20.0
-
-        workHistoryView.layer.masksToBounds = true
-        workHistoryView.layer.cornerRadius = 20.0
-
-        householdResidentsView.layer.masksToBounds = true
-        householdResidentsView.layer.cornerRadius = 20.0
-    }
-    
     // MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let destinationVC = segue.destination as! FileNumberTableVC
-//
-//        if let indexPath = tableView.indexPathForSelectedRow{
-//            destinationVC.selectedClient = clients[indexPath.row]
-//        }
+        //        let destinationVC = segue.destination as! FileNumberTableVC
+        //
+        //        if let indexPath = tableView.indexPathForSelectedRow{
+        //            destinationVC.selectedClient = clients[indexPath.row]
+        //        }
     }
     
     func transitionToHome() {
@@ -86,5 +72,23 @@ class ClientDetailsVC: UIViewController {
     func signOut(_ sender: UIBarButtonItem) {
         transitionToHome()
     }
-
+    
+    //MARK: - UI Functions
+    
+    func editViewCornerRadius() {
+        let cornerRadiusValue: CGFloat = 20.0
+        
+        clientPictureImageView.layer.masksToBounds = true
+        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2  //Create circular view
+        
+        clientInformationView.layer.masksToBounds = true
+        clientInformationView.layer.cornerRadius = cornerRadiusValue
+        
+        workHistoryView.layer.masksToBounds = true
+        workHistoryView.layer.cornerRadius = cornerRadiusValue
+        
+        householdResidentsView.layer.masksToBounds = true
+        householdResidentsView.layer.cornerRadius = cornerRadiusValue
+    }
+    
 }
