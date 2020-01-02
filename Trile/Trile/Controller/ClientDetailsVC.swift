@@ -10,6 +10,11 @@ import UIKit
 
 class ClientDetailsVC: UIViewController {
     
+    @IBOutlet weak var clientPictureImageView: UIImageView!
+    @IBOutlet weak var cameraButton: UIButton!
+
+    let EDIT_CLIENT_DETAILS_SEGUE = "goToEditClientDetailsVC"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,9 +26,18 @@ class ClientDetailsVC: UIViewController {
         //        circularImage.layer.cornerRadius = circularImage.bounds.width / 2
     }
     
-    @objc
-    func signOut(_ sender: UIBarButtonItem) {
-        transitionToHome()
+    @IBAction func editClientDetailsButton(_ sender: Any) {
+        performSegue(withIdentifier: EDIT_CLIENT_DETAILS_SEGUE, sender: self)
+    }
+    
+    // MARK: - Segues
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let destinationVC = segue.destination as! FileNumberTableVC
+//
+//        if let indexPath = tableView.indexPathForSelectedRow{
+//            destinationVC.selectedClient = clients[indexPath.row]
+//        }
     }
     
     func transitionToHome() {
@@ -34,4 +48,13 @@ class ClientDetailsVC: UIViewController {
         view.window?.makeKeyAndVisible()
         
     }
+    
+    //MARK: - Bar Buttons
+    
+    @objc
+    func signOut(_ sender: UIBarButtonItem) {
+        transitionToHome()
+    }
+    
+
 }
