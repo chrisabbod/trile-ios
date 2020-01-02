@@ -11,8 +11,22 @@ import UIKit
 class ClientDetailsVC: UIViewController {
     
     @IBOutlet weak var clientPictureImageView: UIImageView!
-    @IBOutlet weak var cameraButton: UIButton!
-
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var stateLabel: UILabel!
+    @IBOutlet weak var zipLabel: UILabel!
+    
+    @IBOutlet weak var placeOfEmploymentLabel: UILabel!
+    @IBOutlet weak var roleLabel: UILabel!
+    @IBOutlet weak var dateStartedLabel: UILabel!
+    @IBOutlet weak var dateEndedLabel: UILabel!
+    @IBOutlet weak var incomeRangeLabel: UILabel!
+    
+    @IBOutlet weak var totalChildrenLabel: UILabel!
+    @IBOutlet weak var totalOtherOccupantsLabel: UILabel!
+    
     let EDIT_CLIENT_DETAILS_SEGUE = "goToEditClientDetailsVC"
     
     override func viewDidLoad() {
@@ -22,12 +36,16 @@ class ClientDetailsVC: UIViewController {
         
         self.navigationItem.rightBarButtonItem = signOutButton
         
-        //        circularImage.layer.masksToBounds = true
-        //        circularImage.layer.cornerRadius = circularImage.bounds.width / 2
+        createCircularClientImage()
     }
     
     @IBAction func editClientDetailsButton(_ sender: Any) {
         performSegue(withIdentifier: EDIT_CLIENT_DETAILS_SEGUE, sender: self)
+    }
+    
+    func createCircularClientImage() {
+        clientPictureImageView.layer.masksToBounds = true
+        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2
     }
     
     // MARK: - Segues
@@ -55,6 +73,5 @@ class ClientDetailsVC: UIViewController {
     func signOut(_ sender: UIBarButtonItem) {
         transitionToHome()
     }
-    
 
 }
