@@ -27,6 +27,10 @@ class EditClientDetailsVC: UIViewController {
     @IBOutlet weak var totalChildrenTextField: UITextField!
     @IBOutlet weak var totalOtherOccupantsTextField: UITextField!
     
+    @IBOutlet weak var clientInformationView: UIView!
+    @IBOutlet weak var workHistoryView: UIView!
+    @IBOutlet weak var householdResidentsView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

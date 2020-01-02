@@ -27,6 +27,10 @@ class ClientDetailsVC: UIViewController {
     @IBOutlet weak var totalChildrenLabel: UILabel!
     @IBOutlet weak var totalOtherOccupantsLabel: UILabel!
     
+    @IBOutlet weak var clientInformationView: UIView!
+    @IBOutlet weak var workHistoryView: UIView!
+    @IBOutlet weak var householdResidentsView: UIView!
+    
     let EDIT_CLIENT_DETAILS_SEGUE = "goToEditClientDetailsVC"
     
     override func viewDidLoad() {
@@ -36,16 +40,25 @@ class ClientDetailsVC: UIViewController {
         
         self.navigationItem.rightBarButtonItem = signOutButton
         
-        createCircularClientImage()
+        editViewCornerRadius()
     }
     
     @IBAction func editClientDetailsButton(_ sender: Any) {
         performSegue(withIdentifier: EDIT_CLIENT_DETAILS_SEGUE, sender: self)
     }
     
-    func createCircularClientImage() {
+    func editViewCornerRadius() {
         clientPictureImageView.layer.masksToBounds = true
-        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2
+        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2  //Create circular view
+
+        clientInformationView.layer.masksToBounds = true
+        clientInformationView.layer.cornerRadius = 20.0
+
+        workHistoryView.layer.masksToBounds = true
+        workHistoryView.layer.cornerRadius = 20.0
+
+        householdResidentsView.layer.masksToBounds = true
+        householdResidentsView.layer.cornerRadius = 20.0
     }
     
     // MARK: - Segues

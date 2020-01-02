@@ -911,7 +911,7 @@
             <objects>
                 <viewController title="ClientDetailsVC" id="aZb-Va-hwO" customClass="ClientDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DnI-Lo-ozX">
-                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="990" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="AOq-Vx-Ymj" userLabel="Client Image View">
@@ -1315,14 +1315,16 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Client Details" id="qeN-pb-zWn"/>
-                    <navigationItem key="navigationItem" id="9lh-a1-bU2"/>
+                    <navigationItem key="navigationItem" title="Client Details" id="9lh-a1-bU2"/>
                     <connections>
                         <outlet property="addressLabel" destination="6ho-wY-Hyd" id="msD-Qw-Aau"/>
                         <outlet property="ageLabel" destination="Sod-XZ-105" id="aaE-2X-3EO"/>
                         <outlet property="cityLabel" destination="12E-4J-xIN" id="u6o-hi-NcZ"/>
+                        <outlet property="clientInformationView" destination="c1K-2l-zIf" id="7dA-rv-lKb"/>
                         <outlet property="clientPictureImageView" destination="AOq-Vx-Ymj" id="7DI-bG-mAj"/>
                         <outlet property="dateEndedLabel" destination="6zU-pF-Scc" id="IW2-iv-yaH"/>
                         <outlet property="dateStartedLabel" destination="dY8-dk-Ocy" id="ptI-v6-IMR"/>
+                        <outlet property="householdResidentsView" destination="4IV-dL-Qlc" id="I1x-z4-bzO"/>
                         <outlet property="incomeRangeLabel" destination="2QF-M5-x4P" id="B2b-re-4uR"/>
                         <outlet property="nameLabel" destination="E5f-66-kmH" id="MWW-MD-03B"/>
                         <outlet property="placeOfEmploymentLabel" destination="eRK-9R-91p" id="sJh-sm-aqM"/>
@@ -1330,6 +1332,7 @@
                         <outlet property="stateLabel" destination="swz-Xm-PET" id="K1s-AL-YkS"/>
                         <outlet property="totalChildrenLabel" destination="kAh-n7-8aV" id="cYY-cH-4Jk"/>
                         <outlet property="totalOtherOccupantsLabel" destination="4rn-sA-zVc" id="TdC-SQ-QeC"/>
+                        <outlet property="workHistoryView" destination="JK9-FL-LLv" id="O9Q-bt-Rbp"/>
                         <outlet property="zipLabel" destination="jh7-gN-dUC" id="A2B-Rg-CeO"/>
                         <segue destination="YCB-bz-aOe" kind="show" identifier="goToEditClientDetailsVC" id="VE7-gU-Apq"/>
                     </connections>
@@ -1442,7 +1445,7 @@
             <objects>
                 <viewController title="EditClientDetailsVC" id="YCB-bz-aOe" customClass="EditClientDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PYz-wy-B8i">
-                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="990" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="aWO-c0-yiK" userLabel="Client Image View">
@@ -1943,14 +1946,16 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Client Details" id="VnL-oN-4VJ"/>
-                    <navigationItem key="navigationItem" id="wKp-5z-HNT"/>
+                    <navigationItem key="navigationItem" title="Edit Client Details" id="wKp-5z-HNT"/>
                     <connections>
                         <outlet property="addressTextField" destination="q9W-Pq-5Up" id="CXW-7z-Uus"/>
                         <outlet property="ageTextField" destination="kHu-SE-XVr" id="H6y-Rw-kXA"/>
                         <outlet property="cityTextField" destination="TUW-Q6-U5r" id="PTK-Ly-v7a"/>
+                        <outlet property="clientInformationView" destination="kZc-tX-Pii" id="nJA-2R-u5f"/>
                         <outlet property="clientPictureImageView" destination="aWO-c0-yiK" id="TPq-Re-v8f"/>
                         <outlet property="dateEndedTextField" destination="ZgB-gi-SKU" id="FcL-EF-h8s"/>
                         <outlet property="dateStartedTextField" destination="wJT-n1-DQM" id="DM2-7K-SW8"/>
+                        <outlet property="householdResidentsView" destination="eab-y2-gIy" id="2lF-U1-bQd"/>
                         <outlet property="incomeRangeTextField" destination="qkS-SM-yOR" id="gRr-16-sZ8"/>
                         <outlet property="nameTextField" destination="7nl-Bo-q4C" id="lls-lf-zK6"/>
                         <outlet property="placeOfEmploymentTextField" destination="ZEr-21-SL7" id="mde-0A-v4b"/>
@@ -1958,6 +1963,7 @@
                         <outlet property="stateTextField" destination="Z4F-1R-5ur" id="hZ9-JI-xGG"/>
                         <outlet property="totalChildrenTextField" destination="0iy-yR-ia3" id="m1y-DM-kyU"/>
                         <outlet property="totalOtherOccupantsTextField" destination="yqr-3v-WEy" id="EFo-wa-QGj"/>
+                        <outlet property="workHistoryView" destination="Pys-OO-Om8" id="4yu-Cz-aOy"/>
                         <outlet property="zipTextField" destination="bpW-1V-ppH" id="woV-fW-fHu"/>
                     </connections>
                 </viewController>
