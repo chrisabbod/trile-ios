@@ -472,7 +472,7 @@
             <objects>
                 <viewController title="CaseDetailsVC" id="Es9-pA-DHU" customClass="CaseDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o1p-2P-bxW">
-                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="991" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fws-yp-Fwf" userLabel="Root Stack View">
@@ -872,7 +872,7 @@
                         <outlet property="continuanceLabel" destination="duO-PT-Tnr" id="vBJ-oo-FkJ"/>
                         <outlet property="countyLabel" destination="0vA-58-uS2" id="HGb-L9-MRh"/>
                         <outlet property="dateAppointedLabel" destination="HUt-EG-8rH" id="AdD-jF-Wfi"/>
-                        <outlet property="dateOfFinalDispositionLabel" destination="Zqj-YZ-msq" id="Dks-1a-4OP"/>
+                        <outlet property="dateOfFinalDispositionLabel" destination="s6e-FB-W5v" id="PBW-vq-1Z7"/>
                         <outlet property="dateOfFirstClientInterviewLabel" destination="jLd-Yd-bFZ" id="je9-Wj-mjl"/>
                         <outlet property="desiredOutcomeLabel" destination="t6f-Mx-v9n" id="UU9-r0-uRf"/>
                         <outlet property="dispositionLabel" destination="T4I-aY-JNA" id="k6t-nC-T6K"/>

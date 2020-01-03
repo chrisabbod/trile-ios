@@ -120,7 +120,7 @@ class EditClientDetailsVC: UIViewController {
             zipTextField.text = zip as? String
         }
         
-        if let placeOfEmployment = data["placeOfEmployment"] {
+        if let placeOfEmployment = data["place_of_employment"] {
             placeOfEmploymentTextField.text = placeOfEmployment as? String
         }
         
@@ -128,23 +128,23 @@ class EditClientDetailsVC: UIViewController {
             roleTextField.text = role as? String
         }
         
-        if let dataStarted = data["dateStarted"] {
+        if let dataStarted = data["date_started"] {
             dateStartedTextField.text = dataStarted as? String
         }
         
-        if let dateEnded = data["dateEnded"] {
+        if let dateEnded = data["date_ended"] {
             dateEndedTextField.text = dateEnded as? String
         }
         
-        if let incomeRange = data["incomeRange"] {
+        if let incomeRange = data["income_range"] {
             incomeRangeTextField.text = incomeRange as? String
         }
         
-        if let totalChildren = data["totalChildren"] {
+        if let totalChildren = data["total_children"] {
             totalChildrenTextField.text = totalChildren as? String
         }
         
-        if let totalOtherOccupants = data["totalOtherOccupants"] {
+        if let totalOtherOccupants = data["total_other_occupants"] {
             totalOtherOccupantsTextField.text = totalOtherOccupants as? String
         }
     }
@@ -208,10 +208,6 @@ class EditClientDetailsVC: UIViewController {
         
         addClientDataToDatabase(clientDataArray)
     }
-    
-    //MARK: - Read Clients
-    
-    
     
     //MARK: - UI Beautification Functions
     

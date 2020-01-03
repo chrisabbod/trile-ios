@@ -108,6 +108,7 @@ class ClientDetailsVC: UIViewController {
     //MARK: - Read Client Data
     
     func readClientData(from data: [String: Any]) {
+        
         if let name = data["name"] {
             nameLabel.text = name as? String
         }
