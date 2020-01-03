@@ -37,6 +37,18 @@ class EditCaseDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addCornerRadiusToViews()
     }
 
+    //MARK: - UI Beautification Functions
+    
+    func addCornerRadiusToViews() {
+        let cornerRadiusValue: CGFloat = 20.0
+        
+        caseInformationView.layer.masksToBounds = true
+        caseInformationView.layer.cornerRadius = cornerRadiusValue
+        
+        billableHoursView.layer.masksToBounds = true
+        billableHoursView.layer.cornerRadius = cornerRadiusValue
+    }
 }

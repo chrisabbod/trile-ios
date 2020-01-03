@@ -79,16 +79,10 @@ class CaseDetailsVC: UIViewController {
     func addCornerRadiusToViews() {
         let cornerRadiusValue: CGFloat = 20.0
         
-//        clientPictureImageView.layer.masksToBounds = true
-//        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2  //Create circular view
-//        
-//        clientInformationView.layer.masksToBounds = true
-//        clientInformationView.layer.cornerRadius = cornerRadiusValue
-//        
-//        workHistoryView.layer.masksToBounds = true
-//        workHistoryView.layer.cornerRadius = cornerRadiusValue
-//        
-//        householdResidentsView.layer.masksToBounds = true
-//        householdResidentsView.layer.cornerRadius = cornerRadiusValue
+        caseInformationView.layer.masksToBounds = true
+        caseInformationView.layer.cornerRadius = cornerRadiusValue
+        
+        billableHoursView.layer.masksToBounds = true
+        billableHoursView.layer.cornerRadius = cornerRadiusValue
     }
 }
