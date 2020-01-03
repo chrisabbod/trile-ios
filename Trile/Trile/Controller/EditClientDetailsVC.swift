@@ -54,10 +54,61 @@ class EditClientDetailsVC: UIViewController {
     }
     
     func saveClientData() {
+        var clientDataArray = [String: Any]()
+        
         if let name = nameTextField.text {
-            let clientDataArray = ["name": name]
-            addClientDataToDatabase(clientDataArray)
+            clientDataArray["name"] = name
         }
+        
+        if let age = ageTextField.text {
+            clientDataArray["age"] = age
+        }
+        
+        if let address = addressTextField.text {
+            clientDataArray["address"] = address
+        }
+        
+        if let city = cityTextField.text {
+            clientDataArray["city"] = city
+        }
+        
+        if let state = stateTextField.text {
+            clientDataArray["state"] = state
+        }
+        
+        if let zip = zipTextField.text {
+            clientDataArray["zip"] = zip
+        }
+        
+        if let placeOfEmployment = placeOfEmploymentTextField.text {
+            clientDataArray["placeOfEmployment"] = placeOfEmployment
+        }
+        
+        if let role = roleTextField.text {
+            clientDataArray["role"] = role
+        }
+        
+        if let dateStarted = dateStartedTextField.text {
+            clientDataArray["dateStarted"] = dateStarted
+        }
+        
+        if let dateEnded = dateEndedTextField.text {
+            clientDataArray["dateEnded"] = dateEnded
+        }
+        
+        if let incomeRange = incomeRangeTextField.text {
+            clientDataArray["incomeRange"] = incomeRange
+        }
+        
+        if let totalChildren = totalChildrenTextField.text {
+            clientDataArray["totalChildren"] = totalChildren
+        }
+        
+        if let totalOtherOccupants = totalOtherOccupantsTextField.text {
+            clientDataArray["totalOtherOccupants"] = totalOtherOccupants
+        }
+        
+        addClientDataToDatabase(clientDataArray)
     }
     
     //MARK: - Database CRUD Functions
