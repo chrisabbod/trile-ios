@@ -48,18 +48,47 @@ class EditCaseDetailsVC: UIViewController {
         addCornerRadiusToViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        readCaseDataFromDatabase()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         saveCaseData()
     }
 
     //MARK: - Database CRUD Functions
     
-    func addCaseDataToDatabase(_ caseData: [String: Any]) {
-        let clientRef = db.collection("users").document(uid).collection("clients")
+    func readCaseDataFromDatabase() {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
         guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
-
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
         let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+        print("FileNumberDocumentID: \(fileNumberDocumentID)")
+        let query = fileNumberRef.whereField("document_id", isEqualTo: fileNumberDocumentID as Any)
+
+        query.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    //let documentData: [String: Any] = document.data()
+                    
+                    //self.readClientData(from: documentData)
+                }
+            }
+        }
+        
+    }
+    
+    func addCaseDataToDatabase(_ caseData: [String: Any]) {
+        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
+        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+        
         fileNumberRef.document(fileNumberDocumentID).setData(caseData, merge: true) { (error) in
             if let error = error {
                 print("Error writing document: \(error)")
@@ -68,6 +97,14 @@ class EditCaseDetailsVC: UIViewController {
             }
         }
         
+    }
+    
+    //MARK: - Read Client Data
+    
+    func readCaseData(from data: [String: Any]) {
+//        if let name = data["name"] {
+//            nameTextField.text = name as? String
+//        }
     }
     
     //MARK: - Save Case Data

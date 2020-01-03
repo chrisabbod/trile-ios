@@ -76,7 +76,7 @@ class EditClientDetailsVC: UIViewController {
     func readClientDataFromDatabase() {
         let clientRef = db.collection("users").document(uid).collection("clients")
         let clientDocumentID = selectedClient?.documentID
-        let query = clientRef.whereField("documentID", isEqualTo: clientDocumentID as Any)
+        let query = clientRef.whereField("document_id", isEqualTo: clientDocumentID as Any)
         
         query.getDocuments() { (querySnapshot, err) in
             if let err = err {

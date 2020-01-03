@@ -92,7 +92,7 @@ class ClientTableVC: UITableViewController {
         
         clientRef.document(newID).setData([
             "name": client.name,
-            "documentID": client.documentID
+            "document_id": client.documentID
         ]) { (error) in
             if let error = error {
                 print("Error writing document: \(error)")

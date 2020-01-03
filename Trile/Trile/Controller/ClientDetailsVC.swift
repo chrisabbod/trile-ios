@@ -88,7 +88,7 @@ class ClientDetailsVC: UIViewController {
     func readClientDataFromDatabase() {
         let clientRef = db.collection("users").document(uid).collection("clients")
         let clientDocumentID = selectedClient?.documentID
-        let query = clientRef.whereField("documentID", isEqualTo: clientDocumentID as Any)
+        let query = clientRef.whereField("document_id", isEqualTo: clientDocumentID as Any)
         
         query.getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -132,7 +132,7 @@ class ClientDetailsVC: UIViewController {
             zipLabel.text = zip as? String
         }
         
-        if let placeOfEmployment = data["placeOfEmployment"] {
+        if let placeOfEmployment = data["place_of_employment"] {
             placeOfEmploymentLabel.text = placeOfEmployment as? String
         }
         
@@ -140,23 +140,23 @@ class ClientDetailsVC: UIViewController {
             roleLabel.text = role as? String
         }
         
-        if let dataStarted = data["dateStarted"] {
+        if let dataStarted = data["date_started"] {
             dateStartedLabel.text = dataStarted as? String
         }
         
-        if let dateEnded = data["dateEnded"] {
+        if let dateEnded = data["date_ended"] {
             dateEndedLabel.text = dateEnded as? String
         }
         
-        if let incomeRange = data["incomeRange"] {
+        if let incomeRange = data["income_range"] {
             incomeRangeLabel.text = incomeRange as? String
         }
         
-        if let totalChildren = data["totalChildren"] {
+        if let totalChildren = data["total_children"] {
             totalChildrenLabel.text = totalChildren as? String
         }
         
-        if let totalOtherOccupants = data["totalOtherOccupants"] {
+        if let totalOtherOccupants = data["total_other_occupants"] {
             totalOtherOccupantsLabel.text = totalOtherOccupants as? String
         }
     }
