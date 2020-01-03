@@ -2144,7 +2144,7 @@
             <objects>
                 <viewController title="EditCaseDetailsVC" id="OCB-fk-1zt" customClass="EditCaseDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wry-gh-3xo">
-                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="991" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dwb-BH-7c2" userLabel="Root Stack View">
@@ -2156,7 +2156,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o8J-p7-Ue8">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o8J-p7-Ue8" userLabel="Case Information View">
                                         <rect key="frame" x="0.0" y="44" width="500" height="554"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4bN-Pf-qaW" userLabel="Client Information Stack View">
@@ -2416,7 +2416,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8hy-G3-xCz">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8hy-G3-xCz" userLabel="Billable Hours View">
                                         <rect key="frame" x="0.0" y="650" width="500" height="134"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="efM-dO-Z2v">
@@ -2572,6 +2572,29 @@
                         <viewLayoutGuide key="safeArea" id="dPa-7a-Wpb"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Case Details" id="Hu9-5d-XFM"/>
+                    <connections>
+                        <outlet property="billableHoursView" destination="8hy-G3-xCz" id="mgg-bn-hMv"/>
+                        <outlet property="bondTextField" destination="sun-Q5-fcN" id="sHH-UA-7cE"/>
+                        <outlet property="caseInformationView" destination="o8J-p7-Ue8" id="VML-qk-S14"/>
+                        <outlet property="continuanceTextField" destination="h4h-Y8-GcQ" id="ng9-79-VGh"/>
+                        <outlet property="countyTextField" destination="kXV-gf-NRE" id="Mpp-sz-RtS"/>
+                        <outlet property="dateAppointedTextField" destination="37W-rj-Y97" id="CHY-iQ-cvd"/>
+                        <outlet property="dateOfFinalDispositionTextField" destination="l9v-b0-M9P" id="ooy-5z-dUi"/>
+                        <outlet property="dateOfFirstClientInterviewTextField" destination="R6L-Um-ONr" id="xXe-TL-aPe"/>
+                        <outlet property="desiredOutcomeTextField" destination="NSx-ce-e0B" id="IG7-0z-OQ7"/>
+                        <outlet property="dispositionTextField" destination="MYt-5k-NjM" id="rJ1-sF-KGu"/>
+                        <outlet property="fileNumberTextField" destination="dNb-Eo-kYM" id="a4w-CZ-8xb"/>
+                        <outlet property="judgmentAndSentencingTextField" destination="Ohn-zX-2Hs" id="Xik-T1-Oh3"/>
+                        <outlet property="nameOfJudgeSettingFeeTextField" destination="azE-nM-9Pw" id="gkO-1M-Jty"/>
+                        <outlet property="offenseClassTextField" destination="R7K-ep-mx7" id="XYA-9x-xlJ"/>
+                        <outlet property="offenseTextField" destination="2Um-Fl-6Tt" id="fZ9-7k-7EU"/>
+                        <outlet property="timeInCourtHoursTextField" destination="aHE-SG-OdI" id="TaQ-Kr-3nR"/>
+                        <outlet property="timeInCourtMinutesTextField" destination="Bz2-Eq-1Yf" id="xxc-2W-tzW"/>
+                        <outlet property="timeInCourtWaitingHoursTextField" destination="VfQ-sW-F5W" id="gs4-Zx-WBo"/>
+                        <outlet property="timeInCourtWaitingMinutesTextField" destination="QxO-jD-cSg" id="VOW-1s-aZz"/>
+                        <outlet property="timeOutOfCourtHoursTextField" destination="rjG-qT-Vwo" id="Qjr-ZA-zJq"/>
+                        <outlet property="timeOutOfCourtMinutesTextField" destination="cqv-fV-Wkg" id="MT3-Ek-aZZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m8Q-Vs-NGK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
