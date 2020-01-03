@@ -55,6 +55,7 @@ class ClientDetailsVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! EditClientDetailsVC
         destinationVC.selectedClient = selectedClient
+        destinationVC.selectedFileNumber = selectedFileNumber
     }
     
     func transitionToHome() {

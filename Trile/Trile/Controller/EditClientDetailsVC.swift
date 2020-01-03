@@ -37,12 +37,14 @@ class EditClientDetailsVC: UIViewController {
     let uid: String = Auth.auth().currentUser!.uid
 
     var selectedClient: Client?
+    var selectedFileNumber: FileNumber?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addCornerRadiusToViews()
         
+        readClientDataFromDatabase()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,6 +54,46 @@ class EditClientDetailsVC: UIViewController {
     @IBAction func cameraButton(_ sender: Any) {
         print("CAMERA BUTTON CLICKED!")
     }
+    
+    //MARK: - Database CRUD Functions
+    
+    func addClientDataToDatabase(_ clientData: [String: Any]) {
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
+
+        clientRef.document(clientDocumentID).setData(clientData, merge: true) { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+
+    }
+    
+    func readClientDataFromDatabase() {
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let clientDocumentID = selectedClient?.documentID
+        let query = clientRef.whereField("documentID", isEqualTo: clientDocumentID as Any)
+        
+        query.getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        //print("\(document.documentID) => \(document.data())")
+                        let documentData: [String: Any] = document.data()
+                        
+                        if let name = documentData["name"] {
+                            self.nameTextField.text = name as? String
+                        }
+                    }
+                }
+        }
+        
+    }
+    
+    //MARK: - Save Clients
     
     func saveClientData() {
         var clientDataArray = [String: Any]()
@@ -111,21 +153,9 @@ class EditClientDetailsVC: UIViewController {
         addClientDataToDatabase(clientDataArray)
     }
     
-    //MARK: - Database CRUD Functions
+    //MARK: - Read Clients
     
-    func addClientDataToDatabase(_ clientData: [String: Any]) {
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
-
-        clientRef.document(clientDocumentID).setData(clientData, merge: true) { (error) in
-            if let error = error {
-                print("Error writing document: \(error)")
-            } else {
-                print("Document successfully written!")
-            }
-        }
-
-    }
+    
     
     //MARK: - UI Beautification Functions
 

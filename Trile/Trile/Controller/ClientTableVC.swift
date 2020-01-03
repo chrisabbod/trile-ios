@@ -110,9 +110,9 @@ class ClientTableVC: UITableViewController {
         //Clients are completely removed and replaced in the array. Write this better in the future.
         clients.removeAll()
         
-        clientRef.getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
+        clientRef.getDocuments() { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
             } else {
                 for document in querySnapshot!.documents {
                     //print("\(document.documentID) => \(document.data())")
