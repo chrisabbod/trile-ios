@@ -76,7 +76,79 @@ class EditCaseDetailsVC: UIViewController {
         var caseDataArray = [String: Any]()
         
         if let fileNumber = fileNumberTextField.text {
-            caseDataArray["file_number"] = fileNumber
+            caseDataArray["assigned_file_number"] = fileNumber
+        }
+        
+        if let bond = bondTextField.text {
+            caseDataArray["bond"] = bond
+        }
+        
+        if let continuance = continuanceTextField.text {
+            caseDataArray["continuance"] = continuance
+        }
+        
+        if let desiredOutcome = desiredOutcomeTextField.text {
+            caseDataArray["desired_outcome"] = desiredOutcome
+        }
+        
+        if let offense = offenseTextField.text {
+            caseDataArray["offense"] = offense
+        }
+        
+        if let offenseClass = offenseClassTextField.text {
+            caseDataArray["offense_class"] = offenseClass
+        }
+        
+        if let disposition = dispositionTextField.text {
+            caseDataArray["disposition"] = disposition
+        }
+        
+        if let judgmentAndSentencing = judgmentAndSentencingTextField.text {
+            caseDataArray["judgment_and_sentencing"] = judgmentAndSentencing
+        }
+        
+        if let county = countyTextField.text {
+            caseDataArray["county"] = county
+        }
+        
+        if let dateAppointed = dateAppointedTextField.text {
+            caseDataArray["date_appointed"] = dateAppointed
+        }
+        
+        if let dateOfFirstInterview = dateOfFirstClientInterviewTextField.text {
+            caseDataArray["date_of_first_client_interview"] = dateOfFirstInterview
+        }
+        
+        if let dateOfFinalDisposition = dateOfFinalDispositionTextField.text {
+            caseDataArray["date_of_final_disposition"] = dateOfFinalDisposition
+        }
+        
+        if let nameOfJudgeSettingFee = nameOfJudgeSettingFeeTextField.text {
+            caseDataArray["name_of_judge_setting_fee"] = nameOfJudgeSettingFee
+        }
+        
+        if let timeInCourtHours = timeInCourtHoursTextField.text {
+            caseDataArray["time_in_court_hours"] = timeInCourtHours
+        }
+        
+        if let timeInCourtMinutes = timeInCourtMinutesTextField.text {
+            caseDataArray["time_in_court_minutes"] = timeInCourtMinutes
+        }
+        
+        if let timeInCourtWaitingHours = timeInCourtWaitingHoursTextField.text {
+            caseDataArray["time_in_court_waiting_hours"] = timeInCourtWaitingHours
+        }
+        
+        if let timeInCourtWaitingMinutes = timeInCourtWaitingMinutesTextField.text {
+            caseDataArray["time_in_court_waiting_minutes"] = timeInCourtWaitingMinutes
+        }
+        
+        if let timeOutOfCourtHours = timeOutOfCourtHoursTextField.text {
+            caseDataArray["time_out_of_court_hours"] = timeOutOfCourtHours
+        }
+        
+        if let timeOutOfCourtMinutes = timeOutOfCourtMinutesTextField.text {
+            caseDataArray["time_out_of_court_minutes"] = timeOutOfCourtMinutes
         }
         
         addCaseDataToDatabase(caseDataArray)
