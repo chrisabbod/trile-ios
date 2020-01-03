@@ -179,7 +179,7 @@ class EditClientDetailsVC: UIViewController {
         }
         
         if let placeOfEmployment = placeOfEmploymentTextField.text {
-            clientDataArray["placeOfEmployment"] = placeOfEmployment
+            clientDataArray["place_of_employment"] = placeOfEmployment
         }
         
         if let role = roleTextField.text {
@@ -187,23 +187,23 @@ class EditClientDetailsVC: UIViewController {
         }
         
         if let dateStarted = dateStartedTextField.text {
-            clientDataArray["dateStarted"] = dateStarted
+            clientDataArray["date_started"] = dateStarted
         }
         
         if let dateEnded = dateEndedTextField.text {
-            clientDataArray["dateEnded"] = dateEnded
+            clientDataArray["date_ended"] = dateEnded
         }
         
         if let incomeRange = incomeRangeTextField.text {
-            clientDataArray["incomeRange"] = incomeRange
+            clientDataArray["income_range"] = incomeRange
         }
         
         if let totalChildren = totalChildrenTextField.text {
-            clientDataArray["totalChildren"] = totalChildren
+            clientDataArray["total_children"] = totalChildren
         }
         
         if let totalOtherOccupants = totalOtherOccupantsTextField.text {
-            clientDataArray["totalOtherOccupants"] = totalOtherOccupants
+            clientDataArray["total_other_occupants"] = totalOtherOccupants
         }
         
         addClientDataToDatabase(clientDataArray)
