@@ -10,6 +10,8 @@ import UIKit
 
 class CaseDetailsVC: UIViewController {
     
+    let EDIT_CASE_DETAILS_SEGUE = "goToEditCaseDetailsVC"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,6 +20,10 @@ class CaseDetailsVC: UIViewController {
         navigationItem.rightBarButtonItem = signOutButton
         
         addCornerRadiusToViews()
+    }
+    
+    @IBAction func editCaseDetailsButton(_ sender: Any) {
+        performSegue(withIdentifier: EDIT_CASE_DETAILS_SEGUE, sender: self)
     }
     
     // MARK: - Segues
