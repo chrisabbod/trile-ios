@@ -42,8 +42,10 @@ class EditClientDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addCornerRadiusToViews()
-        
+        addCornerRadiusToViews()        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         readClientDataFromDatabase()
     }
     

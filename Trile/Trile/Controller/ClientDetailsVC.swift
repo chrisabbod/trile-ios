@@ -47,10 +47,12 @@ class ClientDetailsVC: UIViewController {
         let signOutButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut(_:)))
         
         self.navigationItem.rightBarButtonItem = signOutButton
-        
-        readClientDataFromDatabase()
-        
+                
         addCornerRadiusToViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        readClientDataFromDatabase()
     }
     
     @IBAction func editClientDetailsButton(_ sender: Any) {
