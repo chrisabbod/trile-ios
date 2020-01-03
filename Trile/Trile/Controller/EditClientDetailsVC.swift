@@ -66,7 +66,7 @@ class EditClientDetailsVC: UIViewController {
         let clientRef = db.collection("users").document(uid).collection("clients")
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
 
-        clientRef.document(clientDocumentID).setData(clientData) { (error) in
+        clientRef.document(clientDocumentID).setData(clientData, merge: true) { (error) in
             if let error = error {
                 print("Error writing document: \(error)")
             } else {
