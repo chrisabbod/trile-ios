@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class CaseDetailsVC: UIViewController {
     
@@ -34,6 +36,12 @@ class CaseDetailsVC: UIViewController {
     @IBOutlet weak var caseInformationView: UIView!
     @IBOutlet weak var billableHoursView: UIView!
     
+    var db = Firestore.firestore()
+    let uid: String = Auth.auth().currentUser!.uid
+    
+    var selectedClient: Client?
+    var selectedFileNumber: FileNumber?
+    
     let EDIT_CASE_DETAILS_SEGUE = "goToEditCaseDetailsVC"
     
     override func viewDidLoad() {
@@ -42,7 +50,7 @@ class CaseDetailsVC: UIViewController {
         let signOutButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut(_:)))
         
         navigationItem.rightBarButtonItem = signOutButton
-        
+
         addCornerRadiusToViews()
     }
     
@@ -53,9 +61,9 @@ class CaseDetailsVC: UIViewController {
     // MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //        let destinationVC = segue.destination as! EditClientDetailsVC
-        //        destinationVC.selectedClient = selectedClient
-        //        destinationVC.selectedFileNumber = selectedFileNumber
+        let destinationVC = segue.destination as! EditCaseDetailsVC
+        destinationVC.selectedClient = selectedClient
+        destinationVC.selectedFileNumber = selectedFileNumber
     }
     
     func transitionToHome() {

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class EditCaseDetailsVC: UIViewController {
 
@@ -33,6 +35,12 @@ class EditCaseDetailsVC: UIViewController {
     
     @IBOutlet weak var caseInformationView: UIView!
     @IBOutlet weak var billableHoursView: UIView!
+    
+    var db = Firestore.firestore()
+    let uid: String = Auth.auth().currentUser!.uid
+    
+    var selectedClient: Client?
+    var selectedFileNumber: FileNumber?
     
     override func viewDidLoad() {
         super.viewDidLoad()
