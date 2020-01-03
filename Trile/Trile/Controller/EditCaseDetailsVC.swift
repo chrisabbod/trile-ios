@@ -64,7 +64,7 @@ class EditCaseDetailsVC: UIViewController {
         
         let clientRef = db.collection("users").document(uid).collection("clients")
         let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-        print("FileNumberDocumentID: \(fileNumberDocumentID)")
+
         let query = fileNumberRef.whereField("document_id", isEqualTo: fileNumberDocumentID as Any)
 
         query.getDocuments() { (querySnapshot, err) in
@@ -72,10 +72,10 @@ class EditCaseDetailsVC: UIViewController {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                    //let documentData: [String: Any] = document.data()
+                    //print("\(document.documentID) => \(document.data())")
+                    let documentData: [String: Any] = document.data()
                     
-                    //self.readClientData(from: documentData)
+                    self.readCaseData(from: documentData)
                 }
             }
         }
@@ -102,9 +102,82 @@ class EditCaseDetailsVC: UIViewController {
     //MARK: - Read Client Data
     
     func readCaseData(from data: [String: Any]) {
-//        if let name = data["name"] {
-//            nameTextField.text = name as? String
-//        }
+        
+        if let fileNumber = data["assigned_file_number"] {
+            fileNumberTextField.text = fileNumber as? String
+        }
+        
+        if let bond = data["bond"] {
+            bondTextField.text = bond as? String
+        }
+        
+        if let continuance = data["continuance"] {
+            continuanceTextField.text = continuance as? String
+        }
+        
+        if let desiredOutcome = data["desired_outcome"] {
+            desiredOutcomeTextField.text = desiredOutcome as? String
+        }
+        
+        if let offense = data["offense"] {
+            offenseTextField.text = offense as? String
+        }
+        
+        if let offenseClass = data["offense_class"] {
+            offenseClassTextField.text = offenseClass as? String
+        }
+        
+        if let disposition = data["disposition"] {
+            dispositionTextField.text = disposition as? String
+        }
+        
+        if let judgmentAndSentencing = data["judgment_and_sentencing"] {
+            judgmentAndSentencingTextField.text = judgmentAndSentencing as? String
+        }
+        
+        if let county = data["county"] {
+            countyTextField.text = county as? String
+        }
+        
+        if let dateAppointed = data["date_appointed"] {
+            dateAppointedTextField.text = dateAppointed as? String
+        }
+        
+        if let dateOfFirstClientInterview = data["date_of_first_client_interview"] {
+            dateOfFirstClientInterviewTextField.text = dateOfFirstClientInterview as? String
+        }
+        
+        if let dateOfFinalDisposition = data["date_of_final_disposition"] {
+            dateOfFinalDispositionTextField.text = dateOfFinalDisposition as? String
+        }
+        
+        if let nameOfJudgeSettingFee = data["name_of_judge_setting_fee"] {
+            nameOfJudgeSettingFeeTextField.text = nameOfJudgeSettingFee as? String
+        }
+        
+        if let timeInCourtHours = data["time_in_court_hours"] {
+            timeInCourtHoursTextField.text = timeInCourtHours as? String
+        }
+        
+        if let timeInCourtMinutes = data["time_in_court_minutes"] {
+            timeInCourtMinutesTextField.text = timeInCourtMinutes as? String
+        }
+        
+        if let timeInCourtWaitingHours = data["time_in_court_waiting_hours"] {
+            timeInCourtWaitingHoursTextField.text = timeInCourtWaitingHours as? String
+        }
+
+        if let timeInCourtWaitingMinutes = data["time_in_court_waiting_minutes"] {
+            timeInCourtWaitingMinutesTextField.text = timeInCourtWaitingMinutes as? String
+        }
+        
+        if let timeOutOfCourtHours = data["time_out_of_court_hours"] {
+            timeOutOfCourtHoursTextField.text = timeOutOfCourtHours as? String
+        }
+        
+        if let timeOutOfCourtMinutes = data["time_out_of_court_minutes"] {
+            timeOutOfCourtMinutesTextField.text = timeOutOfCourtMinutes as? String
+        }
     }
     
     //MARK: - Save Case Data
