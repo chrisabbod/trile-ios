@@ -47,7 +47,7 @@ class CaseDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let signOutButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut(_:)))
+        let signOutButton = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOut(_:)))
         
         navigationItem.rightBarButtonItem = signOutButton
         

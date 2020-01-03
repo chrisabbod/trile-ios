@@ -14,8 +14,27 @@ class DocumentsVC: UIViewController {
         super.viewDidLoad()
 
         let scanDocumentButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(scanDocument(_:)))
+        let signOutButton = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOut(_:)))
         
-        navigationItem.rightBarButtonItem = scanDocumentButton
+        navigationItem.rightBarButtonItems = [signOutButton, scanDocumentButton]
+    }
+    
+    //MARK: - Segues
+    
+    func transitionToHome() {
+        
+        let loginVC = storyboard?.instantiateViewController(identifier: "LoginViewController")
+        
+        view.window?.rootViewController = loginVC
+        view.window?.makeKeyAndVisible()
+        
+    }
+    
+    //MARK: - Bar Buttons
+    
+    @objc
+    func signOut(_ sender: UIBarButtonItem) {
+        transitionToHome()
     }
     
     @objc
