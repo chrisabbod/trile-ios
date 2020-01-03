@@ -10,6 +10,7 @@ target 'Trile' do
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
   pod 'WeScan', '>= 0.9'
   
   target 'TrileTests' do
