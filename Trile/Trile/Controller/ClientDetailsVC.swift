@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class ClientDetailsVC: UIViewController {
     
@@ -31,6 +33,9 @@ class ClientDetailsVC: UIViewController {
     @IBOutlet weak var workHistoryView: UIView!
     @IBOutlet weak var householdResidentsView: UIView!
     
+    var db = Firestore.firestore()
+    let uid: String = Auth.auth().currentUser!.uid
+    
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
@@ -42,6 +47,8 @@ class ClientDetailsVC: UIViewController {
         let signOutButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut(_:)))
         
         self.navigationItem.rightBarButtonItem = signOutButton
+        
+        readClientDataFromDatabase()
         
         addCornerRadiusToViews()
     }
@@ -72,6 +79,84 @@ class ClientDetailsVC: UIViewController {
     @objc
     func signOut(_ sender: UIBarButtonItem) {
         transitionToHome()
+    }
+    
+    //MARK: - Database CRUD Functions
+    
+    func readClientDataFromDatabase() {
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let clientDocumentID = selectedClient?.documentID
+        let query = clientRef.whereField("documentID", isEqualTo: clientDocumentID as Any)
+        
+        query.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data())")
+                    let documentData: [String: Any] = document.data()
+                    
+                    self.readClientData(from: documentData)
+                }
+            }
+        }
+        
+    }
+    
+    //MARK: - Read Client Data
+    
+    func readClientData(from data: [String: Any]) {
+        if let name = data["name"] {
+            nameLabel.text = name as? String
+        }
+        
+        if let age = data["age"] {
+            ageLabel.text = age as? String
+        }
+        
+        if let address = data["address"] {
+            addressLabel.text = address as? String
+        }
+        
+        if let city = data["city"] {
+            cityLabel.text = city as? String
+        }
+        
+        if let state = data["state"] {
+            stateLabel.text = state as? String
+        }
+        
+        if let zip = data["zip"] {
+            zipLabel.text = zip as? String
+        }
+        
+        if let placeOfEmployment = data["placeOfEmployment"] {
+            placeOfEmploymentLabel.text = placeOfEmployment as? String
+        }
+        
+        if let role = data["role"] {
+            roleLabel.text = role as? String
+        }
+        
+        if let dataStarted = data["dateStarted"] {
+            dateStartedLabel.text = dataStarted as? String
+        }
+        
+        if let dateEnded = data["dateEnded"] {
+            dateEndedLabel.text = dateEnded as? String
+        }
+        
+        if let incomeRange = data["incomeRange"] {
+            incomeRangeLabel.text = incomeRange as? String
+        }
+        
+        if let totalChildren = data["totalChildren"] {
+            totalChildrenLabel.text = totalChildren as? String
+        }
+        
+        if let totalOtherOccupants = data["totalOtherOccupants"] {
+            totalOtherOccupantsLabel.text = totalOtherOccupants as? String
+        }
     }
     
     //MARK: - UI Beautification Functions
