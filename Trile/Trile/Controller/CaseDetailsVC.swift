@@ -10,6 +10,30 @@ import UIKit
 
 class CaseDetailsVC: UIViewController {
     
+    @IBOutlet weak var fileNumberLabel: UILabel!
+    @IBOutlet weak var bondLabel: UILabel!
+    @IBOutlet weak var continuanceLabel: UILabel!
+    @IBOutlet weak var desiredOutcomeLabel: UILabel!
+    @IBOutlet weak var offenseLabel: UILabel!
+    @IBOutlet weak var offenseClassLabel: UILabel!
+    @IBOutlet weak var dispositionLabel: UILabel!
+    @IBOutlet weak var judgmentAndSentencingLabel: UILabel!
+    @IBOutlet weak var countyLabel: UILabel!
+    @IBOutlet weak var dateAppointedLabel: UILabel!
+    @IBOutlet weak var dateOfFirstClientInterviewLabel: UILabel!
+    @IBOutlet weak var dateOfFinalDispositionLabel: UILabel!
+    @IBOutlet weak var nameOfJudgeSettingFeeLabel: UILabel!
+    
+    @IBOutlet weak var timeInCourtHoursLabel: UILabel!
+    @IBOutlet weak var timeInCourtMinutesLabel: UILabel!
+    @IBOutlet weak var timeInCourtWaitingHoursLabel: UILabel!
+    @IBOutlet weak var timeInCourtWaitingMinutesLabel: UILabel!
+    @IBOutlet weak var timeOutOfCourtHoursLabel: UILabel!
+    @IBOutlet weak var timeOutOfCourtMinutesLabel: UILabel!
+    
+    @IBOutlet weak var caseInformationView: UIView!
+    @IBOutlet weak var billableHoursView: UIView!
+    
     let EDIT_CASE_DETAILS_SEGUE = "goToEditCaseDetailsVC"
     
     override func viewDidLoad() {

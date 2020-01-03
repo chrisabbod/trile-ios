@@ -472,7 +472,7 @@
             <objects>
                 <viewController title="CaseDetailsVC" id="Es9-pA-DHU" customClass="CaseDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o1p-2P-bxW">
-                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="991" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fws-yp-Fwf" userLabel="Root Stack View">
@@ -990,6 +990,27 @@
                     <tabBarItem key="tabBarItem" title="Case Details" id="Lpf-6B-Sxg"/>
                     <navigationItem key="navigationItem" title="Case Details" id="5Sz-9Z-BLe"/>
                     <connections>
+                        <outlet property="billableHoursView" destination="ly9-Nf-Git" id="qXi-6g-gc2"/>
+                        <outlet property="bondLabel" destination="LoF-ZC-N78" id="sPc-lT-n9u"/>
+                        <outlet property="caseInformationView" destination="CFm-Nq-wu5" id="LAS-hO-6Ri"/>
+                        <outlet property="continuanceLabel" destination="duO-PT-Tnr" id="vBJ-oo-FkJ"/>
+                        <outlet property="countyLabel" destination="0vA-58-uS2" id="HGb-L9-MRh"/>
+                        <outlet property="dateAppointedLabel" destination="HUt-EG-8rH" id="AdD-jF-Wfi"/>
+                        <outlet property="dateOfFinalDispositionLabel" destination="Zqj-YZ-msq" id="Dks-1a-4OP"/>
+                        <outlet property="dateOfFirstClientInterviewLabel" destination="jLd-Yd-bFZ" id="je9-Wj-mjl"/>
+                        <outlet property="desiredOutcomeLabel" destination="t6f-Mx-v9n" id="UU9-r0-uRf"/>
+                        <outlet property="dispositionLabel" destination="T4I-aY-JNA" id="k6t-nC-T6K"/>
+                        <outlet property="fileNumberLabel" destination="G1g-Rv-ed7" id="J07-Xh-zWv"/>
+                        <outlet property="judgmentAndSentencingLabel" destination="DfV-aD-fVs" id="kM7-iO-dXb"/>
+                        <outlet property="nameOfJudgeSettingFeeLabel" destination="Zqj-YZ-msq" id="O4e-ve-Fad"/>
+                        <outlet property="offenseClassLabel" destination="xkE-0X-SYM" id="mya-5d-qgZ"/>
+                        <outlet property="offenseLabel" destination="Ffq-mG-kfb" id="IhD-uP-kVt"/>
+                        <outlet property="timeInCourtHoursLabel" destination="XT4-Rf-yqs" id="YPf-xa-Fs9"/>
+                        <outlet property="timeInCourtMinutesLabel" destination="vZ2-de-9A8" id="FcT-L4-65Z"/>
+                        <outlet property="timeInCourtWaitingHoursLabel" destination="Jgd-Id-p7V" id="8RX-KX-MaQ"/>
+                        <outlet property="timeInCourtWaitingMinutesLabel" destination="9V4-Vb-fLW" id="Lp6-a3-UYS"/>
+                        <outlet property="timeOutOfCourtHoursLabel" destination="Ixc-bU-wyf" id="FIW-09-whl"/>
+                        <outlet property="timeOutOfCourtMinutesLabel" destination="fSK-dY-T6N" id="Erz-8F-CYs"/>
                         <segue destination="OCB-fk-1zt" kind="show" identifier="goToEditCaseDetailsVC" id="gx1-i8-NUc"/>
                     </connections>
                 </viewController>
