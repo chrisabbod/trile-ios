@@ -35,7 +35,7 @@ class EditClientDetailsVC: UIViewController {
     
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
-
+    
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
@@ -60,7 +60,7 @@ class EditClientDetailsVC: UIViewController {
     func addClientDataToDatabase(_ clientData: [String: Any]) {
         let clientRef = db.collection("users").document(uid).collection("clients")
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
-
+        
         clientRef.document(clientDocumentID).setData(clientData, merge: true) { (error) in
             if let error = error {
                 print("Error writing document: \(error)")
@@ -68,7 +68,7 @@ class EditClientDetailsVC: UIViewController {
                 print("Document successfully written!")
             }
         }
-
+        
     }
     
     func readClientDataFromDatabase() {
@@ -77,23 +77,77 @@ class EditClientDetailsVC: UIViewController {
         let query = clientRef.whereField("documentID", isEqualTo: clientDocumentID as Any)
         
         query.getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        //print("\(document.documentID) => \(document.data())")
-                        let documentData: [String: Any] = document.data()
-                        
-                        if let name = documentData["name"] {
-                            self.nameTextField.text = name as? String
-                        }
-                    }
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data())")
+                    let documentData: [String: Any] = document.data()
+                    
+                    self.readClientData(from: documentData)
                 }
+            }
         }
         
     }
     
-    //MARK: - Save Clients
+    //MARK: - Read Client Data
+    
+    func readClientData(from data: [String: Any]) {
+        if let name = data["name"] {
+            nameTextField.text = name as? String
+        }
+        
+        if let age = data["age"] {
+            ageTextField.text = age as? String
+        }
+        
+        if let address = data["address"] {
+            addressTextField.text = address as? String
+        }
+        
+        if let city = data["city"] {
+            cityTextField.text = city as? String
+        }
+        
+        if let state = data["state"] {
+            stateTextField.text = state as? String
+        }
+        
+        if let zip = data["zip"] {
+            zipTextField.text = zip as? String
+        }
+        
+        if let placeOfEmployment = data["placeOfEmployment"] {
+            placeOfEmploymentTextField.text = placeOfEmployment as? String
+        }
+        
+        if let role = data["role"] {
+            roleTextField.text = role as? String
+        }
+        
+        if let dataStarted = data["dateStarted"] {
+            dateStartedTextField.text = dataStarted as? String
+        }
+        
+        if let dateEnded = data["dateEnded"] {
+            dateEndedTextField.text = dateEnded as? String
+        }
+        
+        if let incomeRange = data["incomeRange"] {
+            incomeRangeTextField.text = incomeRange as? String
+        }
+        
+        if let totalChildren = data["totalChildren"] {
+            totalChildrenTextField.text = totalChildren as? String
+        }
+        
+        if let totalOtherOccupants = data["totalOtherOccupants"] {
+            totalOtherOccupantsTextField.text = totalOtherOccupants as? String
+        }
+    }
+    
+    //MARK: - Save Client Data
     
     func saveClientData() {
         var clientDataArray = [String: Any]()
@@ -158,7 +212,7 @@ class EditClientDetailsVC: UIViewController {
     
     
     //MARK: - UI Beautification Functions
-
+    
     func addCornerRadiusToViews() {
         let cornerRadiusValue: CGFloat = 20.0
         
