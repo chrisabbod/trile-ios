@@ -472,7 +472,7 @@
             <objects>
                 <viewController title="CaseDetailsVC" id="Es9-pA-DHU" customClass="CaseDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o1p-2P-bxW">
-                        <rect key="frame" x="0.0" y="0.0" width="991" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fws-yp-Fwf" userLabel="Root Stack View">
@@ -1423,23 +1423,11 @@
         <!--DocumentsVC-->
         <scene sceneID="uhV-SR-Ad8">
             <objects>
-                <viewController title="DocumentsVC" id="zoo-7d-zqF" sceneMemberID="viewController">
+                <viewController title="DocumentsVC" id="zoo-7d-zqF" customClass="DocumentsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6vt-eB-XgW">
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DOCUMENTS UNDER CONSTRUCTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qwt-op-1zO">
-                                <rect key="frame" x="61.5" y="472" width="868" height="60"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" red="0.90588235289999997" green="0.8980392157" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Qwt-op-1zO" firstAttribute="centerY" secondItem="6vt-eB-XgW" secondAttribute="centerY" id="iRp-sL-4ql"/>
-                            <constraint firstItem="Qwt-op-1zO" firstAttribute="centerX" secondItem="6vt-eB-XgW" secondAttribute="centerX" id="mFw-6V-C9V"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZtQ-gd-4XF"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Documents" id="9Bo-qw-Wfh"/>
