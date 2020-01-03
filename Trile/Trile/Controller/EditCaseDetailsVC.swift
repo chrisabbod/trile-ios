@@ -47,7 +47,41 @@ class EditCaseDetailsVC: UIViewController {
 
         addCornerRadiusToViews()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        saveCaseData()
+    }
 
+    //MARK: - Database CRUD Functions
+    
+    func addCaseDataToDatabase(_ caseData: [String: Any]) {
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
+        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
+
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+        fileNumberRef.document(fileNumberDocumentID).setData(caseData, merge: true) { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        
+    }
+    
+    //MARK: - Save Case Data
+    
+    func saveCaseData() {
+        var caseDataArray = [String: Any]()
+        
+        if let fileNumber = fileNumberTextField.text {
+            caseDataArray["file_number"] = fileNumber
+        }
+        
+        addCaseDataToDatabase(caseDataArray)
+    }
+    
     //MARK: - UI Beautification Functions
     
     func addCornerRadiusToViews() {
