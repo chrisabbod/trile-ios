@@ -46,7 +46,7 @@ class ClientDetailsVC: UIViewController {
         
         let signOutButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut(_:)))
         
-        self.navigationItem.rightBarButtonItem = signOutButton
+        navigationItem.rightBarButtonItem = signOutButton
                 
         addCornerRadiusToViews()
     }

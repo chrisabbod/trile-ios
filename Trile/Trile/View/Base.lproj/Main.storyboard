@@ -470,13 +470,13 @@
         <!--CaseDetailsVC-->
         <scene sceneID="Olx-Hy-84c">
             <objects>
-                <viewController title="CaseDetailsVC" id="Es9-pA-DHU" sceneMemberID="viewController">
+                <viewController title="CaseDetailsVC" id="Es9-pA-DHU" customClass="CaseDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o1p-2P-bxW">
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fws-yp-Fwf">
-                                <rect key="frame" x="95.5" y="80" width="799.5" height="658"/>
+                                <rect key="frame" x="95.5" y="136" width="799.5" height="658"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Case Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7X-7G-X7c">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
@@ -901,10 +901,11 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Case Details" id="Lpf-6B-Sxg"/>
+                    <navigationItem key="navigationItem" title="Case Details" id="5Sz-9Z-BLe"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hcz-kv-Jbu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2837" y="-330"/>
+            <point key="canvasLocation" x="3599" y="-330"/>
         </scene>
         <!--ClientDetailsVC-->
         <scene sceneID="2O6-lO-Tag">
@@ -1374,10 +1375,10 @@
                         <color key="selectedImageTintColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="FAa-8G-mS6" kind="relationship" relationship="viewControllers" id="uNU-bB-Hrn"/>
-                        <segue destination="Es9-pA-DHU" kind="relationship" relationship="viewControllers" id="v8z-a8-qlq"/>
+                        <segue destination="4CK-Pj-AX7" kind="relationship" relationship="viewControllers" id="3rD-5A-jAl"/>
                         <segue destination="zoo-7d-zqF" kind="relationship" relationship="viewControllers" id="XbF-2d-R5e"/>
                         <segue destination="QYh-2M-bCj" kind="relationship" relationship="viewControllers" id="sCY-nk-x3S"/>
+                        <segue destination="FAa-8G-mS6" kind="relationship" relationship="viewControllers" id="uNU-bB-Hrn"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yuy-vi-opM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1970,6 +1971,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ItP-ib-MDZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4280" y="-1088"/>
+        </scene>
+        <!--Case Details-->
+        <scene sceneID="F1f-EI-T0I">
+            <objects>
+                <navigationController id="4CK-Pj-AX7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Case Details" id="iX8-as-Mqm"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wKd-s5-18X">
+                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Otk-Cd-4jE">
+                        <rect key="frame" x="-375.5" y="-20" width="0.0" height="0.0"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="Es9-pA-DHU" kind="relationship" relationship="rootViewController" id="W0w-uO-kFr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t3z-46-AIq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2837" y="-330"/>
         </scene>
     </scenes>
     <resources>

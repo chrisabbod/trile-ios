@@ -81,7 +81,7 @@ class FileNumberTableVC: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let tabBarController = segue.destination as? UITabBarController
         
-        let clientDetailsNavBarController = tabBarController?.viewControllers?[0] as? UINavigationController
+        let clientDetailsNavBarController = tabBarController?.viewControllers?[3] as? UINavigationController
 
         let destinationClientDetailsVC = clientDetailsNavBarController?.topViewController as? ClientDetailsVC
         
