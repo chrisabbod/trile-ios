@@ -77,18 +77,60 @@ class FileNumberTableVC: UITableViewController {
         performSegue(withIdentifier: TAB_SEGUE, sender: self)
     }
     
+    //Load the details for the selected file number
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //        if segue.identifier == "showDetail" {
-        //            print("Go to FileNumberTableVC")
-        //            if let indexPath = tableView.indexPathForSelectedRow {
-        //                let object = objects[indexPath.row] as! Client
-        //                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-        //                controller.detailItem = object
-        //                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        //                controller.navigationItem.leftItemsSupplementBackButton = true
-        //                detailViewController = controller
-        //            }
-        //        }
+        let tabBarController = segue.destination as? UITabBarController
+        
+        let clientDetailsNavBarController = tabBarController?.viewControllers?[0] as? UINavigationController
+
+        let destinationClientDetailsVC = clientDetailsNavBarController?.topViewController as? ClientDetailsVC
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationClientDetailsVC?.selectedClient = selectedClient
+            destinationClientDetailsVC?.selectedFileNumber = fileNumbers[indexPath.row]
+        }
+//        if fileNumbers?.count != 0 {
+//            let tabBarController = segue.destination as? UITabBarController
+//
+//            let caseDetailsNavbarController = tabBarController?.viewControllers?[0] as? UINavigationController
+//            let documentNavbarController = tabBarController?.viewControllers?[1] as? UINavigationController
+//
+//            let destinationCaseDetailsVC = caseDetailsNavbarController?.topViewController as? CaseDetailsVC
+//            let destinationDocumentCollectionVC = documentNavbarController?.topViewController as? DocumentCollectionVC
+//            let destinationFeeApplicationVC = tabBarController?.viewControllers?[2] as? FeeApplicationVC
+//
+//            //Commented code below just being used as an example. Will delete soon.
+//            //            if let indexPath = tableView.indexPathForSelectedRow {
+//            //                destinationCaseDetailsVC?.selectedClient = selectedClient
+//            //                destinationFeeApplicationVC?.selectedClient = selectedClient
+//            //
+//            //                if let currentFileNumber = fileNumbers?[indexPath.row] {
+//            //                    destinationCaseDetailsVC?.selectedFileNumber = currentFileNumber
+//            //                    destinationDocumentCollectionVC?.selectedFileNumber = currentFileNumber
+//            //                    destinationFeeApplicationVC?.selectedFileNumber = currentFileNumber
+//            //                }
+//            //            }
+//            //
+//            //            let destinationUserActionRequestVC = segue.destination as? UserActionRequestVC
+//            //            destinationUserActionRequestVC?.userMessage = "Please Select File Number"
+//            //        } else if fileNumbers?.count == 0 {
+//            //            let destinationVC = segue.destination as? UserActionRequestVC
+//            //            destinationVC?.userMessage = "Please Add File Number"
+//            //        }
+//
+//            if let indexPath = tableView.indexPathForSelectedRow {
+//                destinationCaseDetailsVC?.selectedClientGQL = selectedClientGQL
+//                destinationDocumentCollectionVC?.selectedClientGQL = selectedClientGQL
+//                destinationFeeApplicationVC?.selectedClientGQL = selectedClientGQL
+//
+//                let currentFileNumber = fileNumbersGQL[indexPath.row]
+//
+//                destinationCaseDetailsVC?.selectedFileNumberGQL = currentFileNumber
+//                destinationDocumentCollectionVC?.selectedFileNumberGQL = currentFileNumber
+//                destinationFeeApplicationVC?.selectedFileNumberGQL = currentFileNumber
+//
+//            }
+//        }
     }
     
     //MARK: - Database CRUD Functions

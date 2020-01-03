@@ -31,6 +31,9 @@ class ClientDetailsVC: UIViewController {
     @IBOutlet weak var workHistoryView: UIView!
     @IBOutlet weak var householdResidentsView: UIView!
     
+    var selectedClient: Client?
+    var selectedFileNumber: FileNumber?
+    
     let EDIT_CLIENT_DETAILS_SEGUE = "goToEditClientDetailsVC"
     
     override func viewDidLoad() {
@@ -40,7 +43,7 @@ class ClientDetailsVC: UIViewController {
         
         self.navigationItem.rightBarButtonItem = signOutButton
         
-        editViewCornerRadius()
+        addCornerRadiusToViews()
     }
     
     @IBAction func editClientDetailsButton(_ sender: Any) {
@@ -50,11 +53,8 @@ class ClientDetailsVC: UIViewController {
     // MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //        let destinationVC = segue.destination as! FileNumberTableVC
-        //
-        //        if let indexPath = tableView.indexPathForSelectedRow{
-        //            destinationVC.selectedClient = clients[indexPath.row]
-        //        }
+        let destinationVC = segue.destination as! EditClientDetailsVC
+        destinationVC.selectedClient = selectedClient
     }
     
     func transitionToHome() {
@@ -75,7 +75,7 @@ class ClientDetailsVC: UIViewController {
     
     //MARK: - UI Beautification Functions
     
-    func editViewCornerRadius() {
+    func addCornerRadiusToViews() {
         let cornerRadiusValue: CGFloat = 20.0
         
         clientPictureImageView.layer.masksToBounds = true

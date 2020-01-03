@@ -20,7 +20,6 @@ class ClientTableVC: UITableViewController {
     
     var testModeCounter: Int = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +32,10 @@ class ClientTableVC: UITableViewController {
         let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientAlertDialog(_:)))
         navigationItem.rightBarButtonItem = addClientButton
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        readClientsFromDatabase()
     }
     
     // MARK: - Table View

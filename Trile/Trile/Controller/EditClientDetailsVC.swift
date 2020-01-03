@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class EditClientDetailsVC: UIViewController {
     
@@ -31,20 +33,52 @@ class EditClientDetailsVC: UIViewController {
     @IBOutlet weak var workHistoryView: UIView!
     @IBOutlet weak var householdResidentsView: UIView!
     
+    var db = Firestore.firestore()
+    let uid: String = Auth.auth().currentUser!.uid
+
+    var selectedClient: Client?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        editViewCornerRadius()
+        addCornerRadiusToViews()
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        saveClientData()
     }
     
     @IBAction func cameraButton(_ sender: Any) {
         print("CAMERA BUTTON CLICKED!")
     }
     
+    func saveClientData() {
+        if let name = nameTextField.text {
+            let clientDataArray = ["name": name]
+            addClientDataToDatabase(clientDataArray)
+        }
+    }
+    
+    //MARK: - Database CRUD Functions
+    
+    func addClientDataToDatabase(_ clientData: [String: Any]) {
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
+
+        clientRef.document(clientDocumentID).setData(clientData) { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+
+    }
+    
     //MARK: - UI Beautification Functions
 
-    func editViewCornerRadius() {
+    func addCornerRadiusToViews() {
         let cornerRadiusValue: CGFloat = 20.0
         
         clientPictureImageView.layer.masksToBounds = true
