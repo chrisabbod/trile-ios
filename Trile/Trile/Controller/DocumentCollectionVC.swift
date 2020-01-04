@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class DocumentCollectionVC: UICollectionViewController {
     
     @IBOutlet var documentCollectionView: UICollectionView!
     
     private let REUSE_IDENTIFIER = "customDocumentCell"
-
+    
     let documents: [Document] = []
     let images = ["airplane", "arctichare", "baboon", "boat", "cat", "fruits", "girl", "goldhill", "monarch", "mountain", "sails", "serrano", "tulips"]
     
@@ -40,7 +41,7 @@ class DocumentCollectionVC: UICollectionViewController {
         
     }
     
-    //MARK: Bar Buttons
+    //MARK: Bar Buttons Functions
     
     @objc
     func signOut(_ sender: UIBarButtonItem) {
@@ -49,7 +50,28 @@ class DocumentCollectionVC: UICollectionViewController {
     
     @objc
     func scanDocument(_ sender: Any) {
-        print("BUTTON PRESSED")
+        let randomID = UUID.init().uuidString
+        let uploadRef = Storage.storage().reference(withPath: "test/\(randomID).png")
+        
+        let testImage: UIImage = UIImage(named: "airplane")!
+    
+        //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
+        guard let imageData = testImage.jpegData(compressionQuality: 0.75) else {
+            print("Error producing image data")
+            return
+        }
+        
+        //optional: upload meta data
+        let metaData = StorageMetadata.init()
+        metaData.contentType = "image/jpeg"
+        //upload file
+        uploadRef.putData(imageData, metadata: metaData) { (downloadMetaData, error) in
+            if let error = error {
+                print("Error uploading data: \(error.localizedDescription)")
+                return
+            }
+            print("Upload complete: \(String(describing: downloadMetaData))")
+        }
     }
     
     // MARK: UICollectionViewDataSource
