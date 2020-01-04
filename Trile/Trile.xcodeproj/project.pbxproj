@@ -23,6 +23,8 @@
 		A575E81F23BFB2DF00006A10 /* EditCaseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E81E23BFB2DF00006A10 /* EditCaseDetailsVC.swift */; };
 		A575E82323C00C9A00006A10 /* DocumentCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E82223C00C9A00006A10 /* DocumentCollectionVC.swift */; };
 		A575E82523C00ED900006A10 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E82423C00ED900006A10 /* Document.swift */; };
+		A575E86823C02AB200006A10 /* DocumentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E86623C02AB200006A10 /* DocumentCollectionViewCell.swift */; };
+		A575E86923C02AB200006A10 /* DocumentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A575E86723C02AB200006A10 /* DocumentCollectionViewCell.xib */; };
 		A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C623B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C723B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
@@ -81,6 +83,8 @@
 		A575E81E23BFB2DF00006A10 /* EditCaseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCaseDetailsVC.swift; sourceTree = "<group>"; };
 		A575E82223C00C9A00006A10 /* DocumentCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCollectionVC.swift; sourceTree = "<group>"; };
 		A575E82423C00ED900006A10 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		A575E86623C02AB200006A10 /* DocumentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCollectionViewCell.swift; sourceTree = "<group>"; };
+		A575E86723C02AB200006A10 /* DocumentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentCollectionViewCell.xib; sourceTree = "<group>"; };
 		A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5D6D8CC23B69F4E00F16E27 /* AccountCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVC.swift; sourceTree = "<group>"; };
 		A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -219,8 +223,18 @@
 			children = (
 				A511C1E423B5614E00B9A771 /* LaunchScreen.storyboard */,
 				A511C1DF23B5614900B9A771 /* Main.storyboard */,
+				A575E86A23C02ABB00006A10 /* Custom Document Collection View Cell */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A575E86A23C02ABB00006A10 /* Custom Document Collection View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A575E86623C02AB200006A10 /* DocumentCollectionViewCell.swift */,
+				A575E86723C02AB200006A10 /* DocumentCollectionViewCell.xib */,
+			);
+			path = "Custom Document Collection View Cell";
 			sourceTree = "<group>";
 		};
 		A5D6D8D523B872A100F16E27 /* Managers */ = {
@@ -351,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A511C1E623B5614E00B9A771 /* LaunchScreen.storyboard in Resources */,
+				A575E86923C02AB200006A10 /* DocumentCollectionViewCell.xib in Resources */,
 				A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */,
 				A511C1E323B5614E00B9A771 /* Assets.xcassets in Resources */,
 				A511C1E123B5614900B9A771 /* Main.storyboard in Resources */,
@@ -485,6 +500,7 @@
 			files = (
 				A5695AFE23BE58B90010E40C /* EditClientDetailsVC.swift in Sources */,
 				A511C1D823B5614900B9A771 /* AppDelegate.swift in Sources */,
+				A575E86823C02AB200006A10 /* DocumentCollectionViewCell.swift in Sources */,
 				A5D6D8CF23B8005F00F16E27 /* FirebaseAuthManager.swift in Sources */,
 				A5D6D8DD23BBDF4200F16E27 /* FileNumber.swift in Sources */,
 				A5D6D8D723B872DD00F16E27 /* LoginVC.swift in Sources */,

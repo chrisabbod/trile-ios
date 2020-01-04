@@ -1420,10 +1420,10 @@
             </objects>
             <point key="canvasLocation" x="2076" y="-330"/>
         </scene>
-        <!--DocumentsVC-->
+        <!--DocumentCollectionVC-->
         <scene sceneID="uhV-SR-Ad8">
             <objects>
-                <viewController title="DocumentsVC" id="zoo-7d-zqF" customClass="DocumentCollectionVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="DocumentCollectionVC" id="zoo-7d-zqF" customClass="DocumentCollectionVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Ste-nm-Zxy">
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1447,6 +1447,9 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Documents" id="9Bo-qw-Wfh"/>
                     <navigationItem key="navigationItem" title="Documents" id="cFN-2U-vKx"/>
+                    <connections>
+                        <outlet property="documentCollectionView" destination="Ste-nm-Zxy" id="b5t-Yt-GCD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FhB-tR-14P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
