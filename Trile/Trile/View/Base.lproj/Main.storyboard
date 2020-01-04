@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -1421,42 +1420,6 @@
             </objects>
             <point key="canvasLocation" x="2076" y="-330"/>
         </scene>
-        <!--DocumentCollectionVC-->
-        <scene sceneID="uhV-SR-Ad8">
-            <objects>
-                <viewController title="DocumentCollectionVC" id="zoo-7d-zqF" customClass="DocumentCollectionVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Ste-nm-Zxy">
-                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="U7Z-qH-86f">
-                            <size key="itemSize" width="100" height="100"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customDocumentCell" id="rNz-eR-qh0">
-                                <rect key="frame" x="10" y="10" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ut7-RM-wr4">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionViewCellContentView>
-                            </collectionViewCell>
-                        </cells>
-                    </collectionView>
-                    <tabBarItem key="tabBarItem" title="Documents" id="9Bo-qw-Wfh"/>
-                    <navigationItem key="navigationItem" title="Documents" id="cFN-2U-vKx"/>
-                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="documentCollectionView" destination="Ste-nm-Zxy" id="b5t-Yt-GCD"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FhB-tR-14P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3598.6822840409955" y="472.85156249999994"/>
-        </scene>
         <!--FeeApplicationVC-->
         <scene sceneID="0CH-n1-X77">
             <objects>
@@ -1495,7 +1458,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="zoo-7d-zqF" kind="relationship" relationship="rootViewController" id="Wp8-gV-5Kx"/>
+                        <segue destination="Qqk-mp-iBA" kind="relationship" relationship="rootViewController" id="jQI-o5-XfT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nD5-Xr-rlb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2501,6 +2464,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m8Q-Vs-NGK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4280" y="-330"/>
+        </scene>
+        <!--DocumentCollectionVC-->
+        <scene sceneID="nYM-db-PWG">
+            <objects>
+                <viewController title="DocumentCollectionVC" id="Qqk-mp-iBA" customClass="DocumentCollectionVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gUt-sZ-kbs">
+                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DBF-8j-KfB">
+                                <rect key="frame" x="0.0" y="56" width="990.5" height="883"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Tkj-9I-Sle">
+                                    <size key="itemSize" width="200" height="200"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customDocumentCell" id="miJ-pe-cSa">
+                                        <rect key="frame" x="10" y="10" width="200" height="200"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Qqk-mp-iBA" id="kC7-2E-gE8"/>
+                                    <outlet property="delegate" destination="Qqk-mp-iBA" id="Ku5-0j-Ky8"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DBF-8j-KfB" firstAttribute="top" secondItem="XsU-IL-Auc" secondAttribute="top" id="6TN-Lv-gTa"/>
+                            <constraint firstItem="XsU-IL-Auc" firstAttribute="bottom" secondItem="DBF-8j-KfB" secondAttribute="bottom" id="8tN-XR-mdq"/>
+                            <constraint firstAttribute="trailing" secondItem="DBF-8j-KfB" secondAttribute="trailing" id="OoH-d8-grw"/>
+                            <constraint firstItem="DBF-8j-KfB" firstAttribute="leading" secondItem="XsU-IL-Auc" secondAttribute="leading" id="pGp-8f-Flj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XsU-IL-Auc"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Documents" id="rLb-2n-4LV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="bkQ-1M-jj2">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addDocumentButton:" destination="Qqk-mp-iBA" id="Wdw-q9-cJY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="documentCollectionView" destination="DBF-8j-KfB" id="CUg-Xr-s3F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lMy-Ti-Hg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3599" y="473"/>
         </scene>
     </scenes>
     <resources>

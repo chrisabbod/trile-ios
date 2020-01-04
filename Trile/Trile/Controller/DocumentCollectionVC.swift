@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import WeScan
 import FirebaseStorage
 
-class DocumentCollectionVC: UICollectionViewController {
+class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    @IBOutlet var documentCollectionView: UICollectionView!
+    @IBOutlet weak var documentCollectionView: UICollectionView!
     
     private let REUSE_IDENTIFIER = "customDocumentCell"
     
@@ -76,18 +77,18 @@ class DocumentCollectionVC: UICollectionViewController {
     
     // MARK: UICollectionViewDataSource
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return images.count
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSE_IDENTIFIER, for: indexPath as IndexPath) as! DocumentCollectionViewCell
@@ -103,7 +104,7 @@ class DocumentCollectionVC: UICollectionViewController {
     
     //MARK: UICollectionViewDelegate protocol
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
     }
