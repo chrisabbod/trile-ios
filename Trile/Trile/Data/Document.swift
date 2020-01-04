@@ -6,7 +6,7 @@
 //  Copyright © 2020 Trile. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Document {
     var documentID: String = ""
@@ -14,4 +14,5 @@ class Document {
     var title: String = ""
     var uuid: String = ""
     var imagePath: String = ""
+    var image: UIImage = UIImage()
 }

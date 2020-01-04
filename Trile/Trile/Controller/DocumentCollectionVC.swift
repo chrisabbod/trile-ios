@@ -24,7 +24,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
-    let documents: [Document] = []
+    var documents: [Document] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,8 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         
         //Register .xib file
         documentCollectionView.register(UINib(nibName: "DocumentCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: REUSE_IDENTIFIER)
+        
+        readDocumentsFromDatabase()
     }
     
     //MARK: Segues
@@ -78,6 +80,38 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         
     }
 
+    func readDocumentsFromDatabase() {
+        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
+        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
+        
+        //File Numbers are completely removed and replaced in the array. Write this better in the future.
+        documents.removeAll()
+        
+        documentRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+//                    let newDocument = Document()
+//
+//                    if let assignedFileNumber = document.get("assigned_file_number") {
+//                        newFileNumber.assignedFileNumber = assignedFileNumber as! String
+//                    }
+//
+//                    let id = document.documentID
+//                    newFileNumber.documentID = id
+//                    self.fileNumbers.append(newFileNumber)
+                }
+//                self.collectionView.reloadData()
+            }
+        }
+    }
+    
     //MARK: Bar Buttons Functions
     
     @objc
@@ -124,16 +158,28 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         addDocumentToDatabase(newDocument)
     }
     
+    func downloadImageFromStorage(for document: Document) {
+        let storageRef = Storage.storage().reference(withPath: document.imagePath)
+        
+        storageRef.getData(maxSize: 4 * 1024 * 1024, completion: { (data, error) in
+            if let error = error {
+                print("Error retrieving image data: \(error.localizedDescription)")
+                return
+            }
+            if let data = data {
+                document.image = UIImage(data: data) ?? UIImage(named: "avatar_placeholder")!
+            }
+        })
+    }
+    
     //MARK: UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return documents.count
     }
     
@@ -143,7 +189,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSE_IDENTIFIER, for: indexPath as IndexPath) as! DocumentCollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        //cell.documentImageView.image = UIImage(named: documents[indexPath.item]) //RETURN UIIMAGE HERE
+        cell.documentImageView.image = documents[indexPath.row].image
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 2
         cell.layer.cornerRadius = 20
