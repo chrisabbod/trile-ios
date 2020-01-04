@@ -54,7 +54,7 @@ class DocumentCollectionVC: UICollectionViewController {
         let uploadRef = Storage.storage().reference(withPath: "test/\(randomID).png")
         
         let testImage: UIImage = UIImage(named: "airplane")!
-    
+        
         //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
         guard let imageData = testImage.jpegData(compressionQuality: 0.75) else {
             print("Error producing image data")
@@ -94,15 +94,38 @@ class DocumentCollectionVC: UICollectionViewController {
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         cell.documentImageView.image = UIImage(named: images[indexPath.item])
-        cell.layer.cornerRadius = 10
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 2
+        cell.layer.cornerRadius = 20
         
         return cell
     }
     
-    // MARK: - UICollectionViewDelegate protocol
+    //MARK: UICollectionViewDelegate protocol
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
+    }
+}
+
+//MARK: Collectionview FlowLayout Extension
+
+extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let cellSize = CGSize(width: 240, height: 300)
+        return cellSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
+    {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
+    {
+        let sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        return sectionInset
     }
 }
