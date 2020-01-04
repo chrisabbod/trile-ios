@@ -52,8 +52,10 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     @objc
-    func scanDocument(_ sender: Any) {
-        uploadImageToStorage()
+    func scanDocument(_ sender: Any) {        
+        let scannerViewController = ImageScannerController()
+        scannerViewController.imageScannerDelegate = self
+        present(scannerViewController, animated: true)
     }
     
     //MARK: Image Upload Function
