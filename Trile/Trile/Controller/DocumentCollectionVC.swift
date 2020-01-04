@@ -15,6 +15,7 @@ class DocumentCollectionVC: UICollectionViewController {
     private let REUSE_IDENTIFIER = "customDocumentCell"
 
     let documents: [Document] = []
+    let images = ["airplane", "arctichare", "baboon", "boat", "cat", "fruits", "girl", "goldhill", "monarch", "mountain", "sails", "serrano", "tulips"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +25,8 @@ class DocumentCollectionVC: UICollectionViewController {
         
         navigationItem.rightBarButtonItems = [signOutButton, scanDocumentButton]
         
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: REUSE_IDENTIFIER)
-        
-        // Do any additional setup after loading the view.
+        //Register .xib file
+        documentCollectionView.register(UINib(nibName: "DocumentCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: REUSE_IDENTIFIER)
     }
     
     //MARK: Segues
@@ -57,20 +56,31 @@ class DocumentCollectionVC: UICollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return images.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSE_IDENTIFIER, for: indexPath)
         
-        // Configure the cell
+        // get a reference to our storyboard cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSE_IDENTIFIER, for: indexPath as IndexPath) as! DocumentCollectionViewCell
+        
+        // Use the outlet in our custom class to get a reference to the UILabel in the cell
+        cell.documentImageView.image = UIImage(named: images[indexPath.item])
+        cell.layer.cornerRadius = 10
         
         return cell
+    }
+    
+    // MARK: - UICollectionViewDelegate protocol
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // handle tap events
+        print("You selected cell #\(indexPath.item)!")
     }
 }
