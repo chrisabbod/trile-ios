@@ -21,6 +21,8 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
+    let testArray = ["airplane", "baboon", "boat", "cat", "sails", "tulips"]
+    
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
@@ -88,26 +90,34 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
         let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
         
-        //File Numbers are completely removed and replaced in the array. Write this better in the future.
-        documents.removeAll()
+        //Documents are completely removed and replaced in the array. Write this better in the future.
+        //documents.removeAll()
         
-        documentRef.getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
+        documentRef.getDocuments() { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
             } else {
                 for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-//                    let newDocument = Document()
-//
-//                    if let assignedFileNumber = document.get("assigned_file_number") {
-//                        newFileNumber.assignedFileNumber = assignedFileNumber as! String
-//                    }
-//
-//                    let id = document.documentID
-//                    newFileNumber.documentID = id
-//                    self.fileNumbers.append(newFileNumber)
+                    //print("\(document.documentID) => \(document.data())")
+                    let newDocument = Document()
+                    
+                    if let documentID = document.get("document_id") {
+                        newDocument.documentID = documentID as! String
+                    }
+                    
+                    if let uuid = document.get("uuid") {
+                        newDocument.uuid = uuid as! String
+                    }
+                    
+                    if let imagePath = document.get("image_path") {
+                        newDocument.imagePath = imagePath as! String
+                    }
+
+                    self.downloadImageFromStorage(for: newDocument)
+                    
+                    self.documents.append(newDocument)
+                    //print(self.documents.count)
                 }
-//                self.collectionView.reloadData()
             }
         }
     }
@@ -160,7 +170,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     func downloadImageFromStorage(for document: Document) {
         let storageRef = Storage.storage().reference(withPath: document.imagePath)
-        
+        print(document.documentID)
         storageRef.getData(maxSize: 4 * 1024 * 1024, completion: { (data, error) in
             if let error = error {
                 print("Error retrieving image data: \(error.localizedDescription)")
@@ -189,7 +199,9 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSE_IDENTIFIER, for: indexPath as IndexPath) as! DocumentCollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        cell.documentImageView.image = documents[indexPath.row].image
+        print("IMAGE ITEM")
+        cell.documentImageView.image = documents[indexPath.item].image
+//        cell.documentImageView.image = UIImage(named: testArray[indexPath.item])
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 2
         cell.layer.cornerRadius = 20
