@@ -17,6 +17,8 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     private let REUSE_IDENTIFIER = "customDocumentCell"
     
     let documents: [Document] = []
+    
+    //TEST ARRAY
     let images = ["airplane", "arctichare", "baboon", "boat", "cat", "fruits", "girl", "goldhill", "monarch", "mountain", "sails", "serrano", "tulips"]
     
     override func viewDidLoad() {
@@ -51,10 +53,16 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     @objc
     func scanDocument(_ sender: Any) {
+        uploadImageToStorage()
+    }
+    
+    //MARK: Image Upload Function
+    
+    func uploadImageToStorage() {
         let randomID = UUID.init().uuidString
         let uploadRef = Storage.storage().reference(withPath: "test/\(randomID).png")
         
-        let testImage: UIImage = UIImage(named: "airplane")!
+        let testImage: UIImage = UIImage(named: "baboon")!
         
         //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
         guard let imageData = testImage.jpegData(compressionQuality: 0.75) else {
@@ -129,4 +137,24 @@ extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
         let sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         return sectionInset
     }
+}
+
+extension DocumentCollectionVC: ImageScannerControllerDelegate {
+    func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
+        scanner.dismiss(animated: true) {
+            print("Scanner dismissed")
+        }
+    }
+    
+    func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {
+        scanner.dismiss(animated: true) {
+            print("Scanner dismissed")
+        }
+    }
+    
+    func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
+        print(error)
+    }
+    
+    
 }
