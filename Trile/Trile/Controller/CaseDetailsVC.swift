@@ -58,6 +58,13 @@ class CaseDetailsVC: UIViewController {
         readCaseDataFromDatabase()
     }
     
+    //MARK: Bar Buttons
+    
+    @objc
+    func signOut(_ sender: UIBarButtonItem) {
+        transitionToHome()
+    }
+    
     @IBAction func editCaseDetailsButton(_ sender: Any) {
         performSegue(withIdentifier: EDIT_CASE_DETAILS_SEGUE, sender: self)
     }
@@ -77,13 +84,6 @@ class CaseDetailsVC: UIViewController {
         view.window?.rootViewController = loginVC
         view.window?.makeKeyAndVisible()
         
-    }
-    
-    //MARK: Bar Buttons
-    
-    @objc
-    func signOut(_ sender: UIBarButtonItem) {
-        transitionToHome()
     }
     
     //MARK: Database CRUD Functions

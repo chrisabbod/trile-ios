@@ -55,6 +55,13 @@ class ClientDetailsVC: UIViewController {
         readClientDataFromDatabase()
     }
     
+    //MARK: Bar Buttons
+    
+    @objc
+    func signOut(_ sender: UIBarButtonItem) {
+        transitionToHome()
+    }
+    
     @IBAction func editClientDetailsButton(_ sender: Any) {
         performSegue(withIdentifier: EDIT_CLIENT_DETAILS_SEGUE, sender: self)
     }
@@ -75,14 +82,7 @@ class ClientDetailsVC: UIViewController {
         view.window?.makeKeyAndVisible()
         
     }
-    
-    //MARK: Bar Buttons
-    
-    @objc
-    func signOut(_ sender: UIBarButtonItem) {
-        transitionToHome()
-    }
-    
+
     //MARK: Database CRUD Functions
     
     func readClientDataFromDatabase() {

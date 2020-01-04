@@ -49,6 +49,35 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         
     }
     
+    //MARK: Database CRUD Functions
+    
+    func addDocumentToDatabase(_ document: Document) {
+        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
+        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
+        
+        let newID = documentRef.document().documentID
+        
+        let documentData = [
+            "document_id": newID,
+            "uuid": document.uuid,
+            "image_path": document.imagePath
+        ]
+        
+        documentRef.document(newID).setData(documentData, merge: true) { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("New ID: \(newID)")
+                print("Document successfully written!")
+            }
+        }
+        
+    }
+
     //MARK: Bar Buttons Functions
     
     @objc
@@ -57,7 +86,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     @objc
-    func scanDocument(_ sender: Any) {        
+    func scanDocument(_ sender: Any) {
         let scannerViewController = ImageScannerController()
         scannerViewController.imageScannerDelegate = self
         present(scannerViewController, animated: true)
@@ -66,8 +95,9 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     //MARK: Image Functions
 
     func uploadImageToStorage(_ scannedImage: UIImage) {
-        let randomID = UUID.init().uuidString
-        let uploadRef = Storage.storage().reference(withPath: "\(uid)/\(randomID).jpeg")
+        let randomUUID = UUID.init().uuidString
+        let imagePath = "\(uid)/\(randomUUID).jpeg"
+        let uploadRef = Storage.storage().reference(withPath: imagePath)
                 
         //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
         guard let imageData = scannedImage.jpegData(compressionQuality: 0.75) else {
@@ -86,6 +116,12 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
             }
             print("Upload complete: \(String(describing: downloadMetaData))")
         }
+        
+        let newDocument = Document()
+        newDocument.uuid = randomUUID
+        newDocument.imagePath = imagePath
+        
+        addDocumentToDatabase(newDocument)
     }
     
     //MARK: UICollectionViewDataSource
