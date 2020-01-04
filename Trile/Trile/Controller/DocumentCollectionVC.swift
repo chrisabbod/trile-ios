@@ -42,6 +42,20 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         readDocumentsFromDatabase()
     }
     
+    //MARK: Bar Buttons Functions
+    
+    @objc
+    func signOut(_ sender: UIBarButtonItem) {
+        transitionToHome()
+    }
+    
+    @objc
+    func scanDocument(_ sender: Any) {
+        let scannerViewController = ImageScannerController()
+        scannerViewController.imageScannerDelegate = self
+        present(scannerViewController, animated: true)
+    }
+    
     //MARK: Segues
     
     func transitionToHome() {
@@ -113,27 +127,13 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
                         newDocument.imagePath = imagePath as! String
                     }
 
-                    self.downloadImageFromStorage(for: newDocument)
+                    self.asyncDownloadImageFromStorage(for: newDocument)
                     
                     self.documents.append(newDocument)
                     //print(self.documents.count)
                 }
             }
         }
-    }
-    
-    //MARK: Bar Buttons Functions
-    
-    @objc
-    func signOut(_ sender: UIBarButtonItem) {
-        transitionToHome()
-    }
-    
-    @objc
-    func scanDocument(_ sender: Any) {
-        let scannerViewController = ImageScannerController()
-        scannerViewController.imageScannerDelegate = self
-        present(scannerViewController, animated: true)
     }
     
     //MARK: Image Functions
@@ -168,7 +168,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         addDocumentToDatabase(newDocument)
     }
     
-    func downloadImageFromStorage(for document: Document) {
+    func asyncDownloadImageFromStorage(for document: Document) {
         let storageRef = Storage.storage().reference(withPath: document.imagePath)
         print(document.documentID)
         storageRef.getData(maxSize: 4 * 1024 * 1024, completion: { (data, error) in
@@ -178,7 +178,9 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
             }
             if let data = data {
                 document.image = UIImage(data: data) ?? UIImage(named: "avatar_placeholder")!
+                self.documents.append(document)
             }
+            self.documentCollectionView.reloadData()
         })
     }
     
