@@ -8,6 +8,8 @@
 
 import UIKit
 import WeScan
+import FirebaseAuth
+import FirebaseFirestore
 import FirebaseStorage
 
 class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -16,10 +18,10 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     private let REUSE_IDENTIFIER = "customDocumentCell"
     
-    let documents: [Document] = []
+    var selectedClient: Client?
+    var selectedFileNumber: FileNumber?
     
-    //TEST ARRAY
-    let images = ["airplane", "arctichare", "baboon", "boat", "cat", "fruits", "girl", "goldhill", "monarch", "mountain", "sails", "serrano", "tulips"]
+    let documents: [Document] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +65,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     func uploadImageToStorage(_ scannedImage: UIImage) {
         let randomID = UUID.init().uuidString
         let uploadRef = Storage.storage().reference(withPath: "scanned_image/\(randomID).jpeg")
-        
-        //let testImage: UIImage = UIImage(named: "baboon")!
-        
+                
         //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
         guard let imageData = scannedImage.jpegData(compressionQuality: 0.75) else {
             print("Error producing image data")
@@ -95,7 +95,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return images.count
+        return documents.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -104,7 +104,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSE_IDENTIFIER, for: indexPath as IndexPath) as! DocumentCollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        cell.documentImageView.image = UIImage(named: images[indexPath.item])
+        //cell.documentImageView.image = UIImage(named: documents[indexPath.item]) //RETURN UIIMAGE HERE
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 2
         cell.layer.cornerRadius = 20

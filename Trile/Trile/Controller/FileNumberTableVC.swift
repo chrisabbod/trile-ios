@@ -82,14 +82,19 @@ class FileNumberTableVC: UITableViewController {
         let tabBarController = segue.destination as? UITabBarController
         
         let caseDetailsNavBarController = tabBarController?.viewControllers?[0] as? UINavigationController
+        let documentsNavBarController = tabBarController?.viewControllers?[1] as? UINavigationController
         let clientDetailsNavBarController = tabBarController?.viewControllers?[3] as? UINavigationController
 
         let destinationCaseDetailsVC = caseDetailsNavBarController?.topViewController as? CaseDetailsVC
+        let destinationDocumentCollectionVC = documentsNavBarController?.topViewController as? DocumentCollectionVC
         let destinationClientDetailsVC = clientDetailsNavBarController?.topViewController as? ClientDetailsVC
         
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationCaseDetailsVC?.selectedClient = selectedClient
             destinationCaseDetailsVC?.selectedFileNumber = fileNumbers[indexPath.row]
+            
+            destinationDocumentCollectionVC?.selectedClient = selectedClient
+            destinationDocumentCollectionVC?.selectedFileNumber = fileNumbers[indexPath.row]
             
             destinationClientDetailsVC?.selectedClient = selectedClient
             destinationClientDetailsVC?.selectedFileNumber = fileNumbers[indexPath.row]

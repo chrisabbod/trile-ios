@@ -199,11 +199,11 @@
 				A5D6D8D623B872DD00F16E27 /* LoginVC.swift */,
 				A511C1DB23B5614900B9A771 /* ClientTableVC.swift */,
 				A5D6D8DA23BBBD9F00F16E27 /* FileNumberTableVC.swift */,
-				A5D6D8DE23BD419200F16E27 /* ClientDetailsVC.swift */,
-				A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */,
 				A5695AFF23BEF0130010E40C /* CaseDetailsVC.swift */,
 				A575E81E23BFB2DF00006A10 /* EditCaseDetailsVC.swift */,
 				A575E82223C00C9A00006A10 /* DocumentCollectionVC.swift */,
+				A5D6D8DE23BD419200F16E27 /* ClientDetailsVC.swift */,
+				A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
