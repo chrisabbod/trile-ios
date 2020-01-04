@@ -58,16 +58,16 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         present(scannerViewController, animated: true)
     }
     
-    //MARK: Image Upload Function
-    
-    func uploadImageToStorage() {
+    //MARK: Image Functions
+
+    func uploadImageToStorage(_ scannedImage: UIImage) {
         let randomID = UUID.init().uuidString
-        let uploadRef = Storage.storage().reference(withPath: "test/\(randomID).png")
+        let uploadRef = Storage.storage().reference(withPath: "scanned_image/\(randomID).jpeg")
         
-        let testImage: UIImage = UIImage(named: "baboon")!
+        //let testImage: UIImage = UIImage(named: "baboon")!
         
         //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
-        guard let imageData = testImage.jpegData(compressionQuality: 0.75) else {
+        guard let imageData = scannedImage.jpegData(compressionQuality: 0.75) else {
             print("Error producing image data")
             return
         }
@@ -75,7 +75,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         //optional: upload meta data
         let metaData = StorageMetadata.init()
         metaData.contentType = "image/jpeg"
-        //upload file
+        
         uploadRef.putData(imageData, metadata: metaData) { (downloadMetaData, error) in
             if let error = error {
                 print("Error uploading data: \(error.localizedDescription)")
@@ -85,7 +85,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
-    // MARK: UICollectionViewDataSource
+    //MARK: UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -118,6 +118,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         // handle tap events
         print("You selected cell #\(indexPath.item)!")
     }
+    
 }
 
 //MARK: Collectionview FlowLayout Extension
@@ -141,8 +142,13 @@ extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
+//MARK: WeScan Functions Extension
+
 extension DocumentCollectionVC: ImageScannerControllerDelegate {
     func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
+        
+        uploadImageToStorage(results.scannedImage)
+        
         scanner.dismiss(animated: true) {
             print("Scanner dismissed")
         }
