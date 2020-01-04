@@ -10,4 +10,8 @@ import Foundation
 
 class Document {
     var documentID: String = ""
+    
+    var title: String = ""
+    var uuid: String = ""
+    var imagePath: String = ""
 }
