@@ -89,7 +89,6 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
             if let error = error {
                 print("Error writing document: \(error)")
             } else {
-                print("New ID: \(newID)")
                 print("Document successfully written!")
             }
         }
@@ -105,7 +104,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
         
         //Documents are completely removed and replaced in the array. Write this better in the future.
-        //documents.removeAll()
+        documents.removeAll()
         
         documentRef.getDocuments() { (querySnapshot, error) in
             if let error = error {
@@ -170,7 +169,9 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     func asyncDownloadImageFromStorage(for document: Document) {
         let storageRef = Storage.storage().reference(withPath: document.imagePath)
-        print(document.documentID)
+        
+        documents.removeAll()
+        
         storageRef.getData(maxSize: 4 * 1024 * 1024, completion: { (data, error) in
             if let error = error {
                 print("Error retrieving image data: \(error.localizedDescription)")
@@ -201,7 +202,6 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSE_IDENTIFIER, for: indexPath as IndexPath) as! DocumentCollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        print("IMAGE ITEM")
         cell.documentImageView.image = documents[indexPath.item].image
 //        cell.documentImageView.image = UIImage(named: testArray[indexPath.item])
         cell.layer.borderColor = UIColor.black.cgColor
