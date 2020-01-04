@@ -18,6 +18,9 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     private let REUSE_IDENTIFIER = "customDocumentCell"
     
+    var db = Firestore.firestore()
+    let uid: String = Auth.auth().currentUser!.uid
+    
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
@@ -64,7 +67,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
 
     func uploadImageToStorage(_ scannedImage: UIImage) {
         let randomID = UUID.init().uuidString
-        let uploadRef = Storage.storage().reference(withPath: "scanned_image/\(randomID).jpeg")
+        let uploadRef = Storage.storage().reference(withPath: "\(uid)/\(randomID).jpeg")
                 
         //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
         guard let imageData = scannedImage.jpegData(compressionQuality: 0.75) else {
