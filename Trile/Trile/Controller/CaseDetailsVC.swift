@@ -62,7 +62,7 @@ class CaseDetailsVC: UIViewController {
         performSegue(withIdentifier: EDIT_CASE_DETAILS_SEGUE, sender: self)
     }
     
-    // MARK: - Segues
+    // MARK: Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! EditCaseDetailsVC
@@ -79,14 +79,14 @@ class CaseDetailsVC: UIViewController {
         
     }
     
-    //MARK: - Bar Buttons
+    //MARK: Bar Buttons
     
     @objc
     func signOut(_ sender: UIBarButtonItem) {
         transitionToHome()
     }
     
-    //MARK: - Database CRUD Functions
+    //MARK: Database CRUD Functions
     
     func readCaseDataFromDatabase() {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
@@ -112,7 +112,7 @@ class CaseDetailsVC: UIViewController {
         
     }
     
-    //MARK: - Read Client Data
+    //MARK: Read Client Data
     
     func readCaseData(from data: [String: Any]) {
         
@@ -193,7 +193,7 @@ class CaseDetailsVC: UIViewController {
         }
     }
     
-    //MARK: - UI Beautification Functions
+    //MARK: UI Beautification Functions
     
     func addCornerRadiusToViews() {
         let cornerRadiusValue: CGFloat = 20.0

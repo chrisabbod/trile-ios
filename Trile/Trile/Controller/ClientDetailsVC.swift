@@ -59,7 +59,7 @@ class ClientDetailsVC: UIViewController {
         performSegue(withIdentifier: EDIT_CLIENT_DETAILS_SEGUE, sender: self)
     }
     
-    // MARK: - Segues
+    // MARK: Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! EditClientDetailsVC
@@ -76,14 +76,14 @@ class ClientDetailsVC: UIViewController {
         
     }
     
-    //MARK: - Bar Buttons
+    //MARK: Bar Buttons
     
     @objc
     func signOut(_ sender: UIBarButtonItem) {
         transitionToHome()
     }
     
-    //MARK: - Database CRUD Functions
+    //MARK: Database CRUD Functions
     
     func readClientDataFromDatabase() {
         let clientRef = db.collection("users").document(uid).collection("clients")
@@ -105,7 +105,7 @@ class ClientDetailsVC: UIViewController {
         
     }
     
-    //MARK: - Read Client Data
+    //MARK: Read Client Data
     
     func readClientData(from data: [String: Any]) {
         
@@ -162,7 +162,7 @@ class ClientDetailsVC: UIViewController {
         }
     }
     
-    //MARK: - UI Beautification Functions
+    //MARK: UI Beautification Functions
     
     func addCornerRadiusToViews() {
         let cornerRadiusValue: CGFloat = 20.0

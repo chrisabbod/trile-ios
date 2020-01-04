@@ -56,7 +56,7 @@ class EditCaseDetailsVC: UIViewController {
         saveCaseData()
     }
 
-    //MARK: - Database CRUD Functions
+    //MARK: Database CRUD Functions
     
     func readCaseDataFromDatabase() {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
@@ -99,7 +99,7 @@ class EditCaseDetailsVC: UIViewController {
         
     }
     
-    //MARK: - Read Client Data
+    //MARK: Read Client Data
     
     func readCaseData(from data: [String: Any]) {
         
@@ -180,7 +180,7 @@ class EditCaseDetailsVC: UIViewController {
         }
     }
     
-    //MARK: - Save Case Data
+    //MARK: Save Case Data
     
     func saveCaseData() {
         var caseDataArray = [String: Any]()
@@ -264,7 +264,7 @@ class EditCaseDetailsVC: UIViewController {
         addCaseDataToDatabase(caseDataArray)
     }
     
-    //MARK: - UI Beautification Functions
+    //MARK: UI Beautification Functions
     
     func addCornerRadiusToViews() {
         let cornerRadiusValue: CGFloat = 20.0

@@ -33,7 +33,7 @@ class FileNumberTableVC: UITableViewController {
         readFileNumbersFromDatabase()
     }
     
-    //MARK: - Insert Function
+    //MARK: Insert Function
     
     func insertNewFileNumber(_ fileNumber: FileNumber) {
         fileNumbers.insert(fileNumber, at: 0)
@@ -41,7 +41,7 @@ class FileNumberTableVC: UITableViewController {
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
-    // MARK: - Table View
+    // MARK: Table View
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -71,7 +71,7 @@ class FileNumberTableVC: UITableViewController {
         tableView.deleteRows(at: [indexPath], with: .fade)
     }
     
-    //MARK: - Segues
+    //MARK: Segues
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: TAB_SEGUE, sender: self)
@@ -96,7 +96,7 @@ class FileNumberTableVC: UITableViewController {
         }
     }
     
-    //MARK: - Database CRUD Functions
+    //MARK: Database CRUD Functions
     
     func addFileNumberToDatabase(_ fileNumber : FileNumber) {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
@@ -154,7 +154,7 @@ class FileNumberTableVC: UITableViewController {
         fileNumberRef.document(fileNumberDocumentID).delete()
     }
     
-    //MARK: - Alert Dialog
+    //MARK: Alert Dialog
     
     @objc
     func addFileNumberAlertDialog(_ sender: UIBarButtonItem) {
@@ -186,7 +186,7 @@ class FileNumberTableVC: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    //MARK: - Test Functions
+    //MARK: Test Functions
     
     @objc
     func insertTestFileNumbers() {

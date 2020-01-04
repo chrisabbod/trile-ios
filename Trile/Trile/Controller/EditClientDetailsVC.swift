@@ -93,7 +93,7 @@ class EditClientDetailsVC: UIViewController {
         
     }
     
-    //MARK: - Read Client Data
+    //MARK: Read Client Data
     
     func readClientData(from data: [String: Any]) {
         if let name = data["name"] {
@@ -149,7 +149,7 @@ class EditClientDetailsVC: UIViewController {
         }
     }
     
-    //MARK: - Save Client Data
+    //MARK: Save Client Data
     
     func saveClientData() {
         var clientDataArray = [String: Any]()
@@ -209,7 +209,7 @@ class EditClientDetailsVC: UIViewController {
         addClientDataToDatabase(clientDataArray)
     }
     
-    //MARK: - UI Beautification Functions
+    //MARK: UI Beautification Functions
     
     func addCornerRadiusToViews() {
         let cornerRadiusValue: CGFloat = 20.0

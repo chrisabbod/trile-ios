@@ -38,7 +38,7 @@ class ClientTableVC: UITableViewController {
         readClientsFromDatabase()
     }
     
-    // MARK: - Table View
+    // MARK: Table View
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -68,7 +68,7 @@ class ClientTableVC: UITableViewController {
         tableView.deleteRows(at: [indexPath], with: .fade)
     }
     
-    // MARK: - Segues
+    // MARK: Segues
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: FILE_NUMBER_SEGUE, sender: self)
@@ -82,7 +82,7 @@ class ClientTableVC: UITableViewController {
         }
     }
     
-    //MARK: - Database CRUD Functions
+    //MARK: Database CRUD Functions
     
     func addClientToDatabase(_ client : Client) {
         let clientRef = db.collection("users").document(uid).collection("clients")
@@ -137,7 +137,7 @@ class ClientTableVC: UITableViewController {
         clientRef.document(documentID).delete()
     }
     
-    //MARK: - Alert Dialog
+    //MARK: Alert Dialog
     
     @objc
     func addClientAlertDialog(_ sender: UIBarButtonItem) {
@@ -172,7 +172,7 @@ class ClientTableVC: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    //MARK: - Test Functions
+    //MARK: Test Functions
     
     @objc
     func insertTestClients() {

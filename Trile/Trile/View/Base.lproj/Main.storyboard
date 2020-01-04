@@ -1423,7 +1423,7 @@
         <!--DocumentsVC-->
         <scene sceneID="uhV-SR-Ad8">
             <objects>
-                <viewController title="DocumentsVC" id="zoo-7d-zqF" customClass="DocumentsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="DocumentsVC" id="zoo-7d-zqF" customClass="DocumentCollectionVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Ste-nm-Zxy">
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
