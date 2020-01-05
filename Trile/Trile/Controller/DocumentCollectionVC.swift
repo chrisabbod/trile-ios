@@ -116,6 +116,8 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         
     }
     
+
+    
     func readDocumentsFromDatabase(completion: @escaping ((_ success: Bool) -> Void)) {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
         guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
@@ -151,6 +153,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
             }
         }
     }
+    
     //MARK: Image Functions
     
     func uploadImageToStorage(_ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
@@ -207,6 +210,21 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
+    func deleteDocumentFromStorage(_ indexPath: IndexPath, completion: @escaping ((_ success: Bool) -> Void)) {
+        let storageRef = Storage.storage().reference()
+        
+        let imagePath = storageRef.child(documents[indexPath.item].imagePath)
+        
+        imagePath.delete { error in
+            if let error = error {
+                print("Problem deleting file from storage \(error.localizedDescription)")
+            } else {
+                print("File deleted successfully")
+                completion(true)
+            }
+        }
+    }
+    
     //MARK: Collectionview Functions
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -249,7 +267,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         
         if isEditing {
             print("WANT TO DELETE?")
-            deleteDocumentAlertDialog(indexPath, documents)
+            deleteDocumentAlertDialog(indexPath)
         } else {
             print("WRONG: NOT IN EDITING MODE")
         }
@@ -287,29 +305,16 @@ extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
     
     //MARK: Alert Dialog
     
-    func deleteDocumentAlertDialog(_ indexPath: IndexPath, _ documentsArray: [Document]) {
+    func deleteDocumentAlertDialog(_ indexPath: IndexPath) {
         
         let alert = UIAlertController(title: "Delete Document", message: "Would you like to delete this document?", preferredStyle: .alert)
         let deleteDocumentAction = UIAlertAction(title: "Delete", style: .default) { (action) in
             
-            //           let newClient = Client()
-            //
-            //           if let name = textField.text {
-            //               newClient.name = name
-            //
-            //               self.addClientToDatabase(newClient)
-            //               self.readClientsFromDatabase()
-            //           }
-            //            override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            //
-            //                deleteClientFromDatabase(indexPath)
-            //
-            //                clients.remove(at: indexPath.row)
-            //                tableView.deleteRows(at: [indexPath], with: .fade)
-            //            }
-            
-            self.documents.remove(at: indexPath.item)
-            self.documentCollectionView.reloadData()
+            self.deleteDocumentFromStorage(indexPath) { (success) in
+                self.documents.remove(at: indexPath.item)
+                self.documentCollectionView.reloadData()
+            }
+
             print("Document deleted")
         }
         
