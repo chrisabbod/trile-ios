@@ -30,7 +30,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let scanDocumentButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(scanDocument(_:)))
         let signOutButton = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOut(_:)))
         
@@ -38,11 +38,44 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         
         //Register .xib file
         documentCollectionView.register(UINib(nibName: "DocumentCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: REUSE_IDENTIFIER)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        readDocumentsFromDatabase() { (success) in
+            if success {
+                self.downloadImagesFromStorage(self.documents) { (success) in
+                    if success {
+                        print("Success")
+                        self.documentCollectionView.reloadData()
+                    } else {
+                        print("Failure")
+                    }
+                }
+            } else {
+                print("No documents returned from database")
+            }
+        }
+
+
+    }
+    
+    func downloadImagesFromStorage(_ documentArray: [Document], completion: @escaping ((_ success: Bool) -> Void)) {
+        print("Document Passed To Array: \(documentArray.count)")
         
-        documents.removeAll()
-        
-        readDocumentsFromDatabase() {
-            self.documentCollectionView.reloadData()
+        for document in documentArray {
+            let storageRef = Storage.storage().reference(withPath: document.imagePath)
+            
+            storageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+                if let error = error {
+                    print("Error retrieving image data: \(error.localizedDescription)")
+                }
+                
+                if let data = data {
+                    document.imageData = data
+                    print("Document: \(document.documentID) Total Image Data => \(document.imageData)")
+                }
+                completion(true)
+            }
         }
     }
     
@@ -98,47 +131,42 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         }
         
     }
-
-    func readDocumentsFromDatabase(completion: @escaping () -> Void) {
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
-        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
-        
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
-        
-        documentRef.getDocuments() { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
-                
-                for document in querySnapshot!.documents {
-                    //print("\(document.documentID) => \(document.data())")
-                    let newDocument = Document()
-                    
-                    if let documentID = document.get("document_id") {
-                        newDocument.documentID = documentID as! String
-                    }
-                    
-                    if let uuid = document.get("uuid") {
-                        newDocument.uuid = uuid as! String
-                    }
-                    
-                    if let imagePath = document.get("image_path") {
-                        newDocument.imagePath = imagePath as! String
-                    }
-
-                    self.asyncDownloadImageFromStorage(for: newDocument) {
-                        self.documentCollectionView.reloadData()
-                    }
-                    
-                    //self.documents.append(newDocument)
-                }
-                completion()
-            }
-        }
-    }
     
+    func readDocumentsFromDatabase(completion: @escaping ((_ success: Bool) -> Void)) {
+           guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
+           guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
+           
+           let clientRef = db.collection("users").document(uid).collection("clients")
+           let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+           let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
+           
+           documentRef.getDocuments() { (querySnapshot, error) in
+               if let error = error {
+                   print("Error getting documents: \(error)")
+               } else {
+                self.documents.removeAll()
+                   for document in querySnapshot!.documents {
+                       //print("\(document.documentID) => \(document.data())")
+                       let newDocument = Document()
+                       
+                       if let documentID = document.get("document_id") {
+                           newDocument.documentID = documentID as! String
+                       }
+                       
+                       if let uuid = document.get("uuid") {
+                           newDocument.uuid = uuid as! String
+                       }
+                       
+                       if let imagePath = document.get("image_path") {
+                           newDocument.imagePath = imagePath as! String
+                       }
+                       
+                       self.documents.append(newDocument)
+                   }
+                completion(true)
+               }
+           }
+       }
     //MARK: Image Functions
 
     func uploadImageToStorage(_ scannedImage: UIImage) {
@@ -161,7 +189,8 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
                 print("Error uploading data: \(error.localizedDescription)")
                 return
             }
-            print("Upload complete: \(String(describing: downloadMetaData))")
+            print("Upload complete")
+            //print("Upload complete: \(String(describing: downloadMetaData))")
         }
         
         let newDocument = Document()
@@ -171,23 +200,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         addDocumentToDatabase(newDocument)
     }
     
-    func asyncDownloadImageFromStorage(for document: Document, completion: @escaping () -> Void) {
-        let storageRef = Storage.storage().reference(withPath: document.imagePath)
-        
-        documents.removeAll()
-        
-        storageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
-            if let error = error {
-                print("Error retrieving image data: \(error.localizedDescription)")
-                return
-            }
-            if let data = data {
-                document.image = UIImage(data: data) ?? UIImage(named: "avatar_placeholder")!
-                self.documents.append(document)
-            }
-            completion()
-        }
-    }
+
     
     //MARK: UICollectionViewDataSource
     
@@ -196,7 +209,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(documents.count)
+        print("numberOfItemsInSection: \(documents.count)")
         return documents.count
     }
     
@@ -204,9 +217,9 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSE_IDENTIFIER, for: indexPath as IndexPath) as! DocumentCollectionViewCell
-        
+        print("cellForItemAt: \(documents.count) Image Data: \(documents[indexPath.item].imageData)")
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        cell.documentImageView.image = documents[indexPath.item].image
+        cell.documentImageView.image = UIImage(data: documents[indexPath.item].imageData)
         cell.layer.borderColor = UIColor.black.cgColor
         cell.layer.borderWidth = 2
         cell.layer.cornerRadius = 20
@@ -250,9 +263,8 @@ extension DocumentCollectionVC: ImageScannerControllerDelegate {
     func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
         
         uploadImageToStorage(results.scannedImage)
-        readDocumentsFromDatabase {
-            self.documentCollectionView.reloadData()
-        }
+//        documents.removeAll()
+        //readDocumentsFromDatabase()
         
         scanner.dismiss(animated: true) {
             print("Scanner dismissed")
@@ -268,6 +280,4 @@ extension DocumentCollectionVC: ImageScannerControllerDelegate {
     func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
         print(error)
     }
-    
-    
 }

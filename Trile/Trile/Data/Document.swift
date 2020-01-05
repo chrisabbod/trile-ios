@@ -14,5 +14,5 @@ class Document {
     var title: String = ""
     var uuid: String = ""
     var imagePath: String = ""
-    var image: UIImage = UIImage()
+    var imageData: Data = Data()
 }

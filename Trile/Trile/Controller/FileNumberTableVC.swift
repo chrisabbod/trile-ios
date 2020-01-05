@@ -33,14 +33,6 @@ class FileNumberTableVC: UITableViewController {
         readFileNumbersFromDatabase()
     }
     
-    //MARK: Insert Function
-    
-    func insertNewFileNumber(_ fileNumber: FileNumber) {
-        fileNumbers.insert(fileNumber, at: 0)
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-    }
-    
     // MARK: Table View
     
     override func numberOfSections(in tableView: UITableView) -> Int {
