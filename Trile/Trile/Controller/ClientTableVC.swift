@@ -107,13 +107,13 @@ class ClientTableVC: UITableViewController {
     func readClientsFromDatabase() {
         let clientRef = db.collection("users").document(uid).collection("clients")
         
-        //Clients are completely removed and replaced in the array. Write this better in the future.
-        clients.removeAll()
-        
         clientRef.getDocuments() { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
+                //Clients are completely removed and replaced in the array. Write this better in the future.
+                self.clients.removeAll()
+                
                 for document in querySnapshot!.documents {
                     //print("\(document.documentID) => \(document.data())")
                     let newClient = Client()
