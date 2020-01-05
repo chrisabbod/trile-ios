@@ -41,42 +41,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        readDocumentsFromDatabase() { (success) in
-            if success {
-                self.downloadImagesFromStorage(self.documents) { (success) in
-                    if success {
-                        print("Success")
-                        self.documentCollectionView.reloadData()
-                    } else {
-                        print("Failure")
-                    }
-                }
-            } else {
-                print("No documents returned from database")
-            }
-        }
-
-
-    }
-    
-    func downloadImagesFromStorage(_ documentArray: [Document], completion: @escaping ((_ success: Bool) -> Void)) {
-        print("Document Passed To Array: \(documentArray.count)")
-        
-        for document in documentArray {
-            let storageRef = Storage.storage().reference(withPath: document.imagePath)
-            
-            storageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
-                if let error = error {
-                    print("Error retrieving image data: \(error.localizedDescription)")
-                }
-                
-                if let data = data {
-                    document.imageData = data
-                    print("Document: \(document.documentID) Total Image Data => \(document.imageData)")
-                }
-                completion(true)
-            }
-        }
+        loadDocuments()
     }
     
     //MARK: Bar Buttons Functions
@@ -102,6 +67,25 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         view.window?.rootViewController = loginVC
         view.window?.makeKeyAndVisible()
         
+    }
+    
+    //MARK: Load Documents
+    
+    func loadDocuments() {
+        readDocumentsFromDatabase() { (success) in
+            if success {
+                self.downloadImagesFromStorage(self.documents) { (success) in
+                    if success {
+                        print("Success")
+                        self.documentCollectionView.reloadData()
+                    } else {
+                        print("Failure")
+                    }
+                }
+            } else {
+                print("No documents returned from database")
+            }
+        }
     }
     
     //MARK: Database CRUD Functions
@@ -169,7 +153,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
        }
     //MARK: Image Functions
 
-    func uploadImageToStorage(_ scannedImage: UIImage) {
+    func uploadImageToStorage(_ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
         let randomUUID = UUID.init().uuidString
         let imagePath = "\(uid)/\(randomUUID).jpeg"
         let uploadRef = Storage.storage().reference(withPath: imagePath)
@@ -191,6 +175,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
             }
             print("Upload complete")
             //print("Upload complete: \(String(describing: downloadMetaData))")
+            completion(true)
         }
         
         let newDocument = Document()
@@ -200,7 +185,25 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         addDocumentToDatabase(newDocument)
     }
     
-
+    func downloadImagesFromStorage(_ documentArray: [Document], completion: @escaping ((_ success: Bool) -> Void)) {
+        print("Document Passed To Array: \(documentArray.count)")
+        
+        for document in documentArray {
+            let storageRef = Storage.storage().reference(withPath: document.imagePath)
+            
+            storageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+                if let error = error {
+                    print("Error retrieving image data: \(error.localizedDescription)")
+                }
+                
+                if let data = data {
+                    document.imageData = data
+                    //print("Document: \(document.documentID) Total Image Data => \(document.imageData)")
+                }
+                completion(true)
+            }
+        }
+    }
     
     //MARK: UICollectionViewDataSource
     
@@ -209,7 +212,6 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("numberOfItemsInSection: \(documents.count)")
         return documents.count
     }
     
@@ -217,7 +219,6 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSE_IDENTIFIER, for: indexPath as IndexPath) as! DocumentCollectionViewCell
-        print("cellForItemAt: \(documents.count) Image Data: \(documents[indexPath.item].imageData)")
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         cell.documentImageView.image = UIImage(data: documents[indexPath.item].imageData)
         cell.layer.borderColor = UIColor.black.cgColor
@@ -262,9 +263,12 @@ extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
 extension DocumentCollectionVC: ImageScannerControllerDelegate {
     func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
         
-        uploadImageToStorage(results.scannedImage)
-//        documents.removeAll()
-        //readDocumentsFromDatabase()
+        uploadImageToStorage(results.scannedImage) { (success) in
+            if success {
+                print("Successfully uploaded document after scanning")
+                self.loadDocuments()
+            }
+        }
         
         scanner.dismiss(animated: true) {
             print("Scanner dismissed")
