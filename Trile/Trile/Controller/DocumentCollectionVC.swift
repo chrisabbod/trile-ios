@@ -20,17 +20,17 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
-        
+    
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
     var documents: [Document] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = editButtonItem
-
+        
         let scanDocumentButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(scanDocument(_:)))
         let signOutButton = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOut(_:)))
         
@@ -56,11 +56,6 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         let scannerViewController = ImageScannerController()
         scannerViewController.imageScannerDelegate = self
         present(scannerViewController, animated: true)
-    }
-    
-    @objc
-    func deleteDocument(_ sender: Any) {
-        print("Delete button pressed")
     }
     
     //MARK: Segues
@@ -122,42 +117,42 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func readDocumentsFromDatabase(completion: @escaping ((_ success: Bool) -> Void)) {
-           guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
-           guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
-           
-           let clientRef = db.collection("users").document(uid).collection("clients")
-           let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-           let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
-           
-           documentRef.getDocuments() { (querySnapshot, error) in
-               if let error = error {
-                   print("Error getting documents: \(error)")
-               } else {
+        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
+        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
+        
+        documentRef.getDocuments() { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
                 self.documents.removeAll()
-                   for document in querySnapshot!.documents {
-                       //print("\(document.documentID) => \(document.data())")
-                       let newDocument = Document()
-                       
-                       if let documentID = document.get("document_id") {
-                           newDocument.documentID = documentID as! String
-                       }
-                       
-                       if let uuid = document.get("uuid") {
-                           newDocument.uuid = uuid as! String
-                       }
-                       
-                       if let imagePath = document.get("image_path") {
-                           newDocument.imagePath = imagePath as! String
-                       }
-                       
-                       self.documents.append(newDocument)
-                   }
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data())")
+                    let newDocument = Document()
+                    
+                    if let documentID = document.get("document_id") {
+                        newDocument.documentID = documentID as! String
+                    }
+                    
+                    if let uuid = document.get("uuid") {
+                        newDocument.uuid = uuid as! String
+                    }
+                    
+                    if let imagePath = document.get("image_path") {
+                        newDocument.imagePath = imagePath as! String
+                    }
+                    
+                    self.documents.append(newDocument)
+                }
                 completion(true)
-               }
-           }
-       }
+            }
+        }
+    }
     //MARK: Image Functions
-
+    
     func uploadImageToStorage(_ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
         guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
@@ -165,7 +160,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         let randomUUID = UUID.init().uuidString
         let imagePath = "\(uid)/\(clientDocumentID)/\(fileNumberDocumentID)/\(randomUUID).jpeg"
         let uploadRef = Storage.storage().reference(withPath: imagePath)
-                
+        
         //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
         guard let imageData = scannedImage.jpegData(compressionQuality: 0.75) else {
             print("Error producing image data")
@@ -239,54 +234,33 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-
+        
         let indexPaths = documentCollectionView.indexPathsForVisibleItems
         
         for indexPath in indexPaths {
             let cell = documentCollectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
             cell.isInEditingMode = editing
         }
-        
-//        documentCollectionView.allowsMultipleSelection = editing
-//
-//        if isEditing {
-//            deleteButton.isEnabled = true
-//        } else {
-//            deleteButton.isEnabled = false
-//        }
-//        
-
-
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = documentCollectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
-
         
-//        if isEditing {
-//            cell.isSelected = true
-//        } else {
-//            cell.isSelected = false
-//        }
+        if isEditing {
+            print("WANT TO DELETE?")
+            deleteDocumentAlertDialog(indexPath, documents)
+        } else {
+            print("WRONG: NOT IN EDITING MODE")
+        }
         
-//
-//        if let selectedItems = documentCollectionView.indexPathsForSelectedItems, selectedItems.count > 0 {
-//            deleteButton.isEnabled = true
-//        }
-
-//        if !isEditing {
-//            deleteButton.isEnabled = false
-//        } else {
-//            deleteButton.isEnabled = true
-//        }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
-//        if let selectedItems = collectionView.indexPathsForSelectedItems, selectedItems.count == 0 {
-//            deleteButton.isEnabled = false
-//        }
+        //        if let selectedItems = collectionView.indexPathsForSelectedItems, selectedItems.count == 0 {
+        //            deleteButton.isEnabled = false
+        //        }
     }
     
 }
@@ -309,6 +283,44 @@ extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
     {
         let sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         return sectionInset
+    }
+    
+    //MARK: Alert Dialog
+    
+    func deleteDocumentAlertDialog(_ indexPath: IndexPath, _ documentsArray: [Document]) {
+        
+        let alert = UIAlertController(title: "Delete Document", message: "Would you like to delete this document?", preferredStyle: .alert)
+        let deleteDocumentAction = UIAlertAction(title: "Delete", style: .default) { (action) in
+            
+            //           let newClient = Client()
+            //
+            //           if let name = textField.text {
+            //               newClient.name = name
+            //
+            //               self.addClientToDatabase(newClient)
+            //               self.readClientsFromDatabase()
+            //           }
+            //            override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            //
+            //                deleteClientFromDatabase(indexPath)
+            //
+            //                clients.remove(at: indexPath.row)
+            //                tableView.deleteRows(at: [indexPath], with: .fade)
+            //            }
+            
+            self.documents.remove(at: indexPath.item)
+            self.documentCollectionView.reloadData()
+            print("Document deleted")
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            print("No document deleted")
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(deleteDocumentAction)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 
