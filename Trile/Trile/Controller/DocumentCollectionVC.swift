@@ -132,7 +132,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
                         self.documentCollectionView.reloadData()
                     }
                     
-                    self.documents.append(newDocument)
+                    //self.documents.append(newDocument)
                 }
                 completion()
             }
