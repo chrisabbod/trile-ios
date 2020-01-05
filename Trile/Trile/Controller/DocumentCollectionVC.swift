@@ -20,16 +20,16 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
-    
-    let testArray = ["airplane", "baboon", "boat", "cat", "sails", "tulips"]
-    
+        
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
     var documents: [Document] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = editButtonItem
 
         let scanDocumentButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(scanDocument(_:)))
         let signOutButton = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOut(_:)))
@@ -56,6 +56,11 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         let scannerViewController = ImageScannerController()
         scannerViewController.imageScannerDelegate = self
         present(scannerViewController, animated: true)
+    }
+    
+    @objc
+    func deleteDocument(_ sender: Any) {
+        print("Delete button pressed")
     }
     
     //MARK: Segues
@@ -154,8 +159,11 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     //MARK: Image Functions
 
     func uploadImageToStorage(_ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
+        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
+        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
+        
         let randomUUID = UUID.init().uuidString
-        let imagePath = "\(uid)/\(randomUUID).jpeg"
+        let imagePath = "\(uid)/\(clientDocumentID)/\(fileNumberDocumentID)/\(randomUUID).jpeg"
         let uploadRef = Storage.storage().reference(withPath: imagePath)
                 
         //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
@@ -173,8 +181,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
                 print("Error uploading data: \(error.localizedDescription)")
                 return
             }
-            print("Upload complete")
-            //print("Upload complete: \(String(describing: downloadMetaData))")
+            print("Upload complete: \(String(describing: downloadMetaData))")
             completion(true)
         }
         
@@ -186,7 +193,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func downloadImagesFromStorage(_ documentArray: [Document], completion: @escaping ((_ success: Bool) -> Void)) {
-        print("Document Passed To Array: \(documentArray.count)")
+        //print("Document Passed To Array: \(documentArray.count)")
         
         for document in documentArray {
             let storageRef = Storage.storage().reference(withPath: document.imagePath)
@@ -198,14 +205,14 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
                 
                 if let data = data {
                     document.imageData = data
-                    //print("Document: \(document.documentID) Total Image Data => \(document.imageData)")
+                    print("Document: \(document.documentID) Total Image Data => \(document.imageData)")
                 }
                 completion(true)
             }
         }
     }
     
-    //MARK: UICollectionViewDataSource
+    //MARK: Collectionview Functions
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -228,16 +235,63 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         return cell
     }
     
-    //MARK: UICollectionViewDelegate protocol
+    //MARK: CV Editing Functions
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+
+        let indexPaths = documentCollectionView.indexPathsForVisibleItems
+        
+        for indexPath in indexPaths {
+            let cell = documentCollectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
+            cell.isInEditingMode = editing
+        }
+        
+//        documentCollectionView.allowsMultipleSelection = editing
+//
+//        if isEditing {
+//            deleteButton.isEnabled = true
+//        } else {
+//            deleteButton.isEnabled = false
+//        }
+//        
+
+
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // handle tap events
-        print("You selected cell #\(indexPath.item)!")
+        
+        let cell = documentCollectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
+
+        
+//        if isEditing {
+//            cell.isSelected = true
+//        } else {
+//            cell.isSelected = false
+//        }
+        
+//
+//        if let selectedItems = documentCollectionView.indexPathsForSelectedItems, selectedItems.count > 0 {
+//            deleteButton.isEnabled = true
+//        }
+
+//        if !isEditing {
+//            deleteButton.isEnabled = false
+//        } else {
+//            deleteButton.isEnabled = true
+//        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+//        if let selectedItems = collectionView.indexPathsForSelectedItems, selectedItems.count == 0 {
+//            deleteButton.isEnabled = false
+//        }
     }
     
 }
 
-//MARK: Collectionview FlowLayout Extension
+//MARK: CV FlowLayout Extension
 
 extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize

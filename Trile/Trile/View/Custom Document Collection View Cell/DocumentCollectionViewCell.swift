@@ -11,10 +11,29 @@ import UIKit
 class DocumentCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var documentImageView: UIImageView!
+    @IBOutlet weak var deleteImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    
+    var isInEditingMode: Bool = false {
+        didSet {
+            deleteImageView.isHidden = !isInEditingMode
+        }
+    }
+    
+//    var isInEditingMode: Bool = false {
+//        didSet {
+//            checkmarkLabel.isHidden = !isInEditingMode
+//        }
+//    }
+//
+//    override var isSelected: Bool {
+//        didSet {
+//            if isInEditingMode {
+//                checkmarkLabel.text = isSelected ? "✓" : ""
+//            }
+//        }
+//    }
 }
