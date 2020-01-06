@@ -2469,17 +2469,33 @@
         <scene sceneID="VND-Nd-gd2">
             <objects>
                 <viewController title="Document Details" id="Nb0-MJ-oXA" customClass="DocumentDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kOD-no-V3I">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="pGC-IK-SPV" userLabel="Document Details Scroll View">
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="C58-oz-gtg"/>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BkS-w0-AeB" userLabel="Document Image View">
+                                <rect key="frame" x="0.0" y="0.0" width="990.5" height="883"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="BkS-w0-AeB" firstAttribute="leading" secondItem="ylg-w3-5Eb" secondAttribute="leading" id="8XY-Mj-KsP"/>
+                            <constraint firstItem="ylg-w3-5Eb" firstAttribute="trailing" secondItem="BkS-w0-AeB" secondAttribute="trailing" id="XzC-Xj-uEv"/>
+                            <constraint firstItem="ylg-w3-5Eb" firstAttribute="bottom" secondItem="BkS-w0-AeB" secondAttribute="bottom" id="Zwt-1M-quG"/>
+                            <constraint firstItem="BkS-w0-AeB" firstAttribute="top" secondItem="ylg-w3-5Eb" secondAttribute="top" id="yJE-ju-sfi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ylg-w3-5Eb"/>
+                        <viewLayoutGuide key="contentLayoutGuide" id="cYI-1t-9mk"/>
+                        <viewLayoutGuide key="frameLayoutGuide" id="RTU-bf-gmh"/>
+                    </scrollView>
                     <navigationItem key="navigationItem" title="Document Details" id="baY-Z7-sOk"/>
+                    <connections>
+                        <outlet property="documentImageView" destination="BkS-w0-AeB" id="ty7-j7-Fmg"/>
+                        <outlet property="documentScrollView" destination="pGC-IK-SPV" id="aA7-cw-uIL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="01x-Q0-8zs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4280" y="473"/>
+            <point key="canvasLocation" x="4279.941434846266" y="472.85156249999994"/>
         </scene>
         <!--DocumentCollectionVC-->
         <scene sceneID="nYM-db-PWG">

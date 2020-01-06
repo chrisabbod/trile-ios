@@ -66,12 +66,19 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     //MARK: Segues
     
     func transitionToHome() {
-        
         let loginVC = storyboard?.instantiateViewController(identifier: "LoginViewController")
         
         view.window?.rootViewController = loginVC
         view.window?.makeKeyAndVisible()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! DocumentDetailsVC
         
+        //We use .first because collectionView indexPathsForSelectedItems grabs multiple indexPaths
+        if let indexPath = documentCollectionView.indexPathsForSelectedItems?.first {
+            destinationVC.selectedDocument = documents[indexPath.item]
+        }
     }
     
     //MARK: Load Documents
