@@ -26,6 +26,8 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     var documents: [Document] = []
     
+    var documentImageData: Data = Data()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,8 +107,9 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         let documentData = [
             "document_id": newID,
             "uuid": document.uuid,
-            "image_path": document.imagePath
-        ]
+            "image_path": document.imagePath,
+            "image_data": document.imageData
+            ] as [String : Any]
         
         documentRef.document(newID).setData(documentData, merge: true) { (error) in
             if let error = error {
@@ -117,6 +120,26 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         }
         
     }
+    
+//    func addDataToDocument(_ document: Document) {
+//        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
+//        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
+//
+//        let clientRef = db.collection("users").document(uid).collection("clients")
+//        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+//        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
+//
+//        let documentID = document.documentID
+//        let imageData = ["image_data": document.imageData]
+//
+//        documentRef.document(documentID).setData(imageData, merge: true) { (error) in
+//            if let error = error {
+//                print("Error writing document: \(error)")
+//            } else {
+//                print("Document successfully written!")
+//            }
+//        }
+//    }
     
     func readDocumentsFromDatabase(completion: @escaping ((_ success: Bool) -> Void)) {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
@@ -186,7 +209,14 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         let metaData = StorageMetadata.init()
         metaData.contentType = "image/jpeg"
         
+        let newDocument = Document()
+
         uploadRef.putData(imageData, metadata: metaData) { (downloadMetaData, error) in
+            newDocument.uuid = randomUUID
+            newDocument.imagePath = imagePath
+            newDocument.imageData = imageData
+            
+            self.addDocumentToDatabase(newDocument)
             if let error = error {
                 print("Error uploading data: \(error.localizedDescription)")
                 return
@@ -194,12 +224,6 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
             print("Upload complete: \(String(describing: downloadMetaData))")
             completion(true)
         }
-        
-        let newDocument = Document()
-        newDocument.uuid = randomUUID
-        newDocument.imagePath = imagePath
-        
-        addDocumentToDatabase(newDocument)
     }
     
     func downloadImagesFromStorage(_ documentArray: [Document], completion: @escaping ((_ success: Bool) -> Void)) {
