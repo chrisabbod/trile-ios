@@ -154,6 +154,18 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
+    func deleteDocumentFromDatabase(_ indexPath: IndexPath) {
+        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
+        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
+        
+        let documentID = documents[indexPath.item].documentID
+        documentRef.document(documentID).delete()
+    }
+    
     //MARK: Image Functions
     
     func uploadImageToStorage(_ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
@@ -262,25 +274,14 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let cell = documentCollectionView.cellForItem(at: indexPath) as! DocumentCollectionViewCell
-        
+                
         if isEditing {
-            print("WANT TO DELETE?")
             deleteDocumentAlertDialog(indexPath)
         } else {
-            print("WRONG: NOT IN EDITING MODE")
+            print("Not in editing mode")
         }
         
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        
-        //        if let selectedItems = collectionView.indexPathsForSelectedItems, selectedItems.count == 0 {
-        //            deleteButton.isEnabled = false
-        //        }
-    }
-    
 }
 
 //MARK: CV FlowLayout Extension
@@ -311,6 +312,7 @@ extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
         let deleteDocumentAction = UIAlertAction(title: "Delete", style: .default) { (action) in
             
             self.deleteDocumentFromStorage(indexPath) { (success) in
+                self.deleteDocumentFromDatabase(indexPath)
                 self.documents.remove(at: indexPath.item)
                 self.documentCollectionView.reloadData()
             }
