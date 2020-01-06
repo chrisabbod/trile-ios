@@ -27,4 +27,8 @@ class DocumentDetailsVC: UIViewController, UIScrollViewDelegate {
             documentImageView.image = UIImage(data: imageData)
         }
     }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.documentImageView
+    }
 }
