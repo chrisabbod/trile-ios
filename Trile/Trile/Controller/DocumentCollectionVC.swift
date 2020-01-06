@@ -29,6 +29,8 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setBackgroundColor()
+        
         navigationItem.leftBarButtonItem = editButtonItem
         
         let scanDocumentButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(scanDocument(_:)))
@@ -115,8 +117,6 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         }
         
     }
-    
-
     
     func readDocumentsFromDatabase(completion: @escaping ((_ success: Bool) -> Void)) {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
@@ -249,13 +249,11 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSE_IDENTIFIER, for: indexPath as IndexPath) as! DocumentCollectionViewCell
-        // Use the outlet in our custom class to get a reference to the UILabel in the cell
+
         cell.documentImageView.image = UIImage(data: documents[indexPath.item].imageData)
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.borderWidth = 2
-        cell.layer.cornerRadius = 20
+        
+        addCornerRadiusToViews(cell)
         
         return cell
     }
@@ -328,6 +326,21 @@ extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
         alert.addAction(deleteDocumentAction)
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: UI Beautification Functions
+    
+    func setBackgroundColor() {
+        documentCollectionView.backgroundColor = UIColor(red: 231/255, green: 229/255, blue: 243/255, alpha: 1)
+    }
+    
+    func addCornerRadiusToViews(_ cell: UICollectionViewCell) {
+        let borderWidthValue: CGFloat = 2.0
+        let cornerRadiusValue: CGFloat = 20.0
+        
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = borderWidthValue
+        cell.layer.cornerRadius = cornerRadiusValue
     }
 }
 
