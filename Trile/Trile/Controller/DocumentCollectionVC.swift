@@ -17,6 +17,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var documentCollectionView: UICollectionView!
     
     private let REUSE_IDENTIFIER = "customDocumentCell"
+    private let DOCUMENT_DETAIL_SEGUE = "goToDocumentDetailsVC"
     
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
@@ -120,26 +121,6 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         }
         
     }
-    
-//    func addDataToDocument(_ document: Document) {
-//        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
-//        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
-//
-//        let clientRef = db.collection("users").document(uid).collection("clients")
-//        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-//        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
-//
-//        let documentID = document.documentID
-//        let imageData = ["image_data": document.imageData]
-//
-//        documentRef.document(documentID).setData(imageData, merge: true) { (error) in
-//            if let error = error {
-//                print("Error writing document: \(error)")
-//            } else {
-//                print("Document successfully written!")
-//            }
-//        }
-//    }
     
     func readDocumentsFromDatabase(completion: @escaping ((_ success: Bool) -> Void)) {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
@@ -296,11 +277,10 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-                
         if isEditing {
             deleteDocumentAlertDialog(indexPath)
         } else {
-            print("Not in editing mode")
+            performSegue(withIdentifier: DOCUMENT_DETAIL_SEGUE, sender: self)
         }
         
     }

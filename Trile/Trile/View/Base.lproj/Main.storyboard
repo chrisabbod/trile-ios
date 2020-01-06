@@ -2465,6 +2465,22 @@
             </objects>
             <point key="canvasLocation" x="4280" y="-330"/>
         </scene>
+        <!--Document Details-->
+        <scene sceneID="VND-Nd-gd2">
+            <objects>
+                <viewController title="Document Details" id="Nb0-MJ-oXA" customClass="DocumentDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kOD-no-V3I">
+                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="C58-oz-gtg"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Document Details" id="baY-Z7-sOk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="01x-Q0-8zs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4280" y="473"/>
+        </scene>
         <!--DocumentCollectionVC-->
         <scene sceneID="nYM-db-PWG">
             <objects>
@@ -2517,6 +2533,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="documentCollectionView" destination="DBF-8j-KfB" id="CUg-Xr-s3F"/>
+                        <segue destination="Nb0-MJ-oXA" kind="show" identifier="goToDocumentDetailsVC" id="LHb-m8-R8u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lMy-Ti-Hg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
