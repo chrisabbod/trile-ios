@@ -1423,7 +1423,7 @@
         <!--FeeApplicationVC-->
         <scene sceneID="0CH-n1-X77">
             <objects>
-                <viewController title="FeeApplicationVC" id="QYh-2M-bCj" sceneMemberID="viewController">
+                <viewController title="FeeApplicationVC" id="QYh-2M-bCj" customClass="FeeApplicationVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pa7-tB-qJm">
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
