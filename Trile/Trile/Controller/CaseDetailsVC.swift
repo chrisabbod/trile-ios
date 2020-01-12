@@ -21,10 +21,10 @@ class CaseDetailsVC: UIViewController {
     @IBOutlet weak var dispositionLabel: UILabel!
     @IBOutlet weak var judgmentAndSentencingLabel: UILabel!
     @IBOutlet weak var countyLabel: UILabel!
+    @IBOutlet weak var nameOfJudgeSettingFeeLabel: UILabel!
     @IBOutlet weak var dateAppointedLabel: UILabel!
     @IBOutlet weak var dateOfFirstClientInterviewLabel: UILabel!
     @IBOutlet weak var dateOfFinalDispositionLabel: UILabel!
-    @IBOutlet weak var nameOfJudgeSettingFeeLabel: UILabel!
     
     @IBOutlet weak var timeInCourtHoursLabel: UILabel!
     @IBOutlet weak var timeInCourtMinutesLabel: UILabel!
@@ -102,7 +102,7 @@ class CaseDetailsVC: UIViewController {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    //print("\(document.documentID) => \(document.data())")
+                    print("\(document.documentID) => \(document.data())")
                     let documentData: [String: Any] = document.data()
                     
                     self.readCaseData(from: documentData)
@@ -121,6 +121,8 @@ class CaseDetailsVC: UIViewController {
         }
         
         if let bond = data["bond"] {
+            print("Bond: \(bond)")
+            print("Bond Data: \(data["bond"])")
             bondLabel.text = bond as? String
         }
         
