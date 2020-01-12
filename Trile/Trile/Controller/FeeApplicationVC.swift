@@ -19,14 +19,20 @@ class FeeApplicationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let printButton = UIBarButtonItem(title: "Print", style: .done, target: self, action: #selector(printPDF(_:)))
         let signOutButton = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOut(_:)))
         
-        navigationItem.rightBarButtonItem = signOutButton
+        navigationItem.rightBarButtonItems = [signOutButton, printButton]
         
         showPDF()
     }
     
     //MARK: Bar Buttons
+    
+    @objc
+    func printPDF(_ sender: UIBarButtonItem) {
+        print("Print button wired up")
+    }
     
     @objc
     func signOut(_ sender: UIBarButtonItem) {
