@@ -31,4 +31,6 @@ class FileNumber {
     var timeInCourtWaitingMinutes: Int = 0
     var timeOutOfCourtHours: Int = 0
     var timeOutOfCourtMinutes: Int = 0
+    
+    var pdfData: Data = Data()
 }
