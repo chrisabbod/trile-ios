@@ -19,8 +19,32 @@ class FeeApplicationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let signOutButton = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOut(_:)))
+        
+        navigationItem.rightBarButtonItem = signOutButton
+        
         showPDF()
     }
+    
+    //MARK: Bar Buttons
+    
+    @objc
+    func signOut(_ sender: UIBarButtonItem) {
+        transitionToHome()
+    }
+    
+    //MARK: Segues
+    
+    func transitionToHome() {
+        
+        let loginVC = storyboard?.instantiateViewController(identifier: "LoginViewController")
+        
+        view.window?.rootViewController = loginVC
+        view.window?.makeKeyAndVisible()
+        
+    }
+    
+    //MARK: PDF Functions
     
     func showPDF() {
         let pdfView = PDFView()
