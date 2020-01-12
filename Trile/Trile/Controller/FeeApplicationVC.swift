@@ -25,6 +25,7 @@ class FeeApplicationVC: UIViewController {
         navigationItem.rightBarButtonItems = [signOutButton, printButton]
         
         showPDF()
+        getFieldNames()
     }
     
     //MARK: Bar Buttons
@@ -65,6 +66,30 @@ class FeeApplicationVC: UIViewController {
         
         if let document = PDFDocument(url: fileURL) {
             pdfView.document = document
+        }
+    }
+    
+    func getFieldNames() {
+        //guard let path = Bundle.main.url(forResource: FEE_APPLICATION, withExtension: "pdf") else { return }
+        
+        if let document = PDFDocument(url: fileURL) {
+            for index in 0..<document.pageCount{
+                if let page = document.page(at: index){
+                    let annotations = page.annotations
+                    for annotation in annotations{
+                        print("Annotation Name :: \(annotation.fieldName ?? "")")
+//                        if annotation.fieldName == "firstName"{
+//                            annotation.setValue("David", forAnnotationKey: .widgetValue)
+//                            page.removeAnnotation(annotation)
+//                            page.addAnnotation(annotation)
+//                        }else if annotation.fieldName == "checkBox"{
+//                            annotation.buttonWidgetState = .onState
+//                            page.removeAnnotation(annotation)
+//                            page.addAnnotation(annotation)
+//                        }
+                    }
+                }
+            }
         }
     }
 }
