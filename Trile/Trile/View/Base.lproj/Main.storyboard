@@ -892,7 +892,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hcz-kv-Jbu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3648" y="-1921"/>
+            <point key="canvasLocation" x="3609" y="-2641"/>
         </scene>
         <!--ClientDetailsVC-->
         <scene sceneID="2O6-lO-Tag">
@@ -1375,7 +1375,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oTb-tZ-Xpn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3648" y="-2678"/>
+            <point key="canvasLocation" x="3609" y="-330"/>
         </scene>
         <!--Client Details-->
         <scene sceneID="ara-ps-xPC">
@@ -1396,7 +1396,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOM-xh-Jsv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2886" y="-2678"/>
+            <point key="canvasLocation" x="2847" y="-330"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ruX-e5-sMv">
@@ -1427,19 +1427,7 @@
                     <view key="view" contentMode="scaleToFill" id="pa7-tB-qJm">
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEE APP UNDER CONSTRUCTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pz0-sh-A6c">
-                                <rect key="frame" x="122.5" y="472" width="746" height="60"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" red="0.90588235289999997" green="0.8980392157" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="pz0-sh-A6c" firstAttribute="centerY" secondItem="pa7-tB-qJm" secondAttribute="centerY" id="TAR-4n-eDd"/>
-                            <constraint firstItem="pz0-sh-A6c" firstAttribute="centerX" secondItem="pa7-tB-qJm" secondAttribute="centerX" id="fuZ-tE-3dI"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="u6Y-bl-7hQ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Fee Application" id="RBp-JQ-Ub3"/>
@@ -1447,7 +1435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="630-YR-5p5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3648" y="-330"/>
+            <point key="canvasLocation" x="3609" y="-1050"/>
         </scene>
         <!--Documents-->
         <scene sceneID="anA-iD-cfw">
@@ -1464,7 +1452,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nD5-Xr-rlb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2886" y="-1117"/>
+            <point key="canvasLocation" x="2847" y="-1837"/>
         </scene>
         <!--Fee Application-->
         <scene sceneID="S5c-yq-iQ2">
@@ -1481,7 +1469,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4A-vs-PeX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2886" y="-330"/>
+            <point key="canvasLocation" x="2847" y="-1050"/>
         </scene>
         <!--EditClientDetailsVC-->
         <scene sceneID="BPV-Av-o2r">
@@ -1999,7 +1987,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ItP-ib-MDZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4329" y="-2678"/>
+            <point key="canvasLocation" x="4289" y="-330"/>
         </scene>
         <!--Case Details-->
         <scene sceneID="F1f-EI-T0I">
@@ -2020,7 +2008,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t3z-46-AIq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2886" y="-1921"/>
+            <point key="canvasLocation" x="2847" y="-2641"/>
         </scene>
         <!--EditCaseDetailsVC-->
         <scene sceneID="3dQ-0k-E6r">
@@ -2481,7 +2469,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m8Q-Vs-NGK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4329" y="-1921"/>
+            <point key="canvasLocation" x="4289" y="-2641"/>
         </scene>
         <!--Document Details-->
         <scene sceneID="VND-Nd-gd2">
@@ -2527,7 +2515,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="01x-Q0-8zs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4329" y="-1117"/>
+            <point key="canvasLocation" x="4289" y="-1837"/>
         </scene>
         <!--DocumentCollectionVC-->
         <scene sceneID="nYM-db-PWG">
@@ -2586,7 +2574,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lMy-Ti-Hg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3648" y="-1117"/>
+            <point key="canvasLocation" x="3609" y="-1837"/>
         </scene>
     </scenes>
     <resources>
