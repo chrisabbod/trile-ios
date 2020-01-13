@@ -120,6 +120,18 @@ class ClientDetailsVC: UIViewController {
             ageLabel.text = age as? String
         }
         
+        if let highestEducation = data["highest_education"] {
+            highestEducationLabel.text = highestEducation as? String
+        }
+        
+        if let areaOfStudy = data["area_of_study"] {
+            areaOfStudyLabel.text = areaOfStudy as? String
+        }
+        
+        if let phoneNumber = data["phone_number"] {
+            phoneNumberLabel.text = phoneNumber as? String
+        }
+        
         if let address = data["address"] {
             addressLabel.text = address as? String
         }

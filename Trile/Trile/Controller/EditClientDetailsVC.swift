@@ -107,6 +107,18 @@ class EditClientDetailsVC: UIViewController {
             ageTextField.text = age as? String
         }
         
+        if let highestEducation = data["highest_education"] {
+            highestEducationTextField.text = highestEducation as? String
+        }
+        
+        if let areaOfStudy = data["area_of_study"] {
+            areaOfStudyTextField.text = areaOfStudy as? String
+        }
+        
+        if let phoneNumber = data["phone_number"] {
+            phoneNumberTextField.text = phoneNumber as? String
+        }
+        
         if let address = data["address"] {
             addressTextField.text = address as? String
         }
@@ -163,6 +175,18 @@ class EditClientDetailsVC: UIViewController {
         
         if let age = ageTextField.text {
             clientDataArray["age"] = age
+        }
+        
+        if let highestEducation = highestEducationTextField.text {
+            clientDataArray["highest_education"] = highestEducation
+        }
+        
+        if let areaOfStudy = areaOfStudyTextField.text {
+            clientDataArray["area_of_study"] = areaOfStudy
+        }
+        
+        if let phoneNumber = phoneNumberTextField.text {
+            clientDataArray["phone_number"] = phoneNumber
         }
         
         if let address = addressTextField.text {
