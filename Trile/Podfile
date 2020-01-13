@@ -12,6 +12,7 @@ target 'Trile' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'WeScan', '>= 0.9'
+  pod 'IQKeyboardManagerSwift', '6.3.0'
   
   target 'TrileTests' do
     inherit! :search_paths

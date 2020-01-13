@@ -1656,6 +1656,7 @@
                             <constraint firstItem="7MS-Lu-9K5" firstAttribute="top" secondItem="DnI-Lo-ozX" secondAttribute="top" id="uzK-8Y-iTE"/>
                             <constraint firstAttribute="bottom" secondItem="7MS-Lu-9K5" secondAttribute="bottom" id="xRb-FM-a7j"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="dsW-ml-wrH"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Client Details" id="qeN-pb-zWn"/>
                     <navigationItem key="navigationItem" title="Client Details" id="9lh-a1-bU2"/>
@@ -2499,7 +2500,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Kh-wo-vqY">
-                                        <rect key="frame" x="8" y="74" width="550" height="850"/>
+                                        <rect key="frame" x="8" y="74" width="540" height="850"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dwb-BH-7c2" userLabel="Root Stack View">
                                                 <rect key="frame" x="20" y="20" width="500" height="784"/>
@@ -2922,7 +2923,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="850" id="HEA-Za-qzY"/>
                                             <constraint firstItem="dwb-BH-7c2" firstAttribute="leading" secondItem="2Kh-wo-vqY" secondAttribute="leading" constant="20" id="RhN-ZP-qWs"/>
-                                            <constraint firstAttribute="width" constant="550" id="Y5q-68-p3w"/>
+                                            <constraint firstAttribute="width" constant="540" id="Y5q-68-p3w"/>
                                             <constraint firstItem="dwb-BH-7c2" firstAttribute="top" secondItem="2Kh-wo-vqY" secondAttribute="top" constant="20" id="wkF-Na-dtx"/>
                                         </constraints>
                                         <variation key="default">
