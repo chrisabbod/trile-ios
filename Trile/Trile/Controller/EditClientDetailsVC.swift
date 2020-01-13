@@ -66,6 +66,13 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
         present(imagePicker, animated: true, completion: nil)
     }
     
+    //MARK: Camera Function
+    //TODO: - Finish Camera Function
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        imagePicker.dismiss(animated: true, completion: nil)
+        //imageView.image = info[.originalImage] as? UIImage
+    }
+    
     //MARK: - Database CRUD Functions
     
     func addClientDataToDatabase(_ clientData: [String: Any]) {
@@ -99,7 +106,6 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
                 }
             }
         }
-        
     }
     
     //MARK: Read Client Data
