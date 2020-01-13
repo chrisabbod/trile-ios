@@ -121,8 +121,6 @@ class CaseDetailsVC: UIViewController {
         }
         
         if let bond = data["bond"] {
-            print("Bond: \(bond)")
-            print("Bond Data: \(data["bond"])")
             bondLabel.text = bond as? String
         }
         
