@@ -15,6 +15,9 @@ class ClientDetailsVC: UIViewController {
     @IBOutlet weak var clientPictureImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var highestEducationLabel: UILabel!
+    @IBOutlet weak var areaOfStudyLabel: UILabel!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var stateLabel: UILabel!

@@ -1072,14 +1072,14 @@
             <objects>
                 <viewController title="ClientDetailsVC" id="aZb-Va-hwO" customClass="ClientDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DnI-Lo-ozX" userLabel="Root View">
-                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1180"/>
+                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7MS-Lu-9K5">
-                                <rect key="frame" x="0.0" y="0.0" width="990.5" height="1180"/>
+                                <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6f-Ax-EUa">
-                                        <rect key="frame" x="20" y="20" width="540" height="800"/>
+                                        <rect key="frame" x="20" y="20" width="540" height="900"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="AOq-Vx-Ymj" userLabel="Client Image View">
                                                 <rect key="frame" x="220" y="20" width="100" height="100"/>
@@ -1089,7 +1089,7 @@
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LF3-vg-RiT" userLabel="Root Stack View">
-                                                <rect key="frame" x="20" y="140" width="500" height="618"/>
+                                                <rect key="frame" x="20" y="140" width="500" height="714"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="rim-BA-Pli">
                                                         <rect key="frame" x="0.0" y="0.0" width="500" height="36"/>
@@ -1113,10 +1113,10 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1K-2l-zIf" userLabel="Client Information View">
-                                                        <rect key="frame" x="0.0" y="46" width="500" height="200"/>
+                                                        <rect key="frame" x="0.0" y="46" width="500" height="296"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3Mx-fz-pEG">
-                                                                <rect key="frame" x="8" y="8" width="484" height="184"/>
+                                                                <rect key="frame" x="8" y="8" width="484" height="280"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJL-wP-rx4" userLabel="Name">
                                                                         <rect key="frame" x="0.0" y="0.0" width="484" height="24"/>
@@ -1152,8 +1152,59 @@
                                                                             </label>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDb-7g-H8C" userLabel="Address">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7HM-ql-FzW" userLabel="Highest Education">
                                                                         <rect key="frame" x="0.0" y="64" width="484" height="24"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Highest Education" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXP-S5-FuH">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFZ-Su-YEh" userLabel="Highest Education Data">
+                                                                                <rect key="frame" x="393" y="0.0" width="91" height="24"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qc7-jf-T4j" userLabel="Area of Study">
+                                                                        <rect key="frame" x="0.0" y="96" width="484" height="24"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Area of Study" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zo-MG-ZqJ">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyu-E1-nEY" userLabel="Area of Study Data">
+                                                                                <rect key="frame" x="393" y="0.0" width="91" height="24"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K1t-cE-wQT" userLabel="Phone Number">
+                                                                        <rect key="frame" x="0.0" y="128" width="484" height="24"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwg-uf-q5T">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4T-F9-mKR" userLabel="Phone Number Data">
+                                                                                <rect key="frame" x="393" y="0.0" width="91" height="24"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDb-7g-H8C" userLabel="Address">
+                                                                        <rect key="frame" x="0.0" y="160" width="484" height="24"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaE-nh-frX">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
@@ -1170,7 +1221,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mOy-hS-1py" userLabel="City">
-                                                                        <rect key="frame" x="0.0" y="96" width="484" height="24"/>
+                                                                        <rect key="frame" x="0.0" y="192" width="484" height="24"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4s-5G-3MU">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
@@ -1187,7 +1238,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYg-kh-YVM" userLabel="State">
-                                                                        <rect key="frame" x="0.0" y="128" width="484" height="24"/>
+                                                                        <rect key="frame" x="0.0" y="224" width="484" height="24"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJq-Bu-CyC">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
@@ -1204,7 +1255,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIO-gZ-icG" userLabel="Zip">
-                                                                        <rect key="frame" x="0.0" y="160" width="484" height="24"/>
+                                                                        <rect key="frame" x="0.0" y="256" width="484" height="24"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Zip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nY-de-wlc">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="24"/>
@@ -1259,13 +1310,13 @@
                                                         </variation>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RxZ-Oa-2it" userLabel="Work History">
-                                                        <rect key="frame" x="0.0" y="256" width="181.5" height="36"/>
+                                                        <rect key="frame" x="0.0" y="352" width="181.5" height="36"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK9-FL-LLv" userLabel="Work History View">
-                                                        <rect key="frame" x="0.0" y="302" width="500" height="180"/>
+                                                        <rect key="frame" x="0.0" y="398" width="500" height="180"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lCv-4i-g3I">
                                                                 <rect key="frame" x="8" y="8" width="484" height="164"/>
@@ -1400,13 +1451,13 @@
                                                         </variation>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Household Residents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xwd-G3-NVh">
-                                                        <rect key="frame" x="0.0" y="492" width="297.5" height="36"/>
+                                                        <rect key="frame" x="0.0" y="588" width="297.5" height="36"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4IV-dL-Qlc" userLabel="Household Residents View">
-                                                        <rect key="frame" x="0.0" y="538" width="500" height="80"/>
+                                                        <rect key="frame" x="0.0" y="634" width="500" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BMI-Sk-7UN">
                                                                 <rect key="frame" x="8" y="8" width="484" height="64"/>
@@ -1504,7 +1555,7 @@
                                         <constraints>
                                             <constraint firstItem="LF3-vg-RiT" firstAttribute="centerX" secondItem="V6f-Ax-EUa" secondAttribute="centerX" id="3JN-E5-az9"/>
                                             <constraint firstAttribute="width" constant="540" id="L0c-F4-H5V"/>
-                                            <constraint firstAttribute="height" constant="800" id="ZMl-0M-alJ"/>
+                                            <constraint firstAttribute="height" constant="900" id="ZMl-0M-alJ"/>
                                             <constraint firstItem="AOq-Vx-Ymj" firstAttribute="top" secondItem="V6f-Ax-EUa" secondAttribute="top" constant="20" id="l8L-iO-9GC"/>
                                             <constraint firstItem="LF3-vg-RiT" firstAttribute="top" secondItem="AOq-Vx-Ymj" secondAttribute="bottom" constant="20" id="xjr-fq-JNE"/>
                                             <constraint firstItem="AOq-Vx-Ymj" firstAttribute="centerX" secondItem="V6f-Ax-EUa" secondAttribute="centerX" id="y91-FU-6yz"/>
@@ -1529,18 +1580,20 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Client Details" id="qeN-pb-zWn"/>
                     <navigationItem key="navigationItem" title="Client Details" id="9lh-a1-bU2"/>
-                    <size key="freeformSize" width="1366" height="1200"/>
                     <connections>
                         <outlet property="addressLabel" destination="6ho-wY-Hyd" id="msD-Qw-Aau"/>
                         <outlet property="ageLabel" destination="Sod-XZ-105" id="aaE-2X-3EO"/>
+                        <outlet property="areaOfStudyLabel" destination="jyu-E1-nEY" id="Zdz-7R-ELP"/>
                         <outlet property="cityLabel" destination="12E-4J-xIN" id="u6o-hi-NcZ"/>
                         <outlet property="clientInformationView" destination="c1K-2l-zIf" id="7dA-rv-lKb"/>
                         <outlet property="clientPictureImageView" destination="AOq-Vx-Ymj" id="7DI-bG-mAj"/>
                         <outlet property="dateEndedLabel" destination="6zU-pF-Scc" id="IW2-iv-yaH"/>
                         <outlet property="dateStartedLabel" destination="dY8-dk-Ocy" id="ptI-v6-IMR"/>
+                        <outlet property="highestEducationLabel" destination="pFZ-Su-YEh" id="kzU-5o-MWS"/>
                         <outlet property="householdResidentsView" destination="4IV-dL-Qlc" id="I1x-z4-bzO"/>
                         <outlet property="incomeRangeLabel" destination="2QF-M5-x4P" id="B2b-re-4uR"/>
                         <outlet property="nameLabel" destination="E5f-66-kmH" id="MWW-MD-03B"/>
+                        <outlet property="phoneNumberLabel" destination="L4T-F9-mKR" id="Myo-T6-coR"/>
                         <outlet property="placeOfEmploymentLabel" destination="eRK-9R-91p" id="sJh-sm-aqM"/>
                         <outlet property="roleLabel" destination="5Hq-vg-J3v" id="AOT-DG-6Qg"/>
                         <outlet property="stateLabel" destination="swz-Xm-PET" id="K1s-AL-YkS"/>
