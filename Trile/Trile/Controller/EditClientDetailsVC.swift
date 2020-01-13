@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class EditClientDetailsVC: UIViewController {
+class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var clientPictureImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -42,6 +42,8 @@ class EditClientDetailsVC: UIViewController {
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
+    var imagePicker: UIImagePickerController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,7 +59,11 @@ class EditClientDetailsVC: UIViewController {
     }
     
     @IBAction func cameraButton(_ sender: Any) {
-        print("CAMERA BUTTON CLICKED!")
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+
+        present(imagePicker, animated: true, completion: nil)
     }
     
     //MARK: - Database CRUD Functions
