@@ -2186,7 +2186,7 @@
         <scene sceneID="3dQ-0k-E6r">
             <objects>
                 <viewController title="EditCaseDetailsVC" id="OCB-fk-1zt" customClass="EditCaseDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wry-gh-3xo">
+                    <view key="view" contentMode="scaleToFill" id="wry-gh-3xo" userLabel="Root View">
                         <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -2196,7 +2196,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Kh-wo-vqY">
                                         <rect key="frame" x="8" y="74" width="550" height="850"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dwb-BH-7c2" userLabel="Root Stack View">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dwb-BH-7c2" userLabel="Root Stack View">
                                                 <rect key="frame" x="20" y="20" width="500" height="784"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Case Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8k-Qb-xKc" userLabel="Case Information">
@@ -2616,7 +2616,9 @@
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.8980392157" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="850" id="HEA-Za-qzY"/>
+                                            <constraint firstItem="dwb-BH-7c2" firstAttribute="leading" secondItem="2Kh-wo-vqY" secondAttribute="leading" constant="20" id="RhN-ZP-qWs"/>
                                             <constraint firstAttribute="width" constant="550" id="Y5q-68-p3w"/>
+                                            <constraint firstItem="dwb-BH-7c2" firstAttribute="top" secondItem="2Kh-wo-vqY" secondAttribute="top" constant="20" id="wkF-Na-dtx"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
