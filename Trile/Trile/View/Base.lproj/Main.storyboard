@@ -1649,7 +1649,7 @@
             <objects>
                 <viewController title="EditClientDetailsVC" id="YCB-bz-aOe" customClass="EditClientDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PYz-wy-B8i" userLabel="Root View">
-                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="991" height="1480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFb-aM-85S">
@@ -2305,14 +2305,17 @@
                     <connections>
                         <outlet property="addressTextField" destination="q9W-Pq-5Up" id="CXW-7z-Uus"/>
                         <outlet property="ageTextField" destination="kHu-SE-XVr" id="H6y-Rw-kXA"/>
+                        <outlet property="areaOfStudyTextField" destination="dBo-iU-T4b" id="kLw-aM-915"/>
                         <outlet property="cityTextField" destination="TUW-Q6-U5r" id="PTK-Ly-v7a"/>
                         <outlet property="clientInformationView" destination="kZc-tX-Pii" id="nJA-2R-u5f"/>
                         <outlet property="clientPictureImageView" destination="aWO-c0-yiK" id="TPq-Re-v8f"/>
                         <outlet property="dateEndedTextField" destination="ZgB-gi-SKU" id="FcL-EF-h8s"/>
                         <outlet property="dateStartedTextField" destination="wJT-n1-DQM" id="DM2-7K-SW8"/>
+                        <outlet property="highestEducationTextField" destination="5RV-iN-w3F" id="cbD-KA-sx6"/>
                         <outlet property="householdResidentsView" destination="eab-y2-gIy" id="2lF-U1-bQd"/>
                         <outlet property="incomeRangeTextField" destination="qkS-SM-yOR" id="gRr-16-sZ8"/>
                         <outlet property="nameTextField" destination="7nl-Bo-q4C" id="lls-lf-zK6"/>
+                        <outlet property="phoneNumberTextField" destination="dGS-g9-m2T" id="28X-Yy-lVq"/>
                         <outlet property="placeOfEmploymentTextField" destination="ZEr-21-SL7" id="mde-0A-v4b"/>
                         <outlet property="roleTextField" destination="bxu-K2-Fhl" id="Ho2-Z1-9ZG"/>
                         <outlet property="stateTextField" destination="Z4F-1R-5ur" id="hZ9-JI-xGG"/>

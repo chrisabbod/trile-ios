@@ -15,6 +15,9 @@ class EditClientDetailsVC: UIViewController {
     @IBOutlet weak var clientPictureImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet weak var highestEducationTextField: UITextField!
+    @IBOutlet weak var areaOfStudyTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var stateTextField: UITextField!
