@@ -997,13 +997,13 @@
                                                 <exclude reference="Kkb-NA-xk5"/>
                                                 <exclude reference="jBo-td-Hz1"/>
                                                 <exclude reference="odO-wL-Pl9"/>
+                                                <exclude reference="QWG-0F-HHX"/>
+                                                <exclude reference="Xli-gj-czU"/>
+                                                <exclude reference="wkV-p0-DTA"/>
                                                 <exclude reference="1YF-a4-W6U"/>
                                                 <exclude reference="L5g-sf-OyQ"/>
                                                 <exclude reference="Rs3-3R-Dcq"/>
                                                 <exclude reference="qdQ-Nd-L9N"/>
-                                                <exclude reference="QWG-0F-HHX"/>
-                                                <exclude reference="Xli-gj-czU"/>
-                                                <exclude reference="wkV-p0-DTA"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
@@ -1016,13 +1016,13 @@
                                                 <exclude reference="Kkb-NA-xk5"/>
                                                 <exclude reference="jBo-td-Hz1"/>
                                                 <include reference="odO-wL-Pl9"/>
+                                                <include reference="QWG-0F-HHX"/>
+                                                <exclude reference="Xli-gj-czU"/>
+                                                <include reference="wkV-p0-DTA"/>
                                                 <include reference="1YF-a4-W6U"/>
                                                 <include reference="L5g-sf-OyQ"/>
                                                 <include reference="Rs3-3R-Dcq"/>
                                                 <include reference="qdQ-Nd-L9N"/>
-                                                <include reference="QWG-0F-HHX"/>
-                                                <exclude reference="Xli-gj-czU"/>
-                                                <include reference="wkV-p0-DTA"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -2787,7 +2787,7 @@
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHE-SG-OdI" userLabel="Hours Text">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="32" height="34"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
                                                                                     </textField>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSP-3P-cnb" userLabel="Hours Label">
                                                                                         <rect key="frame" x="40" y="0.0" width="52.5" height="34"/>
@@ -2798,7 +2798,7 @@
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bz2-Eq-1Yf" userLabel="Minutes Text">
                                                                                         <rect key="frame" x="100.5" y="0.0" width="32" height="34"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
                                                                                     </textField>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMP-n0-HdP" userLabel="Minutes Label">
                                                                                         <rect key="frame" x="140.5" y="0.0" width="70" height="34"/>
@@ -2814,7 +2814,7 @@
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VfQ-sW-F5W" userLabel="Hours Text">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="32" height="34"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
                                                                                     </textField>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aA-pC-u28" userLabel="Hours Label">
                                                                                         <rect key="frame" x="40" y="0.0" width="52.5" height="34"/>
@@ -2825,7 +2825,7 @@
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QxO-jD-cSg" userLabel="Minutes Text">
                                                                                         <rect key="frame" x="100.5" y="0.0" width="32" height="34"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
                                                                                     </textField>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzS-yt-Gtm" userLabel="Minutes Label">
                                                                                         <rect key="frame" x="140.5" y="0.0" width="70" height="34"/>
@@ -2841,7 +2841,7 @@
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rjG-qT-Vwo" userLabel="Hours Text">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="32" height="34"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
                                                                                     </textField>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXC-iP-YyR" userLabel="Hours Label">
                                                                                         <rect key="frame" x="40" y="0.0" width="52.5" height="34"/>
@@ -2852,7 +2852,7 @@
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cqv-fV-Wkg" userLabel="Minutes Text">
                                                                                         <rect key="frame" x="100.5" y="0.0" width="32" height="34"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
                                                                                     </textField>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rlu-pg-Zud" userLabel="Minutes Label">
                                                                                         <rect key="frame" x="140.5" y="0.0" width="70" height="34"/>
