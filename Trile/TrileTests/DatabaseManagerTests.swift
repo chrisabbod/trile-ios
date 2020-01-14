@@ -26,22 +26,57 @@ class DatabaseManagerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testAddClientToDatabaseAddsClientToDatabase() {
-        //when
-        let newClient = Client()
-        let testUID = "test_uid"
-        let clientRef = db.collection("users").document(testUID).collection("clients")
-        let newID = clientRef.document().documentID
-        newClient.documentID = newID
-
-        //given
-        newClient.name = "Test Client"
-        sut.addClientToDatabase(newClient)
-        
-        //then
-        
-        //XCTAssertEqual(, "Test Client")
-    }
+    //TEST DOES NOT WORK. KEEPING FOR EXAMPLE
+//    func testAddClientToDatabaseAddsClientToDatabase() {
+//        //when
+//        var testClients = [Client]()
+//        let newClient = Client()
+//
+//        //given
+//        newClient.name = "Test Client"
+//        sut.addClientToDatabase(newClient)
+//
+//        sut.readClientsFromDatabase { (clientArray, success) in
+//            if success {
+//                testClients = clientArray
+//
+//            }
+//        }
+//
+//        //then
+//        XCTAssertEqual(testClients[0].name, "Test Client")
+//    }
+//
+//    //TEST DOES NOT WORK. KEEPING FOR EXAMPLE
+//    func testAddClientToDatabaseCanAddMultipleClientsToDatabase() {
+//        //when
+//        var testClients = [Client]()
+//        let newClient = Client()
+//        let testUser = "test_user"
+//
+//        let clientRef = db.collection("users").document(testUser).collection("clients")
+//        let newID = clientRef.document().documentID
+//        newClient.documentID = newID
+//
+//        //given
+//        newClient.name = "Client One"
+//        sut.addClientToDatabase(newClient)
+//
+//        newClient.name = "Client Two"
+//        sut.addClientToDatabase(newClient)
+//
+//        newClient.name = "Client Three"
+//        sut.addClientToDatabase(newClient)
+//
+//        sut.readClientsFromDatabase { (clientArray, success) in
+//            if success {
+//                testClients = clientArray
+//            }
+//        }
+//
+//        //then
+//        XCTAssertEqual(testClients.count, 3)
+//    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

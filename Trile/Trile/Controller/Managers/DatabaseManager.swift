@@ -21,10 +21,9 @@ class DatabaseManager {
         let newID = clientRef.document().documentID
         client.documentID = newID
         
-        clientRef.document(newID).setData([
-            "name": client.name,
-            "document_id": client.documentID
-        ]) { (error) in
+        let clientData: [String: Any] = ["name": client.name, "document_id": client.documentID]
+        
+        clientRef.document(newID).setData(clientData) { (error) in
             if let error = error {
                 print("Error writing document: \(error)")
             } else {
@@ -39,7 +38,7 @@ class DatabaseManager {
         let clientRef = db.collection("users").document(uid).collection("clients")
         
         var clientArray = [Client]()
-        
+
         clientRef.getDocuments() { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
@@ -51,11 +50,10 @@ class DatabaseManager {
                     if let name = document.get("name") {
                         newClient.name = name as! String
                     }
-                    
+
                     let id = document.documentID
                     newClient.documentID = id
                     clientArray.append(newClient)
-                    print("Client Array counter: \(clientArray.count)")
                 }
                 completion(clientArray, true)
             }
