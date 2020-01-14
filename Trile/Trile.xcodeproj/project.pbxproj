@@ -19,6 +19,7 @@
 		A511C1FC23B5614E00B9A771 /* TrileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1FB23B5614E00B9A771 /* TrileUITests.swift */; };
 		A511C20D23B564CE00B9A771 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C20C23B564CE00B9A771 /* Client.swift */; };
 		A54DC82C23CE302000E09567 /* DatabaseManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */; };
+		A54DC82E23CE747600E09567 /* DocumentImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82D23CE747600E09567 /* DocumentImageManager.swift */; };
 		A5695AFE23BE58B90010E40C /* EditClientDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */; };
 		A5695B0023BEF0130010E40C /* CaseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5695AFF23BEF0130010E40C /* CaseDetailsVC.swift */; };
 		A575E81F23BFB2DF00006A10 /* EditCaseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E81E23BFB2DF00006A10 /* EditCaseDetailsVC.swift */; };
@@ -82,6 +83,7 @@
 		A511C1FD23B5614E00B9A771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A511C20C23B564CE00B9A771 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerTests.swift; sourceTree = "<group>"; };
+		A54DC82D23CE747600E09567 /* DocumentImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentImageManager.swift; sourceTree = "<group>"; };
 		A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClientDetailsVC.swift; sourceTree = "<group>"; };
 		A5695AFF23BEF0130010E40C /* CaseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseDetailsVC.swift; sourceTree = "<group>"; };
 		A575E81E23BFB2DF00006A10 /* EditCaseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCaseDetailsVC.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			children = (
 				A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */,
 				A503ED0E23CD55D300255354 /* DatabaseManager.swift */,
+				A54DC82D23CE747600E09567 /* DocumentImageManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 			files = (
 				A5695AFE23BE58B90010E40C /* EditClientDetailsVC.swift in Sources */,
 				A511C1D823B5614900B9A771 /* AppDelegate.swift in Sources */,
+				A54DC82E23CE747600E09567 /* DocumentImageManager.swift in Sources */,
 				A575E86823C02AB200006A10 /* DocumentCollectionViewCell.swift in Sources */,
 				A5D6D8CF23B8005F00F16E27 /* FirebaseAuthManager.swift in Sources */,
 				A5D6D8DD23BBDF4200F16E27 /* FileNumber.swift in Sources */,

@@ -23,6 +23,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     let uid: String = Auth.auth().currentUser!.uid
     
     let dbm = DatabaseManager()
+    let imageManager = DocumentImageManager()
     
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
@@ -156,43 +157,6 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     //MARK: Image Functions
     
-    func uploadImageToStorage(_ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
-        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
-        
-        let randomUUID = UUID.init().uuidString
-        let imagePath = "\(uid)/\(clientDocumentID)/\(fileNumberDocumentID)/\(randomUUID).jpeg"
-        let uploadRef = Storage.storage().reference(withPath: imagePath)
-        
-        //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
-        guard let imageData = scannedImage.jpegData(compressionQuality: 0.75) else {
-            print("Error producing image data")
-            return
-        }
-        
-        //optional: upload meta data
-        let metaData = StorageMetadata.init()
-        metaData.contentType = "image/jpeg"
-        
-        let newDocument = Document()
-
-        uploadRef.putData(imageData, metadata: metaData) { (downloadMetaData, error) in
-            newDocument.uuid = randomUUID
-            newDocument.imagePath = imagePath
-            newDocument.imageData = imageData
-            
-            if let client = self.selectedClient, let fileNumber = self.selectedFileNumber {
-                self.dbm.addDocumentToDatabase(client, fileNumber, newDocument)
-            }
-
-            if let error = error {
-                print("Error uploading data: \(error.localizedDescription)")
-                return
-            }
-            print("Upload complete: \(String(describing: downloadMetaData))")
-            completion(true)
-        }
-    }
     
     func downloadImagesFromStorage(_ documentArray: [Document], completion: @escaping ((_ success: Bool) -> Void)) {
         //print("Document Passed To Array: \(documentArray.count)")
@@ -340,11 +304,14 @@ extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
 extension DocumentCollectionVC: ImageScannerControllerDelegate {
     func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
         
-        uploadImageToStorage(results.scannedImage) { (success) in
-            if success {
-                print("Successfully uploaded document after scanning")
-                self.loadDocuments()
+        if let client = selectedClient, let fileNumber = selectedFileNumber {
+            imageManager.uploadImageToStorage(client, fileNumber, results.scannedImage) { (success) in
+                if success {
+                    print("Successfully uploaded document after scanning")
+                    self.loadDocuments()
+                }
             }
+
         }
         
         scanner.dismiss(animated: true) {
