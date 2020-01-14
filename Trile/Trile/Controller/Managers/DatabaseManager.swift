@@ -35,4 +35,31 @@ class DatabaseManager {
         
     }
     
+    func readClientsFromDatabase(completion: @escaping ((_ clientArray: [Client], _ success: Bool) -> Void)) {
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        
+        var clientArray = [Client]()
+        
+        clientRef.getDocuments() { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data())")
+                    let newClient = Client()
+                    
+                    if let name = document.get("name") {
+                        newClient.name = name as! String
+                    }
+                    
+                    let id = document.documentID
+                    newClient.documentID = id
+                    clientArray.append(newClient)
+                    print("Client Array counter: \(clientArray.count)")
+                }
+                completion(clientArray, true)
+            }
+        }
+    }
+    
 }

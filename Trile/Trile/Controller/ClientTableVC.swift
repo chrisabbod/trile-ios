@@ -28,7 +28,12 @@ class ClientTableVC: UITableViewController {
         
         enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
         
-        readClientsFromDatabase()
+        dbm.readClientsFromDatabase(completion: { (clientArray, success) in
+            if success {
+                self.clients = clientArray
+                self.tableView.reloadData()
+            }
+        })
         
         navigationItem.leftBarButtonItem = editButtonItem
         
@@ -38,7 +43,12 @@ class ClientTableVC: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        readClientsFromDatabase()
+        dbm.readClientsFromDatabase(completion: { (clientArray, success) in
+            if success {
+                self.clients = clientArray
+                self.tableView.reloadData()
+            }
+        })
     }
     
     // MARK: Table View
@@ -86,36 +96,7 @@ class ClientTableVC: UITableViewController {
     }
     
     //MARK: Database CRUD Functions
-    
 
-    
-    func readClientsFromDatabase() {
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        
-        clientRef.getDocuments() { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
-                //Clients are completely removed and replaced in the array. Write this better in the future.
-                self.clients.removeAll()
-                
-                for document in querySnapshot!.documents {
-                    //print("\(document.documentID) => \(document.data())")
-                    let newClient = Client()
-                    
-                    if let name = document.get("name") {
-                        newClient.name = name as! String
-                    }
-                    
-                    let id = document.documentID
-                    newClient.documentID = id
-                    self.clients.append(newClient)
-                }
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
     func deleteClientFromDatabase(_ indexPath: IndexPath) {
         let clientRef = db.collection("users").document(uid).collection("clients")
         let documentID = clients[indexPath.row].documentID
@@ -139,7 +120,12 @@ class ClientTableVC: UITableViewController {
                 
                 self.dbm.addClientToDatabase(newClient)
                 //self.addClientToDatabase(newClient)
-                self.readClientsFromDatabase()
+                self.dbm.readClientsFromDatabase(completion: { (clientArray, success) in
+                    if success {
+                        self.clients = clientArray
+                        self.tableView.reloadData()
+                    }
+                })
             }
             
         }
@@ -169,7 +155,13 @@ class ClientTableVC: UITableViewController {
             dbm.addClientToDatabase(newClient)
             //addClientToDatabase(newClient)
         }
-        readClientsFromDatabase()
+        
+        dbm.readClientsFromDatabase(completion: { (clientArray, success) in
+            if success {
+                self.clients = clientArray
+                self.tableView.reloadData()
+            }
+        })
     }
     
     @objc

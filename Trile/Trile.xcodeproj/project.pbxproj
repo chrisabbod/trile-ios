@@ -16,9 +16,9 @@
 		A511C1E123B5614900B9A771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A511C1DF23B5614900B9A771 /* Main.storyboard */; };
 		A511C1E323B5614E00B9A771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A511C1E223B5614E00B9A771 /* Assets.xcassets */; };
 		A511C1E623B5614E00B9A771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A511C1E423B5614E00B9A771 /* LaunchScreen.storyboard */; };
-		A511C1F123B5614E00B9A771 /* TrileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1F023B5614E00B9A771 /* TrileTests.swift */; };
 		A511C1FC23B5614E00B9A771 /* TrileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1FB23B5614E00B9A771 /* TrileUITests.swift */; };
 		A511C20D23B564CE00B9A771 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C20C23B564CE00B9A771 /* Client.swift */; };
+		A54DC82C23CE302000E09567 /* DatabaseManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */; };
 		A5695AFE23BE58B90010E40C /* EditClientDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */; };
 		A5695B0023BEF0130010E40C /* CaseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5695AFF23BEF0130010E40C /* CaseDetailsVC.swift */; };
 		A575E81F23BFB2DF00006A10 /* EditCaseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E81E23BFB2DF00006A10 /* EditCaseDetailsVC.swift */; };
@@ -76,12 +76,12 @@
 		A511C1E523B5614E00B9A771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A511C1E723B5614E00B9A771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A511C1EC23B5614E00B9A771 /* TrileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A511C1F023B5614E00B9A771 /* TrileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrileTests.swift; sourceTree = "<group>"; };
 		A511C1F223B5614E00B9A771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A511C1F723B5614E00B9A771 /* TrileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A511C1FB23B5614E00B9A771 /* TrileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrileUITests.swift; sourceTree = "<group>"; };
 		A511C1FD23B5614E00B9A771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A511C20C23B564CE00B9A771 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerTests.swift; sourceTree = "<group>"; };
 		A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClientDetailsVC.swift; sourceTree = "<group>"; };
 		A5695AFF23BEF0130010E40C /* CaseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseDetailsVC.swift; sourceTree = "<group>"; };
 		A575E81E23BFB2DF00006A10 /* EditCaseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCaseDetailsVC.swift; sourceTree = "<group>"; };
@@ -182,7 +182,7 @@
 		A511C1EF23B5614E00B9A771 /* TrileTests */ = {
 			isa = PBXGroup;
 			children = (
-				A511C1F023B5614E00B9A771 /* TrileTests.swift */,
+				A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */,
 				A511C1F223B5614E00B9A771 /* Info.plist */,
 			);
 			path = TrileTests;
@@ -533,7 +533,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A511C1F123B5614E00B9A771 /* TrileTests.swift in Sources */,
+				A54DC82C23CE302000E09567 /* DatabaseManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
