@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00BBADF29BE5AA61100B20E2 /* Pods_Trile_TrileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19949E97720383ACDD45D9CA /* Pods_Trile_TrileUITests.framework */; };
 		1E7CA50D2D2EAA744DF1D809 /* Pods_TrileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E8E7CB43957ED6FC4D061A /* Pods_TrileTests.framework */; };
+		A503ED0F23CD55D300255354 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ED0E23CD55D300255354 /* DatabaseManager.swift */; };
 		A511C1D823B5614900B9A771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1D723B5614900B9A771 /* AppDelegate.swift */; };
 		A511C1DA23B5614900B9A771 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1D923B5614900B9A771 /* SceneDelegate.swift */; };
 		A511C1DC23B5614900B9A771 /* ClientTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1DB23B5614900B9A771 /* ClientTableVC.swift */; };
@@ -65,6 +66,7 @@
 		6FD74C6245EC0055BC0D1877 /* Pods-Trile-TrileUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trile-TrileUITests.debug.xcconfig"; path = "Target Support Files/Pods-Trile-TrileUITests/Pods-Trile-TrileUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		76C1D35EF168B403F613D6CF /* Pods-Trile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trile.debug.xcconfig"; path = "Target Support Files/Pods-Trile/Pods-Trile.debug.xcconfig"; sourceTree = "<group>"; };
 		96E0535439E313AC71298BED /* Pods-Trile-TrileUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trile-TrileUITests.release.xcconfig"; path = "Target Support Files/Pods-Trile-TrileUITests/Pods-Trile-TrileUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A503ED0E23CD55D300255354 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		A511C1D423B5614900B9A771 /* Trile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A511C1D723B5614900B9A771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A511C1D923B5614900B9A771 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */,
+				A503ED0E23CD55D300255354 /* DatabaseManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				A5695B0023BEF0130010E40C /* CaseDetailsVC.swift in Sources */,
 				A511C1DC23B5614900B9A771 /* ClientTableVC.swift in Sources */,
 				A575E81F23BFB2DF00006A10 /* EditCaseDetailsVC.swift in Sources */,
+				A503ED0F23CD55D300255354 /* DatabaseManager.swift in Sources */,
 				A511C20D23B564CE00B9A771 /* Client.swift in Sources */,
 				A575E82323C00C9A00006A10 /* DocumentCollectionVC.swift in Sources */,
 				A575E88B23C5043900006A10 /* FeeApplicationVC.swift in Sources */,

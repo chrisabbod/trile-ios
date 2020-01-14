@@ -12,8 +12,11 @@ import FirebaseFirestore
 
 class ClientTableVC: UITableViewController {
     
+    let dbm = DatabaseManager()
+    
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
+    
     var clients = [Client]()
     
     let FILE_NUMBER_SEGUE = "goToFileNumberTableVC"
@@ -84,25 +87,7 @@ class ClientTableVC: UITableViewController {
     
     //MARK: Database CRUD Functions
     
-    func addClientToDatabase(_ client : Client) {
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        
-        let newID = clientRef.document().documentID
-        client.documentID = newID
-        
-        clientRef.document(newID).setData([
-            "name": client.name,
-            "document_id": client.documentID
-        ]) { (error) in
-            if let error = error {
-                print("Error writing document: \(error)")
-            } else {
-                print("New ID: \(newID)")
-                print("Document successfully written!")
-            }
-        }
-        
-    }
+
     
     func readClientsFromDatabase() {
         let clientRef = db.collection("users").document(uid).collection("clients")
@@ -152,7 +137,8 @@ class ClientTableVC: UITableViewController {
             if let name = textField.text {
                 newClient.name = name
                 
-                self.addClientToDatabase(newClient)
+                self.dbm.addClientToDatabase(newClient)
+                //self.addClientToDatabase(newClient)
                 self.readClientsFromDatabase()
             }
             
@@ -180,7 +166,8 @@ class ClientTableVC: UITableViewController {
             let newClient = Client()
             newClient.name = "Client " + String(i)
             
-            addClientToDatabase(newClient)
+            dbm.addClientToDatabase(newClient)
+            //addClientToDatabase(newClient)
         }
         readClientsFromDatabase()
     }
