@@ -75,7 +75,7 @@ class ClientTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        deleteClientFromDatabase(indexPath)
+        dbm.deleteClientFromDatabase(clients, indexPath)
         
         clients.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
@@ -97,11 +97,7 @@ class ClientTableVC: UITableViewController {
     
     //MARK: Database CRUD Functions
 
-    func deleteClientFromDatabase(_ indexPath: IndexPath) {
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let documentID = clients[indexPath.row].documentID
-        clientRef.document(documentID).delete()
-    }
+
     
     //MARK: Alert Dialog
     

@@ -60,4 +60,10 @@ class DatabaseManager {
         }
     }
     
+    func deleteClientFromDatabase(_ clientArray: [Client], _ indexPath: IndexPath) {
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let documentID = clientArray[indexPath.row].documentID
+        clientRef.document(documentID).delete()
+    }
+    
 }
