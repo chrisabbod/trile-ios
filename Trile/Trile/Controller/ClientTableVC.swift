@@ -20,20 +20,9 @@ class ClientTableVC: UITableViewController {
     var clients = [Client]()
     
     let FILE_NUMBER_SEGUE = "goToFileNumberTableVC"
-    
-    var testModeCounter: Int = 0
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        enableNavBarGestureRecognizer() //Enabled to allow userdebug options on tap
-        
-        dbm.readClientsFromDatabase(completion: { (clientArray, success) in
-            if success {
-                self.clients = clientArray
-                self.tableView.reloadData()
-            }
-        })
         
         navigationItem.leftBarButtonItem = editButtonItem
         
@@ -42,7 +31,7 @@ class ClientTableVC: UITableViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         dbm.readClientsFromDatabase(completion: { (clientArray, success) in
             if success {
                 self.clients = clientArray
@@ -132,77 +121,6 @@ class ClientTableVC: UITableViewController {
             textField = field
             field.placeholder = "Enter Client Name"
         }
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    //MARK: Test Functions
-    
-    @objc
-    func insertTestClients() {
-        for i in (1...5).reversed() {
-            let newClient = Client()
-            newClient.name = "Client " + String(i)
-            
-            dbm.addClientToDatabase(newClient)
-            //addClientToDatabase(newClient)
-        }
-        
-        dbm.readClientsFromDatabase(completion: { (clientArray, success) in
-            if success {
-                self.clients = clientArray
-                self.tableView.reloadData()
-            }
-        })
-    }
-    
-    @objc
-    func removeAllClients() {
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        
-        for client in clients {
-            clientRef.document(client.documentID).delete()
-        }
-        
-        clients.removeAll()
-        tableView.reloadData()
-    }
-    
-    func enableNavBarGestureRecognizer() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(countPresses))
-        self.navigationController?.navigationBar.addGestureRecognizer(tap)
-    }
-    
-    @objc
-    func countPresses() {
-        testModeCounter += 1
-        
-        if testModeCounter == 5 {
-            enableUserDebugModeAlertDialog()
-            testModeCounter = 0
-        }
-    }
-    
-    @objc
-    func enableUserDebugModeAlertDialog() {
-        let alert = UIAlertController(title: "Test Menu", message: "Enable Test Mode?", preferredStyle: .alert)
-        
-        let enableAction = UIAlertAction(title: "Enable", style: .default) { (action) in
-            let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
-            let addTestClientsButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.insertTestClients))
-            let removeClientsButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.removeAllClients))
-            
-            self.navigationItem.rightBarButtonItems = [addClientButton, addTestClientsButton, removeClientsButton]
-        }
-        
-        let disableAction = UIAlertAction(title: "Disable", style: .default) { (action) in
-            let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addClientAlertDialog(_:)))
-            
-            self.navigationItem.rightBarButtonItems = [addClientButton]
-        }
-        
-        alert.addAction(disableAction)
-        alert.addAction(enableAction)
         
         present(alert, animated: true, completion: nil)
     }
