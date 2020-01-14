@@ -52,4 +52,24 @@ class DocumentImageManager {
             completion(true)
         }
     }
+    
+    func downloadImagesFromStorage(_ documentArray: [Document], completion: @escaping ((_ success: Bool) -> Void)) {
+        //print("Document Passed To Array: \(documentArray.count)")
+        
+        for document in documentArray {
+            let storageRef = Storage.storage().reference(withPath: document.imagePath)
+            
+            storageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+                if let error = error {
+                    print("Error retrieving image data: \(error.localizedDescription)")
+                }
+                
+                if let data = data {
+                    document.imageData = data
+                    print("Document: \(document.documentID) Total Image Data => \(document.imageData)")
+                }
+                completion(true)
+            }
+        }
+    }
 }

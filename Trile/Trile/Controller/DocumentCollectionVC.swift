@@ -89,9 +89,8 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     func loadDocuments() {
         readDocumentsFromDatabase() { (success) in
             if success {
-                self.downloadImagesFromStorage(self.documents) { (success) in
+                self.imageManager.downloadImagesFromStorage(self.documents) { (success) in
                     if success {
-                        print("Success")
                         self.documentCollectionView.reloadData()
                     } else {
                         print("Failure")
@@ -158,25 +157,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     //MARK: Image Functions
     
     
-    func downloadImagesFromStorage(_ documentArray: [Document], completion: @escaping ((_ success: Bool) -> Void)) {
-        //print("Document Passed To Array: \(documentArray.count)")
-        
-        for document in documentArray {
-            let storageRef = Storage.storage().reference(withPath: document.imagePath)
-            
-            storageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
-                if let error = error {
-                    print("Error retrieving image data: \(error.localizedDescription)")
-                }
-                
-                if let data = data {
-                    document.imageData = data
-                    print("Document: \(document.documentID) Total Image Data => \(document.imageData)")
-                }
-                completion(true)
-            }
-        }
-    }
+
     
     func deleteDocumentFromStorage(_ indexPath: IndexPath, completion: @escaping ((_ success: Bool) -> Void)) {
         let storageRef = Storage.storage().reference()
