@@ -27,8 +27,19 @@ class FileNumberTableVC: UITableViewController {
                 
         let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFileNumberAlertDialog(_:)))
         navigationItem.rightBarButtonItem = addFileNumberButton
-        
-        readFileNumbersFromDatabase()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let client = self.selectedClient {
+            self.dbm.readFileNumbersFromDatabase(client) { (fileNumberArray, success) in
+                if success {
+                    self.fileNumbers = fileNumberArray
+                    self.tableView.reloadData()
+                } else {
+                    print("Unable to read file number data from database")
+                }
+            }
+        }
     }
     
     // MARK: Table View
@@ -100,33 +111,7 @@ class FileNumberTableVC: UITableViewController {
     
 
     
-    func readFileNumbersFromDatabase() {
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
-        let fileNumberRef = db.collection("users").document(uid).collection("clients").document(clientDocumentID).collection("file_numbers")
-        
-        //File Numbers are completely removed and replaced in the array. Write this better in the future.
-        fileNumbers.removeAll()
-        
-        fileNumberRef.getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    //print("\(document.documentID) => \(document.data())")
-                    let newFileNumber = FileNumber()
-                    
-                    if let assignedFileNumber = document.get("assigned_file_number") {
-                        newFileNumber.assignedFileNumber = assignedFileNumber as! String
-                    }
-                    
-                    let id = document.documentID
-                    newFileNumber.documentID = id
-                    self.fileNumbers.append(newFileNumber)
-                }
-                self.tableView.reloadData()
-            }
-        }
-    }
+
     
     func deleteFileNumberFromDatabase(_ indexPath: IndexPath) {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
@@ -151,8 +136,15 @@ class FileNumberTableVC: UITableViewController {
                 
                 if let client = self.selectedClient {
                     self.dbm.addFileNumberToDatabase(client, newFileNumber)
+                    self.dbm.readFileNumbersFromDatabase(client) { (fileNumberArray, success) in
+                        if success {
+                            self.fileNumbers = fileNumberArray
+                            self.tableView.reloadData()
+                        } else {
+                            print("Unable to read file number data from database")
+                        }
+                    }
                 }
-                self.readFileNumbersFromDatabase()
             }
         }
         

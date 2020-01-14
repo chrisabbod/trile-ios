@@ -100,11 +100,12 @@ class ClientTableVC: UITableViewController {
                 newClient.name = name
                 
                 self.dbm.addClientToDatabase(newClient)
-                //self.addClientToDatabase(newClient)
                 self.dbm.readClientsFromDatabase(completion: { (clientArray, success) in
                     if success {
                         self.clients = clientArray
                         self.tableView.reloadData()
+                    } else {
+                        print("Unable to read client data from database")
                     }
                 })
             }

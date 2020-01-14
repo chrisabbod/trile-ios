@@ -90,4 +90,32 @@ class DatabaseManager {
         }
         
     }
+    
+    func readFileNumbersFromDatabase(_ client: Client, completion: @escaping ((_ fileNumberArray: [FileNumber], _ success: Bool) -> Void)) {
+        
+        let clientDocumentID = client.documentID
+        let fileNumberRef = db.collection("users").document(uid).collection("clients").document(clientDocumentID).collection("file_numbers")
+        
+        var fileNumberArray = [FileNumber]()
+        
+        fileNumberRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data())")
+                    let newFileNumber = FileNumber()
+                    
+                    if let assignedFileNumber = document.get("assigned_file_number") {
+                        newFileNumber.assignedFileNumber = assignedFileNumber as! String
+                    }
+                    
+                    let id = document.documentID
+                    newFileNumber.documentID = id
+                    fileNumberArray.append(newFileNumber)
+                }
+                completion(fileNumberArray, true)
+            }
+        }
+    }
 }
