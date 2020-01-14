@@ -66,7 +66,9 @@ class FileNumberTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        deleteFileNumberFromDatabase(indexPath)
+        if let client = selectedClient {
+            dbm.deleteFileNumberFromDatabase(client, fileNumbers, indexPath)
+        }
         
         fileNumbers.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
@@ -105,19 +107,6 @@ class FileNumberTableVC: UITableViewController {
             destinationClientDetailsVC?.selectedClient = selectedClient
             destinationClientDetailsVC?.selectedFileNumber = fileNumbers[indexPath.row]
         }
-    }
-    
-    //MARK: Database CRUD Functions
-    
-
-    
-
-    
-    func deleteFileNumberFromDatabase(_ indexPath: IndexPath) {
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
-        let fileNumberRef = db.collection("users").document(uid).collection("clients").document(clientDocumentID).collection("file_numbers")
-        let fileNumberDocumentID = fileNumbers[indexPath.row].documentID
-        fileNumberRef.document(fileNumberDocumentID).delete()
     }
     
     //MARK: Alert Dialog

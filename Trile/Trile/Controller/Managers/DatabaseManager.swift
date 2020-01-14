@@ -118,4 +118,11 @@ class DatabaseManager {
             }
         }
     }
+    
+    func deleteFileNumberFromDatabase(_ client: Client, _ fileNumberArray: [FileNumber], _ indexPath: IndexPath) {
+        let clientDocumentID = client.documentID
+        let fileNumberRef = db.collection("users").document(uid).collection("clients").document(clientDocumentID).collection("file_numbers")
+        let fileNumberDocumentID = fileNumberArray[indexPath.row].documentID
+        fileNumberRef.document(fileNumberDocumentID).delete()
+    }
 }
