@@ -33,7 +33,6 @@ class DatabaseManager {
                 print("Document successfully written!")
             }
         }
-        
     }
     
     func readClientsFromDatabase(completion: @escaping ((_ clientArray: [Client], _ success: Bool) -> Void)) {
@@ -88,7 +87,6 @@ class DatabaseManager {
                 print("Document successfully written!")
             }
         }
-        
     }
     
     func readFileNumbersFromDatabase(_ client: Client, completion: @escaping ((_ fileNumberArray: [FileNumber], _ success: Bool) -> Void)) {
@@ -152,6 +150,44 @@ class DatabaseManager {
                 print("Document successfully written!")
             }
         }
+    }
+    
+    func readDocumentsFromDatabase(_ client: Client, _ fileNumber: FileNumber, completion: @escaping ((_ documentArray: [Document], _ success: Bool) -> Void)) {
         
+        let clientDocumentID = client.documentID
+        let fileNumberDocumentID = fileNumber.documentID
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
+        
+        var documentArray = [Document]()
+        
+        documentRef.getDocuments() { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data())")
+                    let newDocument = Document()
+                    
+                    if let documentID = document.get("document_id") {
+                        newDocument.documentID = documentID as! String
+                    }
+                    
+                    if let uuid = document.get("uuid") {
+                        newDocument.uuid = uuid as! String
+                    }
+                    
+                    if let imagePath = document.get("image_path") {
+                        newDocument.imagePath = imagePath as! String
+                    }
+                    
+                    documentArray.append(newDocument)
+                }
+                completion(documentArray, true)
+            }
+        }
     }
 }

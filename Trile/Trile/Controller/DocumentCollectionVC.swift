@@ -87,60 +87,26 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     //MARK: Load Documents
     
     func loadDocuments() {
-        readDocumentsFromDatabase() { (success) in
-            if success {
-                self.imageManager.downloadImagesFromStorage(self.documents) { (success) in
-                    if success {
-                        self.documentCollectionView.reloadData()
-                    } else {
-                        print("Failure")
+        if let client = selectedClient, let fileNumber = selectedFileNumber {
+            dbm.readDocumentsFromDatabase(client, fileNumber) { (documentArray, success) in
+                if success {
+                    self.documents = documentArray
+                    
+                    self.imageManager.downloadImagesFromStorage(self.documents) { (success) in
+                        if success {
+                            self.documentCollectionView.reloadData()
+                        } else {
+                            print("Failure")
+                        }
                     }
+                } else {
+                    print("No documents returned from database")
                 }
-            } else {
-                print("No documents returned from database")
             }
         }
     }
     
     //MARK: Database CRUD Functions
-    
-
-    
-    func readDocumentsFromDatabase(completion: @escaping ((_ success: Bool) -> Void)) {
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
-        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
-        
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
-        
-        documentRef.getDocuments() { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
-                self.documents.removeAll()
-                for document in querySnapshot!.documents {
-                    //print("\(document.documentID) => \(document.data())")
-                    let newDocument = Document()
-                    
-                    if let documentID = document.get("document_id") {
-                        newDocument.documentID = documentID as! String
-                    }
-                    
-                    if let uuid = document.get("uuid") {
-                        newDocument.uuid = uuid as! String
-                    }
-                    
-                    if let imagePath = document.get("image_path") {
-                        newDocument.imagePath = imagePath as! String
-                    }
-                    
-                    self.documents.append(newDocument)
-                }
-                completion(true)
-            }
-        }
-    }
     
     func deleteDocumentFromDatabase(_ indexPath: IndexPath) {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
