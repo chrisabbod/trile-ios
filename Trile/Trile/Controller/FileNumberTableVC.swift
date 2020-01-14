@@ -15,6 +15,8 @@ class FileNumberTableVC: UITableViewController {
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
+    let dbm = DatabaseManager()
+    
     let TAB_SEGUE = "goToTabBarVC"
     
     var selectedClient: Client?
@@ -100,26 +102,7 @@ class FileNumberTableVC: UITableViewController {
     
     //MARK: Database CRUD Functions
     
-    func addFileNumberToDatabase(_ fileNumber : FileNumber) {
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
-        let fileNumberRef = db.collection("users").document(uid).collection("clients").document(clientDocumentID).collection("file_numbers")
-        let newID = fileNumberRef.document().documentID
-        
-        fileNumber.documentID = newID
-        
-        fileNumberRef.document(newID).setData([
-            "assigned_file_number": fileNumber.assignedFileNumber,
-            "document_id": fileNumber.documentID
-        ]) { (error) in
-            if let error = error {
-                print("Error writing document: \(error)")
-            } else {
-                print("New ID: \(newID)")
-                print("Document successfully written!")
-            }
-        }
-        
-    }
+
     
     func readFileNumbersFromDatabase() {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
@@ -169,7 +152,10 @@ class FileNumberTableVC: UITableViewController {
             
             if let newAssignedFileNumber = textField.text {
                 newFileNumber.assignedFileNumber = newAssignedFileNumber
-                self.addFileNumberToDatabase(newFileNumber)
+                
+                if let client = self.selectedClient {
+                    self.dbm.addFileNumberToDatabase(client, newFileNumber)
+                }
                 self.readFileNumbersFromDatabase()
             }
         }
@@ -196,7 +182,7 @@ class FileNumberTableVC: UITableViewController {
             let newFileNumber = FileNumber()
             newFileNumber.assignedFileNumber = "Filenumber " + String(i)
             
-            addFileNumberToDatabase(newFileNumber)
+            dbm.addFileNumberToDatabase(self.selectedClient!, newFileNumber)
         }
         readFileNumbersFromDatabase()
     }

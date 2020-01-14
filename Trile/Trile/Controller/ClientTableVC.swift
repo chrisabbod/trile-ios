@@ -95,10 +95,6 @@ class ClientTableVC: UITableViewController {
         }
     }
     
-    //MARK: Database CRUD Functions
-
-
-    
     //MARK: Alert Dialog
     
     @objc
