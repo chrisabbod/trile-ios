@@ -22,6 +22,8 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
+    let dbm = DatabaseManager()
+    
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
@@ -102,32 +104,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     //MARK: Database CRUD Functions
     
-    func addDocumentToDatabase(_ document: Document) {
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
-        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
-        
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
-        
-        let newID = documentRef.document().documentID
-        
-        let documentData = [
-            "document_id": newID,
-            "uuid": document.uuid,
-            "image_path": document.imagePath,
-            "image_data": document.imageData
-            ] as [String : Any]
-        
-        documentRef.document(newID).setData(documentData, merge: true) { (error) in
-            if let error = error {
-                print("Error writing document: \(error)")
-            } else {
-                print("Document successfully written!")
-            }
-        }
-        
-    }
+
     
     func readDocumentsFromDatabase(completion: @escaping ((_ success: Bool) -> Void)) {
         guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
@@ -204,7 +181,10 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
             newDocument.imagePath = imagePath
             newDocument.imageData = imageData
             
-            self.addDocumentToDatabase(newDocument)
+            if let client = self.selectedClient, let fileNumber = self.selectedFileNumber {
+                self.dbm.addDocumentToDatabase(client, fileNumber, newDocument)
+            }
+
             if let error = error {
                 print("Error uploading data: \(error.localizedDescription)")
                 return

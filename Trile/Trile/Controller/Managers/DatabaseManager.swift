@@ -125,4 +125,33 @@ class DatabaseManager {
         let fileNumberDocumentID = fileNumberArray[indexPath.row].documentID
         fileNumberRef.document(fileNumberDocumentID).delete()
     }
+    
+    //MARK: - Document Functions
+    
+    func addDocumentToDatabase(_ client: Client, _ fileNumber: FileNumber, _ document: Document) {
+        let clientDocumentID = client.documentID
+        let fileNumberDocumentID = fileNumber.documentID
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
+        
+        let newID = documentRef.document().documentID
+        
+        let documentData: [String: Any] = [
+            "document_id": newID,
+            "uuid": document.uuid,
+            "image_path": document.imagePath,
+            "image_data": document.imageData
+            ]
+        
+        documentRef.document(newID).setData(documentData, merge: true) { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        
+    }
 }
