@@ -51,42 +51,18 @@ class EditCaseDetailsVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        readCaseDataFromDatabase()
+        if let client = selectedClient, let fileNumber = selectedFileNumber {
+            dbm.readCaseDataFromDatabase(client, fileNumber) { (caseData, success) in
+                self.readCaseData(from: caseData)
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         saveCaseData()
     }
 
-    //MARK: Database CRUD Functions
-    
-    func readCaseDataFromDatabase() {
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
-        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
-        
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-
-        let query = fileNumberRef.whereField("document_id", isEqualTo: fileNumberDocumentID as Any)
-
-        query.getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    //print("\(document.documentID) => \(document.data())")
-                    let documentData: [String: Any] = document.data()
-                    
-                    self.readCaseData(from: documentData)
-                }
-            }
-        }
-        
-    }
-    
-
-    
-    //MARK: Read Client Data
+    //MARK: Read Case Data
     
     func readCaseData(from data: [String: Any]) {
         

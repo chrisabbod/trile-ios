@@ -143,6 +143,30 @@ class DatabaseManager {
         
     }
     
+    func readCaseDataFromDatabase(_ client: Client, _ fileNumber: FileNumber, completion: @escaping ((_ documentData: [String: Any], _ success: Bool) -> Void)) {
+        
+        let clientDocumentID = client.documentID
+        let fileNumberDocumentID = fileNumber.documentID
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+
+        let query = fileNumberRef.whereField("document_id", isEqualTo: fileNumberDocumentID as Any)
+
+        query.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data())")
+                    let documentData: [String: Any] = document.data()
+                    completion(documentData, true)
+                }
+            }
+        }
+        
+    }
+    
     //MARK: Document Functions
     
     func addDocumentToDatabase(_ client: Client, _ fileNumber: FileNumber, _ document: Document) {
