@@ -99,48 +99,4 @@ class ClientTableVC: UITableViewController {
         }
     }
     
-    //MARK: Alert Dialog
-//
-//    @objc
-//    func addClientAlertDialog(_ sender: UIBarButtonItem) {
-//
-//        var textField = UITextField()
-//
-//        let alert = UIAlertController(title: "Add New Client", message: "Enter Client Name", preferredStyle: .alert)
-//        let addClientAction = UIAlertAction(title: "Add", style: .default) { (action) in
-//
-//            let newClient = Client()
-//
-//            if let name = textField.text {
-//                newClient.name = name
-//
-//                self.dbm.addClientToDatabase(newClient)
-//                self.dbm.readClientsFromDatabase(completion: { (clientArray, success) in
-//                    if success {
-//                        self.clients = clientArray
-//                        self.tableView.reloadData()
-//                    } else {
-//                        print("Unable to read client data from database")
-//                    }
-//                })
-//            }
-//
-//        }
-//
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
-//            print("No client added")
-//        }
-//
-//        alert.addAction(cancelAction)
-//        alert.addAction(addClientAction)
-//        alert.addTextField { (field) in
-//            textField = field
-//            field.placeholder = "Enter Client Name"
-//        }
-//
-//        present(alert, animated: true, completion: nil)
-//    }
-    
 }
-
-

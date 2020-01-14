@@ -16,6 +16,7 @@ class FileNumberTableVC: UITableViewController {
     let uid: String = Auth.auth().currentUser!.uid
     
     let dbm = DatabaseManager()
+    let alert = AlertPresenterManager()
     
     let TAB_SEGUE = "goToTabBarVC"
     
@@ -25,7 +26,7 @@ class FileNumberTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFileNumberAlertDialog(_:)))
+        let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFileNumberButton(_:)))
         navigationItem.rightBarButtonItem = addFileNumberButton
     }
     
@@ -37,6 +38,22 @@ class FileNumberTableVC: UITableViewController {
                     self.tableView.reloadData()
                 } else {
                     print("Unable to read file number data from database")
+                }
+            }
+        }
+    }
+    
+    //MARK: Bar Button Functions
+    
+    @objc
+    func addFileNumberButton(_ sender: UIBarButtonItem) {
+        if let client = selectedClient {
+            alert.addFileNumberAlertDialog(fromViewController: self, withClient: client) { (fileNumberArray, success) in
+                if success {
+                    self.fileNumbers = fileNumberArray
+                    self.tableView.reloadData()
+                } else {
+                    print("Unable to present alert")
                 }
             }
         }
@@ -109,45 +126,4 @@ class FileNumberTableVC: UITableViewController {
         }
     }
     
-    //MARK: Alert Dialog
-    
-    @objc
-    func addFileNumberAlertDialog(_ sender: UIBarButtonItem) {
-        
-        var textField = UITextField()
-        
-        let alert = UIAlertController(title: "Add New File Number", message: "Enter File Number", preferredStyle: .alert)
-        let addFileNumberAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            let newFileNumber = FileNumber()
-            
-            if let newAssignedFileNumber = textField.text {
-                newFileNumber.assignedFileNumber = newAssignedFileNumber
-                
-                if let client = self.selectedClient {
-                    self.dbm.addFileNumberToDatabase(client, newFileNumber)
-                    self.dbm.readFileNumbersFromDatabase(client) { (fileNumberArray, success) in
-                        if success {
-                            self.fileNumbers = fileNumberArray
-                            self.tableView.reloadData()
-                        } else {
-                            print("Unable to read file number data from database")
-                        }
-                    }
-                }
-            }
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
-            print("No file number added")
-        }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(addFileNumberAction)
-        alert.addTextField { (field) in
-            textField = field
-            field.placeholder = "Enter File Number"
-        }
-        
-        present(alert, animated: true, completion: nil)
-    }
 }
