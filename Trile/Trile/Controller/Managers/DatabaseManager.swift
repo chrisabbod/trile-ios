@@ -190,4 +190,17 @@ class DatabaseManager {
             }
         }
     }
+    
+    func deleteDocumentFromDatabase(_ client: Client, _ fileNumber: FileNumber, _ documentArray: [Document], _ indexPath: IndexPath) {
+        let clientDocumentID = client.documentID
+        let fileNumberDocumentID = fileNumber.documentID
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
+        
+        let documentID = documentArray[indexPath.item].documentID
+        documentRef.document(documentID).delete()
+    }
+    
 }

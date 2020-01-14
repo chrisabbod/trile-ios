@@ -105,21 +105,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
             }
         }
     }
-    
-    //MARK: Database CRUD Functions
-    
-    func deleteDocumentFromDatabase(_ indexPath: IndexPath) {
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
-        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
-        
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-        let documentRef = fileNumberRef.document(fileNumberDocumentID).collection("documents")
-        
-        let documentID = documents[indexPath.item].documentID
-        documentRef.document(documentID).delete()
-    }
-    
+
     //MARK: Collectionview Functions
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -192,7 +178,12 @@ extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
         let deleteDocumentAction = UIAlertAction(title: "Delete", style: .default) { (action) in
             
             self.imageManager.deleteDocumentFromStorage(self.documents, indexPath) { (success) in
-                self.deleteDocumentFromDatabase(indexPath)
+                
+                if let client = self.selectedClient, let fileNumber = self.selectedFileNumber {
+                    self.dbm.deleteDocumentFromDatabase(client, fileNumber, self.documents, indexPath)
+
+                }
+                
                 self.documents.remove(at: indexPath.item)
                 self.documentCollectionView.reloadData()
             }
