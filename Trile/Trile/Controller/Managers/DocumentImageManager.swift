@@ -72,4 +72,19 @@ class DocumentImageManager {
             }
         }
     }
+    
+    func deleteDocumentFromStorage(_ documentArray: [Document], _ indexPath: IndexPath, completion: @escaping ((_ success: Bool) -> Void)) {
+        let storageRef = Storage.storage().reference()
+        
+        let imagePath = storageRef.child(documentArray[indexPath.item].imagePath)
+        
+        imagePath.delete { error in
+            if let error = error {
+                print("Problem deleting file from storage \(error.localizedDescription)")
+            } else {
+                print("File deleted successfully")
+                completion(true)
+            }
+        }
+    }
 }

@@ -154,26 +154,6 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         documentRef.document(documentID).delete()
     }
     
-    //MARK: Image Functions
-    
-    
-
-    
-    func deleteDocumentFromStorage(_ indexPath: IndexPath, completion: @escaping ((_ success: Bool) -> Void)) {
-        let storageRef = Storage.storage().reference()
-        
-        let imagePath = storageRef.child(documents[indexPath.item].imagePath)
-        
-        imagePath.delete { error in
-            if let error = error {
-                print("Problem deleting file from storage \(error.localizedDescription)")
-            } else {
-                print("File deleted successfully")
-                completion(true)
-            }
-        }
-    }
-    
     //MARK: Collectionview Functions
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -245,7 +225,7 @@ extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
         let alert = UIAlertController(title: "Delete Document", message: "Would you like to delete this document?", preferredStyle: .alert)
         let deleteDocumentAction = UIAlertAction(title: "Delete", style: .default) { (action) in
             
-            self.deleteDocumentFromStorage(indexPath) { (success) in
+            self.imageManager.deleteDocumentFromStorage(self.documents, indexPath) { (success) in
                 self.deleteDocumentFromDatabase(indexPath)
                 self.documents.remove(at: indexPath.item)
                 self.documentCollectionView.reloadData()
