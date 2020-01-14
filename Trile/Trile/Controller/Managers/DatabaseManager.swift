@@ -15,7 +15,7 @@ class DatabaseManager {
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
 
-    //MARK: - Client Functions
+    //MARK: Client Functions
     
     func addClientToDatabase(_ client : Client) {
         let clientRef = db.collection("users").document(uid).collection("clients")
@@ -67,7 +67,7 @@ class DatabaseManager {
         clientRef.document(documentID).delete()
     }
     
-    //MARK: - File Number Functions
+    //MARK: File Number Functions
     
     func addFileNumberToDatabase(_ client: Client, _ fileNumber : FileNumber) {
         let clientDocumentID = client.documentID
@@ -124,7 +124,26 @@ class DatabaseManager {
         fileNumberRef.document(fileNumberDocumentID).delete()
     }
     
-    //MARK: - Document Functions
+    //MARK: Case Functions
+    
+    func addCaseDataToDatabase(_ client: Client, _ fileNumber: FileNumber, _ caseData: [String: Any]) {
+        let clientDocumentID = client.documentID
+        let fileNumberDocumentID = fileNumber.documentID
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+        
+        fileNumberRef.document(fileNumberDocumentID).setData(caseData, merge: true) { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        
+    }
+    
+    //MARK: Document Functions
     
     func addDocumentToDatabase(_ client: Client, _ fileNumber: FileNumber, _ document: Document) {
         let clientDocumentID = client.documentID

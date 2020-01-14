@@ -252,10 +252,10 @@
 		A5D6D8D523B872A100F16E27 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */,
+				A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */,
 				A503ED0E23CD55D300255354 /* DatabaseManager.swift */,
 				A54DC82D23CE747600E09567 /* DocumentImageManager.swift */,
-				A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */,
+				A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";

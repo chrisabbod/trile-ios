@@ -39,6 +39,8 @@ class EditCaseDetailsVC: UIViewController {
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
+    let dbm = DatabaseManager()
+    
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
@@ -82,22 +84,7 @@ class EditCaseDetailsVC: UIViewController {
         
     }
     
-    func addCaseDataToDatabase(_ caseData: [String: Any]) {
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
-        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
-        
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-        
-        fileNumberRef.document(fileNumberDocumentID).setData(caseData, merge: true) { (error) in
-            if let error = error {
-                print("Error writing document: \(error)")
-            } else {
-                print("Document successfully written!")
-            }
-        }
-        
-    }
+
     
     //MARK: Read Client Data
     
@@ -261,7 +248,9 @@ class EditCaseDetailsVC: UIViewController {
             caseDataArray["time_out_of_court_minutes"] = timeOutOfCourtMinutes
         }
         
-        addCaseDataToDatabase(caseDataArray)
+        if let client = selectedClient, let fileNumber = selectedFileNumber {
+            dbm.addCaseDataToDatabase(client, fileNumber, caseDataArray)
+        }
     }
     
     //MARK: UI Beautification Functions
