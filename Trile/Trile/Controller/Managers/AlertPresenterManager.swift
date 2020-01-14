@@ -12,7 +12,7 @@ class AlertPresenterManager {
     
     let dbm = DatabaseManager()
     
-    func addClientAlertDialog(fromViewController vc : UITableViewController, completion: @escaping ((_ clientArray: [Client], _ success: Bool) -> Void)) {
+    func addClientAlertDialog(fromViewController vc : UIViewController, completion: @escaping ((_ clientArray: [Client], _ success: Bool) -> Void)) {
         
         var textField = UITextField()
         
@@ -50,7 +50,7 @@ class AlertPresenterManager {
         vc.present(alert, animated: true, completion: nil)
     }
         
-    func addFileNumberAlertDialog(fromViewController vc : UITableViewController, withClient client: Client, completion: @escaping ((_ fileNumberArray: [FileNumber], _ success: Bool) -> Void)) {
+    func addFileNumberAlertDialog(fromViewController vc : UIViewController, withClient client: Client, completion: @escaping ((_ fileNumberArray: [FileNumber], _ success: Bool) -> Void)) {
         
         var textField = UITextField()
         
