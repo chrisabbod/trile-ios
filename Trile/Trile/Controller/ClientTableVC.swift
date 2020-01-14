@@ -13,6 +13,7 @@ import FirebaseFirestore
 class ClientTableVC: UITableViewController {
     
     let dbm = DatabaseManager()
+    let alert = AlertPresenterManager()
     
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
@@ -26,7 +27,7 @@ class ClientTableVC: UITableViewController {
         
         navigationItem.leftBarButtonItem = editButtonItem
         
-        let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientAlertDialog(_:)))
+        let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientButton(_:)))
         navigationItem.rightBarButtonItem = addClientButton
         
     }
@@ -38,6 +39,20 @@ class ClientTableVC: UITableViewController {
                 self.tableView.reloadData()
             }
         })
+    }
+    
+    //Mark: Bar Buttons
+    
+    @objc
+    func addClientButton(_ sender: UIBarButtonItem) {
+        alert.addClientAlertDialog(fromViewController: self) { (clientArray, success) in
+            if success {
+                self.clients = clientArray
+                self.tableView.reloadData()
+            } else {
+                print("Unable to present alert")
+            }
+        }
     }
     
     // MARK: Table View
@@ -85,46 +100,46 @@ class ClientTableVC: UITableViewController {
     }
     
     //MARK: Alert Dialog
-    
-    @objc
-    func addClientAlertDialog(_ sender: UIBarButtonItem) {
-        
-        var textField = UITextField()
-        
-        let alert = UIAlertController(title: "Add New Client", message: "Enter Client Name", preferredStyle: .alert)
-        let addClientAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            
-            let newClient = Client()
-            
-            if let name = textField.text {
-                newClient.name = name
-                
-                self.dbm.addClientToDatabase(newClient)
-                self.dbm.readClientsFromDatabase(completion: { (clientArray, success) in
-                    if success {
-                        self.clients = clientArray
-                        self.tableView.reloadData()
-                    } else {
-                        print("Unable to read client data from database")
-                    }
-                })
-            }
-            
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
-            print("No client added")
-        }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(addClientAction)
-        alert.addTextField { (field) in
-            textField = field
-            field.placeholder = "Enter Client Name"
-        }
-        
-        present(alert, animated: true, completion: nil)
-    }
+//
+//    @objc
+//    func addClientAlertDialog(_ sender: UIBarButtonItem) {
+//
+//        var textField = UITextField()
+//
+//        let alert = UIAlertController(title: "Add New Client", message: "Enter Client Name", preferredStyle: .alert)
+//        let addClientAction = UIAlertAction(title: "Add", style: .default) { (action) in
+//
+//            let newClient = Client()
+//
+//            if let name = textField.text {
+//                newClient.name = name
+//
+//                self.dbm.addClientToDatabase(newClient)
+//                self.dbm.readClientsFromDatabase(completion: { (clientArray, success) in
+//                    if success {
+//                        self.clients = clientArray
+//                        self.tableView.reloadData()
+//                    } else {
+//                        print("Unable to read client data from database")
+//                    }
+//                })
+//            }
+//
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+//            print("No client added")
+//        }
+//
+//        alert.addAction(cancelAction)
+//        alert.addAction(addClientAction)
+//        alert.addTextField { (field) in
+//            textField = field
+//            field.placeholder = "Enter Client Name"
+//        }
+//
+//        present(alert, animated: true, completion: nil)
+//    }
     
 }
 
