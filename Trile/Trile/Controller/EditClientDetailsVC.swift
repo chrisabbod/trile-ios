@@ -53,7 +53,11 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        readClientDataFromDatabase()
+        if let client = selectedClient {
+            dbm.readClientDataFromDatabase(client) { (documentData, success) in
+                self.readClientData(from: documentData)
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -73,29 +77,6 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
         //imageView.image = info[.originalImage] as? UIImage
-    }
-    
-    //MARK: - Database CRUD Functions
-    
-
-    
-    func readClientDataFromDatabase() {
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let clientDocumentID = selectedClient?.documentID
-        let query = clientRef.whereField("document_id", isEqualTo: clientDocumentID as Any)
-        
-        query.getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    //print("\(document.documentID) => \(document.data())")
-                    let documentData: [String: Any] = document.data()
-                    
-                    self.readClientData(from: documentData)
-                }
-            }
-        }
     }
     
     //MARK: Read Client Data
