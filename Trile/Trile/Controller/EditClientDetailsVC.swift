@@ -39,6 +39,8 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
+    let dbm = DatabaseManager()
+    
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
@@ -75,19 +77,7 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     
     //MARK: - Database CRUD Functions
     
-    func addClientDataToDatabase(_ clientData: [String: Any]) {
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID") }
-        
-        clientRef.document(clientDocumentID).setData(clientData, merge: true) { (error) in
-            if let error = error {
-                print("Error writing document: \(error)")
-            } else {
-                print("Document successfully written!")
-            }
-        }
-        
-    }
+
     
     func readClientDataFromDatabase() {
         let clientRef = db.collection("users").document(uid).collection("clients")
@@ -245,7 +235,9 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
             clientDataArray["total_other_occupants"] = totalOtherOccupants
         }
         
-        addClientDataToDatabase(clientDataArray)
+        if let client = selectedClient {
+            dbm.addClientDataToDatabase(client, clientDataArray)
+        }
     }
     
     //MARK: UI Beautification Functions

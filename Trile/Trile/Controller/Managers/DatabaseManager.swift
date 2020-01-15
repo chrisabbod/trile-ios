@@ -35,25 +35,6 @@ class DatabaseManager {
         }
     }
     
-    func readClientDataFromDatabase(_ client: Client, completion: @escaping ((_ documentData: [String: Any], _ success: Bool) -> Void)) {
-        
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let clientDocumentID = client.documentID
-        let query = clientRef.whereField("document_id", isEqualTo: clientDocumentID as Any)
-        
-        query.getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    //print("\(document.documentID) => \(document.data())")
-                    let documentData: [String: Any] = document.data()
-                    completion(documentData, true)
-                }
-            }
-        }
-    }
-    
     func readClientsFromDatabase(completion: @escaping ((_ clientArray: [Client], _ success: Bool) -> Void)) {
         let clientRef = db.collection("users").document(uid).collection("clients")
         
@@ -84,6 +65,41 @@ class DatabaseManager {
         let clientRef = db.collection("users").document(uid).collection("clients")
         let documentID = clientArray[indexPath.row].documentID
         clientRef.document(documentID).delete()
+    }
+    
+    //Mark: Client Data Functions
+    
+    func addClientDataToDatabase(_ client: Client, _ clientData: [String: Any]) {
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let clientDocumentID = client.documentID
+        
+        clientRef.document(clientDocumentID).setData(clientData, merge: true) { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        
+    }
+    
+    func readClientDataFromDatabase(_ client: Client, completion: @escaping ((_ documentData: [String: Any], _ success: Bool) -> Void)) {
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let clientDocumentID = client.documentID
+        let query = clientRef.whereField("document_id", isEqualTo: clientDocumentID as Any)
+        
+        query.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data())")
+                    let documentData: [String: Any] = document.data()
+                    completion(documentData, true)
+                }
+            }
+        }
     }
         
     //MARK: File Number Functions
