@@ -16,6 +16,8 @@ class FirebaseStorageManager {
     
     let uid: String = Auth.auth().currentUser!.uid
     
+    //MARK: Client Functions
+    
     func uploadClientImageToStorage(_ client: Client, _ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
         
         let clientDocumentID = client.documentID
@@ -58,6 +60,8 @@ class FirebaseStorageManager {
             completion(true)
         }
     }
+    
+    //MARK: Document Functions
     
     func uploadImageToStorage(_ client: Client, _ fileNumber: FileNumber, _ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
         

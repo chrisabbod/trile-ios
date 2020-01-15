@@ -85,6 +85,8 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
             return
         }
         
+        clientPictureImageView.image = image
+        
         if let client = selectedClient {
             imageManager.uploadClientImageToStorage(client, image) { (success) in
                 if success {
