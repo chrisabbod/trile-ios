@@ -12,13 +12,13 @@ import FirebaseFirestore
 
 class DatabaseManagerTests: XCTestCase {
 
-    var sut: DatabaseManager!
+    var sut: FirebaseFirestoreManager!
     
     var db = Firestore.firestore()
     
     override func setUp() {
         super.setUp()
-        sut = DatabaseManager()
+        sut = FirebaseFirestoreManager()
     }
 
     override func tearDown() {

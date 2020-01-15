@@ -39,7 +39,7 @@ class EditCaseDetailsVC: UIViewController {
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
-    let dbm = DatabaseManager()
+    let dbm = FirebaseFirestoreManager()
     
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?

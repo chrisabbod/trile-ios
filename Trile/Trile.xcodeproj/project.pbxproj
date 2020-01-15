@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		00BBADF29BE5AA61100B20E2 /* Pods_Trile_TrileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19949E97720383ACDD45D9CA /* Pods_Trile_TrileUITests.framework */; };
 		1E7CA50D2D2EAA744DF1D809 /* Pods_TrileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E8E7CB43957ED6FC4D061A /* Pods_TrileTests.framework */; };
-		A503ED0F23CD55D300255354 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ED0E23CD55D300255354 /* DatabaseManager.swift */; };
+		A503ED0F23CD55D300255354 /* FirebaseFirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ED0E23CD55D300255354 /* FirebaseFirestoreManager.swift */; };
 		A511C1D823B5614900B9A771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1D723B5614900B9A771 /* AppDelegate.swift */; };
 		A511C1DA23B5614900B9A771 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1D923B5614900B9A771 /* SceneDelegate.swift */; };
 		A511C1DC23B5614900B9A771 /* ClientTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1DB23B5614900B9A771 /* ClientTableVC.swift */; };
@@ -19,7 +19,7 @@
 		A511C1FC23B5614E00B9A771 /* TrileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1FB23B5614E00B9A771 /* TrileUITests.swift */; };
 		A511C20D23B564CE00B9A771 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C20C23B564CE00B9A771 /* Client.swift */; };
 		A54DC82C23CE302000E09567 /* DatabaseManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */; };
-		A54DC82E23CE747600E09567 /* DocumentImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82D23CE747600E09567 /* DocumentImageManager.swift */; };
+		A54DC82E23CE747600E09567 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */; };
 		A54DC83023CE7E5A00E09567 /* AlertPresenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */; };
 		A5695AFE23BE58B90010E40C /* EditClientDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */; };
 		A5695B0023BEF0130010E40C /* CaseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5695AFF23BEF0130010E40C /* CaseDetailsVC.swift */; };
@@ -68,7 +68,7 @@
 		6FD74C6245EC0055BC0D1877 /* Pods-Trile-TrileUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trile-TrileUITests.debug.xcconfig"; path = "Target Support Files/Pods-Trile-TrileUITests/Pods-Trile-TrileUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		76C1D35EF168B403F613D6CF /* Pods-Trile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trile.debug.xcconfig"; path = "Target Support Files/Pods-Trile/Pods-Trile.debug.xcconfig"; sourceTree = "<group>"; };
 		96E0535439E313AC71298BED /* Pods-Trile-TrileUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trile-TrileUITests.release.xcconfig"; path = "Target Support Files/Pods-Trile-TrileUITests/Pods-Trile-TrileUITests.release.xcconfig"; sourceTree = "<group>"; };
-		A503ED0E23CD55D300255354 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		A503ED0E23CD55D300255354 /* FirebaseFirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreManager.swift; sourceTree = "<group>"; };
 		A511C1D423B5614900B9A771 /* Trile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A511C1D723B5614900B9A771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A511C1D923B5614900B9A771 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		A511C1FD23B5614E00B9A771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A511C20C23B564CE00B9A771 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerTests.swift; sourceTree = "<group>"; };
-		A54DC82D23CE747600E09567 /* DocumentImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentImageManager.swift; sourceTree = "<group>"; };
+		A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterManager.swift; sourceTree = "<group>"; };
 		A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClientDetailsVC.swift; sourceTree = "<group>"; };
 		A5695AFF23BEF0130010E40C /* CaseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseDetailsVC.swift; sourceTree = "<group>"; };
@@ -253,8 +253,8 @@
 			isa = PBXGroup;
 			children = (
 				A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */,
-				A503ED0E23CD55D300255354 /* DatabaseManager.swift */,
-				A54DC82D23CE747600E09567 /* DocumentImageManager.swift */,
+				A503ED0E23CD55D300255354 /* FirebaseFirestoreManager.swift */,
+				A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */,
 				A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */,
 			);
 			path = Managers;
@@ -516,7 +516,7 @@
 				A54DC83023CE7E5A00E09567 /* AlertPresenterManager.swift in Sources */,
 				A5695AFE23BE58B90010E40C /* EditClientDetailsVC.swift in Sources */,
 				A511C1D823B5614900B9A771 /* AppDelegate.swift in Sources */,
-				A54DC82E23CE747600E09567 /* DocumentImageManager.swift in Sources */,
+				A54DC82E23CE747600E09567 /* FirebaseStorageManager.swift in Sources */,
 				A575E86823C02AB200006A10 /* DocumentCollectionViewCell.swift in Sources */,
 				A5D6D8CF23B8005F00F16E27 /* FirebaseAuthManager.swift in Sources */,
 				A5D6D8DD23BBDF4200F16E27 /* FileNumber.swift in Sources */,
@@ -529,7 +529,7 @@
 				A5695B0023BEF0130010E40C /* CaseDetailsVC.swift in Sources */,
 				A511C1DC23B5614900B9A771 /* ClientTableVC.swift in Sources */,
 				A575E81F23BFB2DF00006A10 /* EditCaseDetailsVC.swift in Sources */,
-				A503ED0F23CD55D300255354 /* DatabaseManager.swift in Sources */,
+				A503ED0F23CD55D300255354 /* FirebaseFirestoreManager.swift in Sources */,
 				A511C20D23B564CE00B9A771 /* Client.swift in Sources */,
 				A575E82323C00C9A00006A10 /* DocumentCollectionVC.swift in Sources */,
 				A575E88B23C5043900006A10 /* FeeApplicationVC.swift in Sources */,

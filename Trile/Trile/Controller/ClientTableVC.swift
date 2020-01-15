@@ -12,7 +12,7 @@ import FirebaseFirestore
 
 class ClientTableVC: UITableViewController {
     
-    let dbm = DatabaseManager()
+    let dbm = FirebaseFirestoreManager()
     let alert = AlertPresenterManager()
     
     var db = Firestore.firestore()

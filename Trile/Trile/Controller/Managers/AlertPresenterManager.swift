@@ -10,7 +10,7 @@ import UIKit
 
 class AlertPresenterManager {
     
-    let dbm = DatabaseManager()
+    let dbm = FirebaseFirestoreManager()
     
     func addClientAlertDialog(fromViewController vc : UIViewController, completion: @escaping ((_ clientArray: [Client], _ success: Bool) -> Void)) {
         

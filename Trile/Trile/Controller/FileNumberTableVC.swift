@@ -15,7 +15,7 @@ class FileNumberTableVC: UITableViewController {
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
-    let dbm = DatabaseManager()
+    let dbm = FirebaseFirestoreManager()
     let alert = AlertPresenterManager()
     
     let TAB_SEGUE = "goToTabBarVC"

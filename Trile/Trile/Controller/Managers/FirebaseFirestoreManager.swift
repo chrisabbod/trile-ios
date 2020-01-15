@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class DatabaseManager {
+class FirebaseFirestoreManager {
     
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid

@@ -10,9 +10,9 @@ import UIKit
 import FirebaseAuth
 import FirebaseStorage
 
-class DocumentImageManager {
+class FirebaseStorageManager {
     
-    let dbm = DatabaseManager()
+    let dbm = FirebaseFirestoreManager()
     
     let uid: String = Auth.auth().currentUser!.uid
 
