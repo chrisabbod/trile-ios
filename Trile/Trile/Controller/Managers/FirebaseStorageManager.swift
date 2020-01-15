@@ -15,7 +15,7 @@ class FirebaseStorageManager {
     let dbm = FirebaseFirestoreManager()
     
     let uid: String = Auth.auth().currentUser!.uid
-
+    
     func uploadClientImageToStorage(_ client: Client, _ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
         
         let clientDocumentID = client.documentID
@@ -33,13 +33,21 @@ class FirebaseStorageManager {
         let metaData = StorageMetadata.init()
         metaData.contentType = "image/jpeg"
         
-        let newDocument = Document()
-
+        let newClient = Client()
+        
         uploadRef.putData(imageData, metadata: metaData) { (downloadMetaData, error) in
-            newDocument.uuid = clientDocumentID
-            newDocument.imagePath = imagePath
-            newDocument.imageData = imageData
+            newClient.documentID = clientDocumentID
+            newClient.clientImageUUID = clientDocumentID
+            newClient.clientImagePath = imagePath
+            newClient.clientImageData = imageData
             
+            let imageData: [String: Any] = [
+                "client_image_uuid": newClient.clientImageUUID,
+                "client_image_path": newClient.clientImagePath,
+                "client_image_data": newClient.clientImageData
+            ]
+            
+            self.dbm.addClientDataToDatabase(newClient, imageData)
             //self.dbm.addDocumentToDatabase(client, fileNumber, newDocument)
             
             if let error = error {
@@ -71,7 +79,7 @@ class FirebaseStorageManager {
         metaData.contentType = "image/jpeg"
         
         let newDocument = Document()
-
+        
         uploadRef.putData(imageData, metadata: metaData) { (downloadMetaData, error) in
             newDocument.uuid = randomUUID
             newDocument.imagePath = imagePath
