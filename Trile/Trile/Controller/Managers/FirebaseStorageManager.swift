@@ -39,14 +39,14 @@ class FirebaseStorageManager {
         
         uploadRef.putData(imageData, metadata: metaData) { (downloadMetaData, error) in
             newClient.documentID = clientDocumentID
-            newClient.clientImageUUID = clientDocumentID
-            newClient.clientImagePath = imagePath
-            newClient.clientImageData = imageData
+            newClient.imageUUID = clientDocumentID
+            newClient.imagePath = imagePath
+            newClient.imageData = imageData
             
             let imageData: [String: Any] = [
-                "client_image_uuid": newClient.clientImageUUID,
-                "client_image_path": newClient.clientImagePath,
-                "client_image_data": newClient.clientImageData
+                "image_uuid": newClient.imageUUID,
+                "image_path": newClient.imagePath,
+                "image_data": newClient.imageData
             ]
             
             self.dbm.addClientDataToDatabase(newClient, imageData)

@@ -40,6 +40,7 @@ class ClientDetailsVC: UIViewController {
     let uid: String = Auth.auth().currentUser!.uid
     
     let dbm = FirebaseFirestoreManager()
+    let imageManager = FirebaseStorageManager()
     
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?

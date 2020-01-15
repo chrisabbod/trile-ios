@@ -1140,9 +1140,25 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="AOq-Vx-Ymj" userLabel="Client Image View">
                                                 <rect key="frame" x="220" y="20" width="100" height="100"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="LWm-Wa-tHe"/>
                                                     <constraint firstAttribute="height" constant="100" id="YXq-y0-Ygs"/>
                                                     <constraint firstAttribute="width" constant="100" id="fWr-pk-xMv"/>
+                                                    <constraint firstAttribute="height" constant="100" id="rVd-Qj-Muf"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="LWm-Wa-tHe"/>
+                                                        <exclude reference="rVd-Qj-Muf"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <mask key="constraints">
+                                                        <include reference="LWm-Wa-tHe"/>
+                                                        <exclude reference="YXq-y0-Ygs"/>
+                                                        <exclude reference="fWr-pk-xMv"/>
+                                                        <include reference="rVd-Qj-Muf"/>
+                                                    </mask>
+                                                </variation>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LF3-vg-RiT" userLabel="Root Stack View">
                                                 <rect key="frame" x="20" y="140" width="500" height="714"/>
