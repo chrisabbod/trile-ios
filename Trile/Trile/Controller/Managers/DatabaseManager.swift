@@ -35,6 +35,25 @@ class DatabaseManager {
         }
     }
     
+    func readClientDataFromDatabase(_ client: Client, completion: @escaping ((_ documentData: [String: Any], _ success: Bool) -> Void)) {
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let clientDocumentID = client.documentID
+        let query = clientRef.whereField("document_id", isEqualTo: clientDocumentID as Any)
+        
+        query.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data())")
+                    let documentData: [String: Any] = document.data()
+                    completion(documentData, true)
+                }
+            }
+        }
+    }
+    
     func readClientsFromDatabase(completion: @escaping ((_ clientArray: [Client], _ success: Bool) -> Void)) {
         let clientRef = db.collection("users").document(uid).collection("clients")
         
@@ -66,7 +85,7 @@ class DatabaseManager {
         let documentID = clientArray[indexPath.row].documentID
         clientRef.document(documentID).delete()
     }
-    
+        
     //MARK: File Number Functions
     
     func addFileNumberToDatabase(_ client: Client, _ fileNumber : FileNumber) {
@@ -247,3 +266,4 @@ class DatabaseManager {
     }
     
 }
+

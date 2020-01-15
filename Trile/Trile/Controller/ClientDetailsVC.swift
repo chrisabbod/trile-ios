@@ -39,6 +39,8 @@ class ClientDetailsVC: UIViewController {
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
+    let dbm = DatabaseManager()
+    
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
@@ -55,7 +57,11 @@ class ClientDetailsVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        readClientDataFromDatabase()
+        if let client = selectedClient {
+            dbm.readClientDataFromDatabase(client) { (documentData, success) in
+                self.readClientData(from: documentData)
+            }
+        }
     }
     
     //MARK: Bar Buttons
@@ -83,28 +89,6 @@ class ClientDetailsVC: UIViewController {
         
         view.window?.rootViewController = loginVC
         view.window?.makeKeyAndVisible()
-        
-    }
-
-    //MARK: Database CRUD Functions
-    
-    func readClientDataFromDatabase() {
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let clientDocumentID = selectedClient?.documentID
-        let query = clientRef.whereField("document_id", isEqualTo: clientDocumentID as Any)
-        
-        query.getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    //print("\(document.documentID) => \(document.data())")
-                    let documentData: [String: Any] = document.data()
-                    
-                    self.readClientData(from: documentData)
-                }
-            }
-        }
         
     }
     
