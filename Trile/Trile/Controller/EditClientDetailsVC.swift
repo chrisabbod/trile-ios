@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -40,12 +41,11 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     let uid: String = Auth.auth().currentUser!.uid
     
     let dbm = FirebaseFirestoreManager()
+    let imageManager = FirebaseStorageManager()
     
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
-    var imagePicker: UIImagePickerController!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,9 +65,10 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     }
     
     @IBAction func cameraButton(_ sender: Any) {
-        imagePicker =  UIImagePickerController()
-        imagePicker.delegate = self
+        let imagePicker =  UIImagePickerController()
         imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
 
         present(imagePicker, animated: true, completion: nil)
     }
@@ -75,8 +76,22 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     //MARK: Camera Function
     //TODO: - Finish Camera Function
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        imagePicker.dismiss(animated: true, completion: nil)
+//        imagePicker.dismiss(animated: true, completion: nil)
         //imageView.image = info[.originalImage] as? UIImage
+        picker.dismiss(animated: true)
+        
+        guard let image = info[.editedImage] as? UIImage else {
+            print("No image found")
+            return
+        }
+        
+        if let client = selectedClient {
+            imageManager.uploadClientImageToStorage(client, image) { (success) in
+                if success {
+                    print("Client image uploaded successfully!")
+                }
+            }
+        }
     }
     
     //MARK: Read Client Data

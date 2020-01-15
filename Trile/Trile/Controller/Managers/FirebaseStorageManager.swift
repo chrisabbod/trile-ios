@@ -16,6 +16,41 @@ class FirebaseStorageManager {
     
     let uid: String = Auth.auth().currentUser!.uid
 
+    func uploadClientImageToStorage(_ client: Client, _ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
+        
+        let clientDocumentID = client.documentID
+        
+        let imagePath = "\(uid)/\(clientDocumentID)/\(clientDocumentID).jpeg"
+        let uploadRef = Storage.storage().reference(withPath: imagePath)
+        
+        //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
+        guard let imageData = scannedImage.jpegData(compressionQuality: 0.75) else {
+            print("Error producing image data")
+            return
+        }
+        
+        //optional: upload meta data
+        let metaData = StorageMetadata.init()
+        metaData.contentType = "image/jpeg"
+        
+        let newDocument = Document()
+
+        uploadRef.putData(imageData, metadata: metaData) { (downloadMetaData, error) in
+            newDocument.uuid = clientDocumentID
+            newDocument.imagePath = imagePath
+            newDocument.imageData = imageData
+            
+            //self.dbm.addDocumentToDatabase(client, fileNumber, newDocument)
+            
+            if let error = error {
+                print("Error uploading data: \(error.localizedDescription)")
+                return
+            }
+            print("Upload complete: \(String(describing: downloadMetaData))")
+            completion(true)
+        }
+    }
+    
     func uploadImageToStorage(_ client: Client, _ fileNumber: FileNumber, _ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
         
         let clientDocumentID = client.documentID
