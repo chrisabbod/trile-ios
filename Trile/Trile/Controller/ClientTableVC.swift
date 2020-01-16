@@ -72,12 +72,14 @@ class ClientTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:  REUSE_IDENTIFIER, for: indexPath) as! ClientTableViewCell
-
-//        imageManager.downloadClientImageFromStorage(clients[indexPath.row]) { (success) in
-//            if success {
-//                cell.clientImageView.image = UIImage(data: self.clients[indexPath.row].imageData)
-//            }
-//        }
+        
+        imageManager.downloadClientImageFromStorage(clients[indexPath.row]) { (imageData, success) in
+            if imageData.count < 10000 {
+                cell.clientImageView.image = UIImage(named: "avatar_placeholder")
+            } else {
+                cell.clientImageView.image = UIImage(data: imageData)
+            }
+        }
         
         cell.clientNameLabel.text = clients[indexPath.row].name
         

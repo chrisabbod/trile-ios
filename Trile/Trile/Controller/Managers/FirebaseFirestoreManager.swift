@@ -51,6 +51,10 @@ class FirebaseFirestoreManager {
                     if let name = document.get("name") {
                         newClient.name = name as! String
                     }
+                    
+                    if let imagePath = document.get("image_path") {
+                        newClient.imagePath = imagePath as! String
+                    }
 
                     let id = document.documentID
                     newClient.documentID = id
