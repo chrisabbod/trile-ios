@@ -62,6 +62,7 @@ class ClientDetailsVC: UIViewController {
             dbm.readClientDataFromDatabase(client) { (documentData, success) in
                 self.readClientData(from: documentData)
             }
+            
         }
     }
     
@@ -96,6 +97,10 @@ class ClientDetailsVC: UIViewController {
     //MARK: Read Client Data
     
     func readClientData(from data: [String: Any]) {
+        
+        if let clientImageData = data["image_data"] {
+            clientPictureImageView.image = UIImage(data: clientImageData as! Data)
+        }
         
         if let name = data["name"] {
             nameLabel.text = name as? String

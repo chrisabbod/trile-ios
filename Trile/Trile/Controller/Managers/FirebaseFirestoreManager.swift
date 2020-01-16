@@ -218,7 +218,6 @@ class FirebaseFirestoreManager {
             "document_id": newID,
             "uuid": document.uuid,
             "image_path": document.imagePath,
-            "image_data": document.imageData
             ]
         
         documentRef.document(newID).setData(documentData, merge: true) { (error) in

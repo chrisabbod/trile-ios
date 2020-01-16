@@ -50,7 +50,6 @@ class FirebaseStorageManager {
             ]
             
             self.dbm.addClientDataToDatabase(newClient, imageData)
-            //self.dbm.addDocumentToDatabase(client, fileNumber, newDocument)
             
             if let error = error {
                 print("Error uploading data: \(error.localizedDescription)")
