@@ -11,6 +11,7 @@ import UIKit
 class AlertPresenterManager {
     
     let dbm = FirebaseFirestoreManager()
+    let imageManager = FirebaseStorageManager()
     
     func addClientAlertDialog(fromViewController vc : UIViewController, completion: @escaping ((_ clientArray: [Client], _ success: Bool) -> Void)) {
         
@@ -82,6 +83,30 @@ class AlertPresenterManager {
             textField = field
             field.placeholder = "Enter File Number"
         }
+        
+        vc.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteDocumentAlertDialog(vc : UIViewController, client: Client, fileNumber: FileNumber, documents: [Document], indexPath: IndexPath, completion: @escaping ((_ success: Bool) -> Void)) {
+        
+        let alert = UIAlertController(title: "Delete Document", message: "Would you like to delete this document?", preferredStyle: .alert)
+        let deleteDocumentAction = UIAlertAction(title: "Delete", style: .default) { (action) in
+            self.imageManager.deleteDocumentFromStorage(documents, indexPath) { (success) in
+                if success {
+                    self.dbm.deleteDocumentFromDatabase(client, fileNumber, documents, indexPath)
+                    completion(true)
+                } else {
+                    print("Unable to delete document from storage")
+                }
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            print("No document deleted")
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(deleteDocumentAction)
         
         vc.present(alert, animated: true, completion: nil)
     }

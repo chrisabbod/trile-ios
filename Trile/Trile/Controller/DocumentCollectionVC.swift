@@ -24,6 +24,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     let dbm = FirebaseFirestoreManager()
     let imageManager = FirebaseStorageManager()
+    let alert = AlertPresenterManager()
     
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
@@ -105,7 +106,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
             }
         }
     }
-
+    
     //MARK: Collectionview Functions
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -119,7 +120,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: REUSE_IDENTIFIER, for: indexPath as IndexPath) as! DocumentCollectionViewCell
-
+        
         cell.documentImageView.image = UIImage(data: documents[indexPath.item].imageData)
         
         addCornerRadiusToViews(cell)
@@ -142,7 +143,14 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isEditing {
-            deleteDocumentAlertDialog(indexPath)
+            if let client = selectedClient, let fileNumber = selectedFileNumber {
+                alert.deleteDocumentAlertDialog(vc: self, client: client, fileNumber: fileNumber, documents: documents, indexPath: indexPath) { (success) in
+                    if success {
+                        self.documents.remove(at: indexPath.item)
+                        self.documentCollectionView.reloadData()
+                    }
+                }
+            }
         } else {
             performSegue(withIdentifier: DOCUMENT_DETAIL_SEGUE, sender: self)
         }
@@ -168,37 +176,6 @@ extension DocumentCollectionVC: UICollectionViewDelegateFlowLayout {
     {
         let sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         return sectionInset
-    }
-    
-    //MARK: Alert Dialog
-    
-    func deleteDocumentAlertDialog(_ indexPath: IndexPath) {
-        
-        let alert = UIAlertController(title: "Delete Document", message: "Would you like to delete this document?", preferredStyle: .alert)
-        let deleteDocumentAction = UIAlertAction(title: "Delete", style: .default) { (action) in
-            
-            self.imageManager.deleteDocumentFromStorage(self.documents, indexPath) { (success) in
-                
-                if let client = self.selectedClient, let fileNumber = self.selectedFileNumber {
-                    self.dbm.deleteDocumentFromDatabase(client, fileNumber, self.documents, indexPath)
-
-                }
-                
-                self.documents.remove(at: indexPath.item)
-                self.documentCollectionView.reloadData()
-            }
-
-            print("Document deleted")
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
-            print("No document deleted")
-        }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(deleteDocumentAction)
-        
-        present(alert, animated: true, completion: nil)
     }
     
     //MARK: UI Beautification Functions
@@ -229,7 +206,7 @@ extension DocumentCollectionVC: ImageScannerControllerDelegate {
                     self.loadDocuments()
                 }
             }
-
+            
         }
         
         scanner.dismiss(animated: true) {
