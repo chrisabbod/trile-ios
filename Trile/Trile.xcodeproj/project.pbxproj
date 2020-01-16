@@ -18,6 +18,8 @@
 		A511C1E623B5614E00B9A771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A511C1E423B5614E00B9A771 /* LaunchScreen.storyboard */; };
 		A511C1FC23B5614E00B9A771 /* TrileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C1FB23B5614E00B9A771 /* TrileUITests.swift */; };
 		A511C20D23B564CE00B9A771 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A511C20C23B564CE00B9A771 /* Client.swift */; };
+		A517CB5423D0CB6400B2171C /* ClientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517CB5223D0CB6400B2171C /* ClientTableViewCell.swift */; };
+		A517CB5523D0CB6400B2171C /* ClientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A517CB5323D0CB6400B2171C /* ClientTableViewCell.xib */; };
 		A54DC82C23CE302000E09567 /* DatabaseManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */; };
 		A54DC82E23CE747600E09567 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */; };
 		A54DC83023CE7E5A00E09567 /* AlertPresenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */; };
@@ -83,6 +85,8 @@
 		A511C1FB23B5614E00B9A771 /* TrileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrileUITests.swift; sourceTree = "<group>"; };
 		A511C1FD23B5614E00B9A771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A511C20C23B564CE00B9A771 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		A517CB5223D0CB6400B2171C /* ClientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTableViewCell.swift; sourceTree = "<group>"; };
+		A517CB5323D0CB6400B2171C /* ClientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientTableViewCell.xib; sourceTree = "<group>"; };
 		A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerTests.swift; sourceTree = "<group>"; };
 		A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterManager.swift; sourceTree = "<group>"; };
@@ -235,9 +239,19 @@
 			children = (
 				A511C1E423B5614E00B9A771 /* LaunchScreen.storyboard */,
 				A511C1DF23B5614900B9A771 /* Main.storyboard */,
+				A517CB5623D0CB6C00B2171C /* Custom Client Table View Cell */,
 				A575E86A23C02ABB00006A10 /* Custom Document Collection View Cell */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A517CB5623D0CB6C00B2171C /* Custom Client Table View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A517CB5223D0CB6400B2171C /* ClientTableViewCell.swift */,
+				A517CB5323D0CB6400B2171C /* ClientTableViewCell.xib */,
+			);
+			path = "Custom Client Table View Cell";
 			sourceTree = "<group>";
 		};
 		A575E86A23C02ABB00006A10 /* Custom Document Collection View Cell */ = {
@@ -379,6 +393,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A517CB5523D0CB6400B2171C /* ClientTableViewCell.xib in Resources */,
 				A511C1E623B5614E00B9A771 /* LaunchScreen.storyboard in Resources */,
 				A575E86923C02AB200006A10 /* DocumentCollectionViewCell.xib in Resources */,
 				A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */,
@@ -521,6 +536,7 @@
 				A5D6D8CF23B8005F00F16E27 /* FirebaseAuthManager.swift in Sources */,
 				A5D6D8DD23BBDF4200F16E27 /* FileNumber.swift in Sources */,
 				A5D6D8D723B872DD00F16E27 /* LoginVC.swift in Sources */,
+				A517CB5423D0CB6400B2171C /* ClientTableViewCell.swift in Sources */,
 				A5D6D8DB23BBBD9F00F16E27 /* FileNumberTableVC.swift in Sources */,
 				A575E88923C2E23100006A10 /* DocumentDetailsVC.swift in Sources */,
 				A5D6D8DF23BD419200F16E27 /* ClientDetailsVC.swift in Sources */,
