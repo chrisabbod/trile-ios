@@ -49,7 +49,7 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addCornerRadiusToViews()        
+        beautifyUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -264,11 +264,18 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     
     //MARK: UI Beautification Functions
     
+    func beautifyUI() {
+        addCornerRadiusToViews()
+        makeCircularView()
+    }
+    
+    func makeCircularView() {
+        clientPictureImageView.layer.masksToBounds = true
+        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2
+    }
+    
     func addCornerRadiusToViews() {
         let cornerRadiusValue: CGFloat = 20.0
-        
-        clientPictureImageView.layer.masksToBounds = true
-        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2  //Create circular view
         
         clientInformationView.layer.masksToBounds = true
         clientInformationView.layer.cornerRadius = cornerRadiusValue

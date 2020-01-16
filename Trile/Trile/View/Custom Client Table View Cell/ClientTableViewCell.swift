@@ -16,6 +16,7 @@ class ClientTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        makeCircularView()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -23,4 +24,10 @@ class ClientTableViewCell: UITableViewCell {
 
     }
     
+    //MARK: UI Beautification Functions
+    
+    func makeCircularView() {
+        clientImageView.layer.masksToBounds = true
+        clientImageView.layer.cornerRadius = clientImageView.bounds.width / 2
+    }
 }

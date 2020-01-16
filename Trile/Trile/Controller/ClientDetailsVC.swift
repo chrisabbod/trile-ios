@@ -54,7 +54,7 @@ class ClientDetailsVC: UIViewController {
         
         navigationItem.rightBarButtonItem = signOutButton
                 
-        addCornerRadiusToViews()
+        beautifyUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -186,11 +186,18 @@ class ClientDetailsVC: UIViewController {
     
     //MARK: UI Beautification Functions
     
+    func beautifyUI() {
+        addCornerRadiusToViews()
+        makeCircularView()
+    }
+    
+    func makeCircularView() {
+        clientPictureImageView.layer.masksToBounds = true
+        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2
+    }
+    
     func addCornerRadiusToViews() {
         let cornerRadiusValue: CGFloat = 20.0
-        
-        clientPictureImageView.layer.masksToBounds = true
-        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2  //Create circular view
         
         clientInformationView.layer.masksToBounds = true
         clientInformationView.layer.cornerRadius = cornerRadiusValue
@@ -201,5 +208,4 @@ class ClientDetailsVC: UIViewController {
         householdResidentsView.layer.masksToBounds = true
         householdResidentsView.layer.cornerRadius = cornerRadiusValue
     }
-    
 }
