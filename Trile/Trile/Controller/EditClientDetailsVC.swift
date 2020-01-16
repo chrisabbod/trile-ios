@@ -72,6 +72,7 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     }
     
     //MARK: Camera Function
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
         picker.dismiss(animated: true)
