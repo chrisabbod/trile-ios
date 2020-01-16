@@ -83,6 +83,25 @@ class FirebaseFirestoreManager {
         
     }
     
+    func addClientImageDataToDatabase(_ client: Client) {
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let clientDocumentID = client.documentID
+        
+        let clientImageData: [String: Any] = [
+            "image_uuid": client.imageUUID,
+            "image_path": client.imagePath,
+        ]
+        
+        clientRef.document(clientDocumentID).setData(clientImageData, merge: true) { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        
+    }
+    
     func readClientDataFromDatabase(_ client: Client, completion: @escaping ((_ documentData: [String: Any], _ success: Bool) -> Void)) {
         
         let clientRef = db.collection("users").document(uid).collection("clients")

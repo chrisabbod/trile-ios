@@ -13,7 +13,6 @@ import FirebaseStorage
 class FirebaseStorageManager {
     
     let dbm = FirebaseFirestoreManager()
-    
     let uid: String = Auth.auth().currentUser!.uid
     
     //MARK: Client Functions
@@ -22,7 +21,7 @@ class FirebaseStorageManager {
         
         let clientDocumentID = client.documentID
         
-        let imagePath = "\(uid)/\(clientDocumentID)/\(clientDocumentID).jpeg"
+        let imagePath = "\(uid)/client_image/\(clientDocumentID).jpeg"
         let uploadRef = Storage.storage().reference(withPath: imagePath)
         
         //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
@@ -41,15 +40,8 @@ class FirebaseStorageManager {
             newClient.documentID = clientDocumentID
             newClient.imageUUID = clientDocumentID
             newClient.imagePath = imagePath
-            newClient.imageData = imageData
             
-            let imageData: [String: Any] = [
-                "image_uuid": newClient.imageUUID,
-                "image_path": newClient.imagePath,
-                "image_data": newClient.imageData
-            ]
-            
-            self.dbm.addClientDataToDatabase(newClient, imageData)
+            self.dbm.addClientImageDataToDatabase(newClient)
             
             if let error = error {
                 print("Error uploading data: \(error.localizedDescription)")
@@ -65,10 +57,9 @@ class FirebaseStorageManager {
     func uploadDocumentToStorage(_ client: Client, _ fileNumber: FileNumber, _ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
         
         let clientDocumentID = client.documentID
-        let fileNumberDocumentID = fileNumber.documentID
         
         let randomUUID = UUID.init().uuidString
-        let imagePath = "\(uid)/\(clientDocumentID)/\(fileNumberDocumentID)/\(randomUUID).jpeg"
+        let imagePath = "\(uid)/\(clientDocumentID)/document_images/\(randomUUID).jpeg"
         let uploadRef = Storage.storage().reference(withPath: imagePath)
         
         //Convert UIImage into a data object. Raise compression quality or try png if image quality suffers
@@ -86,7 +77,6 @@ class FirebaseStorageManager {
         uploadRef.putData(imageData, metadata: metaData) { (downloadMetaData, error) in
             newDocument.uuid = randomUUID
             newDocument.imagePath = imagePath
-            newDocument.imageData = imageData
             
             self.dbm.addDocumentToDatabase(client, fileNumber, newDocument)
             
