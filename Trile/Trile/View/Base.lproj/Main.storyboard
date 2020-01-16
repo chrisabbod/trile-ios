@@ -1485,11 +1485,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="lCv-4i-g3I" secondAttribute="bottom" constant="8" id="12G-fj-bfT"/>
                                                             <constraint firstAttribute="width" constant="500" id="4DB-eC-IaO"/>
-                                                            <constraint firstAttribute="bottom" secondItem="lCv-4i-g3I" secondAttribute="bottom" constant="8" id="9ve-M9-A8b"/>
-                                                            <constraint firstItem="lCv-4i-g3I" firstAttribute="leading" secondItem="JK9-FL-LLv" secondAttribute="leading" constant="8" id="E7T-Bo-CrZ"/>
                                                             <constraint firstAttribute="trailing" secondItem="lCv-4i-g3I" secondAttribute="trailing" constant="8" id="L5Q-au-b6f"/>
-                                                            <constraint firstAttribute="trailing" secondItem="lCv-4i-g3I" secondAttribute="trailing" constant="8" id="X9n-G2-eDq"/>
-                                                            <constraint firstItem="lCv-4i-g3I" firstAttribute="top" secondItem="JK9-FL-LLv" secondAttribute="top" constant="8" id="XT8-Rm-ro3"/>
                                                             <constraint firstItem="lCv-4i-g3I" firstAttribute="leading" secondItem="JK9-FL-LLv" secondAttribute="leading" constant="8" id="qpY-FL-SxJ"/>
                                                             <constraint firstItem="lCv-4i-g3I" firstAttribute="top" secondItem="JK9-FL-LLv" secondAttribute="top" constant="8" id="wuS-J5-YgD"/>
                                                         </constraints>
@@ -1512,11 +1508,7 @@
                                                             <mask key="constraints">
                                                                 <include reference="4DB-eC-IaO"/>
                                                                 <include reference="12G-fj-bfT"/>
-                                                                <exclude reference="9ve-M9-A8b"/>
-                                                                <exclude reference="E7T-Bo-CrZ"/>
                                                                 <include reference="L5Q-au-b6f"/>
-                                                                <exclude reference="X9n-G2-eDq"/>
-                                                                <exclude reference="XT8-Rm-ro3"/>
                                                                 <include reference="qpY-FL-SxJ"/>
                                                                 <include reference="wuS-J5-YgD"/>
                                                             </mask>
