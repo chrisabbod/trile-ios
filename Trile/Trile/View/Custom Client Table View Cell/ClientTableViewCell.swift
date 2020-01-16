@@ -16,6 +16,7 @@ class ClientTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        changeBackgroundColor()
         makeCircularView()
     }
 
@@ -29,5 +30,9 @@ class ClientTableViewCell: UITableViewCell {
     func makeCircularView() {
         clientImageView.layer.masksToBounds = true
         clientImageView.layer.cornerRadius = clientImageView.bounds.width / 2
+    }
+
+    func changeBackgroundColor() {
+        self.contentView.backgroundColor = UIColor(red: 146/255, green: 197/255, blue: 118/255, alpha: 1)
     }
 }

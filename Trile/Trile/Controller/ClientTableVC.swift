@@ -82,6 +82,7 @@ class ClientTableVC: UITableViewController {
         }
         
         cell.clientNameLabel.text = clients[indexPath.row].name
+        self.tableView.backgroundColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
         
         return cell
     }
