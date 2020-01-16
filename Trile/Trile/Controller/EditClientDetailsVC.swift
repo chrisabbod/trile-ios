@@ -74,10 +74,8 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     }
     
     //MARK: Camera Function
-    //TODO: - Finish Camera Function
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        imagePicker.dismiss(animated: true, completion: nil)
-        //imageView.image = info[.originalImage] as? UIImage
+
         picker.dismiss(animated: true)
         
         guard let image = info[.editedImage] as? UIImage else {

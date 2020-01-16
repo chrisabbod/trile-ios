@@ -92,7 +92,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
                 if success {
                     self.documents = documentArray
                     
-                    self.imageManager.downloadImagesFromStorage(self.documents) { (success) in
+                    self.imageManager.downloadDocumentsFromStorage(self.documents) { (success) in
                         if success {
                             self.documentCollectionView.reloadData()
                         } else {
@@ -223,7 +223,7 @@ extension DocumentCollectionVC: ImageScannerControllerDelegate {
     func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
         
         if let client = selectedClient, let fileNumber = selectedFileNumber {
-            imageManager.uploadImageToStorage(client, fileNumber, results.scannedImage) { (success) in
+            imageManager.uploadDocumentToStorage(client, fileNumber, results.scannedImage) { (success) in
                 if success {
                     print("Successfully uploaded document after scanning")
                     self.loadDocuments()

@@ -62,7 +62,7 @@ class FirebaseStorageManager {
     
     //MARK: Document Functions
     
-    func uploadImageToStorage(_ client: Client, _ fileNumber: FileNumber, _ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
+    func uploadDocumentToStorage(_ client: Client, _ fileNumber: FileNumber, _ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
         
         let clientDocumentID = client.documentID
         let fileNumberDocumentID = fileNumber.documentID
@@ -99,7 +99,7 @@ class FirebaseStorageManager {
         }
     }
     
-    func downloadImagesFromStorage(_ documentArray: [Document], completion: @escaping ((_ success: Bool) -> Void)) {
+    func downloadDocumentsFromStorage(_ documentArray: [Document], completion: @escaping ((_ success: Bool) -> Void)) {
         //print("Document Passed To Array: \(documentArray.count)")
         
         for document in documentArray {
