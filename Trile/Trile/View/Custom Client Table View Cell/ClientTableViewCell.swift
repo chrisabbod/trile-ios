@@ -33,6 +33,6 @@ class ClientTableViewCell: UITableViewCell {
     }
 
     func changeBackgroundColor() {
-        self.contentView.backgroundColor = UIColor(red: 146/255, green: 197/255, blue: 118/255, alpha: 1)
+        self.contentView.backgroundColor = UIColor(red: 69/255, green: 172/255, blue: 100/255, alpha: 1)
     }
 }
