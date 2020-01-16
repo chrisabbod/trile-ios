@@ -52,6 +52,24 @@ class FirebaseStorageManager {
         }
     }
     
+    func downloadClientImageFromStorage(_ client: Client, completion: @escaping ((_ success: Bool) -> Void)) {
+        
+        let storageRef = Storage.storage().reference(withPath: client.imagePath)
+        print("Download Client Image From: \(client.imagePath) !!!")
+        
+        storageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+            if let error = error {
+                print("Error retrieving image data: \(error.localizedDescription)")
+            }
+            
+            if let data = data {
+                client.imageData = data
+                print("Client: \(client.documentID) Total Image Data => \(client.imageData)")
+            }
+            completion(true)
+        }
+    }
+    
     //MARK: Document Functions
     
     func uploadDocumentToStorage(_ client: Client, _ fileNumber: FileNumber, _ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {

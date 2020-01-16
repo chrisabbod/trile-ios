@@ -53,16 +53,14 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let client = selectedClient {
-            dbm.readClientDataFromDatabase(client) { (documentData, success) in
-                self.readClientData(from: documentData)
-            }
-        }
+        loadClientData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         saveClientData()
     }
+    
+    //MARK: Bar Button Functions
     
     @IBAction func cameraButton(_ sender: Any) {
         let imagePicker =  UIImagePickerController()
@@ -94,9 +92,35 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
         }
     }
     
+    //MARK: Load Client Data
+    
+    func loadClientData() {
+        if let client = selectedClient {
+            dbm.readClientDataFromDatabase(client) { (documentData, success) in
+                if success {
+                    self.readClientData(from: documentData)
+                    
+                    client.imagePath = documentData["image_path"] as! String
+                    
+                    self.imageManager.downloadClientImageFromStorage(client) { (success) in
+                        if success {
+                            print("Successfully read client image data")
+                            self.clientPictureImageView.image = UIImage(data: client.imageData)
+                        } else {
+                            print("Problem reading client image data")
+                        }
+                    }
+                } else {
+                    print("Problem reading client data")
+                }
+            }
+        }
+    }
+    
     //MARK: Read Client Data
     
     func readClientData(from data: [String: Any]) {
+                
         if let name = data["name"] {
             nameTextField.text = name as? String
         }
