@@ -16,7 +16,6 @@ class ClientTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        changeBackgroundColor()
         makeCircularView()
     }
 
