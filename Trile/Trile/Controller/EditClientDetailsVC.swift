@@ -103,10 +103,10 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
                     
                     if let imagePath = documentData["image_path"] {
                         client.imagePath = imagePath as! String
-                        self.imageManager.downloadClientImageFromStorage(client) { (success) in
+                        self.imageManager.downloadClientImageFromStorage(client) { (imageData, success) in
                             if success {
                                 print("Successfully read client image data")
-                                self.clientPictureImageView.image = UIImage(data: client.imageData)
+                                self.clientPictureImageView.image = UIImage(data: imageData)
                             } else {
                                 print("Problem reading client image data")
                             }

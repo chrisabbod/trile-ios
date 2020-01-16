@@ -52,7 +52,7 @@ class FirebaseStorageManager {
         }
     }
     
-    func downloadClientImageFromStorage(_ client: Client, completion: @escaping ((_ success: Bool) -> Void)) {
+    func downloadClientImageFromStorage(_ client: Client, completion: @escaping ((_ imageData: Data, _ success: Bool) -> Void)) {
         
         let storageRef = Storage.storage().reference(withPath: client.imagePath)
         print("Download Client Image From: \(client.imagePath) !!!")
@@ -65,8 +65,9 @@ class FirebaseStorageManager {
             if let data = data {
                 client.imageData = data
                 print("Client: \(client.documentID) Total Image Data => \(client.imageData)")
+                
+                completion(data, true)
             }
-            completion(true)
         }
     }
     
