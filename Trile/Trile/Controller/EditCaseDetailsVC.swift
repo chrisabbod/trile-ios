@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class EditCaseDetailsVC: UIViewController, UITextFieldDelegate {
+class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var fileNumberTextField: UITextField!
     @IBOutlet weak var bondTextField: UITextField!
@@ -36,6 +36,19 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var caseInformationView: UIView!
     @IBOutlet weak var billableHoursView: UIView!
     
+    let desiredOutcomePickerView = UIPickerView()
+    let offensePickerView = UIPickerView()
+    let offenseClassPickerView = UIPickerView()
+    let dispositionPickerView = UIPickerView()
+    let sentencePickerView = UIPickerView()
+    let nameOfJudgeSettingFeePickerView = UIPickerView()
+    let timeInCourtHoursPickerView = UIPickerView()
+    let timeInCourtMinutesPickerView = UIPickerView()
+    let timeInCourtWaitingHoursPickerView = UIPickerView()
+    let timeInCourtWaitingMinutesPickerView = UIPickerView()
+    let timeOutOfCourtHoursPickerView = UIPickerView()
+    let timeOutOfCourtMinutesPickerView = UIPickerView()
+    
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
@@ -45,14 +58,18 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate {
     var selectedFileNumber: FileNumber?
     
     var textFieldArray = [UITextField]()
+    var pickerViewArray = [UIPickerView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         appendTextFields()
-        setTextFieldDelegates()
+        appendPickerViews()
+        setPickerViews()
+        setDelegates()
         setTextFieldCursorTint()
         addCornerRadiusToViews()
+        setPickerViewBackgroundColor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +84,103 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate {
         saveCaseData()
     }
 
+    //MARK: Text Functions
+    
+    func setTextFieldCursorTint() {
+        for textField in textFieldArray {
+            textField.tintColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == fileNumberTextField || textField == countyTextField || textField == nameOfJudgeSettingFeeTextField {
+            return TextRestrictionManager.restrictTextLength(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == bondTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == continuancesTextField || textField == timeInCourtHoursTextField || textField == timeInCourtMinutesTextField || textField == timeInCourtWaitingHoursTextField || textField == timeInCourtWaitingMinutesTextField || textField == timeOutOfCourtHoursTextField || textField == timeOutOfCourtMinutesTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 2, textField, shouldChangeCharactersIn: range, replacementString: string)
+        }
+        
+        return true
+    }
+    
+    //MARK: Delegate Set Methods
+    
+    func setDelegates() {
+        for textField in textFieldArray {
+            textField.delegate = self
+        }
+        
+        for pickerView in pickerViewArray {
+            pickerView.delegate = self
+        }
+    }
+    
+    //MARK: - Picker View Delegate Methods
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        switch pickerView {
+//        case desiredOutcomePickerView:
+//            return desiredOutcomePickerList.count
+//        default:
+//            return 1
+//        }
+        return PickerListManager.desiredOutcomeList.count
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        switch pickerView {
+//        case desiredOutcomePickerView:
+//            return desiredOutcomePickerList[row].name
+//
+//        default:
+//            return "Title not found"
+//        }
+        return PickerListManager.desiredOutcomeList[row]
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        switch pickerView {
+//        case desiredOutcomePickerView:
+//            desiredOutcomeText.text = desiredOutcomePickerList[row].name
+//
+//        }
+        desiredOutcomeTextField.text = PickerListManager.desiredOutcomeList[row]
+    }
+    
+    //MARK: - PickerView Set Input Views
+    
+    func setPickerViews() {
+        desiredOutcomeTextField.inputView = desiredOutcomePickerView
+//        for i in 0...(pickerViewsArray.count - 1) {
+//            textFieldsWithPickersArray[i].inputView = pickerViewsArray[i]
+//        }
+    }
+    
+    //MARK: UI Beautification Functions
+    
+    func setPickerViewBackgroundColor() {
+        desiredOutcomePickerView.backgroundColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: PickerListManager.desiredOutcomeList[row], attributes: [NSAttributedString.Key.foregroundColor:UIColor.black])
+    }
+    
+    func addCornerRadiusToViews() {
+        let cornerRadiusValue: CGFloat = 20.0
+        
+        caseInformationView.layer.masksToBounds = true
+        caseInformationView.layer.cornerRadius = cornerRadiusValue
+        
+        billableHoursView.layer.masksToBounds = true
+        billableHoursView.layer.cornerRadius = cornerRadiusValue
+    }
+    
     //MARK: Read Case Data
     
     func readCaseData(from data: [String: Any]) {
@@ -234,35 +348,6 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate {
         }
     }
     
-    //MARK: Text Restriction Function
-    
-    func setTextFieldCursorTint() {
-        for textField in textFieldArray {
-            textField.tintColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
-        }
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == fileNumberTextField || textField == countyTextField || textField == nameOfJudgeSettingFeeTextField {
-            return TextRestrictionManager.restrictTextLength(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
-        } else if textField == bondTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
-        } else if textField == continuancesTextField || textField == timeInCourtHoursTextField || textField == timeInCourtMinutesTextField || textField == timeInCourtWaitingHoursTextField || textField == timeInCourtWaitingMinutesTextField || textField == timeOutOfCourtHoursTextField || textField == timeOutOfCourtMinutesTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 2, textField, shouldChangeCharactersIn: range, replacementString: string)
-        }
-        
-        return true
-    }
-    
-    //MARK: Delegate Set Methods
-    
-    func setTextFieldDelegates() {
-        
-        for textField in textFieldArray {
-            textField.delegate = self
-        }
-    }
-    
     //MARK: Append TextFields
     
     func appendTextFields() {
@@ -280,15 +365,19 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate {
         textFieldArray.append(timeOutOfCourtMinutesTextField)
     }
     
-    //MARK: UI Beautification Functions
+    //MARK: Append PickerViews
     
-    func addCornerRadiusToViews() {
-        let cornerRadiusValue: CGFloat = 20.0
-        
-        caseInformationView.layer.masksToBounds = true
-        caseInformationView.layer.cornerRadius = cornerRadiusValue
-        
-        billableHoursView.layer.masksToBounds = true
-        billableHoursView.layer.cornerRadius = cornerRadiusValue
+    func appendPickerViews() {
+        pickerViewArray.append(desiredOutcomePickerView)
+        pickerViewArray.append(offensePickerView)
+        pickerViewArray.append(offenseClassPickerView)
+        pickerViewArray.append(dispositionPickerView)
+        pickerViewArray.append(sentencePickerView)
+        pickerViewArray.append(timeInCourtHoursPickerView)
+        pickerViewArray.append(timeInCourtMinutesPickerView)
+        pickerViewArray.append(timeInCourtWaitingHoursPickerView)
+        pickerViewArray.append(timeInCourtWaitingMinutesPickerView)
+        pickerViewArray.append(timeOutOfCourtHoursPickerView)
+        pickerViewArray.append(timeOutOfCourtMinutesPickerView)
     }
 }
