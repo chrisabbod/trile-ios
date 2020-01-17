@@ -42,6 +42,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     let dispositionPickerView = UIPickerView()
     let judgmentAndSentencingPickerView = UIPickerView()
     let nameOfJudgeSettingFeePickerView = UIPickerView()
+    let countyPickerView = UIPickerView()
     let timeInCourtHoursPickerView = UIPickerView()
     let timeInCourtMinutesPickerView = UIPickerView()
     let timeInCourtWaitingHoursPickerView = UIPickerView()
@@ -96,6 +97,24 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         }
     }
     
+    //MARK: - PickerView Set Input Views
+    
+    func setTextFieldInputViewsAsPickerViews() {
+        desiredOutcomeTextField.inputView = desiredOutcomePickerView
+        offenseTextField.inputView = offensePickerView
+        offenseClassTextField.inputView = offenseClassPickerView
+        dispositionTextField.inputView = dispositionPickerView
+        judgmentAndSentencingTextField.inputView = judgmentAndSentencingPickerView
+        countyTextField.inputView = countyPickerView
+        nameOfJudgeSettingFeeTextField.inputView = nameOfJudgeSettingFeePickerView
+        timeInCourtHoursTextField.inputView = timeInCourtHoursPickerView
+        timeInCourtMinutesTextField.inputView = timeInCourtMinutesPickerView
+        timeInCourtWaitingHoursTextField.inputView = timeInCourtWaitingHoursPickerView
+        timeInCourtWaitingMinutesTextField.inputView = timeInCourtWaitingMinutesPickerView
+        timeOutOfCourtHoursTextField.inputView = timeOutOfCourtHoursPickerView
+        timeOutOfCourtMinutesTextField.inputView = timeOutOfCourtMinutesPickerView
+    }
+    
     //MARK: Text Functions
     
     func setTextFieldCursorTint() {
@@ -114,22 +133,6 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         }
         
         return true
-    }
-    
-    //MARK: - PickerView Set Input Views
-    
-    func setTextFieldInputViewsAsPickerViews() {
-        desiredOutcomeTextField.inputView = desiredOutcomePickerView
-        offenseTextField.inputView = offensePickerView
-        dispositionTextField.inputView = dispositionPickerView
-        judgmentAndSentencingTextField.inputView = judgmentAndSentencingPickerView
-        nameOfJudgeSettingFeeTextField.inputView = nameOfJudgeSettingFeePickerView
-        timeInCourtHoursTextField.inputView = timeInCourtHoursPickerView
-        timeInCourtMinutesTextField.inputView = timeInCourtMinutesPickerView
-        timeInCourtWaitingHoursTextField.inputView = timeInCourtWaitingHoursPickerView
-        timeInCourtWaitingMinutesTextField.inputView = timeInCourtWaitingMinutesPickerView
-        timeOutOfCourtHoursTextField.inputView = timeOutOfCourtHoursPickerView
-        timeOutOfCourtMinutesTextField.inputView = timeOutOfCourtMinutesPickerView
     }
     
     //MARK: - Picker View Delegate Methods
@@ -389,6 +392,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         pickerViewArray.append(offenseClassPickerView)
         pickerViewArray.append(dispositionPickerView)
         pickerViewArray.append(judgmentAndSentencingPickerView)
+        pickerViewArray.append(countyPickerView)
         pickerViewArray.append(timeInCourtHoursPickerView)
         pickerViewArray.append(timeInCourtMinutesPickerView)
         pickerViewArray.append(timeInCourtWaitingHoursPickerView)
