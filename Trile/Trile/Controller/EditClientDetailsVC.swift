@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 
-class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var clientPictureImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -46,10 +46,15 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
+    var textFieldArray = [UITextField]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         beautifyUI()
+        appendTextFields()
+        setTextFieldDelegates()
+        setTextFieldCursorTint()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -260,6 +265,57 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
         if let client = selectedClient {
             dbm.addClientDataToDatabase(client, clientDataArray)
         }
+    }
+    
+    //MARK: Text Restriction Function
+    
+    func setTextFieldCursorTint() {
+        for textField in textFieldArray {
+            textField.tintColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == addressTextField || textField == cityTextField || textField == placeOfEmploymentTextField || textField == roleTextField {
+            return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == nameTextField || textField == areaOfStudyTextField {
+            return TextRestrictionManager.restrictTextLength(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == phoneNumberTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == zipTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 5, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == ageTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 3, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == totalChildrenTextField || textField == totalOtherOccupantsTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 2, textField, shouldChangeCharactersIn: range, replacementString: string)
+        }
+        
+        return true
+    }
+    
+    //MARK: Delegate Set Methods
+    
+    func setTextFieldDelegates() {
+        for textField in textFieldArray {
+            textField.delegate = self
+        }
+    }
+    
+    //MARK: Append TextFields
+    
+    func appendTextFields() {
+        //Append textfields so other functions can iterate through them when setting properties
+        textFieldArray.append(nameTextField)
+        textFieldArray.append(ageTextField)
+        textFieldArray.append(areaOfStudyTextField)
+        textFieldArray.append(phoneNumberTextField)
+        textFieldArray.append(addressTextField)
+        textFieldArray.append(cityTextField)
+        textFieldArray.append(zipTextField)
+        textFieldArray.append(placeOfEmploymentTextField)
+        textFieldArray.append(roleTextField)
+        textFieldArray.append(totalChildrenTextField)
+        textFieldArray.append(totalOtherOccupantsTextField)
     }
     
     //MARK: UI Beautification Functions
