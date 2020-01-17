@@ -50,6 +50,10 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     let timeOutOfCourtHoursPickerView = UIPickerView()
     let timeOutOfCourtMinutesPickerView = UIPickerView()
     
+    let dateAppointedDatePicker = UIDatePicker()
+    let dateOfFirstClientInverviewDatepicker = UIDatePicker()
+    let dateofFinalDispositionDatePicker = UIDatePicker()
+    
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
@@ -60,6 +64,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     
     var textFieldArray = [UITextField]()
     var pickerViewArray = [UIPickerView]()
+    var datePickerArray = [UIDatePicker]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +72,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         createTextFieldAndPickerViewArrays()
         setTextFieldAndPickerViewDelegates()
         setTextFieldInputViewsAsPickerViews()
+        setTextFieldInputViewsAsDatePickerViews()
+        setDatePickerProperties()
         
         beautifyUI()
     }
@@ -95,7 +102,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         }
     }
     
-    //MARK: - PickerView Set Input Views
+    //MARK: PickerView Set Input Views
     
     func setTextFieldInputViewsAsPickerViews() {
         desiredOutcomeTextField.inputView = desiredOutcomePickerView
@@ -113,6 +120,14 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         timeOutOfCourtMinutesTextField.inputView = timeOutOfCourtMinutesPickerView
     }
     
+    //MARK: DatePicker Set Input Views
+    
+    func setTextFieldInputViewsAsDatePickerViews() {
+        dateAppointedTextField.inputView = dateAppointedDatePicker
+        dateOfFirstClientInterviewTextField.inputView = dateOfFirstClientInverviewDatepicker
+        dateOfFinalDispositionTextField.inputView = dateofFinalDispositionDatePicker
+    }
+    
     //MARK: Text Restriction Function
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -127,7 +142,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         return true
     }
     
-    //MARK: - Picker View Delegate Methods
+    //MARK: - PickerView Methods
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -244,11 +259,21 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         }
     }
     
+    //MARK: Date Picker Functions
+    
+    func setDatePickerProperties() {
+        for datePicker in datePickerArray {
+            datePicker.datePickerMode = .date
+            datePicker.timeZone = NSTimeZone.local
+        }
+    }
+    
     //MARK: UI Beautification Functions
     
     func beautifyUI() {
         setTextFieldCursorTint()
         setPickerViewBackgroundColor()
+        setDatePickerBackgroundColor()
         addCornerRadiusToViews()
     }
     
@@ -261,6 +286,12 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     func setPickerViewBackgroundColor() {
         for picker in pickerViewArray {
             picker.backgroundColor  = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
+        }
+    }
+    
+    func setDatePickerBackgroundColor() {
+        for datePicker in datePickerArray {
+            datePicker.backgroundColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
         }
     }
     
@@ -444,8 +475,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     //MARK: Textfield/Picker Array Setup
     
     func createTextFieldAndPickerViewArrays() {
-        
         //Append textfields so other functions can iterate through them when setting properties
+        
         textFieldArray.append(fileNumberTextField)
         textFieldArray.append(bondTextField)
         textFieldArray.append(continuancesTextField)
@@ -466,7 +497,6 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         textFieldArray.append(timeOutOfCourtHoursTextField)
         textFieldArray.append(timeOutOfCourtMinutesTextField)
         
-        //Append pickerViews so other functions can iterate through them when setting properties
         pickerViewArray.append(desiredOutcomePickerView)
         pickerViewArray.append(offensePickerView)
         pickerViewArray.append(offenseClassPickerView)
@@ -480,5 +510,9 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         pickerViewArray.append(timeInCourtWaitingMinutesPickerView)
         pickerViewArray.append(timeOutOfCourtHoursPickerView)
         pickerViewArray.append(timeOutOfCourtMinutesPickerView)
+        
+        datePickerArray.append(dateAppointedDatePicker)
+        datePickerArray.append(dateOfFirstClientInverviewDatepicker)
+        datePickerArray.append(dateofFinalDispositionDatePicker)
     }
 }
