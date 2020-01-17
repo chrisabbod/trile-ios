@@ -21,10 +21,10 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     @IBOutlet weak var dispositionTextField: UITextField!
     @IBOutlet weak var judgmentAndSentencingTextField: UITextField!
     @IBOutlet weak var countyTextField: UITextField!
+    @IBOutlet weak var nameOfJudgeSettingFeeTextField: UITextField!
     @IBOutlet weak var dateAppointedTextField: UITextField!
     @IBOutlet weak var dateOfFirstClientInterviewTextField: UITextField!
     @IBOutlet weak var dateOfFinalDispositionTextField: UITextField!
-    @IBOutlet weak var nameOfJudgeSettingFeeTextField: UITextField!
     
     @IBOutlet weak var timeInCourtHoursTextField: UITextField!
     @IBOutlet weak var timeInCourtMinutesTextField: UITextField!
@@ -41,8 +41,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     let offenseClassPickerView = UIPickerView()
     let dispositionPickerView = UIPickerView()
     let judgmentAndSentencingPickerView = UIPickerView()
-    let nameOfJudgeSettingFeePickerView = UIPickerView()
     let countyPickerView = UIPickerView()
+    let nameOfJudgeSettingFeePickerView = UIPickerView()
     let timeInCourtHoursPickerView = UIPickerView()
     let timeInCourtMinutesPickerView = UIPickerView()
     let timeInCourtWaitingHoursPickerView = UIPickerView()
@@ -147,6 +147,32 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             return PickerListManager.desiredOutcomeList.count
         case offensePickerView:
             return PickerListManager.offenseList.count
+        case offenseClassPickerView:
+            return PickerListManager.offenseClassList.count
+        case dispositionPickerView:
+            return PickerListManager.dispositionList.count
+        case judgmentAndSentencingPickerView:
+            return PickerListManager.judgmentAndSentencingList.count
+        case countyPickerView:
+            return PickerListManager.countyList.count
+        case nameOfJudgeSettingFeePickerView:
+            if countyTextField.text == "Gaston" {
+                return PickerListManager.gastonJudgeList.count
+            } else {
+                return PickerListManager.clevelandLincolnJudgeList.count
+            }
+        case timeInCourtHoursPickerView:
+            return PickerListManager.hoursPickerList().count
+        case timeInCourtMinutesPickerView:
+            return PickerListManager.minutesPickerList().count
+        case timeInCourtWaitingHoursPickerView:
+            return PickerListManager.hoursPickerList().count
+        case timeInCourtWaitingMinutesPickerView:
+            return PickerListManager.minutesPickerList().count
+        case timeOutOfCourtHoursPickerView:
+            return PickerListManager.hoursPickerList().count
+        case timeOutOfCourtMinutesPickerView:
+            return PickerListManager.minutesPickerList().count
         default:
             return 1
         }
@@ -158,6 +184,32 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             return PickerListManager.desiredOutcomeList[row]
         case offensePickerView:
             return PickerListManager.offenseList[row]
+        case offenseClassPickerView:
+            return PickerListManager.offenseClassList[row]
+        case dispositionPickerView:
+            return PickerListManager.dispositionList[row]
+        case judgmentAndSentencingPickerView:
+            return PickerListManager.judgmentAndSentencingList[row]
+        case countyPickerView:
+            return PickerListManager.countyList[row]
+        case nameOfJudgeSettingFeePickerView:
+            if countyTextField.text == "Gaston" {
+                return PickerListManager.gastonJudgeList[row]
+            } else {
+                return PickerListManager.clevelandLincolnJudgeList[row]
+            }
+        case timeInCourtHoursPickerView:
+            return PickerListManager.hoursPickerList()[row]
+        case timeInCourtMinutesPickerView:
+            return PickerListManager.minutesPickerList()[row]
+        case timeInCourtWaitingHoursPickerView:
+            return PickerListManager.hoursPickerList()[row]
+        case timeInCourtWaitingMinutesPickerView:
+            return PickerListManager.minutesPickerList()[row]
+        case timeOutOfCourtHoursPickerView:
+            return PickerListManager.hoursPickerList()[row]
+        case timeOutOfCourtMinutesPickerView:
+            return PickerListManager.minutesPickerList()[row]
         default:
             return "List Not Found"
         }
@@ -169,6 +221,32 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             desiredOutcomeTextField.text = PickerListManager.desiredOutcomeList[row]
         case offensePickerView:
             offenseTextField.text = PickerListManager.offenseList[row]
+        case offenseClassPickerView:
+            offenseClassTextField.text = PickerListManager.offenseClassList[row]
+        case dispositionPickerView:
+            dispositionTextField.text = PickerListManager.dispositionList[row]
+        case judgmentAndSentencingPickerView:
+            judgmentAndSentencingTextField.text = PickerListManager.judgmentAndSentencingList[row]
+        case countyPickerView:
+            countyTextField.text = PickerListManager.countyList[row]
+        case nameOfJudgeSettingFeePickerView:
+            if countyTextField.text == "Gaston" {
+                nameOfJudgeSettingFeeTextField.text = PickerListManager.gastonJudgeList[row]
+            } else {
+                nameOfJudgeSettingFeeTextField.text = PickerListManager.clevelandLincolnJudgeList[row]
+            }
+        case timeInCourtHoursPickerView:
+            timeInCourtHoursTextField.text = PickerListManager.hoursPickerList()[row]
+        case timeInCourtMinutesPickerView:
+            timeInCourtMinutesTextField.text = PickerListManager.minutesPickerList()[row]
+        case timeInCourtWaitingHoursPickerView:
+            timeInCourtWaitingHoursTextField.text = PickerListManager.hoursPickerList()[row]
+        case timeInCourtWaitingMinutesPickerView:
+            timeInCourtWaitingMinutesTextField.text = PickerListManager.minutesPickerList()[row]
+        case timeOutOfCourtHoursPickerView:
+            timeOutOfCourtHoursTextField.text = PickerListManager.hoursPickerList()[row]
+        case timeOutOfCourtMinutesPickerView:
+            timeOutOfCourtMinutesTextField.text = PickerListManager.minutesPickerList()[row]
         default:
             print("No Picker View Found")
         }
@@ -177,11 +255,9 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     //MARK: UI Beautification Functions
     
     func setPickerViewBackgroundColor() {
-        desiredOutcomePickerView.backgroundColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: PickerListManager.desiredOutcomeList[row], attributes: [NSAttributedString.Key.foregroundColor:UIColor.black])
+        for picker in pickerViewArray {
+            picker.backgroundColor  = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
+        }
     }
     
     func addCornerRadiusToViews() {
@@ -375,10 +451,10 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         textFieldArray.append(dispositionTextField)
         textFieldArray.append(judgmentAndSentencingTextField)
         textFieldArray.append(countyTextField)
+        textFieldArray.append(nameOfJudgeSettingFeeTextField)
         textFieldArray.append(dateAppointedTextField)
         textFieldArray.append(dateOfFirstClientInterviewTextField)
         textFieldArray.append(dateOfFinalDispositionTextField)
-        textFieldArray.append(nameOfJudgeSettingFeeTextField)
         textFieldArray.append(timeInCourtHoursTextField)
         textFieldArray.append(timeInCourtMinutesTextField)
         textFieldArray.append(timeInCourtWaitingHoursTextField)
@@ -393,6 +469,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         pickerViewArray.append(dispositionPickerView)
         pickerViewArray.append(judgmentAndSentencingPickerView)
         pickerViewArray.append(countyPickerView)
+        pickerViewArray.append(nameOfJudgeSettingFeePickerView)
         pickerViewArray.append(timeInCourtHoursPickerView)
         pickerViewArray.append(timeInCourtMinutesPickerView)
         pickerViewArray.append(timeInCourtWaitingHoursPickerView)
