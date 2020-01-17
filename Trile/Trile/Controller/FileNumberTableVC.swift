@@ -84,6 +84,8 @@ class FileNumberTableVC: UITableViewController {
         cell.bondLabel.text = "Bond: \(fileNumber.bond)"
         cell.continuancesLabel.text = "Continuances: \(fileNumber.continuances)"
 
+        self.tableView.backgroundColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
+
         return cell
     }
     

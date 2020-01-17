@@ -23,6 +23,18 @@ class FileNumberTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
+        if selected {
+            setLightGreenBackgroundColor()
+        } else {
+            setDarkGreenBackgroundColor()
+        }
     }
     
+    func setLightGreenBackgroundColor() {
+        self.contentView.backgroundColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
+    }
+    
+    func setDarkGreenBackgroundColor() {
+        self.contentView.backgroundColor = UIColor(red: 69/255, green: 172/255, blue: 100/255, alpha: 1)
+    }
 }
