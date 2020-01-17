@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class EditCaseDetailsVC: UIViewController {
+class EditCaseDetailsVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var fileNumberTextField: UITextField!
     @IBOutlet weak var bondTextField: UITextField!
@@ -48,6 +48,7 @@ class EditCaseDetailsVC: UIViewController {
         super.viewDidLoad()
 
         addCornerRadiusToViews()
+        setTextFieldDelegates()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -227,6 +228,48 @@ class EditCaseDetailsVC: UIViewController {
         if let client = selectedClient, let fileNumber = selectedFileNumber {
             dbm.addCaseDataToDatabase(client, fileNumber, caseDataArray)
         }
+    }
+    
+    //MARK: Text Restriction Function
+    
+    func setTextFieldCursorTint() {
+//        for i in 0...(textFieldsWithKeyboardsArray.count - 1) {
+//            textFieldsWithKeyboardsArray[i].tintColor = .black
+//        }
+    }
+    
+    func removeKeyboardSuggestionText() {
+//        for i in 0...(textFieldsWithPickersArray.count - 1) {
+//            textFieldsWithPickersArray[i].autocorrectionType = .no
+//        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == fileNumberTextField || textField == countyTextField || textField == nameOfJudgeSettingFeeTextField {
+            return TextRestrictionManager.restrictTextLength(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == bondTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == continuancesTextField || textField == timeInCourtHoursTextField || textField == timeInCourtMinutesTextField || textField == timeInCourtWaitingHoursTextField || textField == timeInCourtWaitingMinutesTextField || textField == timeOutOfCourtHoursTextField || textField == timeOutOfCourtMinutesTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 2, textField, shouldChangeCharactersIn: range, replacementString: string)
+        }
+        
+        return true
+    }
+    
+    //MARK: - Delegate Set Methods
+    
+    func setTextFieldDelegates() {
+        fileNumberTextField.delegate = self
+        bondTextField.delegate = self
+        continuancesTextField.delegate = self
+        countyTextField.delegate = self
+        nameOfJudgeSettingFeeTextField.delegate = self
+        timeInCourtHoursTextField.delegate = self
+        timeInCourtMinutesTextField.delegate = self
+        timeInCourtWaitingHoursTextField.delegate = self
+        timeInCourtWaitingMinutesTextField.delegate = self
+        timeOutOfCourtHoursTextField.delegate = self
+        timeOutOfCourtMinutesTextField.delegate = self
     }
     
     //MARK: UI Beautification Functions

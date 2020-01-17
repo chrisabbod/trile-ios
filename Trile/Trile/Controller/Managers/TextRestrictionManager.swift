@@ -6,11 +6,24 @@
 //  Copyright © 2020 Trile. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class TextRestrictionManager {
     
-    static func restrictText(by amount : Int, _ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    static func restrictTextLength(by amount: Int, _ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // get the current text, or use an empty string if that failed
+        let currentText = textField.text ?? ""
+
+        // attempt to read the range they are trying to change, or exit if we can't
+        guard let stringRange = Range(range, in: currentText) else { return false }
+
+        // add their new text to the existing text
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+
+        return updatedText.count <= amount
+    }
+    
+    static func restrictTextLengthAndCharacters(by amount : Int, _ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         //Only allow type Integer to be entered in TextFields and limit to number passed in
         
         // Create an `NSCharacterSet` set which includes everything *but* the digits
