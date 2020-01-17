@@ -44,11 +44,15 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate {
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
+    var textFieldArray = [UITextField]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addCornerRadiusToViews()
+        appendTextFields()
         setTextFieldDelegates()
+        setTextFieldCursorTint()
+        addCornerRadiusToViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -233,15 +237,9 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate {
     //MARK: Text Restriction Function
     
     func setTextFieldCursorTint() {
-//        for i in 0...(textFieldsWithKeyboardsArray.count - 1) {
-//            textFieldsWithKeyboardsArray[i].tintColor = .black
-//        }
-    }
-    
-    func removeKeyboardSuggestionText() {
-//        for i in 0...(textFieldsWithPickersArray.count - 1) {
-//            textFieldsWithPickersArray[i].autocorrectionType = .no
-//        }
+        for textField in textFieldArray {
+            textField.tintColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
+        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -256,20 +254,30 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    //MARK: - Delegate Set Methods
+    //MARK: Delegate Set Methods
     
     func setTextFieldDelegates() {
-        fileNumberTextField.delegate = self
-        bondTextField.delegate = self
-        continuancesTextField.delegate = self
-        countyTextField.delegate = self
-        nameOfJudgeSettingFeeTextField.delegate = self
-        timeInCourtHoursTextField.delegate = self
-        timeInCourtMinutesTextField.delegate = self
-        timeInCourtWaitingHoursTextField.delegate = self
-        timeInCourtWaitingMinutesTextField.delegate = self
-        timeOutOfCourtHoursTextField.delegate = self
-        timeOutOfCourtMinutesTextField.delegate = self
+        
+        for textField in textFieldArray {
+            textField.delegate = self
+        }
+    }
+    
+    //MARK: Append TextFields
+    
+    func appendTextFields() {
+        //Append textfields so other functions can iterate through them when setting properties
+        textFieldArray.append(fileNumberTextField)
+        textFieldArray.append(bondTextField)
+        textFieldArray.append(continuancesTextField)
+        textFieldArray.append(countyTextField)
+        textFieldArray.append(nameOfJudgeSettingFeeTextField)
+        textFieldArray.append(timeInCourtHoursTextField)
+        textFieldArray.append(timeInCourtMinutesTextField)
+        textFieldArray.append(timeInCourtWaitingHoursTextField)
+        textFieldArray.append(timeInCourtWaitingMinutesTextField)
+        textFieldArray.append(timeOutOfCourtHoursTextField)
+        textFieldArray.append(timeOutOfCourtMinutesTextField)
     }
     
     //MARK: UI Beautification Functions
