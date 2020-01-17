@@ -93,4 +93,19 @@ class PickerListManager {
         
         return minutesStringArray
     }
+    
+    static let highestEducationList = [
+        "Didn't Finish Highschool",
+        "Highschool Graduate",
+        "Some College",
+        "College Graduate",
+        "Some Graduate Work",
+        "Graduate Degree",
+    ]
+    
+    static let areaOfStudyList = ["Accounting", "Biology", "Chemistry", "Computer Science", "Engineering", "English", "Geography", "Geology", "Gender Studies", "History", "Journalism", "Law", "Mathematics", "Medical", "Nursing", "Philosophy", "Political Science", "Religion", "Social Work", "Teaching"]
+    
+    static let statesList = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+    
+    static let incomeRangeList = ["No Income", "< 10k Per Year", "10k - 19k Per Year", "20k - 39k Per Year", "40k - 79k Per Year", "> 80K Per Year"]
 }

@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 
-class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
+class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var clientPictureImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -37,6 +37,11 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     @IBOutlet weak var workHistoryView: UIView!
     @IBOutlet weak var householdResidentsView: UIView!
     
+    let highestEducationPickerView = UIPickerView()
+    let areaOfStudyPickerView = UIPickerView()
+    let statePickerView = UIPickerView()
+    let incomeRangePickerView = UIPickerView()
+    
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
@@ -47,14 +52,16 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     var selectedFileNumber: FileNumber?
     
     var textFieldArray = [UITextField]()
+    var pickerViewArray = [UIPickerView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createTextFieldAndPickerViewArrays()
+        setTextFieldAndPickerViewDelegates()
+        setTextFieldInputViewsAsPickerViews()
+        
         beautifyUI()
-        appendTextFields()
-        setTextFieldDelegates()
-        setTextFieldCursorTint()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,14 +79,14 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
         imagePicker.sourceType = .camera
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
-
+        
         present(imagePicker, animated: true, completion: nil)
     }
     
     //MARK: Camera Function
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
+        
         picker.dismiss(animated: true)
         
         guard let image = info[.editedImage] as? UIImage else {
@@ -124,10 +131,141 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
         }
     }
     
+    //MARK: Set Delegates
+    
+    func setTextFieldAndPickerViewDelegates() {
+        for textField in textFieldArray {
+            textField.delegate = self
+        }
+        
+        for pickerView in pickerViewArray {
+            pickerView.delegate = self
+        }
+    }
+    
+    //MARK: - PickerView Set Input Views
+    
+    func setTextFieldInputViewsAsPickerViews() {
+        highestEducationTextField.inputView = highestEducationPickerView
+        areaOfStudyTextField.inputView = areaOfStudyPickerView
+        stateTextField.inputView = statePickerView
+        incomeRangeTextField.inputView = incomeRangePickerView
+    }
+    
+    //MARK: Text Restriction Function
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == addressTextField || textField == cityTextField || textField == placeOfEmploymentTextField || textField == roleTextField {
+            return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == nameTextField || textField == areaOfStudyTextField {
+            return TextRestrictionManager.restrictTextLength(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == phoneNumberTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == zipTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 5, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == ageTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 3, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == totalChildrenTextField || textField == totalOtherOccupantsTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 2, textField, shouldChangeCharactersIn: range, replacementString: string)
+        }
+        
+        return true
+    }
+    
+    //MARK: - Picker View Delegate Methods
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch pickerView {
+        case highestEducationPickerView:
+            return PickerListManager.highestEducationList.count
+        case areaOfStudyPickerView:
+            return PickerListManager.areaOfStudyList.count
+        case statePickerView:
+            return PickerListManager.statesList.count
+        case incomeRangePickerView:
+            return PickerListManager.incomeRangeList.count
+        default:
+            return 1
+        }
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch pickerView {
+        case highestEducationPickerView:
+            return PickerListManager.highestEducationList[row]
+        case areaOfStudyPickerView:
+            return PickerListManager.areaOfStudyList[row]
+        case statePickerView:
+            return PickerListManager.statesList[row]
+        case incomeRangePickerView:
+            return PickerListManager.incomeRangeList[row]
+        default:
+            return "List Not Found"
+        }
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView {
+        case highestEducationPickerView:
+            highestEducationTextField.text = PickerListManager.highestEducationList[row]
+        case areaOfStudyPickerView:
+            areaOfStudyTextField.text = PickerListManager.areaOfStudyList[row]
+        case statePickerView:
+            stateTextField.text = PickerListManager.statesList[row]
+        case incomeRangePickerView:
+            incomeRangeTextField.text = PickerListManager.incomeRangeList[row]
+        default:
+            print("No Picker View Found")
+        }
+    }
+    
+    //MARK: UI Beautification Functions
+    
+    func beautifyUI() {
+        setTextFieldCursorTint()
+        setPickerViewBackgroundColor()
+        makeCircularView()
+        addCornerRadiusToViews()
+    }
+    
+    func setTextFieldCursorTint() {
+        for textField in textFieldArray {
+            textField.tintColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
+        }
+    }
+    
+    func setPickerViewBackgroundColor() {
+        for picker in pickerViewArray {
+            picker.backgroundColor  = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
+        }
+    }
+    
+    func makeCircularView() {
+        clientPictureImageView.layer.masksToBounds = true
+        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2
+    }
+    
+    func addCornerRadiusToViews() {
+        let cornerRadiusValue: CGFloat = 20.0
+        
+        clientInformationView.layer.masksToBounds = true
+        clientInformationView.layer.cornerRadius = cornerRadiusValue
+        
+        workHistoryView.layer.masksToBounds = true
+        workHistoryView.layer.cornerRadius = cornerRadiusValue
+        
+        householdResidentsView.layer.masksToBounds = true
+        householdResidentsView.layer.cornerRadius = cornerRadiusValue
+    }
+    
     //MARK: Read Client Data
     
     func readClientData(from data: [String: Any]) {
-                
+        
         if let name = data["name"] {
             nameTextField.text = name as? String
         }
@@ -267,46 +405,13 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
         }
     }
     
-    //MARK: Text Restriction Function
-    
-    func setTextFieldCursorTint() {
-        for textField in textFieldArray {
-            textField.tintColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
-        }
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == addressTextField || textField == cityTextField || textField == placeOfEmploymentTextField || textField == roleTextField {
-            return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
-        } else if textField == nameTextField || textField == areaOfStudyTextField {
-            return TextRestrictionManager.restrictTextLength(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
-        } else if textField == phoneNumberTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
-        } else if textField == zipTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 5, textField, shouldChangeCharactersIn: range, replacementString: string)
-        } else if textField == ageTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 3, textField, shouldChangeCharactersIn: range, replacementString: string)
-        } else if textField == totalChildrenTextField || textField == totalOtherOccupantsTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 2, textField, shouldChangeCharactersIn: range, replacementString: string)
-        }
-        
-        return true
-    }
-    
-    //MARK: Delegate Set Methods
-    
-    func setTextFieldDelegates() {
-        for textField in textFieldArray {
-            textField.delegate = self
-        }
-    }
-    
     //MARK: Append TextFields
     
-    func appendTextFields() {
+    func createTextFieldAndPickerViewArrays() {
         //Append textfields so other functions can iterate through them when setting properties
         textFieldArray.append(nameTextField)
         textFieldArray.append(ageTextField)
+        textFieldArray.append(highestEducationTextField)
         textFieldArray.append(areaOfStudyTextField)
         textFieldArray.append(phoneNumberTextField)
         textFieldArray.append(addressTextField)
@@ -314,32 +419,14 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
         textFieldArray.append(zipTextField)
         textFieldArray.append(placeOfEmploymentTextField)
         textFieldArray.append(roleTextField)
+        textFieldArray.append(dateStartedTextField)
+        textFieldArray.append(dateEndedTextField)
         textFieldArray.append(totalChildrenTextField)
         textFieldArray.append(totalOtherOccupantsTextField)
-    }
-    
-    //MARK: UI Beautification Functions
-    
-    func beautifyUI() {
-        addCornerRadiusToViews()
-        makeCircularView()
-    }
-    
-    func makeCircularView() {
-        clientPictureImageView.layer.masksToBounds = true
-        clientPictureImageView.layer.cornerRadius = clientPictureImageView.bounds.width / 2
-    }
-    
-    func addCornerRadiusToViews() {
-        let cornerRadiusValue: CGFloat = 20.0
         
-        clientInformationView.layer.masksToBounds = true
-        clientInformationView.layer.cornerRadius = cornerRadiusValue
-        
-        workHistoryView.layer.masksToBounds = true
-        workHistoryView.layer.cornerRadius = cornerRadiusValue
-        
-        householdResidentsView.layer.masksToBounds = true
-        householdResidentsView.layer.cornerRadius = cornerRadiusValue
+        pickerViewArray.append(highestEducationPickerView)
+        pickerViewArray.append(areaOfStudyPickerView)
+        pickerViewArray.append(statePickerView)
+        pickerViewArray.append(incomeRangePickerView)
     }
 }

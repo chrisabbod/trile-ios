@@ -68,9 +68,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         setTextFieldAndPickerViewDelegates()
         setTextFieldInputViewsAsPickerViews()
         
-        setTextFieldCursorTint()
-        setPickerViewBackgroundColor()
-        addCornerRadiusToViews()
+        beautifyUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,13 +113,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         timeOutOfCourtMinutesTextField.inputView = timeOutOfCourtMinutesPickerView
     }
     
-    //MARK: Text Functions
-    
-    func setTextFieldCursorTint() {
-        for textField in textFieldArray {
-            textField.tintColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
-        }
-    }
+    //MARK: Text Restriction Function
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == fileNumberTextField || textField == countyTextField || textField == nameOfJudgeSettingFeeTextField {
@@ -253,6 +245,18 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     }
     
     //MARK: UI Beautification Functions
+    
+    func beautifyUI() {
+        setTextFieldCursorTint()
+        setPickerViewBackgroundColor()
+        addCornerRadiusToViews()
+    }
+    
+    func setTextFieldCursorTint() {
+        for textField in textFieldArray {
+            textField.tintColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
+        }
+    }
     
     func setPickerViewBackgroundColor() {
         for picker in pickerViewArray {
