@@ -12,13 +12,16 @@ import FirebaseFirestore
 
 class FileNumberTableVC: UITableViewController {
     
+    let CELL_NIB_NAME = "FileNumberTableViewCell"
+    let REUSE_IDENTIFIER = "customFileNumberCell"
+    let TAB_SEGUE = "goToTabBarVC"
+
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
     let dbm = FirebaseFirestoreManager()
     let alert = AlertPresenterManager()
     
-    let TAB_SEGUE = "goToTabBarVC"
     
     var selectedClient: Client?
     var fileNumbers = [FileNumber]()
@@ -28,6 +31,8 @@ class FileNumberTableVC: UITableViewController {
                 
         let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFileNumberButton(_:)))
         navigationItem.rightBarButtonItem = addFileNumberButton
+        
+        tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: REUSE_IDENTIFIER)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,9 +75,10 @@ class FileNumberTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let fileNumber = fileNumbers[indexPath.row].assignedFileNumber
-        cell.textLabel!.text = fileNumber
+        let cell = tableView.dequeueReusableCell(withIdentifier:  REUSE_IDENTIFIER, for: indexPath) as! FileNumberTableViewCell
+        
+        //let fileNumber = fileNumbers[indexPath.row].assignedFileNumber
+        //cell.textLabel!.text = fileNumber
         return cell
     }
     
