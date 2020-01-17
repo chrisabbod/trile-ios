@@ -42,6 +42,9 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     let statePickerView = UIPickerView()
     let incomeRangePickerView = UIPickerView()
     
+    let dateStartedDatePicker = UIDatePicker()
+    let dateEndedDatePicker = UIDatePicker()
+    
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
@@ -53,6 +56,7 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     
     var textFieldArray = [UITextField]()
     var pickerViewArray = [UIPickerView]()
+    var datePickerArray = [UIDatePicker]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +64,8 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
         createTextFieldAndPickerViewArrays()
         setTextFieldAndPickerViewDelegates()
         setTextFieldInputViewsAsPickerViews()
+        setTextFieldInputViewsAsDatePickerViews()
+        setDatePickerProperties()
         
         beautifyUI()
     }
@@ -143,13 +149,20 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
         }
     }
     
-    //MARK: - PickerView Set Input Views
+    //MARK: Set PickerView Input Views
     
     func setTextFieldInputViewsAsPickerViews() {
         highestEducationTextField.inputView = highestEducationPickerView
         areaOfStudyTextField.inputView = areaOfStudyPickerView
         stateTextField.inputView = statePickerView
         incomeRangeTextField.inputView = incomeRangePickerView
+    }
+    
+    //MARK: Set DatePicker Input Views
+    
+    func setTextFieldInputViewsAsDatePickerViews() {
+        dateStartedTextField.inputView = dateStartedDatePicker
+        dateEndedTextField.inputView = dateEndedDatePicker
     }
     
     //MARK: Text Restriction Function
@@ -223,11 +236,21 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
         }
     }
     
+    //MARK: Date Picker Functions
+       
+       func setDatePickerProperties() {
+           for datePicker in datePickerArray {
+               datePicker.datePickerMode = .date
+               datePicker.timeZone = NSTimeZone.local
+           }
+       }
+    
     //MARK: UI Beautification Functions
     
     func beautifyUI() {
         setTextFieldCursorTint()
         setPickerViewBackgroundColor()
+        setDatePickerBackgroundColor()
         makeCircularView()
         addCornerRadiusToViews()
     }
@@ -241,6 +264,12 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     func setPickerViewBackgroundColor() {
         for picker in pickerViewArray {
             picker.backgroundColor  = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
+        }
+    }
+    
+    func setDatePickerBackgroundColor() {
+        for datePicker in datePickerArray {
+            datePicker.backgroundColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
         }
     }
     
@@ -428,5 +457,8 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
         pickerViewArray.append(areaOfStudyPickerView)
         pickerViewArray.append(statePickerView)
         pickerViewArray.append(incomeRangePickerView)
+        
+        datePickerArray.append(dateStartedDatePicker)
+        datePickerArray.append(dateEndedDatePicker)
     }
 }
