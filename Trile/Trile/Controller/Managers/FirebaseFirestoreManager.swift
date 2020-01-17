@@ -136,7 +136,9 @@ class FirebaseFirestoreManager {
         
         fileNumberRef.document(newID).setData([
             "assigned_file_number": fileNumber.assignedFileNumber,
-            "document_id": fileNumber.documentID
+            "document_id": fileNumber.documentID,
+            "bond": "0",
+            "continuances": "0"
         ]) { (error) in
             if let error = error {
                 print("Error writing document: \(error)")
@@ -174,7 +176,7 @@ class FirebaseFirestoreManager {
                         newFileNumber.bond = bond as! String
                     }
                     
-                    if let continuances = document.get("continuance") {
+                    if let continuances = document.get("continuances") {
                         newFileNumber.continuances = continuances as! String
                     }
                     

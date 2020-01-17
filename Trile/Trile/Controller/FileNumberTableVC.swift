@@ -79,10 +79,10 @@ class FileNumberTableVC: UITableViewController {
         
         let fileNumber = fileNumbers[indexPath.row]
         
-//        cell.fileNumberLabel.text = "File Number: \(fileNumber.assignedFileNumber)"
-//        cell.offenseLabel.text = (fileNumber.offense != "") ? "Offense: \(fileNumber.offense)" : "Offense: None"
-//        cell.bondLabel.text = (fileNumber.offense != "") ? "Offense: \(fileNumber.offense)" : "Offense: None"
-//        cell.continuancesLabel.text = (fileNumber.offense != "") ? "Offense: \(fileNumber.offense)" : "Offense: None"
+        cell.fileNumberLabel.text = "File Number: \(fileNumber.assignedFileNumber)"
+        cell.offenseLabel.text = (fileNumber.offense != "") ? "Offense: \(fileNumber.offense)" : "Offense: None"
+        cell.bondLabel.text = "Bond: \(fileNumber.bond)"
+        cell.continuancesLabel.text = "Continuances: \(fileNumber.continuances)"
 
         return cell
     }
