@@ -19,4 +19,10 @@ class PickerListManager {
         "Active Sentence"
     ]
     
+    static let offenseList = [
+        "long",
+        "list",
+        "of",
+        "offenses"
+    ]
 }

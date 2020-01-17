@@ -40,7 +40,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     let offensePickerView = UIPickerView()
     let offenseClassPickerView = UIPickerView()
     let dispositionPickerView = UIPickerView()
-    let sentencePickerView = UIPickerView()
+    let judgmentAndSentencingPickerView = UIPickerView()
     let nameOfJudgeSettingFeePickerView = UIPickerView()
     let timeInCourtHoursPickerView = UIPickerView()
     let timeInCourtMinutesPickerView = UIPickerView()
@@ -63,13 +63,13 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        appendTextFields()
-        appendPickerViews()
-        setPickerViews()
-        setDelegates()
+        createTextFieldAndPickerViewArrays()
+        setTextFieldAndPickerViewDelegates()
+        setTextFieldInputViewsAsPickerViews()
+        
         setTextFieldCursorTint()
-        addCornerRadiusToViews()
         setPickerViewBackgroundColor()
+        addCornerRadiusToViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +84,18 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         saveCaseData()
     }
 
+    //MARK: Set Delegates
+    
+    func setTextFieldAndPickerViewDelegates() {
+        for textField in textFieldArray {
+            textField.delegate = self
+        }
+        
+        for pickerView in pickerViewArray {
+            pickerView.delegate = self
+        }
+    }
+    
     //MARK: Text Functions
     
     func setTextFieldCursorTint() {
@@ -104,16 +116,20 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         return true
     }
     
-    //MARK: Delegate Set Methods
+    //MARK: - PickerView Set Input Views
     
-    func setDelegates() {
-        for textField in textFieldArray {
-            textField.delegate = self
-        }
-        
-        for pickerView in pickerViewArray {
-            pickerView.delegate = self
-        }
+    func setTextFieldInputViewsAsPickerViews() {
+        desiredOutcomeTextField.inputView = desiredOutcomePickerView
+        offenseTextField.inputView = offensePickerView
+        dispositionTextField.inputView = dispositionPickerView
+        judgmentAndSentencingTextField.inputView = judgmentAndSentencingPickerView
+        nameOfJudgeSettingFeeTextField.inputView = nameOfJudgeSettingFeePickerView
+        timeInCourtHoursTextField.inputView = timeInCourtHoursPickerView
+        timeInCourtMinutesTextField.inputView = timeInCourtMinutesPickerView
+        timeInCourtWaitingHoursTextField.inputView = timeInCourtWaitingHoursPickerView
+        timeInCourtWaitingMinutesTextField.inputView = timeInCourtWaitingMinutesPickerView
+        timeOutOfCourtHoursTextField.inputView = timeOutOfCourtHoursPickerView
+        timeOutOfCourtMinutesTextField.inputView = timeOutOfCourtMinutesPickerView
     }
     
     //MARK: - Picker View Delegate Methods
@@ -123,42 +139,36 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        switch pickerView {
-//        case desiredOutcomePickerView:
-//            return desiredOutcomePickerList.count
-//        default:
-//            return 1
-//        }
-        return PickerListManager.desiredOutcomeList.count
+        switch pickerView {
+        case desiredOutcomePickerView:
+            return PickerListManager.desiredOutcomeList.count
+        case offensePickerView:
+            return PickerListManager.offenseList.count
+        default:
+            return 1
+        }
     }
     
     func pickerView( _ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        switch pickerView {
-//        case desiredOutcomePickerView:
-//            return desiredOutcomePickerList[row].name
-//
-//        default:
-//            return "Title not found"
-//        }
-        return PickerListManager.desiredOutcomeList[row]
+        switch pickerView {
+        case desiredOutcomePickerView:
+            return PickerListManager.desiredOutcomeList[row]
+        case offensePickerView:
+            return PickerListManager.offenseList[row]
+        default:
+            return "List Not Found"
+        }
     }
     
     func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        switch pickerView {
-//        case desiredOutcomePickerView:
-//            desiredOutcomeText.text = desiredOutcomePickerList[row].name
-//
-//        }
-        desiredOutcomeTextField.text = PickerListManager.desiredOutcomeList[row]
-    }
-    
-    //MARK: - PickerView Set Input Views
-    
-    func setPickerViews() {
-        desiredOutcomeTextField.inputView = desiredOutcomePickerView
-//        for i in 0...(pickerViewsArray.count - 1) {
-//            textFieldsWithPickersArray[i].inputView = pickerViewsArray[i]
-//        }
+        switch pickerView {
+        case desiredOutcomePickerView:
+            desiredOutcomeTextField.text = PickerListManager.desiredOutcomeList[row]
+        case offensePickerView:
+            offenseTextField.text = PickerListManager.offenseList[row]
+        default:
+            print("No Picker View Found")
+        }
     }
     
     //MARK: UI Beautification Functions
@@ -348,9 +358,10 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         }
     }
     
-    //MARK: Append TextFields
+    //MARK: Textfield/Picker Array Setup
     
-    func appendTextFields() {
+    func createTextFieldAndPickerViewArrays() {
+        
         //Append textfields so other functions can iterate through them when setting properties
         textFieldArray.append(fileNumberTextField)
         textFieldArray.append(bondTextField)
@@ -371,16 +382,13 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         textFieldArray.append(timeInCourtWaitingMinutesTextField)
         textFieldArray.append(timeOutOfCourtHoursTextField)
         textFieldArray.append(timeOutOfCourtMinutesTextField)
-    }
-    
-    //MARK: Append PickerViews
-    
-    func appendPickerViews() {
+        
+        //Append pickerViews so other functions can iterate through them when setting properties
         pickerViewArray.append(desiredOutcomePickerView)
         pickerViewArray.append(offensePickerView)
         pickerViewArray.append(offenseClassPickerView)
         pickerViewArray.append(dispositionPickerView)
-        pickerViewArray.append(sentencePickerView)
+        pickerViewArray.append(judgmentAndSentencingPickerView)
         pickerViewArray.append(timeInCourtHoursPickerView)
         pickerViewArray.append(timeInCourtMinutesPickerView)
         pickerViewArray.append(timeInCourtWaitingHoursPickerView)
