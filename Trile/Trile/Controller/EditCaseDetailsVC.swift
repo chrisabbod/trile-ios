@@ -14,7 +14,7 @@ class EditCaseDetailsVC: UIViewController {
 
     @IBOutlet weak var fileNumberTextField: UITextField!
     @IBOutlet weak var bondTextField: UITextField!
-    @IBOutlet weak var continuanceTextField: UITextField!
+    @IBOutlet weak var continuancesTextField: UITextField!
     @IBOutlet weak var desiredOutcomeTextField: UITextField!
     @IBOutlet weak var offenseTextField: UITextField!
     @IBOutlet weak var offenseClassTextField: UITextField!
@@ -74,8 +74,8 @@ class EditCaseDetailsVC: UIViewController {
             bondTextField.text = bond as? String
         }
         
-        if let continuance = data["continuance"] {
-            continuanceTextField.text = continuance as? String
+        if let continuances = data["continuances"] {
+            continuancesTextField.text = continuances as? String
         }
         
         if let desiredOutcome = data["desired_outcome"] {
@@ -156,8 +156,8 @@ class EditCaseDetailsVC: UIViewController {
             caseDataArray["bond"] = bond
         }
         
-        if let continuance = continuanceTextField.text {
-            caseDataArray["continuance"] = continuance
+        if let continuances = continuancesTextField.text {
+            caseDataArray["continuances"] = continuances
         }
         
         if let desiredOutcome = desiredOutcomeTextField.text {

@@ -587,7 +587,7 @@
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Continuance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8T-hq-7oM">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Continuances" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8T-hq-7oM">
                                                                         <rect key="frame" x="0.0" y="64" width="355.5" height="24"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2550,17 +2550,17 @@
                                                                             </textField>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vOx-pN-EJC" userLabel="Continuance">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vOx-pN-EJC" userLabel="Continuances">
                                                                         <rect key="frame" x="0.0" y="84" width="484" height="34"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continuance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdX-93-200">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="111" height="34"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continuances" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdX-93-200">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="121" height="34"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4h-Y8-GcQ" userLabel="Continuance Text Field">
-                                                                                <rect key="frame" x="121" y="0.0" width="363" height="34"/>
+                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4h-Y8-GcQ" userLabel="Continuances Text Field">
+                                                                                <rect key="frame" x="131" y="0.0" width="353" height="34"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                 <textInputTraits key="textInputTraits"/>
                                                                             </textField>
@@ -3021,7 +3021,7 @@
                         <outlet property="billableHoursView" destination="8hy-G3-xCz" id="mgg-bn-hMv"/>
                         <outlet property="bondTextField" destination="sun-Q5-fcN" id="sHH-UA-7cE"/>
                         <outlet property="caseInformationView" destination="o8J-p7-Ue8" id="VML-qk-S14"/>
-                        <outlet property="continuanceTextField" destination="h4h-Y8-GcQ" id="ng9-79-VGh"/>
+                        <outlet property="continuancesTextField" destination="h4h-Y8-GcQ" id="ng9-79-VGh"/>
                         <outlet property="countyTextField" destination="kXV-gf-NRE" id="Mpp-sz-RtS"/>
                         <outlet property="dateAppointedTextField" destination="37W-rj-Y97" id="CHY-iQ-cvd"/>
                         <outlet property="dateOfFinalDispositionTextField" destination="l9v-b0-M9P" id="ooy-5z-dUi"/>

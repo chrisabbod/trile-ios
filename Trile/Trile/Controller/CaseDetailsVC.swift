@@ -104,8 +104,8 @@ class CaseDetailsVC: UIViewController {
             bondLabel.text = bond as? String
         }
         
-        if let continuance = data["continuance"] {
-            continuanceLabel.text = continuance as? String
+        if let continuances = data["continuances"] {
+            continuanceLabel.text = continuances as? String
         }
         
         if let desiredOutcome = data["desired_outcome"] {

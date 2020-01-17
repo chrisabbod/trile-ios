@@ -15,7 +15,8 @@ class FileNumber {
     var imagePath: String = ""
     
     var assignedFileNumber: String = ""
-    var bond: Int = 0
+    var bond: String = "0"
+    var continuances: String = "0"
     var desiredOutcome: String = ""
     var offense: String = ""
     var offenseClass: String = ""

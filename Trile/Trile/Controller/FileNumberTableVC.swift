@@ -77,8 +77,13 @@ class FileNumberTableVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:  REUSE_IDENTIFIER, for: indexPath) as! FileNumberTableViewCell
         
-        //let fileNumber = fileNumbers[indexPath.row].assignedFileNumber
-        //cell.textLabel!.text = fileNumber
+        let fileNumber = fileNumbers[indexPath.row]
+        
+//        cell.fileNumberLabel.text = "File Number: \(fileNumber.assignedFileNumber)"
+//        cell.offenseLabel.text = (fileNumber.offense != "") ? "Offense: \(fileNumber.offense)" : "Offense: None"
+//        cell.bondLabel.text = (fileNumber.offense != "") ? "Offense: \(fileNumber.offense)" : "Offense: None"
+//        cell.continuancesLabel.text = (fileNumber.offense != "") ? "Offense: \(fileNumber.offense)" : "Offense: None"
+
         return cell
     }
     

@@ -166,6 +166,18 @@ class FirebaseFirestoreManager {
                         newFileNumber.assignedFileNumber = assignedFileNumber as! String
                     }
                     
+                    if let offense = document.get("offense") {
+                        newFileNumber.offense = offense as! String
+                    }
+                    
+                    if let bond = document.get("bond") {
+                        newFileNumber.bond = bond as! String
+                    }
+                    
+                    if let continuances = document.get("continuance") {
+                        newFileNumber.continuances = continuances as! String
+                    }
+                    
                     let id = document.documentID
                     newFileNumber.documentID = id
                     fileNumberArray.append(newFileNumber)
