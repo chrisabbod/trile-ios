@@ -10,49 +10,52 @@ import UIKit
 
 class OffenseTableVC: UITableViewController, UISearchResultsUpdating {
 
-    let tableData = ["One","Two","Three","Twenty-One"]
+    let tableData = PickerListManager.offenseDictList
+    let offenseList: [String] = PickerListManager.offenseDictList.map({$0.key})
+
     var filteredTableData = [String]()
     var resultSearchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
-            //controller.dimsBackgroundDuringPresentation = false
+            //controller.obscuresBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
-
+            
             tableView.tableHeaderView = controller.searchBar
-
+            
             return controller
         })()
-
-        // Reload the table
+        
         tableView.reloadData()
+
     }
 
     func updateSearchResults(for searchController: UISearchController) {
         filteredTableData.removeAll(keepingCapacity: false)
 
         let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
-        let array = (tableData as NSArray).filtered(using: searchPredicate)
-        filteredTableData = array as! [String]
+        let offenseArray = (offenseList as NSArray).filtered(using: searchPredicate)
+
+        filteredTableData = offenseArray as! [String]
 
         self.tableView.reloadData()
     }
     
-    // MARK: Table view data source
+    // MARK: Table View Functions
 
      override func numberOfSections(in tableView: UITableView) -> Int {
-       // 1
-       // return the number of sections
        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      // 2
-      // return the number of rows
+
       if  (resultSearchController.isActive) {
           return filteredTableData.count
       } else {
@@ -61,7 +64,6 @@ class OffenseTableVC: UITableViewController, UISearchResultsUpdating {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      // 3
       let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
       if (resultSearchController.isActive) {
@@ -70,10 +72,17 @@ class OffenseTableVC: UITableViewController, UISearchResultsUpdating {
           return cell
       }
       else {
-          cell.textLabel?.text = tableData[indexPath.row]
-          print(tableData[indexPath.row])
+          cell.textLabel?.text = offenseList[indexPath.row]
           return cell
       }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCell = tableView.cellForRow(at: indexPath)!
+
+        print(currentCell.textLabel!.text!)
+//        let clickedCell = currentCell
+//        print(clickedCell.textLabel!.text!)
     }
     
 }
