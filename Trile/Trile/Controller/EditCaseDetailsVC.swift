@@ -266,6 +266,25 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             datePicker.datePickerMode = .date
             datePicker.timeZone = NSTimeZone.local
         }
+        dateAppointedDatePicker.addTarget(self, action: #selector(dateAppointedPickerChanged(picker:)), for: .valueChanged)
+        dateOfFirstClientInverviewDatepicker.addTarget(self, action: #selector(dateOfFirstClientInterviewPickerChanged(picker:)), for: .valueChanged)
+        dateofFinalDispositionDatePicker.addTarget(self, action: #selector(dateOfFinalDispositionPickerChanged(picker:)), for: .valueChanged)
+    }
+    
+    @objc
+    func dateAppointedPickerChanged(picker: UIDatePicker) {
+        
+        dateAppointedTextField.text = DateFormatterManager.formatDateToString(picker.date)
+    }
+    
+    @objc
+    func dateOfFirstClientInterviewPickerChanged(picker: UIDatePicker) {
+        dateOfFirstClientInterviewTextField.text = DateFormatterManager.formatDateToString(picker.date)
+    }
+    
+    @objc
+    func dateOfFinalDispositionPickerChanged(picker: UIDatePicker) {
+        dateOfFinalDispositionTextField.text = DateFormatterManager.formatDateToString(picker.date)
     }
     
     //MARK: UI Beautification Functions

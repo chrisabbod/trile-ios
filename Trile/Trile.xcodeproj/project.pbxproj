@@ -36,6 +36,7 @@
 		A575E88923C2E23100006A10 /* DocumentDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E88823C2E23100006A10 /* DocumentDetailsVC.swift */; };
 		A575E88B23C5043900006A10 /* FeeApplicationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E88A23C5043900006A10 /* FeeApplicationVC.swift */; };
 		A5817F1323D22FD9004CB660 /* PickerListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1223D22FD9004CB660 /* PickerListManager.swift */; };
+		A5817F1523D28413004CB660 /* DateFormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1423D28413004CB660 /* DateFormatterManager.swift */; };
 		A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C623B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C723B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
@@ -107,6 +108,7 @@
 		A575E88823C2E23100006A10 /* DocumentDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDetailsVC.swift; sourceTree = "<group>"; };
 		A575E88A23C5043900006A10 /* FeeApplicationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeApplicationVC.swift; sourceTree = "<group>"; };
 		A5817F1223D22FD9004CB660 /* PickerListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerListManager.swift; sourceTree = "<group>"; };
+		A5817F1423D28413004CB660 /* DateFormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterManager.swift; sourceTree = "<group>"; };
 		A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5D6D8CC23B69F4E00F16E27 /* AccountCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVC.swift; sourceTree = "<group>"; };
 		A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */,
 				A5817F1223D22FD9004CB660 /* PickerListManager.swift */,
 				A517CB5E23D1533300B2171C /* TextRestrictionManager.swift */,
+				A5817F1423D28413004CB660 /* DateFormatterManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				A5695AFE23BE58B90010E40C /* EditClientDetailsVC.swift in Sources */,
 				A511C1D823B5614900B9A771 /* AppDelegate.swift in Sources */,
 				A54DC82E23CE747600E09567 /* FirebaseStorageManager.swift in Sources */,
+				A5817F1523D28413004CB660 /* DateFormatterManager.swift in Sources */,
 				A575E86823C02AB200006A10 /* DocumentCollectionViewCell.swift in Sources */,
 				A517CB5F23D1533300B2171C /* TextRestrictionManager.swift in Sources */,
 				A5D6D8CF23B8005F00F16E27 /* FirebaseAuthManager.swift in Sources */,

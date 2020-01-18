@@ -237,13 +237,26 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     }
     
     //MARK: Date Picker Functions
-       
-       func setDatePickerProperties() {
-           for datePicker in datePickerArray {
-               datePicker.datePickerMode = .date
-               datePicker.timeZone = NSTimeZone.local
-           }
-       }
+    
+    func setDatePickerProperties() {
+        for datePicker in datePickerArray {
+            datePicker.datePickerMode = .date
+            datePicker.timeZone = NSTimeZone.local
+        }
+        dateStartedDatePicker.addTarget(self, action: #selector(dateStartedPickerChanged(picker:)), for: .valueChanged)
+        dateEndedDatePicker.addTarget(self, action: #selector(dateEndedPickerChanged(picker:)), for: .valueChanged)
+    }
+    
+    @objc
+    func dateStartedPickerChanged(picker: UIDatePicker) {
+        
+        dateStartedTextField.text = DateFormatterManager.formatDateToString(picker.date)
+    }
+    
+    @objc
+    func dateEndedPickerChanged(picker: UIDatePicker) {
+        dateEndedTextField.text = DateFormatterManager.formatDateToString(picker.date)
+    }
     
     //MARK: UI Beautification Functions
     
