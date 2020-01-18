@@ -36,8 +36,9 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     @IBOutlet weak var caseInformationView: UIView!
     @IBOutlet weak var billableHoursView: UIView!
     
+    let OFFENSE_SEGUE = "goToOffenseTableVC"
+    
     let desiredOutcomePickerView = UIPickerView()
-    let offensePickerView = UIPickerView()
     let offenseClassPickerView = UIPickerView()
     let dispositionPickerView = UIPickerView()
     let judgmentAndSentencingPickerView = UIPickerView()
@@ -71,6 +72,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
 
         createTextFieldAndPickerViewArrays()
         setTextFieldAndPickerViewDelegates()
+        hideKeyboardWhenClickingOnTextField()
         setTextFieldInputViewsAsPickerViews()
         setTextFieldInputViewsAsDatePickerViews()
         setDatePickerProperties()
@@ -102,11 +104,17 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         }
     }
     
+    //MARK: Hide Keyboard Function
+    
+    func hideKeyboardWhenClickingOnTextField() {
+        offenseTextField.inputView = UIView()
+        offenseTextField.inputAccessoryView = UIView()
+    }
+    
     //MARK: PickerView Set Input Views
     
     func setTextFieldInputViewsAsPickerViews() {
         desiredOutcomeTextField.inputView = desiredOutcomePickerView
-        offenseTextField.inputView = offensePickerView
         offenseClassTextField.inputView = offenseClassPickerView
         dispositionTextField.inputView = dispositionPickerView
         judgmentAndSentencingTextField.inputView = judgmentAndSentencingPickerView
@@ -142,7 +150,15 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         return true
     }
     
-    //MARK: - PickerView Methods
+    //MARK: TextField Segue
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == offenseTextField {
+            performSegue(withIdentifier: OFFENSE_SEGUE, sender: self)
+        }
+    }
+    
+    //MARK: PickerView Methods
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -152,8 +168,6 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         switch pickerView {
         case desiredOutcomePickerView:
             return PickerListManager.desiredOutcomeList.count
-        case offensePickerView:
-            return PickerListManager.offenseList.count
         case offenseClassPickerView:
             return PickerListManager.offenseClassList.count
         case dispositionPickerView:
@@ -189,8 +203,6 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         switch pickerView {
         case desiredOutcomePickerView:
             return PickerListManager.desiredOutcomeList[row]
-        case offensePickerView:
-            return PickerListManager.offenseList[row]
         case offenseClassPickerView:
             return PickerListManager.offenseClassList[row]
         case dispositionPickerView:
@@ -226,8 +238,6 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         switch pickerView {
         case desiredOutcomePickerView:
             desiredOutcomeTextField.text = PickerListManager.desiredOutcomeList[row]
-        case offensePickerView:
-            offenseTextField.text = PickerListManager.offenseList[row]
         case offenseClassPickerView:
             offenseClassTextField.text = PickerListManager.offenseClassList[row]
         case dispositionPickerView:
@@ -517,7 +527,6 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         textFieldArray.append(timeOutOfCourtMinutesTextField)
         
         pickerViewArray.append(desiredOutcomePickerView)
-        pickerViewArray.append(offensePickerView)
         pickerViewArray.append(offenseClassPickerView)
         pickerViewArray.append(dispositionPickerView)
         pickerViewArray.append(judgmentAndSentencingPickerView)
