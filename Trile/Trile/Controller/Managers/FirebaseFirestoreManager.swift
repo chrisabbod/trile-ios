@@ -40,7 +40,7 @@ class FirebaseFirestoreManager {
         
         var clientArray = [Client]()
 
-        clientRef.getDocuments() { (querySnapshot, error) in
+        clientRef.order(by: "name").getDocuments() { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
