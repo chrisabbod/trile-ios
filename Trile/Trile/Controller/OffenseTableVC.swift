@@ -77,10 +77,27 @@ class OffenseTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let caseData: [String: Any]
+        
         if !isFiltering {
             print("Touched \(offenses[indexPath.row])")
+            caseData = [
+                "offense": offenses[indexPath.row].name,
+                "offense_category": offenses[indexPath.row].category.rawValue,
+                "offense_class": offenses[indexPath.row].offenseClass.rawValue
+            ]
         } else {
             print("Touched \(filteredOffenses[indexPath.row])")
+            caseData = [
+                "offense": filteredOffenses[indexPath.row].name,
+                "offense_category": filteredOffenses[indexPath.row].category.rawValue,
+                "offense_class": filteredOffenses[indexPath.row].offenseClass.rawValue
+            ]
+        }
+        
+        if let client = selectedClient, let fileNumber = selectedFileNumber {
+            dbm.addCaseDataToDatabase(client, fileNumber, caseData)
         }
     }
     
