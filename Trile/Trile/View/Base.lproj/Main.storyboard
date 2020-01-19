@@ -3039,7 +3039,7 @@
                         <outlet property="timeInCourtWaitingMinutesTextField" destination="QxO-jD-cSg" id="VOW-1s-aZz"/>
                         <outlet property="timeOutOfCourtHoursTextField" destination="rjG-qT-Vwo" id="Qjr-ZA-zJq"/>
                         <outlet property="timeOutOfCourtMinutesTextField" destination="cqv-fV-Wkg" id="MT3-Ek-aZZ"/>
-                        <segue destination="3eR-Dk-Zmr" kind="presentation" identifier="goToOffenseTableVC" id="gfa-Tz-gCV"/>
+                        <segue destination="3eR-Dk-Zmr" kind="show" identifier="goToOffenseTableVC" id="gfa-Tz-gCV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m8Q-Vs-NGK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3051,15 +3051,15 @@
             <objects>
                 <tableViewController title="Offenses" id="3eR-Dk-Zmr" customClass="OffenseTableVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="01G-5A-2ID">
-                        <rect key="frame" x="0.0" y="0.0" width="712" height="984"/>
+                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Wi5-cW-ytc">
-                                <rect key="frame" x="0.0" y="28" width="712" height="51.5"/>
+                                <rect key="frame" x="0.0" y="28" width="990.5" height="51.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wi5-cW-ytc" id="Xqi-2P-80V">
-                                    <rect key="frame" x="0.0" y="0.0" width="712" height="51.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="990.5" height="51.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -3069,6 +3069,7 @@
                             <outlet property="delegate" destination="3eR-Dk-Zmr" id="KDc-bS-A5t"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="ZCF-bf-hxa"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hsp-iL-X4G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

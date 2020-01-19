@@ -1,14 +1,13 @@
 [
     { "name": "Assault", "category": "Felony", "offenseClass": "A1" },
+    { "name": "Animal Cruelty", "category": "Felony", "offenseClass": "A1" },
     { "name": "Breaking and Entering", "category": "Felony", "offenseClass": "One" },
     { "name": "Armed Robbery", "category": "Felony", "offenseClass": "Two" },
     { "name": "Theft", "category": "Felony", "offenseClass": "Three"  },
     { "name": "Sexual Assault", "category": "Felony", "offenseClass": "A" },
-    
     { "name": "Intimidation", "category": "Misdemeanor", "offenseClass": "B1" },
     { "name": "Petty Theft", "category": "Misdemeanor", "offenseClass": "B2" },
     { "name": "Endangering a Child", "category": "Misdemeanor", "offenseClass": "C" },
-    
     { "name": "Contributing to the Delinquency of a Minor", "category": "Infraction", "offenseClass": "D" },
     { "name": "Spousal Abuse", "category": "Infraction", "offenseClass": "E" },
     { "name": "Animal Abuse", "category": "Infraction", "offenseClass": "F" },
