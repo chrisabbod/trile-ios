@@ -66,6 +66,14 @@ class OffenseTableVC: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if !isFiltering {
+            print("Touched \(offenses[indexPath.row])")
+        } else {
+            print("Touched \(filteredOffenses[indexPath.row])")
+        }
+    }
+    
     //MARK: Filter Content Function
     
     func filterContentForSearchText(_ searchText: String, category: Offense.Category? = nil) {
