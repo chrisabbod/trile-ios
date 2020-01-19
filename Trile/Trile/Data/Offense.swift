@@ -14,8 +14,8 @@
 
 import Foundation
 
-struct Offenses: Decodable {
-    let offense: String
+struct Offense: Decodable {
+    let name: String
     let category: Category
     
     enum Category: Decodable {
@@ -23,12 +23,13 @@ struct Offenses: Decodable {
         case felony
         case misdemeanor
         case infraction
+        case other
     }
 }
 
-extension Offenses.Category: CaseIterable { }
+extension Offense.Category: CaseIterable { }
 
-extension Offenses.Category: RawRepresentable {
+extension Offense.Category: RawRepresentable {
     typealias RawValue = String
     
     init?(rawValue: RawValue) {
@@ -37,6 +38,7 @@ extension Offenses.Category: RawRepresentable {
         case "Felony": self = .felony
         case "Misdemeanor": self = .misdemeanor
         case "Infraction": self = .infraction
+        case "Other": self = .other
         default: return nil
         }
     }
@@ -44,7 +46,7 @@ extension Offenses.Category: RawRepresentable {
     var rawValue: RawValue {
         switch self {
         case .all: return "All"
-        case .felony: reutn "Felony"
+        case .felony: return "Felony"
         case .misdemeanor: return "Misdemeanor"
         case .infraction: return "Infraction"
         case .other: return "Other"
@@ -52,8 +54,8 @@ extension Offenses.Category: RawRepresentable {
     }
 }
 
-extension Offenses {
-    static func offenses() -> [Offenses] {
+extension Offense {
+    static func offenses() -> [Offense] {
         guard
             let url = Bundle.main.url(forResource: "offenses", withExtension: "json"),
             let data = try? Data(contentsOf: url)
@@ -63,7 +65,7 @@ extension Offenses {
         
         do {
             let decoder = JSONDecoder()
-            return try decoder.decode([Offenses].self, from: data)
+            return try decoder.decode([Offense].self, from: data)
         } catch {
             return []
         }

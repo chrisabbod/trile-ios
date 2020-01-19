@@ -1,17 +1,19 @@
 [
-  { "offense": "Assault", "category": "Felony" },
-  { "offense": "Breaking and Entering", "category": "Felony" },
-  { "offense": "Armed Robbery", "category": "Felony" },
-  { "offense": "Theft", "category": "Felony" },
-  { "offense": "Sexual Assault", "category": "Felony" },
-  { "offense": "Intimidation", "category": "Misdemeanor" },
-  { "offense": "Petty Theft", "category": "Misdemeanor" },
-  { "offense": "Endangering a Child", "category": "Misdemeanor" },
-  { "offense": "Contributing to the Delinquency of a Minor", "category": "Infraction" },
-  { "offense": "Spousal Abuse", "category": "Infraction" },
-  { "offense": "Animal Abuse", "category": "Infraction" },
-  { "offense": "Tax Evasion", "category": "Infraction" },
-  { "offense": "Blackmail", "category": "Other" },
-  { "offense": "Extortion", "category": "Other" },
+  { "name": "Assault", "category": "Felony" },
+  { "name": "Breaking and Entering", "category": "Felony" },
+  { "name": "Armed Robbery", "category": "Felony" },
+  { "name": "Theft", "category": "Felony" },
+  { "name": "Sexual Assault", "category": "Felony" },
+  
+  { "name": "Intimidation", "category": "Misdemeanor" },
+  { "name": "Petty Theft", "category": "Misdemeanor" },
+  { "name": "Endangering a Child", "category": "Misdemeanor" },
+  
+  { "name": "Contributing to the Delinquency of a Minor", "category": "Infraction" },
+  { "name": "Spousal Abuse", "category": "Infraction" },
+  { "name": "Animal Abuse", "category": "Infraction" },
+  { "name": "Tax Evasion", "category": "Infraction" },
+  { "name": "Blackmail", "category": "Other" },
+  { "name": "Extortion", "category": "Other" },
 ]
 
