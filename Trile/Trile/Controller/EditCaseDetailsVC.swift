@@ -78,9 +78,13 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         setDatePickerProperties()
         
         beautifyUI()
+                
+        offenseTextField.addTarget(self, action: #selector(offenseTableSegue), for: .editingDidBegin)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        fileNumberTextField.becomeFirstResponder()
+
         if let client = selectedClient, let fileNumber = selectedFileNumber {
             dbm.readCaseDataFromDatabase(client, fileNumber) { (caseData, success) in
                 self.readCaseData(from: caseData)
@@ -152,10 +156,10 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     
     //MARK: TextField Segue
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == offenseTextField {
-            performSegue(withIdentifier: OFFENSE_SEGUE, sender: self)
-        }
+    @objc
+    func offenseTableSegue() {
+        print("OFFENSE TEXT FIELD PRESSED")
+        performSegue(withIdentifier: OFFENSE_SEGUE, sender: self)
     }
     
     //MARK: PickerView Methods

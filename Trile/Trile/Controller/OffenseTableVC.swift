@@ -17,10 +17,10 @@ class OffenseTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        offenses = Offense.offenses()
+
         searchController.searchBar.scopeButtonTitles = Offense.Category.allCases.map { $0.rawValue }
         searchController.searchBar.delegate = self
-        
-        offenses = Offense.offenses()
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
