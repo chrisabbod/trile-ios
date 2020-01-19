@@ -39,6 +39,7 @@
 		A5817F1523D28413004CB660 /* DateFormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1423D28413004CB660 /* DateFormatterManager.swift */; };
 		A5817F1723D383E0004CB660 /* OffenseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1623D383E0004CB660 /* OffenseTableVC.swift */; };
 		A5817F1B23D3D404004CB660 /* Offenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1A23D3D404004CB660 /* Offenses.swift */; };
+		A5817F1D23D3D796004CB660 /* offenses.json in Resources */ = {isa = PBXBuildFile; fileRef = A5817F1C23D3D796004CB660 /* offenses.json */; };
 		A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C623B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C723B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
@@ -113,6 +114,7 @@
 		A5817F1423D28413004CB660 /* DateFormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterManager.swift; sourceTree = "<group>"; };
 		A5817F1623D383E0004CB660 /* OffenseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffenseTableVC.swift; sourceTree = "<group>"; };
 		A5817F1A23D3D404004CB660 /* Offenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offenses.swift; sourceTree = "<group>"; };
+		A5817F1C23D3D796004CB660 /* offenses.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = offenses.json; sourceTree = "<group>"; };
 		A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5D6D8CC23B69F4E00F16E27 /* AccountCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVC.swift; sourceTree = "<group>"; };
 		A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				A511C1E223B5614E00B9A771 /* Assets.xcassets */,
 				A511C1E723B5614E00B9A771 /* Info.plist */,
 				A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */,
+				A5817F1C23D3D796004CB660 /* offenses.json */,
 			);
 			path = Trile;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				A517CB5C23D1351E00B2171C /* FileNumberTableViewCell.xib in Resources */,
 				A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */,
 				A511C1E323B5614E00B9A771 /* Assets.xcassets in Resources */,
+				A5817F1D23D3D796004CB660 /* offenses.json in Resources */,
 				A511C1E123B5614900B9A771 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
