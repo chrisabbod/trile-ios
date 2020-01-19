@@ -154,12 +154,17 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         return true
     }
     
-    //MARK: TextField Segue
+    //MARK: Segue Functions
     
     @objc
     func offenseTableSegue() {
-        print("OFFENSE TEXT FIELD PRESSED")
         performSegue(withIdentifier: OFFENSE_SEGUE, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! OffenseTableVC
+        destinationVC.selectedClient = selectedClient
+        destinationVC.selectedFileNumber = selectedFileNumber
     }
     
     //MARK: PickerView Methods

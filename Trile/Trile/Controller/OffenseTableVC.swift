@@ -7,8 +7,18 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class OffenseTableVC: UITableViewController {
+    
+    var db = Firestore.firestore()
+    let uid: String = Auth.auth().currentUser!.uid
+    
+    let dbm = FirebaseFirestoreManager()
+    
+    var selectedClient: Client?
+    var selectedFileNumber: FileNumber?
     
     var offenses: [Offense] = []
     var filteredOffenses: [Offense] = []
