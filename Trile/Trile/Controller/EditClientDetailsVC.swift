@@ -37,6 +37,8 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     @IBOutlet weak var workHistoryView: UIView!
     @IBOutlet weak var householdResidentsView: UIView!
     
+    let NOTIFICATION_VALUE = "loadClientTableVC"
+
     let highestEducationPickerView = UIPickerView()
     let areaOfStudyPickerView = UIPickerView()
     let statePickerView = UIPickerView()
@@ -76,6 +78,9 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     
     override func viewWillDisappear(_ animated: Bool) {
         saveClientData()
+        
+        //Calls Notification Function in ClientTableVC to reload data
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_VALUE), object: nil)
     }
     
     //MARK: Bar Button Functions

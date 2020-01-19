@@ -15,6 +15,7 @@ class ClientTableVC: UITableViewController {
     let CELL_NIB_NAME = "ClientTableViewCell"
     let REUSE_IDENTIFIER = "customClientCell"
     let FILE_NUMBER_SEGUE = "goToFileNumberTableVC"
+    let LOAD_TABLEVIEW_NOTIFICATION = "loadClientTableVC"
 
     let dbm = FirebaseFirestoreManager()
     let imageManager = FirebaseStorageManager()
@@ -35,9 +36,19 @@ class ClientTableVC: UITableViewController {
         navigationItem.rightBarButtonItem = addClientButton
         
         tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: REUSE_IDENTIFIER)
+        
+        //Reload ClientTableVC when changes are made in EditClientDetailsVC
+        NotificationCenter.default.addObserver(self, selector: #selector(loadClients), name: NSNotification.Name(rawValue: LOAD_TABLEVIEW_NOTIFICATION), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        loadClients()
+    }
+    
+    //MARK: Load Clients Function
+    
+    @objc
+    func loadClients() {
         dbm.readClientsFromDatabase(completion: { (clientArray, success) in
             if success {
                 self.clients = clientArray
