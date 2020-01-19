@@ -17,13 +17,30 @@ import Foundation
 struct Offense: Decodable {
     let name: String
     let category: Category
+    let offenseClass: OffenseClass
     
     enum Category: Decodable {
-        case all
         case felony
         case misdemeanor
         case infraction
-        case other
+    }
+    
+    enum OffenseClass: Decodable {
+        case A1
+        case One
+        case Two
+        case Three
+        case A
+        case B1
+        case B2
+        case C
+        case D
+        case E
+        case F
+        case G
+        case H
+        case I
+        case none
     }
 }
 
@@ -34,22 +51,65 @@ extension Offense.Category: RawRepresentable {
     
     init?(rawValue: RawValue) {
         switch rawValue {
-        case "All": self = .all
         case "Felony": self = .felony
         case "Misdemeanor": self = .misdemeanor
         case "Infraction": self = .infraction
-        case "Other": self = .other
         default: return nil
         }
     }
     
     var rawValue: RawValue {
         switch self {
-        case .all: return "All"
         case .felony: return "Felony"
         case .misdemeanor: return "Misdemeanor"
         case .infraction: return "Infraction"
-        case .other: return "Other"
+        }
+    }
+}
+
+extension Offense.OffenseClass: CaseIterable { }
+
+extension Offense.OffenseClass: RawRepresentable {
+    typealias RawValue = String
+    
+    init?(rawValue: RawValue) {
+        switch rawValue {
+        case "A1": self = .A1
+        case "One": self = .One
+        case "Two": self = .Two
+        case "Three": self = .Three
+        case "A": self = .A
+        case "B1": self = .B1
+        case "B2": self = .B2
+        case "C": self = .C
+        case "D": self = .D
+        case "E": self = .E
+        case "F": self = .F
+        case "G": self = .G
+        case "H": self = .H
+        case "I": self = .I
+        case "none": self = .none
+        default: return nil
+        }
+    }
+    
+    var rawValue: RawValue {
+        switch self {
+        case .A1: return "A1"
+        case .One: return "One"
+        case .Two: return "Two"
+        case .Three: return "Three"
+        case .A: return "A"
+        case .B1: return "B1"
+        case .B2: return "B2"
+        case .C: return "C"
+        case .D: return "D"
+        case .E: return "E"
+        case .F: return "F"
+        case .G: return "G"
+        case .H: return "H"
+        case .I: return "I"
+        case .none: return "none"
         }
     }
 }

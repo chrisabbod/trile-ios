@@ -1,19 +1,20 @@
 [
-  { "name": "Assault", "category": "Felony" },
-  { "name": "Breaking and Entering", "category": "Felony" },
-  { "name": "Armed Robbery", "category": "Felony" },
-  { "name": "Theft", "category": "Felony" },
-  { "name": "Sexual Assault", "category": "Felony" },
-  
-  { "name": "Intimidation", "category": "Misdemeanor" },
-  { "name": "Petty Theft", "category": "Misdemeanor" },
-  { "name": "Endangering a Child", "category": "Misdemeanor" },
-  
-  { "name": "Contributing to the Delinquency of a Minor", "category": "Infraction" },
-  { "name": "Spousal Abuse", "category": "Infraction" },
-  { "name": "Animal Abuse", "category": "Infraction" },
-  { "name": "Tax Evasion", "category": "Infraction" },
-  { "name": "Blackmail", "category": "Other" },
-  { "name": "Extortion", "category": "Other" },
+    { "name": "Assault", "category": "Felony", "offenseClass": "A1" },
+    { "name": "Breaking and Entering", "category": "Felony", "offenseClass": "One" },
+    { "name": "Armed Robbery", "category": "Felony", "offenseClass": "Two" },
+    { "name": "Theft", "category": "Felony", "offenseClass": "Three"  },
+    { "name": "Sexual Assault", "category": "Felony", "offenseClass": "A" },
+    
+    { "name": "Intimidation", "category": "Misdemeanor", "offenseClass": "B1" },
+    { "name": "Petty Theft", "category": "Misdemeanor", "offenseClass": "B2" },
+    { "name": "Endangering a Child", "category": "Misdemeanor", "offenseClass": "C" },
+    
+    { "name": "Contributing to the Delinquency of a Minor", "category": "Infraction", "offenseClass": "D" },
+    { "name": "Spousal Abuse", "category": "Infraction", "offenseClass": "E" },
+    { "name": "Animal Abuse", "category": "Infraction", "offenseClass": "F" },
+    { "name": "Tax Evasion", "category": "Infraction", "offenseClass": "G" },
+    { "name": "Blackmail", "category": "Infraction", "offenseClass": "H" },
+    { "name": "Extortion", "category": "Infraction", "offenseClass": "I" },
+    { "name": "Battery", "category": "Infraction", "offenseClass": "none" },
 ]
-
+ 
