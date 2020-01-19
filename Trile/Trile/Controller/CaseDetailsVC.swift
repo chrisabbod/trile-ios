@@ -17,6 +17,7 @@ class CaseDetailsVC: UIViewController {
     @IBOutlet weak var continuanceLabel: UILabel!
     @IBOutlet weak var desiredOutcomeLabel: UILabel!
     @IBOutlet weak var offenseLabel: UILabel!
+    @IBOutlet weak var offenseCategoryLabel: UILabel!
     @IBOutlet weak var offenseClassLabel: UILabel!
     @IBOutlet weak var dispositionLabel: UILabel!
     @IBOutlet weak var judgmentAndSentencingLabel: UILabel!
@@ -116,6 +117,10 @@ class CaseDetailsVC: UIViewController {
             offenseLabel.text = offense as? String
         }
         
+        if let offenseCategory = data["offense_category"] {
+            offenseCategoryLabel.text = offenseCategory as? String
+        }
+        
         if let offenseClass = data["offense_class"] {
             offenseClassLabel.text = offenseClass as? String
         }
@@ -132,6 +137,10 @@ class CaseDetailsVC: UIViewController {
             countyLabel.text = county as? String
         }
         
+        if let nameOfJudgeSettingFee = data["name_of_judge_setting_fee"] {
+            nameOfJudgeSettingFeeLabel.text = nameOfJudgeSettingFee as? String
+        }
+        
         if let dateAppointed = data["date_appointed"] {
             dateAppointedLabel.text = dateAppointed as? String
         }
@@ -142,10 +151,6 @@ class CaseDetailsVC: UIViewController {
         
         if let dateOfFinalDisposition = data["date_of_final_disposition"] {
             dateOfFinalDispositionLabel.text = dateOfFinalDisposition as? String
-        }
-        
-        if let nameOfJudgeSettingFee = data["name_of_judge_setting_fee"] {
-            nameOfJudgeSettingFeeLabel.text = nameOfJudgeSettingFee as? String
         }
         
         if let timeInCourtHours = data["time_in_court_hours"] {

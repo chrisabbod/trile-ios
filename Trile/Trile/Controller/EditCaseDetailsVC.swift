@@ -17,6 +17,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     @IBOutlet weak var continuancesTextField: UITextField!
     @IBOutlet weak var desiredOutcomeTextField: UITextField!
     @IBOutlet weak var offenseTextField: UITextField!
+    @IBOutlet weak var offenseCategoryTextField: UITextField!
     @IBOutlet weak var offenseClassTextField: UITextField!
     @IBOutlet weak var dispositionTextField: UITextField!
     @IBOutlet weak var judgmentAndSentencingTextField: UITextField!
@@ -39,6 +40,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     let OFFENSE_SEGUE = "goToOffenseTableVC"
     
     let desiredOutcomePickerView = UIPickerView()
+    let offenseCategoryPickerView = UIPickerView()
     let offenseClassPickerView = UIPickerView()
     let dispositionPickerView = UIPickerView()
     let judgmentAndSentencingPickerView = UIPickerView()
@@ -119,6 +121,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     
     func setTextFieldInputViewsAsPickerViews() {
         desiredOutcomeTextField.inputView = desiredOutcomePickerView
+        offenseCategoryTextField.inputView = offenseCategoryPickerView
         offenseClassTextField.inputView = offenseClassPickerView
         dispositionTextField.inputView = dispositionPickerView
         judgmentAndSentencingTextField.inputView = judgmentAndSentencingPickerView
@@ -177,6 +180,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         switch pickerView {
         case desiredOutcomePickerView:
             return PickerListManager.desiredOutcomeList.count
+        case offenseCategoryPickerView:
+            return PickerListManager.offenseCategoryList.count
         case offenseClassPickerView:
             return PickerListManager.offenseClassList.count
         case dispositionPickerView:
@@ -212,6 +217,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         switch pickerView {
         case desiredOutcomePickerView:
             return PickerListManager.desiredOutcomeList[row]
+        case offenseCategoryPickerView:
+            return PickerListManager.offenseCategoryList[row]
         case offenseClassPickerView:
             return PickerListManager.offenseClassList[row]
         case dispositionPickerView:
@@ -247,6 +254,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         switch pickerView {
         case desiredOutcomePickerView:
             desiredOutcomeTextField.text = PickerListManager.desiredOutcomeList[row]
+        case offenseCategoryPickerView:
+            offenseCategoryTextField.text = PickerListManager.offenseCategoryList[row]
         case offenseClassPickerView:
             offenseClassTextField.text = PickerListManager.offenseClassList[row]
         case dispositionPickerView:
@@ -367,6 +376,10 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             offenseTextField.text = offense as? String
         }
         
+        if let offenseCategory = data["offense_category"] {
+            offenseCategoryTextField.text = offenseCategory as? String
+        }
+        
         if let offenseClass = data["offense_class"] {
             offenseClassTextField.text = offenseClass as? String
         }
@@ -383,6 +396,10 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             countyTextField.text = county as? String
         }
         
+        if let nameOfJudgeSettingFee = data["name_of_judge_setting_fee"] {
+            nameOfJudgeSettingFeeTextField.text = nameOfJudgeSettingFee as? String
+        }
+        
         if let dateAppointed = data["date_appointed"] {
             dateAppointedTextField.text = dateAppointed as? String
         }
@@ -393,10 +410,6 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         
         if let dateOfFinalDisposition = data["date_of_final_disposition"] {
             dateOfFinalDispositionTextField.text = dateOfFinalDisposition as? String
-        }
-        
-        if let nameOfJudgeSettingFee = data["name_of_judge_setting_fee"] {
-            nameOfJudgeSettingFeeTextField.text = nameOfJudgeSettingFee as? String
         }
         
         if let timeInCourtHours = data["time_in_court_hours"] {
@@ -449,6 +462,10 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             caseDataArray["offense"] = offense
         }
         
+        if let offenseCategory = offenseCategoryTextField.text {
+            caseDataArray["offense_category"] = offenseCategory
+        }
+        
         if let offenseClass = offenseClassTextField.text {
             caseDataArray["offense_class"] = offenseClass
         }
@@ -465,6 +482,10 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             caseDataArray["county"] = county
         }
         
+        if let nameOfJudgeSettingFee = nameOfJudgeSettingFeeTextField.text {
+            caseDataArray["name_of_judge_setting_fee"] = nameOfJudgeSettingFee
+        }
+        
         if let dateAppointed = dateAppointedTextField.text {
             caseDataArray["date_appointed"] = dateAppointed
         }
@@ -476,11 +497,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         if let dateOfFinalDisposition = dateOfFinalDispositionTextField.text {
             caseDataArray["date_of_final_disposition"] = dateOfFinalDisposition
         }
-        
-        if let nameOfJudgeSettingFee = nameOfJudgeSettingFeeTextField.text {
-            caseDataArray["name_of_judge_setting_fee"] = nameOfJudgeSettingFee
-        }
-        
+
         if let timeInCourtHours = timeInCourtHoursTextField.text {
             caseDataArray["time_in_court_hours"] = timeInCourtHours
         }
@@ -536,6 +553,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         textFieldArray.append(timeOutOfCourtMinutesTextField)
         
         pickerViewArray.append(desiredOutcomePickerView)
+        pickerViewArray.append(offenseCategoryPickerView)
         pickerViewArray.append(offenseClassPickerView)
         pickerViewArray.append(dispositionPickerView)
         pickerViewArray.append(judgmentAndSentencingPickerView)

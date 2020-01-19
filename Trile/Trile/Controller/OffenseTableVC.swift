@@ -80,19 +80,44 @@ class OffenseTableVC: UITableViewController {
         
         let caseData: [String: Any]
         
+        let name = offenses[indexPath.row].name
+        let category = offenses[indexPath.row].category.rawValue
+        var offenseClass = offenses[indexPath.row].offenseClass.rawValue
+        
         if !isFiltering {
-            print("Touched \(offenses[indexPath.row])")
+            switch offenseClass {
+            case "One":
+                offenseClass = "1"
+            case "Two":
+                offenseClass = "2"
+            case "Three":
+                offenseClass = "3"
+            default:
+                offenseClass = offenses[indexPath.row].offenseClass.rawValue
+            }
+
             caseData = [
-                "offense": offenses[indexPath.row].name,
-                "offense_category": offenses[indexPath.row].category.rawValue,
-                "offense_class": offenses[indexPath.row].offenseClass.rawValue
+                "offense": name,
+                "offense_category": category,
+                "offense_class": offenseClass
             ]
         } else {
             print("Touched \(filteredOffenses[indexPath.row])")
+            switch offenseClass {
+            case "One":
+                offenseClass = "1"
+            case "Two":
+                offenseClass = "2"
+            case "Three":
+                offenseClass = "3"
+            default:
+                offenseClass = offenses[indexPath.row].offenseClass.rawValue
+            }
+            
             caseData = [
-                "offense": filteredOffenses[indexPath.row].name,
-                "offense_category": filteredOffenses[indexPath.row].category.rawValue,
-                "offense_class": filteredOffenses[indexPath.row].offenseClass.rawValue
+                "offense": name,
+                "offense_category": category,
+                "offense_class": offenseClass
             ]
         }
         

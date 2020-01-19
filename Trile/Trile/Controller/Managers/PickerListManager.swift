@@ -19,15 +19,30 @@ class PickerListManager {
         "Active Sentence"
     ]
     
+    static let offenseCategoryList = [
+        "Infraction",
+        "Misdemeanor",
+        "Felony"
+    ]
+    
     static let offenseClassList = [
+        "None",
         "A1",
         "1",
         "2",
         "3",
-        "Infraction",
-
+        "A",
+        "B1",
+        "B2",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I"
     ]
-    
+
     static let dispositionList = [
         "None - Deferred/Diverted",
         "Prayer for Judgment Continued",
