@@ -156,7 +156,7 @@ class FirebaseFirestoreManager {
         
         var fileNumberArray = [FileNumber]()
         
-        fileNumberRef.getDocuments() { (querySnapshot, err) in
+        fileNumberRef.order(by: "assigned_file_number", descending: true).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
