@@ -15,7 +15,8 @@ class FileNumberTableVC: UITableViewController {
     let CELL_NIB_NAME = "FileNumberTableViewCell"
     let REUSE_IDENTIFIER = "customFileNumberCell"
     let TAB_SEGUE = "goToTabBarVC"
-
+    let LOAD_FILE_NUMBER_NOTIFICATION = "loadFileNumberTableVC"
+    
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
@@ -25,17 +26,27 @@ class FileNumberTableVC: UITableViewController {
     
     var selectedClient: Client?
     var fileNumbers = [FileNumber]()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFileNumberButton(_:)))
         navigationItem.rightBarButtonItem = addFileNumberButton
         
         tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: REUSE_IDENTIFIER)
+        
+        //Reload FileNumberTableVC when changes are made in EditCaseDetailsVC
+        NotificationCenter.default.addObserver(self, selector: #selector(loadFileNumbers), name: NSNotification.Name(rawValue: LOAD_FILE_NUMBER_NOTIFICATION), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        loadFileNumbers()
+    }
+    
+    //MARK: Load File Numbers
+    
+    @objc
+    func loadFileNumbers() {
         if let client = self.selectedClient {
             self.dbm.readFileNumbersFromDatabase(client) { (fileNumberArray, success) in
                 if success {
@@ -83,9 +94,9 @@ class FileNumberTableVC: UITableViewController {
         cell.offenseLabel.text = (fileNumber.offense != "") ? "Offense: \(fileNumber.offense)" : "Offense: None"
         cell.bondLabel.text = "Bond: \(fileNumber.bond)"
         cell.continuancesLabel.text = "Continuances: \(fileNumber.continuances)"
-
+        
         self.tableView.backgroundColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
-
+        
         return cell
     }
     
@@ -118,7 +129,7 @@ class FileNumberTableVC: UITableViewController {
         let documentsNavBarController = tabBarController?.viewControllers?[1] as? UINavigationController
         let feeApplicationNavBarController = tabBarController?.viewControllers?[2] as? UINavigationController
         let clientDetailsNavBarController = tabBarController?.viewControllers?[3] as? UINavigationController
-
+        
         let destinationCaseDetailsVC = caseDetailsNavBarController?.topViewController as? CaseDetailsVC
         let destinationDocumentCollectionVC = documentsNavBarController?.topViewController as? DocumentCollectionVC
         let destinationFeeApplicationVC = feeApplicationNavBarController?.topViewController as? FeeApplicationVC

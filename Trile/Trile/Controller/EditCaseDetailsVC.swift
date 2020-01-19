@@ -38,7 +38,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     @IBOutlet weak var billableHoursView: UIView!
     
     let OFFENSE_SEGUE = "goToOffenseTableVC"
-    
+    let NOTIFICATION_VALUE = "loadFileNumberTableVC"
+
     let desiredOutcomePickerView = UIPickerView()
     let offenseCategoryPickerView = UIPickerView()
     let offenseClassPickerView = UIPickerView()
@@ -96,6 +97,9 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     
     override func viewWillDisappear(_ animated: Bool) {
         saveCaseData()
+        
+        //Calls Notification Function in FileNumberTableVC to reload data
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_VALUE), object: nil)
     }
 
     //MARK: Set Delegates

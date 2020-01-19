@@ -12,6 +12,8 @@ import FirebaseFirestore
 
 class OffenseTableVC: UITableViewController {
     
+    let NOTIFICATION_VALUE = "loadFileNumberTableVC"
+
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
@@ -28,7 +30,7 @@ class OffenseTableVC: UITableViewController {
         super.viewDidLoad()
         
         offenses = Offense.offenses()
-
+        
         searchController.searchBar.scopeButtonTitles = Offense.Category.allCases.map { $0.rawValue }
         searchController.searchBar.delegate = self
         
@@ -38,6 +40,11 @@ class OffenseTableVC: UITableViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //Calls Notification Function in FileNumberTableVC to reload data
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_VALUE), object: nil)
     }
     
     var isFiltering: Bool {
@@ -95,7 +102,7 @@ class OffenseTableVC: UITableViewController {
             default:
                 offenseClass = offenses[indexPath.row].offenseClass.rawValue
             }
-
+            
             caseData = [
                 "offense": name,
                 "offense_category": category,
