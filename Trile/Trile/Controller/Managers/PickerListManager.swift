@@ -100,12 +100,4 @@ class PickerListManager {
     static let statesList = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
     
     static let incomeRangeList = ["No Income", "< 10k Per Year", "10k - 19k Per Year", "20k - 39k Per Year", "40k - 79k Per Year", "> 80K Per Year"]
-    
-    static let offenseDictList: [String: String] = [
-        "Assault": "A1",
-        "Battery": "Class 1",
-        "Robbery": "Class 2",
-        "Theft": "Class 3",
-        "Breaking and Entering": "Class 4"
-    ]
 }
