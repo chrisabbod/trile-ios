@@ -199,7 +199,6 @@
 				A511C1E223B5614E00B9A771 /* Assets.xcassets */,
 				A511C1E723B5614E00B9A771 /* Info.plist */,
 				A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */,
-				A5817F1C23D3D796004CB660 /* offenses.json */,
 			);
 			path = Trile;
 			sourceTree = "<group>";
@@ -249,6 +248,7 @@
 				A575E82423C00ED900006A10 /* Document.swift */,
 				A5D6D8DC23BBDF4200F16E27 /* FileNumber.swift */,
 				A5817F1E23D3DA1E004CB660 /* Offense.swift */,
+				A5817F1C23D3D796004CB660 /* offenses.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";

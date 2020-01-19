@@ -13,9 +13,12 @@ class OffenseTableVC: UITableViewController {
     var offenses: [Offense] = []
     var filteredOffenses: [Offense] = []
     let searchController = UISearchController(searchResultsController: nil)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchController.searchBar.scopeButtonTitles = Offense.Category.allCases.map { $0.rawValue }
+        searchController.searchBar.delegate = self
         
         offenses = Offense.offenses()
         
@@ -24,27 +27,28 @@ class OffenseTableVC: UITableViewController {
         searchController.searchBar.placeholder = "Search Offenses"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-
+        
     }
     
     var isFiltering: Bool {
-      return searchController.isActive && !isSearchBarEmpty
+        let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
+        return searchController.isActive && (!isSearchBarEmpty || searchBarScopeIsFiltering)
     }
-
+    
+    
     var isSearchBarEmpty: Bool {
-      return searchController.searchBar.text?.isEmpty ?? true
+        return searchController.searchBar.text?.isEmpty ?? true
     }
     
     //MARK: Table View Functions
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      if isFiltering {
-        return filteredOffenses.count
-      }
+        if isFiltering {
+            return filteredOffenses.count
+        }
         
-      return offenses.count
+        return offenses.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -62,20 +66,42 @@ class OffenseTableVC: UITableViewController {
         return cell
     }
     
+    //MARK: Filter Content Function
     
     func filterContentForSearchText(_ searchText: String, category: Offense.Category? = nil) {
         filteredOffenses = offenses.filter { (offense: Offense) -> Bool in
-            return offense.name.lowercased().contains(searchText.lowercased())
-      }
-      
-      tableView.reloadData()
+            let doesCategoryMatch = category == .all || offense.category == category
+            
+            if isSearchBarEmpty {
+                return doesCategoryMatch
+            } else {
+                return doesCategoryMatch && offense.name.lowercased()
+                    .contains(searchText.lowercased())
+            }
+        }
+        
+        tableView.reloadData()
     }
-
 }
+
+//MARK: Search Results Update Extension
 
 extension OffenseTableVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
-        filterContentForSearchText(searchBar.text!)
+        let category = Offense.Category(rawValue:
+            searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex])
+        filterContentForSearchText(searchBar.text!, category: category)
+    }
+    
+}
+
+//MARK: Search Bar Scope Extension
+
+extension OffenseTableVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        let category = Offense.Category(rawValue:
+            searchBar.scopeButtonTitles![selectedScope])
+        filterContentForSearchText(searchBar.text!, category: category)
     }
 }
