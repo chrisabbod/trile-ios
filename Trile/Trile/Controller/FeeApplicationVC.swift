@@ -44,9 +44,9 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue("Test", forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
-                            addPDFToDatabase(PDF: document)
                             
                             if let client = selectedClient, let fileNumber = selectedFileNumber {
+                                dbm.addPDFToDatabase(client, fileNumber, PDF: document)
                                 dbm.readPDFDataFromDatabase(client, fileNumber) { (returnedFileNumber, success) in
                                     if success {
                                         self.selectedFileNumber = returnedFileNumber
@@ -64,24 +64,7 @@ class FeeApplicationVC: UIViewController {
     
     //MARK: Database CRUD Functions
     
-    func addPDFToDatabase(PDF pdfDocument: PDFDocument) {
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
-        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
-        
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-                
-        let pdfData = ["pdf_data": pdfDocument.dataRepresentation()]
-        
-        fileNumberRef.document(fileNumberDocumentID).setData(pdfData as [String : Any], merge: true) { (error) in
-            if let error = error {
-                print("Error writing document: \(error)")
-            } else {
-                print("PDF Data Successfully Written")
-            }
-        }
-        
-    }
+
     
     //MARK: Bar Buttons
     

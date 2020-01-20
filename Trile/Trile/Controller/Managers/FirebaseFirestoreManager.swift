@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import PDFKit
 
 class FirebaseFirestoreManager {
     
@@ -319,6 +320,25 @@ class FirebaseFirestoreManager {
     
     //MARK: Fee Application Functions
     
+    func addPDFToDatabase(_ client: Client, _ fileNumber: FileNumber, PDF pdfDocument: PDFDocument) {
+        let clientDocumentID = client.documentID
+        let fileNumberDocumentID = fileNumber.documentID
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+                
+        let pdfData = ["pdf_data": pdfDocument.dataRepresentation()]
+        
+        fileNumberRef.document(fileNumberDocumentID).setData(pdfData as [String : Any], merge: true) { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("PDF Data Successfully Written")
+            }
+        }
+        
+    }
+    
     func readPDFDataFromDatabase(_ client: Client, _ fileNumber: FileNumber, completion: @escaping ((_ fileNumber: FileNumber, _ success: Bool) -> Void)) {
         let clientDocumentID = client.documentID
         let fileNumberDocumentID = fileNumber.documentID
@@ -339,7 +359,6 @@ class FirebaseFirestoreManager {
                     if let pdfData = documentData["pdf_data"] {
                         fileNumber.pdfData = pdfData as! Data
                         
-                        //self.showModifiedPDF(fileNumber: self.selectedFileNumber!)
                         completion(fileNumber, true)
                     }
                 }
