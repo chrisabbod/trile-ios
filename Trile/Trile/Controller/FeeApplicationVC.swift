@@ -91,6 +91,9 @@ class FeeApplicationVC: UIViewController {
     }
     
     func setFieldsInPDF() {
+        guard let client = selectedClient else { return print("Could not get client information")}
+        guard let fileNumber = selectedFileNumber else { return print("Could not get file number information")}
+        
         if let document = PDFDocument(url: fileURL) {
             for index in 0..<document.pageCount{
                 if let page = document.page(at: index){
@@ -101,7 +104,7 @@ class FeeApplicationVC: UIViewController {
                         
                         switch field {
                         case "FileNo":
-                            annotation.setValue("NEW TEST", forAnnotationKey: .widgetValue)
+                            annotation.setValue(fileNumber.assignedFileNumber, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "District":
