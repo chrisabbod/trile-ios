@@ -135,6 +135,7 @@ class OffenseTableVC: UITableViewController {
             dbm.addCaseDataToDatabase(client, fileNumber, caseData)
         }
         
+        performReturnSegue()
     }
     
     //MARK: Filter Content Function
@@ -174,5 +175,15 @@ extension OffenseTableVC: UISearchBarDelegate {
         let category = Offense.Category(rawValue:
             searchBar.scopeButtonTitles![selectedScope])
         filterContentForSearchText(searchBar.text!, category: category)
+    }
+}
+
+extension UIViewController {
+    func performReturnSegue()  {
+        if let navigationController = self.navigationController {
+            navigationController.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
