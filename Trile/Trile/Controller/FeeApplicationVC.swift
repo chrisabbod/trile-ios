@@ -135,7 +135,8 @@ class FeeApplicationVC: UIViewController {
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "NameAddrAppl":
-                            annotation.setValue(client.name, forAnnotationKey: .widgetValue)
+                            let nameAndAdress = ("\(client.name)\n\(client.address)\n\(client.state) \(client.zip)")
+                            annotation.setValue(nameAndAdress, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         default:
@@ -161,70 +162,70 @@ class FeeApplicationVC: UIViewController {
     
     func readClientData(from data: [String: Any]) {
         guard let client = selectedClient else { return print("Could not get client information")}
-
+        
         if let name = data["name"] {
             client.name = name as! String
         }
-//
-//        if let age = data["age"] {
-//            ageLabel.text = age as? String
-//        }
-//
-//        if let highestEducation = data["highest_education"] {
-//            highestEducationLabel.text = highestEducation as? String
-//        }
-//
-//        if let areaOfStudy = data["area_of_study"] {
-//            areaOfStudyLabel.text = areaOfStudy as? String
-//        }
-//
-//        if let phoneNumber = data["phone_number"] {
-//            phoneNumberLabel.text = phoneNumber as? String
-//        }
-//
-//        if let address = data["address"] {
-//            addressLabel.text = address as? String
-//        }
-//
-//        if let city = data["city"] {
-//            cityLabel.text = city as? String
-//        }
-//
-//        if let state = data["state"] {
-//            stateLabel.text = state as? String
-//        }
-//
-//        if let zip = data["zip"] {
-//            zipLabel.text = zip as? String
-//        }
-//
-//        if let placeOfEmployment = data["place_of_employment"] {
-//            placeOfEmploymentLabel.text = placeOfEmployment as? String
-//        }
-//
-//        if let role = data["role"] {
-//            roleLabel.text = role as? String
-//        }
-//
-//        if let dataStarted = data["date_started"] {
-//            dateStartedLabel.text = dataStarted as? String
-//        }
-//
-//        if let dateEnded = data["date_ended"] {
-//            dateEndedLabel.text = dateEnded as? String
-//        }
-//
-//        if let incomeRange = data["income_range"] {
-//            incomeRangeLabel.text = incomeRange as? String
-//        }
-//
-//        if let totalChildren = data["total_children"] {
-//            totalChildrenLabel.text = totalChildren as? String
-//        }
-//
-//        if let totalOtherOccupants = data["total_other_occupants"] {
-//            totalOtherOccupantsLabel.text = totalOtherOccupants as? String
-//        }
+        //
+        //        if let age = data["age"] {
+        //            ageLabel.text = age as? String
+        //        }
+        //
+        //        if let highestEducation = data["highest_education"] {
+        //            highestEducationLabel.text = highestEducation as? String
+        //        }
+        //
+        //        if let areaOfStudy = data["area_of_study"] {
+        //            areaOfStudyLabel.text = areaOfStudy as? String
+        //        }
+        //
+        //        if let phoneNumber = data["phone_number"] {
+        //            phoneNumberLabel.text = phoneNumber as? String
+        //        }
+        //
+                if let address = data["address"] {
+                    client.address = address as! String
+                }
+        
+                if let city = data["city"] {
+                    client.city = city as! String
+                }
+        
+                if let state = data["state"] {
+                    client.state = state as! String
+                }
+        
+                if let zip = data["zip"] {
+                    client.zip = zip as! String
+                }
+        //
+        //        if let placeOfEmployment = data["place_of_employment"] {
+        //            placeOfEmploymentLabel.text = placeOfEmployment as? String
+        //        }
+        //
+        //        if let role = data["role"] {
+        //            roleLabel.text = role as? String
+        //        }
+        //
+        //        if let dataStarted = data["date_started"] {
+        //            dateStartedLabel.text = dataStarted as? String
+        //        }
+        //
+        //        if let dateEnded = data["date_ended"] {
+        //            dateEndedLabel.text = dateEnded as? String
+        //        }
+        //
+        //        if let incomeRange = data["income_range"] {
+        //            incomeRangeLabel.text = incomeRange as? String
+        //        }
+        //
+        //        if let totalChildren = data["total_children"] {
+        //            totalChildrenLabel.text = totalChildren as? String
+        //        }
+        //
+        //        if let totalOtherOccupants = data["total_other_occupants"] {
+        //            totalOtherOccupantsLabel.text = totalOtherOccupants as? String
+        //        }
     }
     
     //MARK: Read Case Data
