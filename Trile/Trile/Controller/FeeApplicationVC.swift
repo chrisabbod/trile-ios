@@ -14,7 +14,7 @@ import PDFKit
 class FeeApplicationVC: UIViewController {
     
     let fileURL: URL = URL(string: "https://firebasestorage.googleapis.com/v0/b/trile-6bbdc.appspot.com/o/Fee%20Application%2FFee%20Application.pdf?alt=media&token=f4702080-ce8f-4827-9011-8e7e92d20213")!
-
+    
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
@@ -31,40 +31,8 @@ class FeeApplicationVC: UIViewController {
         
         navigationItem.rightBarButtonItems = [signOutButton, printButton]
         
-        //showPDF()
-        //getFieldNames()
-        
-        if let document = PDFDocument(url: fileURL) {
-            for index in 0..<document.pageCount{
-                if let page = document.page(at: index){
-                    let annotations = page.annotations
-                    for annotation in annotations{
-                        if annotation.fieldName == "FileNo"{
-                            print("FileNo Found")
-                            annotation.setValue("Test", forAnnotationKey: .widgetValue)
-                            page.removeAnnotation(annotation)
-                            page.addAnnotation(annotation)
-                            
-                            if let client = selectedClient, let fileNumber = selectedFileNumber {
-                                dbm.addPDFToDatabase(client, fileNumber, PDF: document)
-                                dbm.readPDFDataFromDatabase(client, fileNumber) { (returnedFileNumber, success) in
-                                    if success {
-                                        self.selectedFileNumber = returnedFileNumber
-                                        self.showModifiedPDF(fileNumber: returnedFileNumber)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
+        setFieldsInPDF()
     }
-    
-    //MARK: Database CRUD Functions
-    
-
     
     //MARK: Bar Buttons
     
@@ -81,22 +49,20 @@ class FeeApplicationVC: UIViewController {
     //MARK: Segues
     
     func transitionToHome() {
-        
         let loginVC = storyboard?.instantiateViewController(identifier: "LoginViewController")
         
         view.window?.rootViewController = loginVC
         view.window?.makeKeyAndVisible()
-        
     }
     
     //MARK: PDF Functions
     
     func showPDF() {
         let pdfView = PDFView()
-
+        
         pdfView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(pdfView)
-
+        
         pdfView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         pdfView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         pdfView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -109,10 +75,10 @@ class FeeApplicationVC: UIViewController {
     
     func showModifiedPDF(fileNumber: FileNumber) {
         let pdfView = PDFView()
-
+        
         pdfView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(pdfView)
-
+        
         pdfView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         pdfView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         pdfView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -124,25 +90,41 @@ class FeeApplicationVC: UIViewController {
         }
     }
     
-    func getFieldNames() {
+    func setFieldsInPDF() {
         if let document = PDFDocument(url: fileURL) {
             for index in 0..<document.pageCount{
                 if let page = document.page(at: index){
                     let annotations = page.annotations
-                    for annotation in annotations{
-                        print("Annotation Name :: \(annotation.fieldName ?? "")")
-                        if annotation.fieldName == "FileNo"{
-                            annotation.setValue("Test", forAnnotationKey: .widgetValue)
+                    
+                    for annotation in annotations {
+                        let field = annotation.fieldName
+                        
+                        switch field {
+                        case "FileNo":
+                            annotation.setValue("NEW TEST", forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
-                        }else if annotation.fieldName == "checkBox"{
-                            annotation.buttonWidgetState = .onState
+                        case "FileNo1":
+                            annotation.setValue("NEW TEST ONE", forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        default:
+                            print("Could not modify PDF")
                         }
+                    }
+                }
+            }
+            
+            if let client = selectedClient, let fileNumber = selectedFileNumber {
+                dbm.addPDFToDatabase(client, fileNumber, PDF: document)
+                dbm.readPDFDataFromDatabase(client, fileNumber) { (returnedFileNumber, success) in
+                    if success {
+                        self.selectedFileNumber = returnedFileNumber
+                        self.showModifiedPDF(fileNumber: returnedFileNumber)
                     }
                 }
             }
         }
     }
+    
 }
