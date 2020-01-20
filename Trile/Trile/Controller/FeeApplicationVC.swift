@@ -104,8 +104,8 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue("NEW TEST", forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
-                        case "FileNo1":
-                            annotation.setValue("NEW TEST ONE", forAnnotationKey: .widgetValue)
+                        case "District":
+                            annotation.buttonWidgetState = .onState
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         default:
