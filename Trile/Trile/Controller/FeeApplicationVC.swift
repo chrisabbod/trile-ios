@@ -22,6 +22,7 @@ class FeeApplicationVC: UIViewController {
     
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
+    var caseData = [String: Any]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,25 @@ class FeeApplicationVC: UIViewController {
         
         navigationItem.rightBarButtonItems = [signOutButton, printButton]
         
-        setFieldsInPDF()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let client = selectedClient, let fileNumber = selectedFileNumber {
+            dbm.readClientDataFromDatabase(client) { (returnedClientData, success) in
+                if success {
+                    self.readClientData(from: returnedClientData)
+                    self.setFieldsInPDF()
+                }
+            }
+            
+            dbm.readCaseDataFromDatabase(client, fileNumber) { (returnedCaseData, success) in
+                if success {
+                    self.readCaseData(from: returnedCaseData)
+                    self.setFieldsInPDF()
+                }
+            }
+            
+        }
     }
     
     //MARK: Bar Buttons
@@ -111,6 +130,14 @@ class FeeApplicationVC: UIViewController {
                             annotation.buttonWidgetState = .onState
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "County":
+                            annotation.setValue(fileNumber.county, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
+                        case "NameAddrAppl":
+                            annotation.setValue(client.name, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }
@@ -130,4 +157,159 @@ class FeeApplicationVC: UIViewController {
         }
     }
     
+    //MARK: Read Client Data
+    
+    func readClientData(from data: [String: Any]) {
+        guard let client = selectedClient else { return print("Could not get client information")}
+
+        if let name = data["name"] {
+            client.name = name as! String
+        }
+//
+//        if let age = data["age"] {
+//            ageLabel.text = age as? String
+//        }
+//
+//        if let highestEducation = data["highest_education"] {
+//            highestEducationLabel.text = highestEducation as? String
+//        }
+//
+//        if let areaOfStudy = data["area_of_study"] {
+//            areaOfStudyLabel.text = areaOfStudy as? String
+//        }
+//
+//        if let phoneNumber = data["phone_number"] {
+//            phoneNumberLabel.text = phoneNumber as? String
+//        }
+//
+//        if let address = data["address"] {
+//            addressLabel.text = address as? String
+//        }
+//
+//        if let city = data["city"] {
+//            cityLabel.text = city as? String
+//        }
+//
+//        if let state = data["state"] {
+//            stateLabel.text = state as? String
+//        }
+//
+//        if let zip = data["zip"] {
+//            zipLabel.text = zip as? String
+//        }
+//
+//        if let placeOfEmployment = data["place_of_employment"] {
+//            placeOfEmploymentLabel.text = placeOfEmployment as? String
+//        }
+//
+//        if let role = data["role"] {
+//            roleLabel.text = role as? String
+//        }
+//
+//        if let dataStarted = data["date_started"] {
+//            dateStartedLabel.text = dataStarted as? String
+//        }
+//
+//        if let dateEnded = data["date_ended"] {
+//            dateEndedLabel.text = dateEnded as? String
+//        }
+//
+//        if let incomeRange = data["income_range"] {
+//            incomeRangeLabel.text = incomeRange as? String
+//        }
+//
+//        if let totalChildren = data["total_children"] {
+//            totalChildrenLabel.text = totalChildren as? String
+//        }
+//
+//        if let totalOtherOccupants = data["total_other_occupants"] {
+//            totalOtherOccupantsLabel.text = totalOtherOccupants as? String
+//        }
+    }
+    
+    //MARK: Read Case Data
+    
+    func readCaseData(from data: [String: Any]) {
+        guard let fileNumber = selectedFileNumber else { return print("Could not get file number information")}
+        
+        if let assignedFileNumber = data["assigned_file_number"] {
+            fileNumber.assignedFileNumber = assignedFileNumber as! String
+        }
+        
+        //        if let bond = data["bond"] {
+        //            bondTextField.text = bond as? String
+        //        }
+        //
+        //        if let continuances = data["continuances"] {
+        //            continuancesTextField.text = continuances as? String
+        //        }
+        //
+        //        if let desiredOutcome = data["desired_outcome"] {
+        //            desiredOutcomeTextField.text = desiredOutcome as? String
+        //        }
+        //
+        //        if let offense = data["offense"] {
+        //            offenseTextField.text = offense as? String
+        //        }
+        //
+        //        if let offenseCategory = data["offense_category"] {
+        //            offenseCategoryTextField.text = offenseCategory as? String
+        //        }
+        //
+        //        if let offenseClass = data["offense_class"] {
+        //            offenseClassTextField.text = offenseClass as? String
+        //        }
+        //
+        //        if let disposition = data["disposition"] {
+        //            dispositionTextField.text = disposition as? String
+        //        }
+        //
+        //        if let judgmentAndSentencing = data["judgment_and_sentencing"] {
+        //            judgmentAndSentencingTextField.text = judgmentAndSentencing as? String
+        //        }
+        //
+        if let county = data["county"] {
+            fileNumber.county = county as! String
+        }
+        //
+        //        if let nameOfJudgeSettingFee = data["name_of_judge_setting_fee"] {
+        //            nameOfJudgeSettingFeeTextField.text = nameOfJudgeSettingFee as? String
+        //        }
+        //
+        //        if let dateAppointed = data["date_appointed"] {
+        //            dateAppointedTextField.text = dateAppointed as? String
+        //        }
+        //
+        //        if let dateOfFirstClientInterview = data["date_of_first_client_interview"] {
+        //            dateOfFirstClientInterviewTextField.text = dateOfFirstClientInterview as? String
+        //        }
+        //
+        //        if let dateOfFinalDisposition = data["date_of_final_disposition"] {
+        //            dateOfFinalDispositionTextField.text = dateOfFinalDisposition as? String
+        //        }
+        //
+        //        if let timeInCourtHours = data["time_in_court_hours"] {
+        //            timeInCourtHoursTextField.text = timeInCourtHours as? String
+        //        }
+        //
+        //        if let timeInCourtMinutes = data["time_in_court_minutes"] {
+        //            timeInCourtMinutesTextField.text = timeInCourtMinutes as? String
+        //        }
+        //
+        //        if let timeInCourtWaitingHours = data["time_in_court_waiting_hours"] {
+        //            timeInCourtWaitingHoursTextField.text = timeInCourtWaitingHours as? String
+        //        }
+        //
+        //        if let timeInCourtWaitingMinutes = data["time_in_court_waiting_minutes"] {
+        //            timeInCourtWaitingMinutesTextField.text = timeInCourtWaitingMinutes as? String
+        //        }
+        //
+        //        if let timeOutOfCourtHours = data["time_out_of_court_hours"] {
+        //            timeOutOfCourtHoursTextField.text = timeOutOfCourtHours as? String
+        //        }
+        //
+        //        if let timeOutOfCourtMinutes = data["time_out_of_court_minutes"] {
+        //            timeOutOfCourtMinutesTextField.text = timeOutOfCourtMinutes as? String
+        //        }
+    }
 }
