@@ -13,7 +13,7 @@ import FirebaseFirestore
 class OffenseTableVC: UITableViewController {
     
     let NOTIFICATION_VALUE = "loadFileNumberTableVC"
-
+    
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
@@ -52,7 +52,6 @@ class OffenseTableVC: UITableViewController {
         return searchController.isActive && (!isSearchBarEmpty || searchBarScopeIsFiltering)
     }
     
-    
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
@@ -87,11 +86,11 @@ class OffenseTableVC: UITableViewController {
         
         let caseData: [String: Any]
         
-        let name = offenses[indexPath.row].name
-        let category = offenses[indexPath.row].category.rawValue
-        var offenseClass = offenses[indexPath.row].offenseClass.rawValue
-        
         if !isFiltering {
+            let name = offenses[indexPath.row].name
+            let category = offenses[indexPath.row].category.rawValue
+            var offenseClass = offenses[indexPath.row].offenseClass.rawValue
+
             switch offenseClass {
             case "One":
                 offenseClass = "1"
@@ -100,37 +99,42 @@ class OffenseTableVC: UITableViewController {
             case "Three":
                 offenseClass = "3"
             default:
-                offenseClass = offenses[indexPath.row].offenseClass.rawValue
+                print("No issues")
             }
-            
+
             caseData = [
                 "offense": name,
                 "offense_category": category,
                 "offense_class": offenseClass
             ]
-        } else {
-            print("Touched \(filteredOffenses[indexPath.row])")
-            switch offenseClass {
-            case "One":
-                offenseClass = "1"
-            case "Two":
-                offenseClass = "2"
-            case "Three":
-                offenseClass = "3"
-            default:
-                offenseClass = offenses[indexPath.row].offenseClass.rawValue
-            }
             
+        } else {
+            let filteredName = filteredOffenses[indexPath.row].name
+            let filteredCategory = filteredOffenses[indexPath.row].category.rawValue
+            var filteredOffenseClass = filteredOffenses[indexPath.row].offenseClass.rawValue
+
+            switch filteredOffenseClass {
+            case "One":
+                filteredOffenseClass = "1"
+            case "Two":
+                filteredOffenseClass = "2"
+            case "Three":
+                filteredOffenseClass = "3"
+            default:
+                print("No issues")
+            }
+
             caseData = [
-                "offense": name,
-                "offense_category": category,
-                "offense_class": offenseClass
+                "offense": filteredName,
+                "offense_category": filteredCategory,
+                "offense_class": filteredOffenseClass
             ]
         }
         
         if let client = selectedClient, let fileNumber = selectedFileNumber {
             dbm.addCaseDataToDatabase(client, fileNumber, caseData)
         }
+        
     }
     
     //MARK: Filter Content Function
