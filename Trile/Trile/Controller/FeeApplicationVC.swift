@@ -18,6 +18,8 @@ class FeeApplicationVC: UIViewController {
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
+    let dbm = FirebaseFirestoreManager()
+    
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     
@@ -43,7 +45,15 @@ class FeeApplicationVC: UIViewController {
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                             addPDFToDatabase(PDF: document)
-                            readPDFDataFromDatabase()
+                            
+                            if let client = selectedClient, let fileNumber = selectedFileNumber {
+                                dbm.readPDFDataFromDatabase(client, fileNumber) { (returnedFileNumber, success) in
+                                    if success {
+                                        self.selectedFileNumber = returnedFileNumber
+                                        self.showModifiedPDF(fileNumber: returnedFileNumber)
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -71,33 +81,6 @@ class FeeApplicationVC: UIViewController {
             }
         }
         
-    }
-    
-    func readPDFDataFromDatabase() {
-        guard let clientDocumentID = selectedClient?.documentID else { return print("Could not get client document ID")}
-        guard let fileNumberDocumentID = selectedFileNumber?.documentID else { return print("Could not get file number document ID")}
-        
-        let clientRef = db.collection("users").document(uid).collection("clients")
-        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-        
-        let query = fileNumberRef.whereField("document_id", isEqualTo: fileNumberDocumentID as Any)
-        print(fileNumberDocumentID)
-        query.getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    //print("\(document.documentID) => \(document.data())")
-                    let documentData: [String: Any] = document.data()
-                    
-                    if let pdfData = documentData["pdf_data"] {
-                        self.selectedFileNumber?.pdfData = pdfData as! Data
-                        
-                        self.showModifiedPDF(fileNumber: self.selectedFileNumber!)
-                    }
-                }
-            }
-        }
     }
     
     //MARK: Bar Buttons
@@ -159,8 +142,6 @@ class FeeApplicationVC: UIViewController {
     }
     
     func getFieldNames() {
-        //guard let path = Bundle.main.url(forResource: FEE_APPLICATION, withExtension: "pdf") else { return }
-        
         if let document = PDFDocument(url: fileURL) {
             for index in 0..<document.pageCount{
                 if let page = document.page(at: index){

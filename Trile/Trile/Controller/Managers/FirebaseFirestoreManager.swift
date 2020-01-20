@@ -317,5 +317,34 @@ class FirebaseFirestoreManager {
         documentRef.document(documentID).delete()
     }
     
-}
+    //MARK: Fee Application Functions
+    
+    func readPDFDataFromDatabase(_ client: Client, _ fileNumber: FileNumber, completion: @escaping ((_ fileNumber: FileNumber, _ success: Bool) -> Void)) {
+        let clientDocumentID = client.documentID
+        let fileNumberDocumentID = fileNumber.documentID
+        
+        let clientRef = db.collection("users").document(uid).collection("clients")
+        let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
+        
+        let query = fileNumberRef.whereField("document_id", isEqualTo: fileNumberDocumentID as Any)
 
+        query.getDocuments() { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //print("\(document.documentID) => \(document.data())")
+                    let documentData: [String: Any] = document.data()
+                    
+                    if let pdfData = documentData["pdf_data"] {
+                        fileNumber.pdfData = pdfData as! Data
+                        
+                        //self.showModifiedPDF(fileNumber: self.selectedFileNumber!)
+                        completion(fileNumber, true)
+                    }
+                }
+            }
+        }
+    }
+
+}
