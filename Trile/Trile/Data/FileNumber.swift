@@ -19,6 +19,7 @@ class FileNumber {
     var continuances: String = "0"
     var desiredOutcome: String = ""
     var offense: String = ""
+    var offenseCategory: String = ""
     var offenseClass: String = ""
     var disposition: String = ""
     var judgmentAndSentencing: String = ""
