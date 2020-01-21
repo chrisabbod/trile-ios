@@ -22,6 +22,7 @@ class PickerListManager {
     static let offenseCategoryList = [
         "Infraction",
         "Misdemeanor",
+        "Misdemeanor Probation Violation",
         "Felony"
     ]
     
