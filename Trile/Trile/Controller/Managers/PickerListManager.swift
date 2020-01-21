@@ -44,23 +44,37 @@ class PickerListManager {
     ]
 
     static let dispositionList = [
-        "None - Deferred/Diverted",
-        "Prayer for Judgment Continued",
-        "Improper Equipment",
-        "Unsupervised Probation",
-        "Supervised Probation",
-        "Active Sentence",
-        "None - Acquitted/Dismissed",
+        "Guilty Plea Before Trial: Most Serious Original Charge",
+        "Guilty Plea Before Trial: Other Offense",
+        "Guilty Plea During Trial: Other Offense",
+        "Trial: Guilty Most Serious Original Charge",
+        "Trial: Guilty Other Offense",
+        "Trial: Acquitted",
+        "Probation Violation Found",
+        "Dismissed With Leave",
+        "Dismissed Without Leave",
+        "FTA/OFA Without Dismissal",
+        "Deferred/Diverted",
+        "Held In Criminal Contempt",
+        "No Probable Cause",
+        "Attorney Withdrew",
+        "None (Interim Fee)",
         "Other"
     ]
     
     static let judgmentAndSentencingList = [
-        "Dismissal",
-        "Prayer for Judgment Continued",
-        "Improper Equipment",
-        "Unsupervised Probation",
+        "Active Sentence",
+        "Split Sentence",
         "Supervised Probation",
-        "Active Sentence"
+        "Unsupervised Probation",
+        "Probation Terminated",
+        "PJC",
+        "Fines and Costs Only",
+        "None (Acquitted/Dismissed)",
+        "None (Deferred/Diverted)",
+        "None (Attorney Withdrew)",
+        "None (Interim Fee)",
+        "Other"
     ]
     
     static let countyList = [
