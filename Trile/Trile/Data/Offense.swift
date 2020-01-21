@@ -24,6 +24,7 @@ struct Offense: Decodable {
         case all
         case infraction
         case misdemeanor
+        case misdemeanorProbation
         case felony
     }
     
@@ -56,6 +57,7 @@ extension Offense.Category: RawRepresentable {
         case "All": self = .all
         case "Felony": self = .felony
         case "Misdemeanor": self = .misdemeanor
+        case "Misdemeanor Probation Violation": self = .misdemeanorProbation
         case "Infraction": self = .infraction
         default: return nil
         }
@@ -66,6 +68,7 @@ extension Offense.Category: RawRepresentable {
         case .all: return "All"
         case .felony: return "Felony"
         case .misdemeanor: return "Misdemeanor"
+        case .misdemeanorProbation: return "Misdemeanor Probation Violation"
         case .infraction: return "Infraction"
         }
     }
