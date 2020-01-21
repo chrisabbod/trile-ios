@@ -237,7 +237,6 @@
     { "name": "Ramp Meter Violation", "category": "Infraction", "offenseClass": "none", "trafficType": "Traffic" },
     { "name": "Boating/Water Safety Violations", "category": "Infraction", "offenseClass": "none", "trafficType": "Traffic" },
     { "name": "Speeding (Less than fifteen miles over limit)", "category": "Infraction", "offenseClass": "none", "trafficType": "Traffic" },
-
-    { "name": "Misdemeanor Probation", "category": "Misdemeanor Probation Violation", "offenseClass": "none", "trafficType": "Traffic" }
+    { "name": "Misdemeanor Probation Violation", "category": "Misdemeanor Probation Violation", "offenseClass": "none", "trafficType": "Traffic" }
 ]
  
