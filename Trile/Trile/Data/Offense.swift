@@ -19,6 +19,7 @@ struct Offense: Decodable {
     let name: String
     let category: Category
     let offenseClass: OffenseClass
+    let trafficType: Traffic
     
     enum Category: Decodable {
         case all
@@ -44,6 +45,11 @@ struct Offense: Decodable {
         case H
         case I
         case none
+    }
+    
+    enum Traffic: Decodable {
+        case traffic
+        case nonTraffic
     }
 }
 
@@ -117,6 +123,27 @@ extension Offense.OffenseClass: RawRepresentable {
         case .H: return "H"
         case .I: return "I"
         case .none: return "none"
+        }
+    }
+}
+
+extension Offense.Traffic: CaseIterable { }
+
+extension Offense.Traffic: RawRepresentable {
+    typealias RawValue = String
+    
+    init?(rawValue: RawValue) {
+        switch rawValue {
+        case "Traffic": self = .traffic
+        case "Non Traffic": self = .nonTraffic
+        default: return nil
+        }
+    }
+    
+    var rawValue: RawValue {
+        switch self {
+        case .traffic: return "Traffic"
+        case .nonTraffic: return "Non Traffic"
         }
     }
 }
