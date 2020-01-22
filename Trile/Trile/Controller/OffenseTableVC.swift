@@ -110,7 +110,8 @@ class OffenseTableVC: UITableViewController {
             caseData = [
                 "offense": name,
                 "offense_category": category,
-                "offense_class": offenseClass
+                "offense_class": offenseClass,
+                "offense_traffic_type": trafficType
             ]
             
         } else {

@@ -270,10 +270,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             dispositionTextField.text = PickerListManager.dispositionList[row]
         case judgmentAndSentencingPickerView:
             judgmentAndSentencingTextField.text = PickerListManager.judgmentAndSentencingList[row]
-            if judgmentAndSentencingTextField.text == "Active Sentence" {
-                sentenceLengthStackView.isHidden = false
-            } else {
-                sentenceLengthStackView.isHidden = true
+            if let sentence = judgmentAndSentencingTextField.text {
+                showSentenceLength(sentence)
             }
         case countyPickerView:
             countyTextField.text = PickerListManager.countyList[row]
@@ -332,9 +330,15 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     
     func showSentenceLength(_ sentence: String) {
         if sentence == "Active Sentence" {
-            sentenceLengthStackView.isHidden = false
+            UIView.animate(withDuration: 0.35) { [unowned self] in
+                self.sentenceLengthStackView.isHidden = false
+                self.sentenceLengthStackView.alpha = 1
+            }
         } else {
-            sentenceLengthStackView.isHidden = true
+            UIView.animate(withDuration: 0.35) { [unowned self] in
+                self.sentenceLengthStackView.isHidden = true
+                self.sentenceLengthStackView.alpha = 1
+            }
         }
     }
     
