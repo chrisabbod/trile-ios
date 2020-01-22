@@ -90,6 +90,7 @@ class OffenseTableVC: UITableViewController {
             let name = offenses[indexPath.row].name
             var category = offenses[indexPath.row].category.rawValue
             var offenseClass = offenses[indexPath.row].offenseClass.rawValue
+            let trafficType = offenses[indexPath.row].trafficType.rawValue
 
             switch offenseClass {
             case "One":
@@ -116,7 +117,8 @@ class OffenseTableVC: UITableViewController {
             let filteredName = filteredOffenses[indexPath.row].name
             var filteredCategory = filteredOffenses[indexPath.row].category.rawValue
             var filteredOffenseClass = filteredOffenses[indexPath.row].offenseClass.rawValue
-
+            let filteredTrafficType = filteredOffenses[indexPath.row].trafficType.rawValue
+            
             switch filteredOffenseClass {
             case "One":
                 filteredOffenseClass = "1"
@@ -127,15 +129,16 @@ class OffenseTableVC: UITableViewController {
             default:
                 print("No issues")
             }
-
+            
             if filteredCategory == "Probation" {
                 filteredCategory = "Misdemeanor Probation Violation"
             }
-            
+                        
             caseData = [
                 "offense": filteredName,
                 "offense_category": filteredCategory,
-                "offense_class": filteredOffenseClass
+                "offense_class": filteredOffenseClass,
+                "offense_traffic_type": filteredTrafficType
             ]
         }
         
