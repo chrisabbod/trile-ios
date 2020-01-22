@@ -86,7 +86,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         
         beautifyUI()
         
-        sentenceLengthStackView.isHidden = true
+        //sentenceLengthStackView.isHidden = true
 
         offenseTextField.addTarget(self, action: #selector(offenseTableSegue), for: .editingDidBegin)
     }
@@ -407,6 +407,14 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             judgmentAndSentencingTextField.text = judgmentAndSentencing as? String
         }
         
+        if let sentenceMonths = data["sentence_months"] {
+            sentenceMonthsTextField.text = sentenceMonths as? String
+        }
+        
+        if let sentenceDays = data["sentence_days"] {
+            sentenceDaysTextField.text = sentenceDays as? String
+        }
+        
         if let county = data["county"] {
             countyTextField.text = county as? String
         }
@@ -491,6 +499,14 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         
         if let judgmentAndSentencing = judgmentAndSentencingTextField.text {
             caseDataArray["judgment_and_sentencing"] = judgmentAndSentencing
+        }
+        
+        if let sentenceMonths = sentenceMonthsTextField.text {
+            caseDataArray["sentence_months"] = sentenceMonths
+        }
+        
+        if let sentenceDays = sentenceDaysTextField.text {
+            caseDataArray["sentence_days"] = sentenceDays
         }
         
         if let county = countyTextField.text {
