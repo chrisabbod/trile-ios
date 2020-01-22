@@ -23,6 +23,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     @IBOutlet weak var judgmentAndSentencingTextField: UITextField!
     @IBOutlet weak var countyTextField: UITextField!
     @IBOutlet weak var nameOfJudgeSettingFeeTextField: UITextField!
+    @IBOutlet weak var sentenceMonthsTextField: UITextField!
+    @IBOutlet weak var sentenceDaysTextField: UITextField!
     @IBOutlet weak var dateAppointedTextField: UITextField!
     @IBOutlet weak var dateOfFirstClientInterviewTextField: UITextField!
     @IBOutlet weak var dateOfFinalDispositionTextField: UITextField!
@@ -36,6 +38,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     
     @IBOutlet weak var caseInformationView: UIView!
     @IBOutlet weak var billableHoursView: UIView!
+    
+    @IBOutlet weak var sentenceLengthStackView: UIStackView!
     
     let OFFENSE_SEGUE = "goToOffenseTableVC"
     let NOTIFICATION_VALUE = "loadFileNumberTableVC"
@@ -81,7 +85,9 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         setDatePickerProperties()
         
         beautifyUI()
-                
+        
+        sentenceLengthStackView.isHidden = true
+
         offenseTextField.addTarget(self, action: #selector(offenseTableSegue), for: .editingDidBegin)
     }
     
@@ -266,6 +272,11 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             dispositionTextField.text = PickerListManager.dispositionList[row]
         case judgmentAndSentencingPickerView:
             judgmentAndSentencingTextField.text = PickerListManager.judgmentAndSentencingList[row]
+            if judgmentAndSentencingTextField.text == "Active Sentence" {
+                sentenceLengthStackView.isHidden = false
+            } else {
+                sentenceLengthStackView.isHidden = true
+            }
         case countyPickerView:
             countyTextField.text = PickerListManager.countyList[row]
         case nameOfJudgeSettingFeePickerView:
