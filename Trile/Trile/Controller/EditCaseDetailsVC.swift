@@ -85,15 +85,13 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         setDatePickerProperties()
         
         beautifyUI()
-        
-        //sentenceLengthStackView.isHidden = true
 
         offenseTextField.addTarget(self, action: #selector(offenseTableSegue), for: .editingDidBegin)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         fileNumberTextField.becomeFirstResponder()
-
+        
         if let client = selectedClient, let fileNumber = selectedFileNumber {
             dbm.readCaseDataFromDatabase(client, fileNumber) { (caseData, success) in
                 self.readCaseData(from: caseData)
@@ -107,7 +105,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         //Calls Notification Function in FileNumberTableVC to reload data
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_VALUE), object: nil)
     }
-
+    
     //MARK: Set Delegates
     
     func setTextFieldAndPickerViewDelegates() {
@@ -330,6 +328,16 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         dateOfFinalDispositionTextField.text = DateFormatterManager.formatDateToString(picker.date)
     }
     
+    //MARK: Show Sentence Length
+    
+    func showSentenceLength(_ sentence: String) {
+        if sentence == "Active Sentence" {
+            sentenceLengthStackView.isHidden = false
+        } else {
+            sentenceLengthStackView.isHidden = true
+        }
+    }
+    
     //MARK: UI Beautification Functions
     
     func beautifyUI() {
@@ -405,6 +413,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         
         if let judgmentAndSentencing = data["judgment_and_sentencing"] {
             judgmentAndSentencingTextField.text = judgmentAndSentencing as? String
+            
+            showSentenceLength(judgmentAndSentencing as! String)
         }
         
         if let sentenceMonths = data["sentence_months"] {
