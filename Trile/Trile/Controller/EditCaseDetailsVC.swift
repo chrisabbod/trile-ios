@@ -332,12 +332,10 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         if sentence == "Active Sentence" {
             UIView.animate(withDuration: 0.35) { [unowned self] in
                 self.sentenceLengthStackView.isHidden = false
-                self.sentenceLengthStackView.alpha = 1
             }
         } else {
             UIView.animate(withDuration: 0.35) { [unowned self] in
                 self.sentenceLengthStackView.isHidden = true
-                self.sentenceLengthStackView.alpha = 1
             }
         }
     }
