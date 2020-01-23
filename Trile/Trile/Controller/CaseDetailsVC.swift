@@ -153,7 +153,7 @@ class CaseDetailsVC: UIViewController {
         }
         
         if let sentenceMonths = data["sentence_months"] {
-            if sentenceMonths as! String == "" {
+            if (sentenceMonths as! String).trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 sentenceMonthsLabel.text = "0"
             } else {
                 sentenceMonthsLabel.text = sentenceMonths as? String
@@ -161,7 +161,7 @@ class CaseDetailsVC: UIViewController {
         }
         
         if let sentenceDays = data["sentence_days"] {
-            if sentenceDays as! String == "" {
+            if (sentenceDays as! String).trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 sentenceDaysLabel.text = "0"
             } else {
                 sentenceDaysLabel.text = sentenceDays as? String

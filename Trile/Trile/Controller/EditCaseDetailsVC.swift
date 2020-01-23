@@ -158,7 +158,9 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             return TextRestrictionManager.restrictTextLength(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == bondTextField {
             return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
-        } else if textField == continuancesTextField || textField == timeInCourtHoursTextField || textField == timeInCourtMinutesTextField || textField == timeInCourtWaitingHoursTextField || textField == timeInCourtWaitingMinutesTextField || textField == timeOutOfCourtHoursTextField || textField == timeOutOfCourtMinutesTextField {
+        } else if textField == sentenceMonthsTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 4, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == continuancesTextField || textField == sentenceDaysTextField || textField == timeInCourtHoursTextField || textField == timeInCourtMinutesTextField || textField == timeInCourtWaitingHoursTextField || textField == timeInCourtWaitingMinutesTextField || textField == timeOutOfCourtHoursTextField || textField == timeOutOfCourtMinutesTextField {
             return TextRestrictionManager.restrictTextLengthAndCharacters(by: 2, textField, shouldChangeCharactersIn: range, replacementString: string)
         }
         
@@ -583,6 +585,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         textFieldArray.append(offenseClassTextField)
         textFieldArray.append(dispositionTextField)
         textFieldArray.append(judgmentAndSentencingTextField)
+        textFieldArray.append(sentenceMonthsTextField)
+        textFieldArray.append(sentenceDaysTextField)
         textFieldArray.append(countyTextField)
         textFieldArray.append(nameOfJudgeSettingFeeTextField)
         textFieldArray.append(dateAppointedTextField)
