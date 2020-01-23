@@ -21,6 +21,8 @@ class CaseDetailsVC: UIViewController {
     @IBOutlet weak var offenseClassLabel: UILabel!
     @IBOutlet weak var dispositionLabel: UILabel!
     @IBOutlet weak var judgmentAndSentencingLabel: UILabel!
+    @IBOutlet weak var sentenceMonthsLabel: UILabel!
+    @IBOutlet weak var sentenceDaysLabel: UILabel!
     @IBOutlet weak var countyLabel: UILabel!
     @IBOutlet weak var nameOfJudgeSettingFeeLabel: UILabel!
     @IBOutlet weak var dateAppointedLabel: UILabel!
@@ -36,6 +38,7 @@ class CaseDetailsVC: UIViewController {
     
     @IBOutlet weak var caseInformationView: UIView!
     @IBOutlet weak var billableHoursView: UIView!
+    @IBOutlet weak var sentenceLengthStackView: UIStackView!
     
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
@@ -93,6 +96,20 @@ class CaseDetailsVC: UIViewController {
         
     }
     
+    //MARK: Show Sentence Length
+    
+    func showSentenceLength(_ sentence: String) {
+        if sentence == "Active Sentence" {
+            UIView.animate(withDuration: 0.35) { [unowned self] in
+                self.sentenceLengthStackView.isHidden = false
+            }
+        } else {
+            UIView.animate(withDuration: 0.35) { [unowned self] in
+                self.sentenceLengthStackView.isHidden = true
+            }
+        }
+    }
+    
     //MARK: Read Case Data
     
     func readCaseData(from data: [String: Any]) {
@@ -131,6 +148,24 @@ class CaseDetailsVC: UIViewController {
         
         if let judgmentAndSentencing = data["judgment_and_sentencing"] {
             judgmentAndSentencingLabel.text = judgmentAndSentencing as? String
+            
+            showSentenceLength(judgmentAndSentencing as! String)
+        }
+        
+        if let sentenceMonths = data["sentence_months"] {
+            if sentenceMonths as! String == "" {
+                sentenceMonthsLabel.text = "0"
+            } else {
+                sentenceMonthsLabel.text = sentenceMonths as? String
+            }
+        }
+        
+        if let sentenceDays = data["sentence_days"] {
+            if sentenceDays as! String == "" {
+                sentenceDaysLabel.text = "0"
+            } else {
+                sentenceDaysLabel.text = sentenceDays as? String
+            }
         }
         
         if let county = data["county"] {
