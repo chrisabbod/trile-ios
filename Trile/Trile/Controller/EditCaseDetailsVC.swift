@@ -444,6 +444,10 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             showOtherOffense(disposition as! String)
         }
         
+        if let otherOffense = data["other_offense"] {
+            otherOffenseTextField.text = otherOffense as? String
+        }
+        
         if let judgmentAndSentencing = data["judgment_and_sentencing"] {
             judgmentAndSentencingTextField.text = judgmentAndSentencing as? String
             
@@ -538,6 +542,10 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         
         if let disposition = dispositionTextField.text {
             caseDataArray["disposition"] = disposition
+        }
+        
+        if let otherOffense = otherOffenseTextField.text {
+            caseDataArray["other_offense"] = otherOffense
         }
         
         if let judgmentAndSentencing = judgmentAndSentencingTextField.text {
