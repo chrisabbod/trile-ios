@@ -20,6 +20,7 @@ class CaseDetailsVC: UIViewController {
     @IBOutlet weak var offenseCategoryLabel: UILabel!
     @IBOutlet weak var offenseClassLabel: UILabel!
     @IBOutlet weak var dispositionLabel: UILabel!
+    @IBOutlet weak var otherOffenseLabel: UILabel!
     @IBOutlet weak var judgmentAndSentencingLabel: UILabel!
     @IBOutlet weak var sentenceMonthsLabel: UILabel!
     @IBOutlet weak var sentenceDaysLabel: UILabel!
@@ -38,6 +39,7 @@ class CaseDetailsVC: UIViewController {
     
     @IBOutlet weak var caseInformationView: UIView!
     @IBOutlet weak var billableHoursView: UIView!
+    @IBOutlet weak var otherOffenseStackView: UIStackView!
     @IBOutlet weak var sentenceLengthStackView: UIStackView!
     
     var db = Firestore.firestore()
@@ -96,7 +98,7 @@ class CaseDetailsVC: UIViewController {
         
     }
     
-    //MARK: Show Sentence Length
+    //MARK: Show/Hide Functions
     
     func showSentenceLength(_ sentence: String) {
         if sentence == "Active Sentence" {
@@ -106,6 +108,20 @@ class CaseDetailsVC: UIViewController {
         } else {
             UIView.animate(withDuration: 0.35) { [unowned self] in
                 self.sentenceLengthStackView.isHidden = true
+            }
+        }
+    }
+    
+    func showOtherOffense(_ disposition: String) {
+        if disposition == "Guilty Plea Before Trial: Other Offense" ||
+            disposition == "Guilty Plea During Trial: Other Offense" ||
+            disposition == "Trial: Guilty Other Offense" {
+            UIView.animate(withDuration: 0.35) { [unowned self] in
+                self.otherOffenseStackView.isHidden = false
+            }
+        } else {
+            UIView.animate(withDuration: 0.35) { [unowned self] in
+                self.otherOffenseStackView.isHidden = true
             }
         }
     }
@@ -144,6 +160,12 @@ class CaseDetailsVC: UIViewController {
         
         if let disposition = data["disposition"] {
             dispositionLabel.text = disposition as? String
+            
+            showOtherOffense(disposition as! String)
+        }
+        
+        if let otherOffense = data["other_offense"] {
+            otherOffenseLabel.text = otherOffense as? String
         }
         
         if let judgmentAndSentencing = data["judgment_and_sentencing"] {

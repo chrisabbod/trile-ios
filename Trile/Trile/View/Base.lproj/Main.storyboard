@@ -551,7 +551,7 @@
             <objects>
                 <viewController title="CaseDetailsVC" id="Es9-pA-DHU" customClass="CaseDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o1p-2P-bxW" userLabel="Root View">
-                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="990" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5K-KW-mv9">
@@ -567,13 +567,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QvM-mD-xOV">
-                                                <rect key="frame" x="20" y="64" width="500" height="544"/>
+                                                <rect key="frame" x="20" y="64" width="500" height="568"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLX-dI-auW" userLabel="Case Information View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="500" height="376"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="500" height="400"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4f8-Ar-bfF" userLabel="Case Information Stack View">
-                                                                <rect key="frame" x="8" y="8" width="484" height="360"/>
+                                                                <rect key="frame" x="8" y="8" width="484" height="384"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZbR-4k-Y5Z" userLabel="File Number">
                                                                         <rect key="frame" x="0.0" y="0.0" width="484" height="24"/>
@@ -711,8 +711,25 @@
                                                                             </label>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1nP-B6-Jt0" userLabel="Judgment &amp; Sentencing">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TMy-t3-AZM" userLabel="Other Offense">
                                                                         <rect key="frame" x="0.0" y="192" width="484" height="24"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Other Offense" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNn-5b-rq6">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="405" height="24"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sod-m2-lDd" userLabel="Other Offense Data">
+                                                                                <rect key="frame" x="413" y="0.0" width="71" height="24"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1nP-B6-Jt0" userLabel="Judgment &amp; Sentencing">
+                                                                        <rect key="frame" x="0.0" y="216" width="484" height="24"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Judgment &amp; Sentencing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeN-5I-Ak8">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="405" height="24"/>
@@ -729,7 +746,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7iz-sk-NU1" userLabel="Sentence Length">
-                                                                        <rect key="frame" x="0.0" y="216" width="484" height="24"/>
+                                                                        <rect key="frame" x="0.0" y="240" width="484" height="24"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Sentence Length" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txq-75-acg">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="272" height="24"/>
@@ -770,7 +787,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wsZ-tF-XDv" userLabel="County">
-                                                                        <rect key="frame" x="0.0" y="240" width="484" height="24"/>
+                                                                        <rect key="frame" x="0.0" y="264" width="484" height="24"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="County" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAM-TN-Tui">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="405" height="24"/>
@@ -787,7 +804,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="czJ-g8-b28" userLabel="Name of Judge Setting Fee">
-                                                                        <rect key="frame" x="0.0" y="264" width="484" height="24"/>
+                                                                        <rect key="frame" x="0.0" y="288" width="484" height="24"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name Of Judge Setting Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avZ-jN-iED">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="405" height="24"/>
@@ -804,7 +821,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dXe-us-QyZ" userLabel="Date Appointed">
-                                                                        <rect key="frame" x="0.0" y="288" width="484" height="24"/>
+                                                                        <rect key="frame" x="0.0" y="312" width="484" height="24"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Date Appointed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xp5-L5-i9E">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="405" height="24"/>
@@ -821,7 +838,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="D35-jX-9by" userLabel="Date of First Client Interview">
-                                                                        <rect key="frame" x="0.0" y="312" width="484" height="24"/>
+                                                                        <rect key="frame" x="0.0" y="336" width="484" height="24"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Date Of First Client Interview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oT-9J-5MM">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="405" height="24"/>
@@ -838,7 +855,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nPP-kW-u25" userLabel="Date of Final Disposition">
-                                                                        <rect key="frame" x="0.0" y="336" width="484" height="24"/>
+                                                                        <rect key="frame" x="0.0" y="360" width="484" height="24"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Date Of Final Disposition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRP-wh-Yoq">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="405" height="24"/>
@@ -887,13 +904,13 @@
                                                         </variation>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Billable Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOV-Ra-63E">
-                                                        <rect key="frame" x="0.0" y="390" width="193.5" height="36"/>
+                                                        <rect key="frame" x="0.0" y="414" width="193.5" height="36"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOW-vs-Z5M" userLabel="Billable Hours View">
-                                                        <rect key="frame" x="0.0" y="440" width="500" height="104"/>
+                                                        <rect key="frame" x="0.0" y="464" width="500" height="104"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peH-dx-HWJ" userLabel="Billable Hours Labels">
                                                                 <rect key="frame" x="8" y="8" width="187.5" height="88"/>
@@ -1223,6 +1240,8 @@
                         <outlet property="offenseCategoryLabel" destination="RxM-q9-YBn" id="hJU-Pz-hc1"/>
                         <outlet property="offenseClassLabel" destination="3Kf-9O-4u5" id="2k8-xt-o6O"/>
                         <outlet property="offenseLabel" destination="lwK-6z-qQU" id="F9A-np-9q0"/>
+                        <outlet property="otherOffenseLabel" destination="sod-m2-lDd" id="jdd-xN-UuH"/>
+                        <outlet property="otherOffenseStackView" destination="TMy-t3-AZM" id="fcd-cp-bE5"/>
                         <outlet property="sentenceDaysLabel" destination="e60-Nw-BZR" id="ywp-85-2Wn"/>
                         <outlet property="sentenceLengthStackView" destination="7iz-sk-NU1" id="LIC-Sw-D8U"/>
                         <outlet property="sentenceMonthsLabel" destination="TEw-KE-9Ev" id="v84-ia-c7b"/>
@@ -2610,7 +2629,7 @@
             <objects>
                 <viewController title="EditCaseDetailsVC" id="OCB-fk-1zt" customClass="EditCaseDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wry-gh-3xo" userLabel="Root View">
-                        <rect key="frame" x="0.0" y="0.0" width="990" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ku-Fp-qQb">
