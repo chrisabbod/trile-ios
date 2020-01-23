@@ -20,6 +20,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     @IBOutlet weak var offenseCategoryTextField: UITextField!
     @IBOutlet weak var offenseClassTextField: UITextField!
     @IBOutlet weak var dispositionTextField: UITextField!
+    @IBOutlet weak var otherOffenseTextField: UITextField!
     @IBOutlet weak var judgmentAndSentencingTextField: UITextField!
     @IBOutlet weak var countyTextField: UITextField!
     @IBOutlet weak var nameOfJudgeSettingFeeTextField: UITextField!
@@ -39,6 +40,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     @IBOutlet weak var caseInformationView: UIView!
     @IBOutlet weak var billableHoursView: UIView!
     
+    @IBOutlet weak var otherOffenseStackView: UIStackView!
     @IBOutlet weak var sentenceLengthStackView: UIStackView!
     
     let OFFENSE_SEGUE = "goToOffenseTableVC"
@@ -87,6 +89,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         beautifyUI()
 
         offenseTextField.addTarget(self, action: #selector(offenseTableSegue), for: .editingDidBegin)
+        otherOffenseTextField.addTarget(self, action: #selector(offenseTableSegue), for: .editingDidBegin)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -178,6 +181,14 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         let destinationVC = segue.destination as! OffenseTableVC
         destinationVC.selectedClient = selectedClient
         destinationVC.selectedFileNumber = selectedFileNumber
+        if offenseTextField.isEditing {
+            print("Clicked offense text field")
+            destinationVC.offenseClicked = true
+        } else if otherOffenseTextField.isEditing {
+            print("Clicked other offense text field")
+            destinationVC.otherOffenseClicked = true
+        }
+        
     }
     
     //MARK: PickerView Methods
@@ -270,6 +281,9 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             offenseClassTextField.text = PickerListManager.offenseClassList[row]
         case dispositionPickerView:
             dispositionTextField.text = PickerListManager.dispositionList[row]
+            if let disposition = dispositionTextField.text {
+                showOtherOffense(disposition)
+            }
         case judgmentAndSentencingPickerView:
             judgmentAndSentencingTextField.text = PickerListManager.judgmentAndSentencingList[row]
             if let sentence = judgmentAndSentencingTextField.text {
@@ -314,7 +328,6 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     
     @objc
     func dateAppointedPickerChanged(picker: UIDatePicker) {
-        
         dateAppointedTextField.text = DateFormatterManager.formatDateToString(picker.date)
     }
     
@@ -328,16 +341,30 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         dateOfFinalDispositionTextField.text = DateFormatterManager.formatDateToString(picker.date)
     }
     
-    //MARK: Show Sentence Length
+    //MARK: Show/Hide Functions
     
-    func showSentenceLength(_ sentence: String) {
-        if sentence == "Active Sentence" {
+    func showSentenceLength(_ judgment: String) {
+        if judgment == "Active Sentence" {
             UIView.animate(withDuration: 0.35) { [unowned self] in
                 self.sentenceLengthStackView.isHidden = false
             }
         } else {
             UIView.animate(withDuration: 0.35) { [unowned self] in
                 self.sentenceLengthStackView.isHidden = true
+            }
+        }
+    }
+    
+    func showOtherOffense(_ disposition: String) {
+        if disposition == "Guilty Plea Before Trial: Other Offense" ||
+            disposition == "Guilty Plea During Trial: Other Offense" ||
+            disposition == "Trial: Guilty Other Offense" {
+            UIView.animate(withDuration: 0.35) { [unowned self] in
+                self.otherOffenseStackView.isHidden = false
+            }
+        } else {
+            UIView.animate(withDuration: 0.35) { [unowned self] in
+                self.otherOffenseStackView.isHidden = true
             }
         }
     }
@@ -413,6 +440,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         
         if let disposition = data["disposition"] {
             dispositionTextField.text = disposition as? String
+            
+            showOtherOffense(disposition as! String)
         }
         
         if let judgmentAndSentencing = data["judgment_and_sentencing"] {

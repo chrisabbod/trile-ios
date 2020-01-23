@@ -26,6 +26,9 @@ class OffenseTableVC: UITableViewController {
     var filteredOffenses: [Offense] = []
     let searchController = UISearchController(searchResultsController: nil)
     
+    var offenseClicked = false
+    var otherOffenseClicked = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +43,8 @@ class OffenseTableVC: UITableViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
+        print("Offense Clicked: \(offenseClicked)")
+        print("Other Offense Clicked: \(otherOffenseClicked)")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -91,56 +96,65 @@ class OffenseTableVC: UITableViewController {
             var category = offenses[indexPath.row].category.rawValue
             var offenseClass = offenses[indexPath.row].offenseClass.rawValue
             let trafficType = offenses[indexPath.row].trafficType.rawValue
-
-            switch offenseClass {
-            case "One":
-                offenseClass = "1"
-            case "Two":
-                offenseClass = "2"
-            case "Three":
-                offenseClass = "3"
-            default:
-                print("No issues")
+            
+            if offenseClicked {
+                switch offenseClass {
+                case "One":
+                    offenseClass = "1"
+                case "Two":
+                    offenseClass = "2"
+                case "Three":
+                    offenseClass = "3"
+                default:
+                    print("No issues")
+                }
+                
+                if category == "Probation" {
+                    category = "Misdemeanor Probation Violation"
+                }
+                
+                caseData = [
+                    "offense": name,
+                    "offense_category": category,
+                    "offense_class": offenseClass,
+                    "offense_traffic_type": trafficType
+                ]
+            } else {
+                caseData = ["other_offense": name]
             }
 
-            if category == "Probation" {
-                category = "Misdemeanor Probation Violation"
-            }
-            
-            caseData = [
-                "offense": name,
-                "offense_category": category,
-                "offense_class": offenseClass,
-                "offense_traffic_type": trafficType
-            ]
-            
         } else {
             let filteredName = filteredOffenses[indexPath.row].name
             var filteredCategory = filteredOffenses[indexPath.row].category.rawValue
             var filteredOffenseClass = filteredOffenses[indexPath.row].offenseClass.rawValue
             let filteredTrafficType = filteredOffenses[indexPath.row].trafficType.rawValue
             
-            switch filteredOffenseClass {
-            case "One":
-                filteredOffenseClass = "1"
-            case "Two":
-                filteredOffenseClass = "2"
-            case "Three":
-                filteredOffenseClass = "3"
-            default:
-                print("No issues")
+            if offenseClicked {
+                switch filteredOffenseClass {
+                case "One":
+                    filteredOffenseClass = "1"
+                case "Two":
+                    filteredOffenseClass = "2"
+                case "Three":
+                    filteredOffenseClass = "3"
+                default:
+                    print("No issues")
+                }
+                
+                if filteredCategory == "Probation" {
+                    filteredCategory = "Misdemeanor Probation Violation"
+                }
+                            
+                caseData = [
+                    "offense": filteredName,
+                    "offense_category": filteredCategory,
+                    "offense_class": filteredOffenseClass,
+                    "offense_traffic_type": filteredTrafficType
+                ]
+            } else {
+                caseData = ["other_offense": filteredName]
             }
-            
-            if filteredCategory == "Probation" {
-                filteredCategory = "Misdemeanor Probation Violation"
-            }
-                        
-            caseData = [
-                "offense": filteredName,
-                "offense_category": filteredCategory,
-                "offense_class": filteredOffenseClass,
-                "offense_traffic_type": filteredTrafficType
-            ]
+
         }
         
         if let client = selectedClient, let fileNumber = selectedFileNumber {
