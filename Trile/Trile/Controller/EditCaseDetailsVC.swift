@@ -36,9 +36,13 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     @IBOutlet weak var timeInCourtWaitingMinutesTextField: UITextField!
     @IBOutlet weak var timeOutOfCourtHoursTextField: UITextField!
     @IBOutlet weak var timeOutOfCourtMinutesTextField: UITextField!
+    @IBOutlet weak var travelTextField: UITextField!
+    @IBOutlet weak var copyingTextField: UITextField!
+    @IBOutlet weak var otherExpensesTextField: UITextField!
     
     @IBOutlet weak var caseInformationView: UIView!
     @IBOutlet weak var billableHoursView: UIView!
+    @IBOutlet weak var expensesView: UIView!
     
     @IBOutlet weak var otherOffenseStackView: UIStackView!
     @IBOutlet weak var sentenceLengthStackView: UIStackView!
@@ -404,6 +408,9 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         
         billableHoursView.layer.masksToBounds = true
         billableHoursView.layer.cornerRadius = cornerRadiusValue
+
+        expensesView.layer.masksToBounds = true
+        expensesView.layer.cornerRadius = cornerRadiusValue
     }
     
     //MARK: Read Case Data
@@ -635,6 +642,9 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         textFieldArray.append(timeInCourtWaitingMinutesTextField)
         textFieldArray.append(timeOutOfCourtHoursTextField)
         textFieldArray.append(timeOutOfCourtMinutesTextField)
+        textFieldArray.append(travelTextField)
+        textFieldArray.append(copyingTextField)
+        textFieldArray.append(otherExpensesTextField)
         
         pickerViewArray.append(desiredOutcomePickerView)
         pickerViewArray.append(offenseCategoryPickerView)

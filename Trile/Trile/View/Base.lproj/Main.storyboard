@@ -2629,11 +2629,11 @@
             <objects>
                 <viewController title="EditCaseDetailsVC" id="OCB-fk-1zt" customClass="EditCaseDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wry-gh-3xo" userLabel="Root View">
-                        <rect key="frame" x="0.0" y="0.0" width="990.5" height="1290"/>
+                        <rect key="frame" x="0.0" y="0.0" width="990" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ku-Fp-qQb">
-                                <rect key="frame" x="20" y="20" width="950.5" height="1205"/>
+                                <rect key="frame" x="20" y="20" width="950.5" height="919"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Kh-wo-vqY">
                                         <rect key="frame" x="20" y="20" width="540" height="1150"/>
@@ -3225,24 +3225,26 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Case Details" id="Hu9-5d-XFM"/>
-                    <size key="freeformSize" width="1366" height="1310"/>
                     <connections>
                         <outlet property="billableHoursView" destination="8hy-G3-xCz" id="mgg-bn-hMv"/>
                         <outlet property="bondTextField" destination="sun-Q5-fcN" id="sHH-UA-7cE"/>
                         <outlet property="caseInformationView" destination="o8J-p7-Ue8" id="VML-qk-S14"/>
                         <outlet property="continuancesTextField" destination="h4h-Y8-GcQ" id="ng9-79-VGh"/>
+                        <outlet property="copyingTextField" destination="zra-QF-jEN" id="D2N-Ql-dbl"/>
                         <outlet property="countyTextField" destination="kXV-gf-NRE" id="Mpp-sz-RtS"/>
                         <outlet property="dateAppointedTextField" destination="37W-rj-Y97" id="CHY-iQ-cvd"/>
                         <outlet property="dateOfFinalDispositionTextField" destination="l9v-b0-M9P" id="ooy-5z-dUi"/>
                         <outlet property="dateOfFirstClientInterviewTextField" destination="R6L-Um-ONr" id="xXe-TL-aPe"/>
                         <outlet property="desiredOutcomeTextField" destination="NSx-ce-e0B" id="IG7-0z-OQ7"/>
                         <outlet property="dispositionTextField" destination="MYt-5k-NjM" id="rJ1-sF-KGu"/>
+                        <outlet property="expensesView" destination="4VX-me-QJb" id="wZU-LH-agv"/>
                         <outlet property="fileNumberTextField" destination="dNb-Eo-kYM" id="a4w-CZ-8xb"/>
                         <outlet property="judgmentAndSentencingTextField" destination="Ohn-zX-2Hs" id="Xik-T1-Oh3"/>
                         <outlet property="nameOfJudgeSettingFeeTextField" destination="azE-nM-9Pw" id="gkO-1M-Jty"/>
                         <outlet property="offenseCategoryTextField" destination="IwG-cS-ZGd" id="7PX-hb-3K0"/>
                         <outlet property="offenseClassTextField" destination="R7K-ep-mx7" id="XYA-9x-xlJ"/>
                         <outlet property="offenseTextField" destination="2Um-Fl-6Tt" id="fZ9-7k-7EU"/>
+                        <outlet property="otherExpensesTextField" destination="1ET-eH-hXL" id="j44-pR-Wuv"/>
                         <outlet property="otherOffenseStackView" destination="sXM-jq-16a" id="Wd3-8J-A5e"/>
                         <outlet property="otherOffenseTextField" destination="sWp-hG-xoa" id="MWb-k2-jfs"/>
                         <outlet property="sentenceDaysTextField" destination="aBl-vs-ttt" id="0q9-oS-E7g"/>
@@ -3254,6 +3256,7 @@
                         <outlet property="timeInCourtWaitingMinutesTextField" destination="QxO-jD-cSg" id="VOW-1s-aZz"/>
                         <outlet property="timeOutOfCourtHoursTextField" destination="rjG-qT-Vwo" id="Qjr-ZA-zJq"/>
                         <outlet property="timeOutOfCourtMinutesTextField" destination="cqv-fV-Wkg" id="MT3-Ek-aZZ"/>
+                        <outlet property="travelTextField" destination="3ZE-xN-0xe" id="Mfx-FM-Efl"/>
                         <segue destination="3eR-Dk-Zmr" kind="show" identifier="goToOffenseTableVC" id="gfa-Tz-gCV"/>
                     </connections>
                 </viewController>
