@@ -1250,21 +1250,25 @@
                                                 </variation>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LF3-vg-RiT" userLabel="Root Stack View">
-                                                <rect key="frame" x="20" y="140" width="500" height="714"/>
+                                                <rect key="frame" x="20" y="140" width="500" height="710"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="rim-BA-Pli">
-                                                        <rect key="frame" x="0.0" y="0.0" width="500" height="36"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rim-BA-Pli" userLabel="Header Stack View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="291.5" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Client Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tge-gK-hBP">
-                                                                <rect key="frame" x="0.0" y="0.0" width="251.5" height="36"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="251.5" height="32"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llU-1C-Nsh">
-                                                                <rect key="frame" x="480" y="0.0" width="20" height="36"/>
+                                                                <rect key="frame" x="259.5" y="0.5" width="32" height="31"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="32" id="BaI-Wg-aQ5"/>
+                                                                    <constraint firstAttribute="height" constant="32" id="k0C-js-mMd"/>
+                                                                </constraints>
                                                                 <color key="tintColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <state key="normal" image="pencil.circle" catalog="system">
+                                                                <state key="normal" backgroundImage="pencil.circle" catalog="system">
                                                                     <color key="titleColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
@@ -1274,7 +1278,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1K-2l-zIf" userLabel="Client Information View">
-                                                        <rect key="frame" x="0.0" y="46" width="500" height="296"/>
+                                                        <rect key="frame" x="0.0" y="42" width="500" height="296"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3Mx-fz-pEG">
                                                                 <rect key="frame" x="8" y="8" width="484" height="280"/>
@@ -1471,13 +1475,13 @@
                                                         </variation>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RxZ-Oa-2it" userLabel="Work History">
-                                                        <rect key="frame" x="0.0" y="352" width="181.5" height="36"/>
+                                                        <rect key="frame" x="0.0" y="348" width="181.5" height="36"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK9-FL-LLv" userLabel="Work History View">
-                                                        <rect key="frame" x="0.0" y="398" width="500" height="180"/>
+                                                        <rect key="frame" x="0.0" y="394" width="500" height="180"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lCv-4i-g3I">
                                                                 <rect key="frame" x="8" y="8" width="484" height="164"/>
@@ -1604,13 +1608,13 @@
                                                         </variation>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Household Residents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xwd-G3-NVh">
-                                                        <rect key="frame" x="0.0" y="588" width="297.5" height="36"/>
+                                                        <rect key="frame" x="0.0" y="584" width="297.5" height="36"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4IV-dL-Qlc" userLabel="Household Residents View">
-                                                        <rect key="frame" x="0.0" y="634" width="500" height="80"/>
+                                                        <rect key="frame" x="0.0" y="630" width="500" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BMI-Sk-7UN">
                                                                 <rect key="frame" x="8" y="8" width="484" height="64"/>
@@ -1689,19 +1693,6 @@
                                                         </variation>
                                                     </view>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="rim-BA-Pli" secondAttribute="trailing" id="gJh-3O-Gnd"/>
-                                                </constraints>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="gJh-3O-Gnd"/>
-                                                    </mask>
-                                                </variation>
-                                                <variation key="heightClass=regular-widthClass=regular">
-                                                    <mask key="constraints">
-                                                        <include reference="gJh-3O-Gnd"/>
-                                                    </mask>
-                                                </variation>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.8980392157" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
