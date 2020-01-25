@@ -252,5 +252,8 @@ class CaseDetailsVC: UIViewController {
         
         billableHoursView.layer.masksToBounds = true
         billableHoursView.layer.cornerRadius = cornerRadiusValue
+        
+        expensesView.layer.masksToBounds = true
+        expensesView.layer.cornerRadius = cornerRadiusValue
     }
 }
