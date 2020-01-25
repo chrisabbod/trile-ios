@@ -37,8 +37,14 @@ class CaseDetailsVC: UIViewController {
     @IBOutlet weak var timeOutOfCourtHoursLabel: UILabel!
     @IBOutlet weak var timeOutOfCourtMinutesLabel: UILabel!
     
+    @IBOutlet weak var travelExpensesLabel: UILabel!
+    @IBOutlet weak var copyingExpensesLabel: UILabel!
+    @IBOutlet weak var otherExpensesLabel: UILabel!
+    
     @IBOutlet weak var caseInformationView: UIView!
     @IBOutlet weak var billableHoursView: UIView!
+    @IBOutlet weak var expensesView: UIView!
+    
     @IBOutlet weak var otherOffenseStackView: UIStackView!
     @IBOutlet weak var sentenceLengthStackView: UIStackView!
     
@@ -79,6 +85,7 @@ class CaseDetailsVC: UIViewController {
     
     @IBAction func editCaseDetailsButton(_ sender: Any) {
         performSegue(withIdentifier: EDIT_CASE_DETAILS_SEGUE, sender: self)
+
     }
     
     // MARK: Segues
