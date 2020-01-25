@@ -240,6 +240,18 @@ class CaseDetailsVC: UIViewController {
         if let timeOutOfCourtMinutes = data["time_out_of_court_minutes"] {
             timeOutOfCourtMinutesLabel.text = timeOutOfCourtMinutes as? String
         }
+        
+        if let travelExpenses = data["travel_expenses"] {
+            travelExpensesLabel.text = travelExpenses as? String
+        }
+        
+        if let copyingExpenses = data["copying_expenses"] {
+            copyingExpensesLabel.text = copyingExpenses as? String
+        }
+        
+        if let otherExpenses = data["other_expenses"] {
+            otherExpensesLabel.text = otherExpenses as? String
+        }
     }
     
     //MARK: UI Beautification Functions
