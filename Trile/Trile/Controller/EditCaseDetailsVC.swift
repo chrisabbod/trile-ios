@@ -611,6 +611,18 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             caseDataArray["time_out_of_court_minutes"] = timeOutOfCourtMinutes
         }
         
+        if let travelExpenses = travelTextField.text {
+            caseDataArray["travel_expenses"] = travelExpenses
+        }
+        
+        if let copyingExpenses = copyingTextField.text {
+            caseDataArray["copying_expenses"] = copyingExpenses
+        }
+        
+        if let otherExpenses = otherExpensesTextField.text {
+            caseDataArray["other_expenses"] = otherExpenses
+        }
+        
         if let client = selectedClient, let fileNumber = selectedFileNumber {
             dbm.addCaseDataToDatabase(client, fileNumber, caseDataArray)
         }
