@@ -3175,7 +3175,7 @@
                         <outlet property="bondTextField" destination="sun-Q5-fcN" id="sHH-UA-7cE"/>
                         <outlet property="caseInformationView" destination="o8J-p7-Ue8" id="VML-qk-S14"/>
                         <outlet property="continuancesTextField" destination="h4h-Y8-GcQ" id="ng9-79-VGh"/>
-                        <outlet property="copyingTextField" destination="zra-QF-jEN" id="D2N-Ql-dbl"/>
+                        <outlet property="copyingExpensesTextField" destination="zra-QF-jEN" id="D2N-Ql-dbl"/>
                         <outlet property="countyTextField" destination="kXV-gf-NRE" id="Mpp-sz-RtS"/>
                         <outlet property="dateAppointedTextField" destination="37W-rj-Y97" id="CHY-iQ-cvd"/>
                         <outlet property="dateOfFinalDispositionTextField" destination="l9v-b0-M9P" id="ooy-5z-dUi"/>
@@ -3201,7 +3201,7 @@
                         <outlet property="timeInCourtWaitingMinutesTextField" destination="QxO-jD-cSg" id="VOW-1s-aZz"/>
                         <outlet property="timeOutOfCourtHoursTextField" destination="rjG-qT-Vwo" id="Qjr-ZA-zJq"/>
                         <outlet property="timeOutOfCourtMinutesTextField" destination="cqv-fV-Wkg" id="MT3-Ek-aZZ"/>
-                        <outlet property="travelTextField" destination="3ZE-xN-0xe" id="Mfx-FM-Efl"/>
+                        <outlet property="travelExpensesTextField" destination="3ZE-xN-0xe" id="Mfx-FM-Efl"/>
                         <segue destination="3eR-Dk-Zmr" kind="show" identifier="goToOffenseTableVC" id="gfa-Tz-gCV"/>
                     </connections>
                 </viewController>

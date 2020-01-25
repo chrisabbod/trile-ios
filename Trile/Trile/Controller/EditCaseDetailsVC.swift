@@ -36,8 +36,9 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     @IBOutlet weak var timeInCourtWaitingMinutesTextField: UITextField!
     @IBOutlet weak var timeOutOfCourtHoursTextField: UITextField!
     @IBOutlet weak var timeOutOfCourtMinutesTextField: UITextField!
-    @IBOutlet weak var travelTextField: UITextField!
-    @IBOutlet weak var copyingTextField: UITextField!
+    
+    @IBOutlet weak var travelExpensesTextField: UITextField!
+    @IBOutlet weak var copyingExpensesTextField: UITextField!
     @IBOutlet weak var otherExpensesTextField: UITextField!
     
     @IBOutlet weak var caseInformationView: UIView!
@@ -510,11 +511,11 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         }
         
         if let travelExpenses = data["travel_expenses"] {
-            travelTextField.text = travelExpenses as? String
+            travelExpensesTextField.text = travelExpenses as? String
         }
         
         if let copyingExpenses = data["copying_expenses"] {
-            copyingTextField.text = copyingExpenses as? String
+            copyingExpensesTextField.text = copyingExpenses as? String
         }
         
         if let otherExpenses = data["other_expenses"] {
@@ -623,11 +624,11 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             caseDataArray["time_out_of_court_minutes"] = timeOutOfCourtMinutes
         }
         
-        if let travelExpenses = travelTextField.text {
+        if let travelExpenses = travelExpensesTextField.text {
             caseDataArray["travel_expenses"] = travelExpenses
         }
         
-        if let copyingExpenses = copyingTextField.text {
+        if let copyingExpenses = copyingExpensesTextField.text {
             caseDataArray["copying_expenses"] = copyingExpenses
         }
         
@@ -666,8 +667,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         textFieldArray.append(timeInCourtWaitingMinutesTextField)
         textFieldArray.append(timeOutOfCourtHoursTextField)
         textFieldArray.append(timeOutOfCourtMinutesTextField)
-        textFieldArray.append(travelTextField)
-        textFieldArray.append(copyingTextField)
+        textFieldArray.append(travelExpensesTextField)
+        textFieldArray.append(copyingExpensesTextField)
         textFieldArray.append(otherExpensesTextField)
         
         pickerViewArray.append(desiredOutcomePickerView)
