@@ -509,6 +509,18 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
             timeOutOfCourtHoursTextField.text = timeOutOfCourtHours as? String
         }
         
+        if let travelExpenses = data["travel_expenses"] {
+            travelTextField.text = travelExpenses as? String
+        }
+        
+        if let copyingExpenses = data["copying_expenses"] {
+            copyingTextField.text = copyingExpenses as? String
+        }
+        
+        if let otherExpenses = data["other_expenses"] {
+            otherExpensesTextField.text = otherExpenses as? String
+        }
+        
         if let timeOutOfCourtMinutes = data["time_out_of_court_minutes"] {
             timeOutOfCourtMinutesTextField.text = timeOutOfCourtMinutes as? String
         }
