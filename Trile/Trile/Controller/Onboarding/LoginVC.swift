@@ -24,6 +24,10 @@ class LoginVC: UIViewController {
         loginAction()
     }
     
+    @IBAction func signUpButton(_ sender: Any) {
+        performSegue(withIdentifier: "showAccountCreationVC", sender: self)
+    }
+    
     func display(alertController: UIAlertController) {
         self.present(alertController, animated: true, completion: nil)
     }
@@ -33,6 +37,7 @@ class LoginVC: UIViewController {
         let loginManager = FirebaseAuthManager()
         
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+        
         loginManager.signIn(email: email, pass: password) {[weak self] (success) in
             guard let `self` = self else { return }
             var message: String = ""
@@ -50,7 +55,9 @@ class LoginVC: UIViewController {
             self.display(alertController: alertController)
         }
     }
+    
     //MARK: Test Functions
+    
     @IBAction func testLogin(_ sender: Any) {
         emailTextField.text = "chrisabbod@gmail.com"
         passwordTextField.text = "Seraphim88"
