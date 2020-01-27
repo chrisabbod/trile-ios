@@ -22,6 +22,8 @@ class AdditionalInfoVC: UIViewController {
     @IBOutlet weak var stateTextField: UITextField!
     @IBOutlet weak var zipTextField: UITextField!
     
+    let NOTIFICATION_VALUE = "accountCreatedDialog"
+    
     let db = Firestore.firestore()
     let dbm = FirebaseFirestoreManager()
     let alert = AlertPresenterManager()
@@ -44,7 +46,11 @@ class AdditionalInfoVC: UIViewController {
     
     @IBAction func saveAndReturnButton(_ sender: Any) {
         saveCaseData()
+        
         self.dismiss(animated: true, completion: nil)
+        
+        //Calls Notification Function in LoginVC to show alert dialog
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_VALUE), object: nil)
     }
     
     func saveCaseData() {

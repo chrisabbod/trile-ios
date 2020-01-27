@@ -18,6 +18,7 @@ class AccountCreationVC: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
         
     let NOTIFICATION_VALUE = "showAdditionalInfoVC"
+    let MESSAGE_TITLE = "Missing Information"
     
     let db = Firestore.firestore()
     let alert = AlertPresenterManager()
@@ -31,6 +32,7 @@ class AccountCreationVC: UIViewController {
     
     @IBAction func createAccountButton(_ sender: Any) {
         createNewUser()
+//        showAdditionalInfoVC()
     }
     
     func createNewUser() {
@@ -40,14 +42,14 @@ class AccountCreationVC: UIViewController {
         let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        var errorMessage: String = ""
+        var errorMessage = ""
         
         if firstName.isEmpty {
             errorMessage = "A first name must be provided"
-            self.alert.messageAlertDialog(fromViewController: self, withMessage: errorMessage)
+            self.alert.messageAlertDialog(fromViewController: self, withTitle: MESSAGE_TITLE, withMessage: errorMessage)
         } else if lastName.isEmpty {
             errorMessage = "A last name must be provided"
-            self.alert.messageAlertDialog(fromViewController: self, withMessage: errorMessage)
+            self.alert.messageAlertDialog(fromViewController: self, withTitle: MESSAGE_TITLE, withMessage: errorMessage)
         } else {
             Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                 
@@ -55,7 +57,7 @@ class AccountCreationVC: UIViewController {
                 
                 if error != nil {
                     if let errorMessage = error?.localizedDescription {
-                        self.alert.messageAlertDialog(fromViewController: self, withMessage: errorMessage)
+                        self.alert.messageAlertDialog(fromViewController: self, withTitle: self.MESSAGE_TITLE, withMessage: errorMessage)
                     }
                     print("Unable to authenticate user \(error.debugDescription)")
                 } else {

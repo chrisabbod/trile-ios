@@ -9,20 +9,26 @@
 import UIKit
 
 class LoginVC: UIViewController {
-
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     let LOGIN_SEGUE = "showClientTableVC"
     let ACCOUNT_CREATION_SEGUE = "showAccountCreationVC"
     let ADDITIONAL_INFO_NOTIFICATION = "showAdditionalInfoVC"
     let ADDITIONAL_INFO_IDENTIFIER = "additionalInfoVC"
+    let ACCOUNT_CREATED_NOTIFICATION = "accountCreatedDialog"
     
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    let alert = AlertPresenterManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //Display AdditionalInfoVC when a new user is created in AccountCreationVC
         NotificationCenter.default.addObserver(self, selector: #selector(showAdditionalInfoVC), name: NSNotification.Name(rawValue: ADDITIONAL_INFO_NOTIFICATION), object: nil)
+        
+        //Display a dialog alerting the user that their account was created after returning from AdditionalInfoVC
+        NotificationCenter.default.addObserver(self, selector: #selector(showAccountCreatedDialog), name: NSNotification.Name(rawValue: ACCOUNT_CREATED_NOTIFICATION), object: nil)
     }
 
     //MARK: Button Functions
@@ -59,13 +65,20 @@ class LoginVC: UIViewController {
         }
     }
     
-    //MARK: Segue Function
+    //MARK: Segue Functions
     
     @objc
     func showAdditionalInfoVC() {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: ADDITIONAL_INFO_IDENTIFIER) as! AdditionalInfoVC
         self.present(newViewController, animated: true, completion: nil)
+    }
+    
+    @objc
+    func showAccountCreatedDialog() {
+        let title = "Account Update"
+        let message = "Account successfully created!"
+        alert.messageAlertDialog(fromViewController: self, withTitle: title, withMessage: message)
     }
     
     //MARK: Test Functions
