@@ -15,12 +15,25 @@ class FirebaseFirestoreManager {
     
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
-
+    
+    //MARK: User Functions
+    
+    func addUserDataToDatabase(_ userData: [String: Any]) {
+        
+        db.collection("users").document(uid).setData(userData, merge: true) { (error) in
+            if let error = error {
+                print("Error saving user data: \(error.localizedDescription)") 
+            } else {
+                print("User data successfully saved!")
+            }
+        }
+    }
+    
     //MARK: Client Functions
     
     func addClientToDatabase(_ client: Client) {
         let clientRef = db.collection("users").document(uid).collection("clients")
-
+        
         let newID = clientRef.document().documentID
         client.documentID = newID
         
@@ -40,7 +53,7 @@ class FirebaseFirestoreManager {
         let clientRef = db.collection("users").document(uid).collection("clients")
         
         var clientArray = [Client]()
-
+        
         clientRef.order(by: "name").getDocuments() { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
@@ -56,7 +69,7 @@ class FirebaseFirestoreManager {
                     if let imagePath = document.get("image_path") {
                         newClient.imagePath = imagePath as! String
                     }
-
+                    
                     let id = document.documentID
                     newClient.documentID = id
                     clientArray.append(newClient)
@@ -72,7 +85,7 @@ class FirebaseFirestoreManager {
         clientRef.document(documentID).delete()
     }
     
-    //Mark: Client Data Functions
+    //MARK: Client Data Functions
     
     func addClientDataToDatabase(_ client: Client, _ clientData: [String: Any]) {
         let clientRef = db.collection("users").document(uid).collection("clients")
@@ -125,7 +138,7 @@ class FirebaseFirestoreManager {
             }
         }
     }
-        
+    
     //MARK: File Number Functions
     
     func addFileNumberToDatabase(_ client: Client, _ fileNumber : FileNumber) {
@@ -223,9 +236,9 @@ class FirebaseFirestoreManager {
         
         let clientRef = db.collection("users").document(uid).collection("clients")
         let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-
+        
         let query = fileNumberRef.whereField("document_id", isEqualTo: fileNumberDocumentID as Any)
-
+        
         query.getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -256,7 +269,7 @@ class FirebaseFirestoreManager {
             "document_id": newID,
             "uuid": document.uuid,
             "image_path": document.imagePath,
-            ]
+        ]
         
         documentRef.document(newID).setData(documentData, merge: true) { (error) in
             if let error = error {
@@ -282,7 +295,7 @@ class FirebaseFirestoreManager {
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
-
+                
                 for document in querySnapshot!.documents {
                     //print("\(document.documentID) => \(document.data())")
                     let newDocument = Document()
@@ -326,7 +339,7 @@ class FirebaseFirestoreManager {
         
         let clientRef = db.collection("users").document(uid).collection("clients")
         let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
-                
+        
         let pdfData = ["pdf_data": pdfDocument.dataRepresentation()]
         
         fileNumberRef.document(fileNumberDocumentID).setData(pdfData as [String : Any], merge: true) { (error) in
@@ -347,7 +360,7 @@ class FirebaseFirestoreManager {
         let fileNumberRef = clientRef.document(clientDocumentID).collection("file_numbers")
         
         let query = fileNumberRef.whereField("document_id", isEqualTo: fileNumberDocumentID as Any)
-
+        
         query.getDocuments() { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
@@ -365,5 +378,5 @@ class FirebaseFirestoreManager {
             }
         }
     }
-
+    
 }

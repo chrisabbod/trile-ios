@@ -26,8 +26,6 @@ class AdditionalInfoVC: UIViewController {
     let dbm = FirebaseFirestoreManager()
     let alert = AlertPresenterManager()
     
-    var userData: User?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -42,5 +40,40 @@ class AdditionalInfoVC: UIViewController {
             taxpayerIDTextField.isEnabled = false
             print("User is solo practitioner")
         }
+    }
+    
+    @IBAction func saveAndReturnButton(_ sender: Any) {
+        saveCaseData()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func saveCaseData() {
+        var userDataArray = [String: Any]()
+        
+        if let firmName = firmNameTextField.text {
+            userDataArray["firm_name"] = firmName
+        }
+        
+        if let taxpayerID = taxpayerIDTextField.text {
+            userDataArray["taxpayer_id"] = taxpayerID
+        }
+        
+        if let address = addressTextField.text {
+            userDataArray["address"] = address
+        }
+        
+        if let city = cityTextField.text {
+            userDataArray["city"] = city
+        }
+        
+        if let state = stateTextField.text {
+            userDataArray["state"] = state
+        }
+        
+        if let zip = zipTextField.text {
+            userDataArray["zip"] = zip
+        }
+        
+        dbm.addUserDataToDatabase(userDataArray)
     }
 }

@@ -30,8 +30,7 @@ class AccountCreationVC: UIViewController {
     //MARK: Button Functions
     
     @IBAction func createAccountButton(_ sender: Any) {
-//        createNewUser()
-        showAdditionalInfoVC()
+        createNewUser()
     }
     
     func createNewUser() {
