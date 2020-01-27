@@ -340,8 +340,8 @@
                                 <exclude reference="LIa-Lh-v6c"/>
                                 <exclude reference="BZU-LP-LHP"/>
                                 <exclude reference="R1w-M6-5Li"/>
-                                <exclude reference="yu4-0I-ove"/>
                                 <exclude reference="Sdr-2g-ao7"/>
+                                <exclude reference="yu4-0I-ove"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -359,13 +359,13 @@
                                 <exclude reference="FCU-Qg-EJ9"/>
                                 <exclude reference="v4I-hI-6my"/>
                                 <include reference="R1w-M6-5Li"/>
-                                <exclude reference="RMw-fB-1jH"/>
-                                <exclude reference="hbT-We-GLn"/>
-                                <include reference="yu4-0I-ove"/>
                                 <exclude reference="GvY-EM-mOP"/>
                                 <include reference="Sdr-2g-ao7"/>
                                 <exclude reference="asy-5Z-vIB"/>
                                 <exclude reference="xog-ia-Brn"/>
+                                <exclude reference="RMw-fB-1jH"/>
+                                <exclude reference="hbT-We-GLn"/>
+                                <include reference="yu4-0I-ove"/>
                             </mask>
                         </variation>
                     </view>
@@ -620,6 +620,7 @@
                         <outlet property="addressTextField" destination="8It-JC-kKY" id="owW-VT-qkX"/>
                         <outlet property="cityTextField" destination="EIS-wH-x0L" id="S7w-PR-Njf"/>
                         <outlet property="firmNameTextField" destination="fVA-6l-tfd" id="bH6-fR-fJq"/>
+                        <outlet property="firmSegmentedControl" destination="Jey-7I-jbu" id="7hK-ux-UMb"/>
                         <outlet property="stateTextField" destination="3Up-MH-sin" id="Cqo-cJ-XCe"/>
                         <outlet property="taxpayerIDTextField" destination="RYO-XA-w7l" id="mgu-kM-het"/>
                         <outlet property="zipTextField" destination="GVR-vP-VjZ" id="7hY-nm-Dm8"/>

@@ -10,6 +10,8 @@ import UIKit
 
 class AdditionalInfoVC: UIViewController {
 
+    @IBOutlet weak var firmSegmentedControl: UISegmentedControl!
+    
     @IBOutlet weak var firmNameTextField: UITextField!
     @IBOutlet weak var taxpayerIDTextField: UITextField!
 
@@ -21,11 +23,19 @@ class AdditionalInfoVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     @IBAction func firmSegmentedControl(_ sender: Any) {
-        
+        if firmSegmentedControl.selectedSegmentIndex == 0 {
+            firmNameTextField.isEnabled = true
+            taxpayerIDTextField.isEnabled = true
+            print("User has firm")
+        } else {
+            firmNameTextField.isEnabled = false
+            taxpayerIDTextField.isEnabled = false
+            print("User is solo practitioner")
+        }
     }
     
     @IBAction func createAccountButton(_ sender: Any) {
