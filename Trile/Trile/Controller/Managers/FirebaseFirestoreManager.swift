@@ -18,7 +18,7 @@ class FirebaseFirestoreManager {
 
     //MARK: Client Functions
     
-    func addClientToDatabase(_ client : Client) {
+    func addClientToDatabase(_ client: Client) {
         let clientRef = db.collection("users").document(uid).collection("clients")
 
         let newID = clientRef.document().documentID

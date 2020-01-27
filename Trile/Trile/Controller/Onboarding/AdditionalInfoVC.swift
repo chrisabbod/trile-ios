@@ -11,12 +11,12 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class AdditionalInfoVC: UIViewController {
-
+    
     @IBOutlet weak var firmSegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var firmNameTextField: UITextField!
     @IBOutlet weak var taxpayerIDTextField: UITextField!
-
+    
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var stateTextField: UITextField!
@@ -44,21 +44,40 @@ class AdditionalInfoVC: UIViewController {
     }
     
     @IBAction func createAccountButton(_ sender: Any) {
+        getUserData()
         authenticateUser()
     }
     
-    func saveUserData() {
-        var userDataArray = [String: Any]()
+    func getUserData() {
         
-        if let firmName = firmNameTextField.text {
-            userDataArray["firm_name"] = firmName
+        if firmSegmentedControl.selectedSegmentIndex == 0 {
+            if let firmName = firmNameTextField.text {
+                userData?.firmName = firmName
+            }
+            
+            if let taxpayerID = taxpayerIDTextField.text {
+                userData?.taxpayerID = taxpayerID
+            }
+        } else {
+            userData?.firmName = ""
+            userData?.taxpayerID = ""
+        }
+
+        if let address = addressTextField.text {
+            userData?.address = address
         }
         
-//        dbm.add
-//
-//        if let client = selectedClient, let fileNumber = selectedFileNumber {
-//            dbm.addCaseDataToDatabase(client, fileNumber, caseDataArray)
-//        }
+        if let city = cityTextField.text {
+            userData?.city = city
+        }
+        
+        if let state = stateTextField.text {
+            userData?.state = state
+        }
+        
+        if let zip = zipTextField.text {
+            userData?.zip = zip
+        }
     }
     
     func authenticateUser() {
@@ -66,11 +85,18 @@ class AdditionalInfoVC: UIViewController {
         guard let lastName = userData?.lastName else { return print("Last name not found")}
         guard let email = userData?.email else { return print("Email not found")}
         guard let password = userData?.password else { return print("Password not found")}
-
+        
+        let firmName = userData?.firmName
+        let taxpayerID = userData?.taxpayerID
+        let address = userData?.address
+        let city = userData?.city
+        let state = userData?.state
+        let zip = userData?.zip
+        
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-
+            
             let uid: String = Auth.auth().currentUser!.uid
-
+            
             if error != nil {
                 print("Unable to authenticate user")
                 print(error.debugDescription as String)
@@ -81,16 +107,22 @@ class AdditionalInfoVC: UIViewController {
                     "first_name":firstName,
                     "last_name":lastName,
                     "email": email,
-                    "uid": result!.user.uid])
-
-                self.transitionToHome()
+                    "uid": result!.user.uid,
+                    "firm_name": firmName ?? "",
+                    "taxpayer_id": taxpayerID ?? "",
+                    "address": address ?? "",
+                    "city": city ?? "",
+                    "state": state ?? "",
+                    "zip": zip ?? ""])
+                
+                //                self.transitionToHome()
             }
         }
     }
     
     func transitionToHome() {
         let loginVC = storyboard?.instantiateViewController(identifier: "LoginViewController")
-
+        
         view.window?.rootViewController = loginVC
         view.window?.makeKeyAndVisible()
     }
