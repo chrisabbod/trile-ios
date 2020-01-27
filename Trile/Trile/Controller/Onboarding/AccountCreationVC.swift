@@ -44,10 +44,10 @@ class AccountCreationVC: UIViewController {
         
         if firstName.isEmpty {
             errorMessage = "A first name must be provided"
-            self.alert.errorMessageAlertDialog(fromViewController: self, withMessage: errorMessage)
+            self.alert.messageAlertDialog(fromViewController: self, withMessage: errorMessage)
         } else if lastName.isEmpty {
             errorMessage = "A last name must be provided"
-            self.alert.errorMessageAlertDialog(fromViewController: self, withMessage: errorMessage)
+            self.alert.messageAlertDialog(fromViewController: self, withMessage: errorMessage)
         } else {
             Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                 
@@ -55,7 +55,7 @@ class AccountCreationVC: UIViewController {
                 
                 if error != nil {
                     if let errorMessage = error?.localizedDescription {
-                        self.alert.errorMessageAlertDialog(fromViewController: self, withMessage: errorMessage)
+                        self.alert.messageAlertDialog(fromViewController: self, withMessage: errorMessage)
                     }
                     print("Unable to authenticate user \(error.debugDescription)")
                 } else {

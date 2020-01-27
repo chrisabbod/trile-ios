@@ -15,7 +15,7 @@ class AlertPresenterManager {
     
     //MARK: Onboarding
     
-    func errorMessageAlertDialog(fromViewController vc: UIViewController, withMessage message: String) {
+    func messageAlertDialog(fromViewController vc: UIViewController, withMessage message: String) {
         
         let alert = UIAlertController(title: "Missing Information", message: message, preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "Dismiss", style: .default)
