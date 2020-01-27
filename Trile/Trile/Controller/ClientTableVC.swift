@@ -31,11 +31,9 @@ class ClientTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let addUserInfoButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(addUserInfoButton(_:)))
-        navigationItem.leftBarButtonItem = addUserInfoButton
-        
+        let addEditUserInfoButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(addEditUserInfoButton(_:)))
         let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientButton(_:)))
-        navigationItem.rightBarButtonItem = addClientButton
+        navigationItem.rightBarButtonItems = [addClientButton, addEditUserInfoButton]
         
         tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: REUSE_IDENTIFIER)
         
@@ -62,7 +60,7 @@ class ClientTableVC: UITableViewController {
     //Mark: Bar Buttons
     
     @objc
-    func addUserInfoButton(_ sender: UIBarButtonItem) {
+    func addEditUserInfoButton(_ sender: UIBarButtonItem) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: EDIT_USER_INFO_IDENTIFIER) as! EditUserInfoVC
         self.present(newViewController, animated: true, completion: nil)

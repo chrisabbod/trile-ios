@@ -16,7 +16,8 @@ class FileNumberTableVC: UITableViewController {
     let REUSE_IDENTIFIER = "customFileNumberCell"
     let TAB_SEGUE = "goToTabBarVC"
     let LOAD_FILE_NUMBER_NOTIFICATION = "loadFileNumberTableVC"
-    
+    let EDIT_USER_INFO_IDENTIFIER = "editUserInfoVC"
+
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
     
@@ -30,8 +31,9 @@ class FileNumberTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let addEditUserInfoButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(addEditUserInfoButton(_:)))
         let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFileNumberButton(_:)))
-        navigationItem.rightBarButtonItem = addFileNumberButton
+        navigationItem.rightBarButtonItems = [addFileNumberButton, addEditUserInfoButton]
         
         tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: REUSE_IDENTIFIER)
         
@@ -60,6 +62,13 @@ class FileNumberTableVC: UITableViewController {
     }
     
     //MARK: Bar Button Functions
+    
+    @objc
+    func addEditUserInfoButton(_ sender: UIBarButtonItem) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: EDIT_USER_INFO_IDENTIFIER) as! EditUserInfoVC
+        self.present(newViewController, animated: true, completion: nil)
+    }
     
     @objc
     func addFileNumberButton(_ sender: UIBarButtonItem) {
