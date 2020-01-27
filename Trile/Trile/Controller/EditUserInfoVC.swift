@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseFirestore
 
-class EditUserInfoVC: UIViewController, UITextFieldDelegate {
+class EditUserInfoVC: UIViewController {
     
     @IBOutlet weak var firmSegmentedControl: UISegmentedControl!
     
@@ -25,10 +25,14 @@ class EditUserInfoVC: UIViewController, UITextFieldDelegate {
     let dbm = FirebaseFirestoreManager()
     let alert = AlertPresenterManager()
     
+    let statePickerView = UIPickerView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTextFieldDelegates()
+        setTextFieldInputs()
+        setDelegates()
+        setPickerViewBackgroundColor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,30 +59,6 @@ class EditUserInfoVC: UIViewController, UITextFieldDelegate {
         saveUserData()
         
         dismiss(animated: true, completion: nil)
-    }
-    
-    //MARK: Set Text Field Delegates
-    
-    func setTextFieldDelegates() {
-        firmNameTextField.delegate = self
-        taxpayerIDTextField.delegate = self
-        addressTextField.delegate = self
-        cityTextField.delegate = self
-        zipTextField.delegate = self
-    }
-    
-    //MARK: Text Restriction Function
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == firmNameTextField {
-            return TextRestrictionManager.restrictTextLength(by: 40, textField, shouldChangeCharactersIn: range, replacementString: string)
-        } else if textField == addressTextField || textField == cityTextField {
-            return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
-        } else if textField == zipTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 5, textField, shouldChangeCharactersIn: range, replacementString: string)
-        }
-        
-        return true
     }
     
     //MARK: Read User Data
@@ -149,5 +129,64 @@ class EditUserInfoVC: UIViewController, UITextFieldDelegate {
         }
         
         dbm.addUserDataToDatabase(userDataArray)
+    }
+}
+
+extension EditUserInfoVC: UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    //MARK: Set Text Field Inputs
+    
+    func setTextFieldInputs() {
+        stateTextField.inputView = statePickerView
+    }
+    
+    //MARK: Set Delegates
+    
+    func setDelegates() {
+        firmNameTextField.delegate = self
+        taxpayerIDTextField.delegate = self
+        addressTextField.delegate = self
+        cityTextField.delegate = self
+        zipTextField.delegate = self
+        
+        statePickerView.delegate = self
+    }
+    
+    //MARK: Text Restriction Function
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == firmNameTextField {
+            return TextRestrictionManager.restrictTextLength(by: 40, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == addressTextField || textField == cityTextField {
+            return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == zipTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 5, textField, shouldChangeCharactersIn: range, replacementString: string)
+        }
+        
+        return true
+    }
+    
+    //MARK: - Picker View Delegate Methods
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return PickerListManager.statesList.count
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return PickerListManager.statesList[row]
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        stateTextField.text = PickerListManager.statesList[row]
+    }
+    
+    //MARK: UI Beautification Functions
+    
+    func setPickerViewBackgroundColor() {
+        statePickerView.backgroundColor  = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
     }
 }
