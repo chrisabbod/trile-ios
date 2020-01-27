@@ -19,10 +19,14 @@ class AccountCreationVC: UIViewController {
     
     let MIN_LENGTH = 6
     
+    let newUser = User()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
+    
+    //MARK: Button Functions
     
     @IBAction func continueButton(_ sender: Any) {
         getUserInformation { (success) in
@@ -32,8 +36,14 @@ class AccountCreationVC: UIViewController {
         }
     }
     
+    //MARK: Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! AdditionalInfoVC
+        destinationVC.userData = newUser
+    }
+    
     func getUserInformation(completion: @escaping ((_ success: Bool) -> Void)) {
-        let newUser = User()
                 
         newUser.firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         newUser.lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
