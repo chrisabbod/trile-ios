@@ -50,12 +50,14 @@ class AdditionalInfoVC: UIViewController {
     func saveCaseData() {
         var userDataArray = [String: Any]()
         
-        if let firmName = firmNameTextField.text {
-            userDataArray["firm_name"] = firmName
-        }
-        
-        if let taxpayerID = taxpayerIDTextField.text {
-            userDataArray["taxpayer_id"] = taxpayerID
+        if firmSegmentedControl.selectedSegmentIndex == 0 {
+            if let firmName = firmNameTextField.text {
+                userDataArray["firm_name"] = firmName
+            }
+            
+            if let taxpayerID = taxpayerIDTextField.text {
+                userDataArray["taxpayer_id"] = taxpayerID
+            }
         }
         
         if let address = addressTextField.text {
