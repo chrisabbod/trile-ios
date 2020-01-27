@@ -26,6 +26,7 @@ class AccountCreationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setDelegates()
     }
     
     //MARK: Button Functions
@@ -78,5 +79,25 @@ class AccountCreationVC: UIViewController {
         
         //Calls Notification Function in LoginVC to go to AdditionalInfoVC
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_VALUE), object: nil)
+    }
+}
+
+extension AccountCreationVC: UITextFieldDelegate {
+    
+    //MARK: Set Delegates
+    
+    func setDelegates() {
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+    }
+    
+    //MARK: Text Restriction Function
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == firstNameTextField || textField == lastNameTextField {
+            return TextRestrictionManager.restrictTextLengthAndNumbers(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
+        }
+        
+        return true
     }
 }

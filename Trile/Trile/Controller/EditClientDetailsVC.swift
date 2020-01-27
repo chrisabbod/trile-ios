@@ -176,7 +176,7 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
         if textField == addressTextField || textField == cityTextField || textField == placeOfEmploymentTextField || textField == roleTextField {
             return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == nameTextField || textField == areaOfStudyTextField {
-            return TextRestrictionManager.restrictTextLength(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return TextRestrictionManager.restrictTextLengthAndNumbers(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == phoneNumberTextField {
             return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == zipTextField {

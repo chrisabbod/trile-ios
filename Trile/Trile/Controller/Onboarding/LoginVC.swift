@@ -61,18 +61,20 @@ class LoginVC: UIViewController {
         
         loginManager.signIn(email: email, pass: password) {[weak self] (success) in
             guard let `self` = self else { return }
+            var title: String = ""
             var message: String = ""
             
             if (success) {
                 message = "User was sucessfully logged in."
                 self.performSegue(withIdentifier: self.LOGIN_SEGUE, sender: self)
             } else {
-                message = "There was an error."
+                title = "Login Failure"
+                message = "Unable to log in"
+                self.alert.messageAlertDialog(fromViewController: self, withTitle: title, withMessage: message)
             }
             
             let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            
         }
     }
     
