@@ -9,8 +9,8 @@
 import UIKit
 import FirebaseFirestore
 
-class EditUserInfoVC: UIViewController {
-
+class EditUserInfoVC: UIViewController, UITextFieldDelegate {
+    
     @IBOutlet weak var firmSegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var firmNameTextField: UITextField!
@@ -20,14 +20,15 @@ class EditUserInfoVC: UIViewController {
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var stateTextField: UITextField!
     @IBOutlet weak var zipTextField: UITextField!
-     
+    
     let db = Firestore.firestore()
     let dbm = FirebaseFirestoreManager()
     let alert = AlertPresenterManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setTextFieldDelegates()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +57,32 @@ class EditUserInfoVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    //MARK: Set Text Field Delegates
+    
+    func setTextFieldDelegates() {
+        firmNameTextField.delegate = self
+        taxpayerIDTextField.delegate = self
+        addressTextField.delegate = self
+        cityTextField.delegate = self
+        zipTextField.delegate = self
+    }
+    
+    //MARK: Text Restriction Function
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == firmNameTextField {
+            return TextRestrictionManager.restrictTextLength(by: 40, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == addressTextField || textField == cityTextField {
+            return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == zipTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 5, textField, shouldChangeCharactersIn: range, replacementString: string)
+        }
+        
+        return true
+    }
+    
+    //MARK: Read User Data
+    
     func readUserData(_ userData: [String: Any]) {
         
         if let firmName = userData["firm_name"] {
@@ -82,6 +109,8 @@ class EditUserInfoVC: UIViewController {
             zipTextField.text = zip as? String
         }
     }
+    
+    //MARK: Save User Data
     
     func saveUserData() {
         var userDataArray = [String: Any]()

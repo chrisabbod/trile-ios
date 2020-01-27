@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class AdditionalInfoVC: UIViewController {
+class AdditionalInfoVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var firmSegmentedControl: UISegmentedControl!
     
@@ -30,6 +30,8 @@ class AdditionalInfoVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setTextFieldDelegates()
     }
     
     @IBAction func firmSegmentedControl(_ sender: Any) {
@@ -52,6 +54,32 @@ class AdditionalInfoVC: UIViewController {
         //Calls Notification Function in LoginVC to show alert dialog
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_VALUE), object: nil)
     }
+    
+    //MARK: Set Text Field Delegates
+    
+    func setTextFieldDelegates() {
+        firmNameTextField.delegate = self
+        taxpayerIDTextField.delegate = self
+        addressTextField.delegate = self
+        cityTextField.delegate = self
+        zipTextField.delegate = self
+    }
+    
+    //MARK: Text Restriction Function
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == firmNameTextField {
+            return TextRestrictionManager.restrictTextLength(by: 40, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == addressTextField || textField == cityTextField {
+            return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == zipTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 5, textField, shouldChangeCharactersIn: range, replacementString: string)
+        }
+        
+        return true
+    }
+    
+    //MARK: Save User Data
     
     func saveUserData() {
         var userDataArray = [String: Any]()
