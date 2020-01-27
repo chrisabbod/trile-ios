@@ -69,17 +69,10 @@ class AccountCreationVC: UIViewController {
                         "email": email,
                         "uid": result!.user.uid])
                     
-                    self.transitionToHome()
+                    self.dismiss(animated: true, completion: nil);
                 }
             }
         }
         
-    }
-    
-    func transitionToHome() {
-        let loginVC = storyboard?.instantiateViewController(identifier: "LoginViewController")
-        
-        view.window?.rootViewController = loginVC
-        view.window?.makeKeyAndVisible()
     }
 }

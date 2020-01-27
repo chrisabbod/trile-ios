@@ -165,7 +165,7 @@
         <!--LoginVC-->
         <scene sceneID="S6B-bk-P8l">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" title="LoginVC" id="8cR-9B-5uU" customClass="LoginVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" title="LoginVC" id="8cR-9B-5uU" customClass="LoginVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="712-YV-6YE">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

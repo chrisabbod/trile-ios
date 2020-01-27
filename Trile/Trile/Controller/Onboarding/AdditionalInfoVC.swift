@@ -43,8 +43,4 @@ class AdditionalInfoVC: UIViewController {
             print("User is solo practitioner")
         }
     }
-    
-
-    
-
 }
