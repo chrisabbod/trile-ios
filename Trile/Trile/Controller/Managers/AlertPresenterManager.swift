@@ -13,7 +13,21 @@ class AlertPresenterManager {
     let dbm = FirebaseFirestoreManager()
     let imageManager = FirebaseStorageManager()
     
-    func addClientAlertDialog(fromViewController vc : UIViewController, completion: @escaping ((_ clientArray: [Client], _ success: Bool) -> Void)) {
+    //MARK: Onboarding
+    
+    func errorMessageAlertDialog(fromViewController vc: UIViewController, withMessage message: String) {
+        
+        let alert = UIAlertController(title: "Missing Information", message: message, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .default)
+        
+        alert.addAction(dismissAction)
+        
+        vc.present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: Add Client
+    
+    func addClientAlertDialog(fromViewController vc: UIViewController, completion: @escaping ((_ clientArray: [Client], _ success: Bool) -> Void)) {
         
         var textField = UITextField()
         
@@ -50,6 +64,8 @@ class AlertPresenterManager {
         
         vc.present(alert, animated: true, completion: nil)
     }
+    
+    //MARK: Add File Number
         
     func addFileNumberAlertDialog(fromViewController vc : UIViewController, withClient client: Client, completion: @escaping ((_ fileNumberArray: [FileNumber], _ success: Bool) -> Void)) {
         

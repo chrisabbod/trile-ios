@@ -24,6 +24,7 @@ class AdditionalInfoVC: UIViewController {
     
     let db = Firestore.firestore()
     let dbm = FirebaseFirestoreManager()
+    let alert = AlertPresenterManager()
     
     var userData: User?
     
@@ -98,8 +99,10 @@ class AdditionalInfoVC: UIViewController {
             let uid: String = Auth.auth().currentUser!.uid
             
             if error != nil {
-                print("Unable to authenticate user")
-                print(error.debugDescription as String)
+                if let errorMessage = error?.localizedDescription {
+                    self.alert.errorMessageAlertDialog(fromViewController: self, withMessage: errorMessage)
+                }
+                print("Unable to authenticate user \(error.debugDescription)")
             }
             else {
                 print("User authenticated")

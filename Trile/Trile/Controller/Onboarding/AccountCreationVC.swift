@@ -20,6 +20,7 @@ class AccountCreationVC: UIViewController {
     let MIN_LENGTH = 6
     
     let newUser = User()
+    let alert = AlertPresenterManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,17 +51,23 @@ class AccountCreationVC: UIViewController {
         newUser.email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         newUser.password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
+        let errorMessage: String
+        
         if newUser.firstName.isEmpty {
-            print("No first name entered")
+            errorMessage = "No first name entered"
+            alert.errorMessageAlertDialog(fromViewController: self, withMessage: errorMessage)
             completion(false)
         } else if newUser.lastName.isEmpty {
-            print("No last name entered")
+            errorMessage = "No last name entered"
+            alert.errorMessageAlertDialog(fromViewController: self, withMessage: errorMessage)
             completion(false)
         } else if newUser.email.isEmpty {
-            print("No email entered")
+            errorMessage = "No email entered"
+            alert.errorMessageAlertDialog(fromViewController: self, withMessage: errorMessage)
             completion(false)
-        } else if newUser.password.isEmpty || newUser.password.count < MIN_LENGTH {
-            print("Invalid password entered")
+        } else if newUser.password.isEmpty {
+            errorMessage = "No password entered"
+            alert.errorMessageAlertDialog(fromViewController: self, withMessage: errorMessage)
             completion(false)
         } else {
             completion(true)
