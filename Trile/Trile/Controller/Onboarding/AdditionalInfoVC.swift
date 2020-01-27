@@ -23,7 +23,7 @@ class AdditionalInfoVC: UIViewController {
     @IBOutlet weak var zipTextField: UITextField!
     
     let NOTIFICATION_VALUE = "accountCreatedDialog"
-        
+    
     let db = Firestore.firestore()
     let dbm = FirebaseFirestoreManager()
     let alert = AlertPresenterManager()
@@ -55,8 +55,11 @@ class AdditionalInfoVC: UIViewController {
     
     func saveUserData() {
         var userDataArray = [String: Any]()
+        var soloPractitioner: Bool
         
         if firmSegmentedControl.selectedSegmentIndex == 0 {
+            soloPractitioner = false
+            
             if let firmName = firmNameTextField.text {
                 userDataArray["firm_name"] = firmName
             }
@@ -64,7 +67,11 @@ class AdditionalInfoVC: UIViewController {
             if let taxpayerID = taxpayerIDTextField.text {
                 userDataArray["taxpayer_id"] = taxpayerID
             }
+        } else {
+            soloPractitioner = true
         }
+        
+        userDataArray["solo_practitioner"] = soloPractitioner
         
         if let address = addressTextField.text {
             userDataArray["address"] = address
