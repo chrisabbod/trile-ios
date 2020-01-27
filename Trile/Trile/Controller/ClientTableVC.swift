@@ -16,6 +16,7 @@ class ClientTableVC: UITableViewController {
     let REUSE_IDENTIFIER = "customClientCell"
     let FILE_NUMBER_SEGUE = "goToFileNumberTableVC"
     let LOAD_TABLEVIEW_NOTIFICATION = "loadClientTableVC"
+    let EDIT_USER_INFO_IDENTIFIER = "editUserInfoVC"
 
     let dbm = FirebaseFirestoreManager()
     let imageManager = FirebaseStorageManager()
@@ -30,7 +31,8 @@ class ClientTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = editButtonItem
+        let addUserInfoButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(addUserInfoButton(_:)))
+        navigationItem.leftBarButtonItem = addUserInfoButton
         
         let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientButton(_:)))
         navigationItem.rightBarButtonItem = addClientButton
@@ -58,6 +60,13 @@ class ClientTableVC: UITableViewController {
     }
     
     //Mark: Bar Buttons
+    
+    @objc
+    func addUserInfoButton(_ sender: UIBarButtonItem) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: EDIT_USER_INFO_IDENTIFIER) as! EditUserInfoVC
+        self.present(newViewController, animated: true, completion: nil)
+    }
     
     @objc
     func addClientButton(_ sender: UIBarButtonItem) {
@@ -97,11 +106,6 @@ class ClientTableVC: UITableViewController {
         self.tableView.backgroundColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
         
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
