@@ -57,7 +57,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     @objc
     func signOut(_ sender: UIBarButtonItem) {
-        transitionToHome()
+        dismiss(animated: true, completion: nil)
     }
     
     @objc
@@ -68,13 +68,6 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     //MARK: Segues
-    
-    func transitionToHome() {
-        let loginVC = storyboard?.instantiateViewController(identifier: "LoginViewController")
-        
-        view.window?.rootViewController = loginVC
-        view.window?.makeKeyAndVisible()
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! DocumentDetailsVC

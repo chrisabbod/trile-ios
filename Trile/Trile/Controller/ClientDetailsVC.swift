@@ -65,7 +65,7 @@ class ClientDetailsVC: UIViewController {
     
     @objc
     func signOut(_ sender: UIBarButtonItem) {
-        transitionToHome()
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func editClientDetailsButton(_ sender: Any) {
@@ -78,15 +78,6 @@ class ClientDetailsVC: UIViewController {
         let destinationVC = segue.destination as! EditClientDetailsVC
         destinationVC.selectedClient = selectedClient
         destinationVC.selectedFileNumber = selectedFileNumber
-    }
-    
-    func transitionToHome() {
-        
-        let loginVC = storyboard?.instantiateViewController(identifier: "LoginViewController")
-        
-        view.window?.rootViewController = loginVC
-        view.window?.makeKeyAndVisible()
-        
     }
     
     //MARK: Load Client Data

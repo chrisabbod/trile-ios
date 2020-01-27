@@ -233,14 +233,14 @@
 				A5817F3423DEA8B0004CB660 /* EditUserInfoVC.swift */,
 				A511C1DB23B5614900B9A771 /* ClientTableVC.swift */,
 				A5D6D8DA23BBBD9F00F16E27 /* FileNumberTableVC.swift */,
+				A5D6D8DE23BD419200F16E27 /* ClientDetailsVC.swift */,
+				A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */,
 				A5695AFF23BEF0130010E40C /* CaseDetailsVC.swift */,
 				A575E81E23BFB2DF00006A10 /* EditCaseDetailsVC.swift */,
 				A5817F1623D383E0004CB660 /* OffenseTableVC.swift */,
 				A575E82223C00C9A00006A10 /* DocumentCollectionVC.swift */,
 				A575E88823C2E23100006A10 /* DocumentDetailsVC.swift */,
 				A575E88A23C5043900006A10 /* FeeApplicationVC.swift */,
-				A5D6D8DE23BD419200F16E27 /* ClientDetailsVC.swift */,
-				A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

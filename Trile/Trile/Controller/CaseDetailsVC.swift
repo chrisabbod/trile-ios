@@ -80,12 +80,11 @@ class CaseDetailsVC: UIViewController {
     
     @objc
     func signOut(_ sender: UIBarButtonItem) {
-        transitionToHome()
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func editCaseDetailsButton(_ sender: Any) {
         performSegue(withIdentifier: EDIT_CASE_DETAILS_SEGUE, sender: self)
-
     }
     
     // MARK: Segues
@@ -94,15 +93,6 @@ class CaseDetailsVC: UIViewController {
         let destinationVC = segue.destination as! EditCaseDetailsVC
         destinationVC.selectedClient = selectedClient
         destinationVC.selectedFileNumber = selectedFileNumber
-    }
-    
-    func transitionToHome() {
-        
-        let loginVC = storyboard?.instantiateViewController(identifier: "LoginViewController")
-        
-        view.window?.rootViewController = loginVC
-        view.window?.makeKeyAndVisible()
-        
     }
     
     //MARK: Show/Hide Functions

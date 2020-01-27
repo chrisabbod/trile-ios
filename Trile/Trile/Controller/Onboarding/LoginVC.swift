@@ -23,12 +23,16 @@ class LoginVC: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Display AdditionalInfoVC when a new user is created in AccountCreationVC
         NotificationCenter.default.addObserver(self, selector: #selector(showAdditionalInfoVC), name: NSNotification.Name(rawValue: ADDITIONAL_INFO_NOTIFICATION), object: nil)
         
         //Display a dialog alerting the user that their account was created after returning from AdditionalInfoVC
         NotificationCenter.default.addObserver(self, selector: #selector(showAccountCreatedDialog), name: NSNotification.Name(rawValue: ACCOUNT_CREATED_NOTIFICATION), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        clearTextFields()
     }
     
     //MARK: Button Functions
@@ -39,6 +43,13 @@ class LoginVC: UIViewController {
     
     @IBAction func signUpButton(_ sender: Any) {
         performSegue(withIdentifier: ACCOUNT_CREATION_SEGUE, sender: self)
+    }
+    
+    //MARK: Clear Text Fields
+    
+    func clearTextFields() {
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
     //MARK: Login Function

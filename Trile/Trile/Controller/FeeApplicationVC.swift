@@ -62,16 +62,7 @@ class FeeApplicationVC: UIViewController {
     
     @objc
     func signOut(_ sender: UIBarButtonItem) {
-        transitionToHome()
-    }
-    
-    //MARK: Segues
-    
-    func transitionToHome() {
-        let loginVC = storyboard?.instantiateViewController(identifier: "LoginViewController")
-        
-        view.window?.rootViewController = loginVC
-        view.window?.makeKeyAndVisible()
+        dismiss(animated: true, completion: nil)
     }
     
     //MARK: PDF Functions
