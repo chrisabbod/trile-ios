@@ -16,8 +16,8 @@ class AccountCreationVC: UIViewController {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
-    let MIN_LENGTH = 6
+        
+    let NOTIFICATION_VALUE = "showAdditionalInfoVC"
     
     let db = Firestore.firestore()
     let alert = AlertPresenterManager()
@@ -30,7 +30,8 @@ class AccountCreationVC: UIViewController {
     //MARK: Button Functions
     
     @IBAction func createAccountButton(_ sender: Any) {
-        createNewUser()
+//        createNewUser()
+        showAdditionalInfoVC()
     }
     
     func createNewUser() {
@@ -41,7 +42,6 @@ class AccountCreationVC: UIViewController {
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         var errorMessage: String = ""
-        
         
         if firstName.isEmpty {
             errorMessage = "A first name must be provided"
@@ -60,19 +60,23 @@ class AccountCreationVC: UIViewController {
                     }
                     print("Unable to authenticate user \(error.debugDescription)")
                 } else {
-                    
-                    //message = "User was successfully created"
-                    
+                                        
                     self.db.collection("users").document(uid).setData([
                         "first_name":firstName,
                         "last_name":lastName,
                         "email": email,
                         "uid": result!.user.uid])
                     
-                    self.dismiss(animated: true, completion: nil);
+                    self.showAdditionalInfoVC()
                 }
             }
         }
-        
+    }
+    
+    func showAdditionalInfoVC() {
+        self.dismiss(animated: true, completion: nil);
+
+        //Calls Notification Function in LoginVC to go to AdditionalInfoVC
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_VALUE), object: nil)
     }
 }

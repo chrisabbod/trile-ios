@@ -508,7 +508,7 @@
         <!--Additional InfoVC-->
         <scene sceneID="99w-dt-J1W">
             <objects>
-                <viewController storyboardIdentifier="showAdditionalInfoVC" id="hQI-W3-NrI" customClass="AdditionalInfoVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="additionalInfoVC" id="hQI-W3-NrI" customClass="AdditionalInfoVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4AD-ER-Fki">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
