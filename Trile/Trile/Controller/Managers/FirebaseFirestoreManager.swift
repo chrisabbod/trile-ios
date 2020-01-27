@@ -29,6 +29,22 @@ class FirebaseFirestoreManager {
         }
     }
     
+    func readUserDataFromDatabase(completion: @escaping ((_ userData: [String: Any], _ success: Bool) -> Void)) {
+        
+        let query = db.collection("users").whereField("uid", isEqualTo: uid as Any)
+        
+        query.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let documentData: [String: Any] = document.data()
+                    completion(documentData, true)
+                }
+            }
+        }
+    }
+    
     //MARK: Client Functions
     
     func addClientToDatabase(_ client: Client) {

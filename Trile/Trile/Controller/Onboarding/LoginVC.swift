@@ -20,7 +20,7 @@ class LoginVC: UIViewController {
     let ACCOUNT_CREATED_NOTIFICATION = "accountCreatedDialog"
     
     let alert = AlertPresenterManager()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,7 +30,7 @@ class LoginVC: UIViewController {
         //Display a dialog alerting the user that their account was created after returning from AdditionalInfoVC
         NotificationCenter.default.addObserver(self, selector: #selector(showAccountCreatedDialog), name: NSNotification.Name(rawValue: ACCOUNT_CREATED_NOTIFICATION), object: nil)
     }
-
+    
     //MARK: Button Functions
     
     @IBAction func LoginButton(_ sender: Any) {
@@ -61,7 +61,7 @@ class LoginVC: UIViewController {
             
             let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-
+            
         }
     }
     

@@ -191,6 +191,7 @@
                                                 </segments>
                                                 <connections>
                                                     <action selector="firmSegmentedControl:" destination="hQI-W3-NrI" eventType="valueChanged" id="8HE-gO-y78"/>
+                                                    <action selector="firmSegmentedControl:" destination="pDq-H8-gv6" eventType="valueChanged" id="ZI2-Wq-9Oy"/>
                                                 </connections>
                                             </segmentedControl>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Firm Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ewc-kM-hDy">
@@ -250,20 +251,42 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Atk-ax-7qP">
+                                <rect key="frame" x="427" y="576.5" width="170" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Save and Return">
+                                    <color key="titleColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveAndReturnButton:" destination="hQI-W3-NrI" eventType="touchUpInside" id="CpZ-2E-Qr7"/>
+                                    <action selector="saveAndReturnButton:" destination="pDq-H8-gv6" eventType="touchUpInside" id="heD-kd-BiN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Atk-ax-7qP" firstAttribute="centerX" secondItem="oFa-Ln-FTU" secondAttribute="centerX" id="51q-uG-hHP"/>
                             <constraint firstItem="Zvk-6v-ClR" firstAttribute="top" secondItem="fgV-ZS-d1r" secondAttribute="top" constant="20" id="CeN-V2-TYJ"/>
+                            <constraint firstItem="Atk-ax-7qP" firstAttribute="top" secondItem="ivk-Sy-Uju" secondAttribute="bottom" constant="8" id="DUR-p8-U8e"/>
                             <constraint firstItem="Zvk-6v-ClR" firstAttribute="centerX" secondItem="oFa-Ln-FTU" secondAttribute="centerX" id="IR0-4Z-a9U"/>
                             <constraint firstItem="ivk-Sy-Uju" firstAttribute="centerX" secondItem="oFa-Ln-FTU" secondAttribute="centerX" id="WZp-1c-gtC"/>
                             <constraint firstItem="ivk-Sy-Uju" firstAttribute="top" secondItem="Zvk-6v-ClR" secondAttribute="bottom" constant="20" id="ces-Jl-swN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fgV-ZS-d1r"/>
                     </view>
+                    <connections>
+                        <outlet property="addressTextField" destination="gia-J6-tbi" id="GgP-zh-Eq1"/>
+                        <outlet property="cityTextField" destination="R3K-aW-bH2" id="w8b-6u-JWF"/>
+                        <outlet property="firmNameTextField" destination="ewc-kM-hDy" id="2uu-LP-vzb"/>
+                        <outlet property="firmSegmentedControl" destination="JRm-KV-ef9" id="kFb-k0-uMr"/>
+                        <outlet property="stateTextField" destination="Dwb-FZ-RHa" id="fUU-gT-7aL"/>
+                        <outlet property="taxpayerIDTextField" destination="jXd-Ro-gre" id="QEG-ts-R7F"/>
+                        <outlet property="zipTextField" destination="nXy-MN-bje" id="7lt-LP-aAF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fof-wp-ofA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2076" y="-1120"/>
+            <point key="canvasLocation" x="2075.9765625" y="-1120.3125"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="S6B-bk-P8l">

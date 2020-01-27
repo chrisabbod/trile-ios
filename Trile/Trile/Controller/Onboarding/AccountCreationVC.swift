@@ -32,7 +32,6 @@ class AccountCreationVC: UIViewController {
     
     @IBAction func createAccountButton(_ sender: Any) {
         createNewUser()
-//        showAdditionalInfoVC()
     }
     
     func createNewUser() {
@@ -76,7 +75,7 @@ class AccountCreationVC: UIViewController {
     
     func showAdditionalInfoVC() {
         self.dismiss(animated: true, completion: nil);
-
+        
         //Calls Notification Function in LoginVC to go to AdditionalInfoVC
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_VALUE), object: nil)
     }

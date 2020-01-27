@@ -23,7 +23,7 @@ class AdditionalInfoVC: UIViewController {
     @IBOutlet weak var zipTextField: UITextField!
     
     let NOTIFICATION_VALUE = "accountCreatedDialog"
-    
+        
     let db = Firestore.firestore()
     let dbm = FirebaseFirestoreManager()
     let alert = AlertPresenterManager()
@@ -45,7 +45,7 @@ class AdditionalInfoVC: UIViewController {
     }
     
     @IBAction func saveAndReturnButton(_ sender: Any) {
-        saveCaseData()
+        saveUserData()
         
         self.dismiss(animated: true, completion: nil)
         
@@ -53,7 +53,7 @@ class AdditionalInfoVC: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_VALUE), object: nil)
     }
     
-    func saveCaseData() {
+    func saveUserData() {
         var userDataArray = [String: Any]()
         
         if firmSegmentedControl.selectedSegmentIndex == 0 {
