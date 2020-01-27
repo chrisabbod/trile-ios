@@ -73,13 +73,13 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDM-oc-5AD">
-                                <rect key="frame" x="308.5" y="530" width="95" height="41"/>
+                                <rect key="frame" x="275.5" y="530" width="161" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Continue">
+                                <state key="normal" title="Create Account">
                                     <color key="titleColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="continueButton:" destination="U71-qz-yEX" eventType="touchUpInside" id="NYT-Rh-68u"/>
+                                    <action selector="createAccountButton:" destination="U71-qz-yEX" eventType="touchUpInside" id="ifd-Qg-jN6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -100,12 +100,11 @@
                         <outlet property="firstNameTextField" destination="byg-Gd-NBi" id="7Tf-TD-aTF"/>
                         <outlet property="lastNameTextField" destination="eMI-xj-rvT" id="2zd-ao-fJf"/>
                         <outlet property="passwordTextField" destination="EJw-zx-oMa" id="WLb-4g-qaH"/>
-                        <segue destination="hQI-W3-NrI" kind="show" identifier="showAdditionalInfoVC" id="kPh-wV-X7o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3U-lm-F0b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-856.07613469985347" y="379.6875"/>
+            <point key="canvasLocation" x="-856" y="426"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -450,7 +449,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OET-12-sC7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1564" y="380"/>
+            <point key="canvasLocation" x="-1564" y="426"/>
         </scene>
         <!--ForgotUsernameVC-->
         <scene sceneID="nba-UB-6jO">
@@ -504,18 +503,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uDa-HQ-597" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1564" y="1079"/>
+            <point key="canvasLocation" x="-1564" y="1195"/>
         </scene>
         <!--Additional InfoVC-->
         <scene sceneID="99w-dt-J1W">
             <objects>
-                <viewController id="hQI-W3-NrI" customClass="AdditionalInfoVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="showAdditionalInfoVC" id="hQI-W3-NrI" customClass="AdditionalInfoVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4AD-ER-Fki">
-                        <rect key="frame" x="0.0" y="0.0" width="712" height="728"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLy-Dz-VhB">
-                                <rect key="frame" x="206" y="20" width="300" height="143.5"/>
+                                <rect key="frame" x="362" y="20" width="300" height="143.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="iIY-7f-EbY"/>
                                 </constraints>
@@ -525,7 +524,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="3Rd-dn-V6k">
-                                <rect key="frame" x="206" y="183.5" width="300" height="385"/>
+                                <rect key="frame" x="362" y="183.5" width="300" height="385"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kjd-XP-ojQ" userLabel="Firm Info">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="201"/>
@@ -595,7 +594,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grZ-xI-J5W">
-                                <rect key="frame" x="275.5" y="576.5" width="161" height="41"/>
+                                <rect key="frame" x="431.5" y="576.5" width="161" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Create Account">
                                     <color key="titleColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -629,7 +628,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WKv-Uo-E1m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-856.25" y="1078.7109375"/>
+            <point key="canvasLocation" x="-120" y="426"/>
         </scene>
         <!--FileNumberTableVC-->
         <scene sceneID="5lT-qs-Abf">
