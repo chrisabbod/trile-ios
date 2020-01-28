@@ -159,6 +159,8 @@ extension EditUserInfoVC: UITextFieldDelegate, UIPickerViewDelegate, UIPickerVie
             return TextRestrictionManager.restrictTextLength(by: 40, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == addressTextField || textField == cityTextField {
             return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == taxpayerIDTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 9, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == zipTextField {
             return TextRestrictionManager.restrictTextLengthAndCharacters(by: 5, textField, shouldChangeCharactersIn: range, replacementString: string)
         }
