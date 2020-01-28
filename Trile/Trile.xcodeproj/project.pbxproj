@@ -42,6 +42,7 @@
 		A5817F1F23D3DA1E004CB660 /* Offense.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1E23D3DA1E004CB660 /* Offense.swift */; };
 		A5817F2F23DE3FE0004CB660 /* AdditionalInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F2E23DE3FE0004CB660 /* AdditionalInfoVC.swift */; };
 		A5817F3523DEA8B0004CB660 /* EditUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3423DEA8B0004CB660 /* EditUserInfoVC.swift */; };
+		A5817F3723DFCEC7004CB660 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3623DFCEC7004CB660 /* ForgotPasswordVC.swift */; };
 		A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C623B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C723B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
@@ -119,6 +120,7 @@
 		A5817F1E23D3DA1E004CB660 /* Offense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offense.swift; sourceTree = "<group>"; };
 		A5817F2E23DE3FE0004CB660 /* AdditionalInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoVC.swift; sourceTree = "<group>"; };
 		A5817F3423DEA8B0004CB660 /* EditUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfoVC.swift; sourceTree = "<group>"; };
+		A5817F3623DFCEC7004CB660 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5D6D8CC23B69F4E00F16E27 /* AccountCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVC.swift; sourceTree = "<group>"; };
 		A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				A5D6D8CC23B69F4E00F16E27 /* AccountCreationVC.swift */,
 				A5817F2E23DE3FE0004CB660 /* AdditionalInfoVC.swift */,
 				A5D6D8D623B872DD00F16E27 /* LoginVC.swift */,
+				A5817F3623DFCEC7004CB660 /* ForgotPasswordVC.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				A5817F1723D383E0004CB660 /* OffenseTableVC.swift in Sources */,
 				A54DC82E23CE747600E09567 /* FirebaseStorageManager.swift in Sources */,
 				A5817F1523D28413004CB660 /* DateFormatterManager.swift in Sources */,
+				A5817F3723DFCEC7004CB660 /* ForgotPasswordVC.swift in Sources */,
 				A575E86823C02AB200006A10 /* DocumentCollectionViewCell.swift in Sources */,
 				A517CB5F23D1533300B2171C /* TextRestrictionManager.swift in Sources */,
 				A5D6D8CF23B8005F00F16E27 /* FirebaseAuthManager.swift in Sources */,
