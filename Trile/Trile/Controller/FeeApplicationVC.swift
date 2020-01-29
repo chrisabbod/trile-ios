@@ -374,6 +374,14 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(fileNumber.dateOfFinalDisposition, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "StartDate":
+                            annotation.setValue(fileNumber.dateAppointed, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
+                        case "EndDate":
+                            annotation.setValue(fileNumber.dateOfFinalDisposition, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }
