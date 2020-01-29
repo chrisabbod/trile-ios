@@ -476,6 +476,22 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(user.email, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "ApplicantStAddr":
+                            annotation.setValue(user.address, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
+                        case "ApplicantCity":
+                            annotation.setValue(user.city, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
+                        case "ApplicantState":
+                            annotation.setValue(user.state, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
+                        case "ApplicantZip":
+                            annotation.setValue(user.zip, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }
