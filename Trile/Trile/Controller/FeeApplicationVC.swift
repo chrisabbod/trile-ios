@@ -191,6 +191,18 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        case "GuiltyPleaDuringTrialCbx":
+                            if fileNumber.disposition == "Guilty Plea During Trial: Other Offense" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "GuiltyPleaDuringTrial":
+                            if fileNumber.disposition == "Guilty Plea During Trial: Other Offense" {
+                                annotation.setValue(fileNumber.otherOffense, forAnnotationKey: .widgetValue)
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         default:
                             print("Could not modify PDF")
                         }
