@@ -65,6 +65,14 @@ class EditUserInfoVC: UIViewController {
     
     func readUserData(_ userData: [String: Any]) {
         
+        if let soloPractitioner: Bool = userData["solo_practitioner"] as? Bool {
+            if !soloPractitioner {
+                firmSegmentedControl.selectedSegmentIndex = 0
+            } else {
+                firmSegmentedControl.selectedSegmentIndex = 1
+            }
+        }
+        
         if let firmName = userData["firm_name"] {
             firmNameTextField.text = firmName as? String
         }
