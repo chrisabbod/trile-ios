@@ -352,17 +352,17 @@ class FeeApplicationVC: UIViewController {
                                 page.addAnnotation(annotation)
                             }
                         case "NoneAttorneyWithdrewCbx":
-                             if fileNumber.judgmentAndSentencing == "None (Attorney Withdrew)" {
-                                 annotation.buttonWidgetState = .onState
-                                 page.removeAnnotation(annotation)
-                                 page.addAnnotation(annotation)
-                             }
+                            if fileNumber.judgmentAndSentencing == "None (Attorney Withdrew)" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         case "JudgmentSentencingNoneInterimFeeCbx":
-                             if fileNumber.judgmentAndSentencing == "None (Interim Fee)" {
-                                 annotation.buttonWidgetState = .onState
-                                 page.removeAnnotation(annotation)
-                                 page.addAnnotation(annotation)
-                             }
+                            if fileNumber.judgmentAndSentencing == "None (Interim Fee)" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         case "JudgmentSentencingOtherCbx":
                             if fileNumber.judgmentAndSentencing == "Other" {
                                 annotation.buttonWidgetState = .onState
@@ -414,6 +414,10 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        case "TravelCosts":
+                            annotation.setValue(fileNumber.travel, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }
@@ -602,6 +606,10 @@ class FeeApplicationVC: UIViewController {
         
         if let timeOutOfCourtMinutes = data["time_out_of_court_minutes"] {
             fileNumber.timeOutOfCourtMinutes = timeOutOfCourtMinutes as! String
+        }
+        
+        if let travelExpenses = data["travel_expenses"] {
+            fileNumber.travel = travelExpenses as! String
         }
     }
 }
