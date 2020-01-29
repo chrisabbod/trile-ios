@@ -418,6 +418,10 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(fileNumber.travel, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "CopyCosts":
+                            annotation.setValue(fileNumber.copying, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }
@@ -611,5 +615,10 @@ class FeeApplicationVC: UIViewController {
         if let travelExpenses = data["travel_expenses"] {
             fileNumber.travel = travelExpenses as! String
         }
+        
+        if let copyingExpenses = data["copying_expenses"] {
+            fileNumber.copying = copyingExpenses as! String
+        }
+        
     }
 }

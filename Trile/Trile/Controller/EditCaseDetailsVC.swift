@@ -167,7 +167,7 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         } else if textField == bondTextField {
             return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == travelExpensesTextField || textField == copyingExpensesTextField || textField == otherExpensesTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 8, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 6, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == sentenceMonthsTextField {
             return TextRestrictionManager.restrictTextLengthAndCharacters(by: 4, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == continuancesTextField || textField == sentenceDaysTextField || textField == timeInCourtHoursTextField || textField == timeInCourtMinutesTextField || textField == timeInCourtWaitingHoursTextField || textField == timeInCourtWaitingMinutesTextField || textField == timeOutOfCourtHoursTextField || textField == timeOutOfCourtMinutesTextField {
