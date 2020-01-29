@@ -390,6 +390,21 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(fileNumber.nameOfJudgeSettingFee, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "TimeInCourt":
+                            let timeInCourt = ("\(fileNumber.timeInCourtHours) Hours \(fileNumber.timeInCourtMinutes) Minutes")
+                            annotation.setValue(timeInCourt, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
+                        case "TimeInCourtWaiting":
+                            let timeInCourtWaiting = ("\(fileNumber.timeInCourtWaitingHours) Hours \(fileNumber.timeInCourtWaitingMinutes) Minutes")
+                            annotation.setValue(timeInCourtWaiting, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
+                        case "TimeOutOfCourt":
+                            let timeOutOfCourt = ("\(fileNumber.timeOutOfCourtHours) Hours \(fileNumber.timeOutOfCourtMinutes) Minutes")
+                            annotation.setValue(timeOutOfCourt, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }
@@ -556,28 +571,28 @@ class FeeApplicationVC: UIViewController {
             fileNumber.dateOfFinalDisposition = dateOfFinalDisposition as! String
         }
         
-        //        if let timeInCourtHours = data["time_in_court_hours"] {
-        //            timeInCourtHoursTextField.text = timeInCourtHours as? String
-        //        }
-        //
-        //        if let timeInCourtMinutes = data["time_in_court_minutes"] {
-        //            timeInCourtMinutesTextField.text = timeInCourtMinutes as? String
-        //        }
-        //
-        //        if let timeInCourtWaitingHours = data["time_in_court_waiting_hours"] {
-        //            timeInCourtWaitingHoursTextField.text = timeInCourtWaitingHours as? String
-        //        }
-        //
-        //        if let timeInCourtWaitingMinutes = data["time_in_court_waiting_minutes"] {
-        //            timeInCourtWaitingMinutesTextField.text = timeInCourtWaitingMinutes as? String
-        //        }
-        //
-        //        if let timeOutOfCourtHours = data["time_out_of_court_hours"] {
-        //            timeOutOfCourtHoursTextField.text = timeOutOfCourtHours as? String
-        //        }
-        //
-        //        if let timeOutOfCourtMinutes = data["time_out_of_court_minutes"] {
-        //            timeOutOfCourtMinutesTextField.text = timeOutOfCourtMinutes as? String
-        //        }
+        if let timeInCourtHours = data["time_in_court_hours"] {
+            fileNumber.timeInCourtHours = timeInCourtHours as! String
+        }
+        
+        if let timeInCourtMinutes = data["time_in_court_minutes"] {
+            fileNumber.timeInCourtMinutes = timeInCourtMinutes as! String
+        }
+        
+        if let timeInCourtWaitingHours = data["time_in_court_waiting_hours"] {
+            fileNumber.timeInCourtWaitingHours = timeInCourtWaitingHours as! String
+        }
+        
+        if let timeInCourtWaitingMinutes = data["time_in_court_waiting_minutes"] {
+            fileNumber.timeInCourtWaitingMinutes = timeInCourtWaitingMinutes as! String
+        }
+        
+        if let timeOutOfCourtHours = data["time_out_of_court_hours"] {
+            fileNumber.timeOutOfCourtHours = timeOutOfCourtHours as! String
+        }
+        
+        if let timeOutOfCourtMinutes = data["time_out_of_court_minutes"] {
+            fileNumber.timeOutOfCourtMinutes = timeOutOfCourtMinutes as! String
+        }
     }
 }

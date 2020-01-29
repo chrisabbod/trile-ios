@@ -34,16 +34,16 @@ class FileNumber {
     var dateOfFirstClientInterview: String = "" //The date the lawyer first meets their client, generally in court
     var dateOfFinalDisposition: String = "" //The date a verdict is rendered on the case
     
-    var timeInCourtHours: Int = 0
-    var timeInCourtMinutes: Int = 0
-    var timeInCourtWaitingHours: Int = 0
-    var timeInCourtWaitingMinutes: Int = 0
-    var timeOutOfCourtHours: Int = 0
-    var timeOutOfCourtMinutes: Int = 0
+    var timeInCourtHours: String = "0"
+    var timeInCourtMinutes: String = "0"
+    var timeInCourtWaitingHours: String = "0"
+    var timeInCourtWaitingMinutes: String = "0"
+    var timeOutOfCourtHours: String = "0"
+    var timeOutOfCourtMinutes:String = "0"
     
-    var travel: Int = 0
-    var copying: Int = 0
-    var other: Int = 0
+    var travel: String = "0"
+    var copying: String = "0"
+    var other: String = "0"
     
     var pdfData: Data = Data()
 }
