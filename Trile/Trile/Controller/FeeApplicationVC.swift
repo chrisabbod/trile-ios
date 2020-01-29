@@ -139,10 +139,20 @@ class FeeApplicationVC: UIViewController {
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "FelonyOffenseCbx":
-                            print("Entered")
                             if fileNumber.offenseCategory == "Felony" {
-                                print(fileNumber.offenseCategory)
                                 annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "FelonyOffenseClass":
+                            if fileNumber.offenseCategory == "Felony" {
+                                annotation.setValue(fileNumber.offenseClass, forAnnotationKey: .widgetValue)
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "NameOfOffense1":
+                            if fileNumber.offenseCategory == "Felony" {
+                                annotation.setValue(fileNumber.offense, forAnnotationKey: .widgetValue)
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
@@ -255,19 +265,19 @@ class FeeApplicationVC: UIViewController {
         //        if let desiredOutcome = data["desired_outcome"] {
         //            desiredOutcomeTextField.text = desiredOutcome as? String
         //        }
-        //
-        //        if let offense = data["offense"] {
-        //            offenseTextField.text = offense as? String
-        //        }
+        
+        if let offense = data["offense"] {
+            fileNumber.offense = offense as! String
+        }
         
         if let offenseCategory = data["offense_category"] {
             fileNumber.offenseCategory = offenseCategory as! String
         }
         
-        //        if let offenseClass = data["offense_class"] {
-        //            offenseClassTextField.text = offenseClass as? String
-        //        }
-        //
+        if let offenseClass = data["offense_class"] {
+            fileNumber.offenseClass = offenseClass as! String
+        }
+        
         //        if let disposition = data["disposition"] {
         //            dispositionTextField.text = disposition as? String
         //        }
