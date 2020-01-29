@@ -36,17 +36,16 @@ class FeeApplicationVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if let client = selectedClient, let fileNumber = selectedFileNumber {
+            
             dbm.readClientDataFromDatabase(client) { (returnedClientData, success) in
                 if success {
                     self.readClientData(from: returnedClientData)
-                    self.setFieldsInPDF()
-                }
-            }
-            
-            dbm.readCaseDataFromDatabase(client, fileNumber) { (returnedCaseData, success) in
-                if success {
-                    self.readCaseData(from: returnedCaseData)
-                    self.setFieldsInPDF()
+                    self.dbm.readCaseDataFromDatabase(client, fileNumber) { (returnedCaseData, success) in
+                        if success {
+                            self.readCaseData(from: returnedCaseData)
+                            self.setFieldsInPDF()
+                        }
+                    }
                 }
             }
             
