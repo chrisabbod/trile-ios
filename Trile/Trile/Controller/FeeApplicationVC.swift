@@ -137,6 +137,7 @@ class FeeApplicationVC: UIViewController {
                             annotation.buttonWidgetState = .onState
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                            //MARK: Original Charge
                         case "FelonyOffenseCbx":
                             if fileNumber.offenseCategory == "Felony" {
                                 annotation.buttonWidgetState = .onState
@@ -173,6 +174,7 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                            //MARK: Disposition
                         case "GuiltyPleaBeforeTrialOriginalChargeCbx":
                             if fileNumber.disposition == "Guilty Plea Before Trial: Most Serious Original Charge" {
                                 annotation.buttonWidgetState = .onState
@@ -206,6 +208,18 @@ class FeeApplicationVC: UIViewController {
                         case "TrialOriginalChargeCbx":
                             if fileNumber.disposition == "Trial: Guilty Most Serious Original Charge" {
                                 annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "TrialOtherOffenseCbx":
+                            if fileNumber.disposition == "Trial: Guilty Other Offense" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "TrialOtherOffenseNameOfOffense":
+                            if fileNumber.disposition == "Trial: Guilty Other Offense" {
+                                annotation.setValue(fileNumber.otherOffense, forAnnotationKey: .widgetValue)
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
