@@ -459,7 +459,14 @@ class FeeApplicationVC: UIViewController {
                                 page.addAnnotation(annotation)
                             } else {
                                 let payee = user.firmName
+                                
                                 annotation.setValue(payee, forAnnotationKey: .widgetValue)
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "TaxpayerIDNo":
+                            if !user.soloPractitioner {
+                                annotation.setValue(user.taxpayerID, forAnnotationKey: .widgetValue)
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
