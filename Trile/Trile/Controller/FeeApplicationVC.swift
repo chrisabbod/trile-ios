@@ -138,6 +138,14 @@ class FeeApplicationVC: UIViewController {
                             annotation.buttonWidgetState = .onState
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "FelonyOffenseCbx":
+                            print("Entered")
+                            if fileNumber.offenseCategory == "Felony" {
+                                print(fileNumber.offenseCategory)
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         default:
                             print("Could not modify PDF")
                         }
@@ -251,11 +259,11 @@ class FeeApplicationVC: UIViewController {
         //        if let offense = data["offense"] {
         //            offenseTextField.text = offense as? String
         //        }
-        //
-        //        if let offenseCategory = data["offense_category"] {
-        //            offenseCategoryTextField.text = offenseCategory as? String
-        //        }
-        //
+        
+        if let offenseCategory = data["offense_category"] {
+            fileNumber.offenseCategory = offenseCategory as! String
+        }
+        
         //        if let offenseClass = data["offense_class"] {
         //            offenseClassTextField.text = offenseClass as? String
         //        }
