@@ -137,7 +137,7 @@ class FeeApplicationVC: UIViewController {
                             annotation.buttonWidgetState = .onState
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
-                            //MARK: Original Charge
+                        //MARK: Original Charge
                         case "FelonyOffenseCbx":
                             if fileNumber.offenseCategory == "Felony" {
                                 annotation.buttonWidgetState = .onState
@@ -174,7 +174,7 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
-                            //MARK: Disposition
+                        //MARK: Disposition
                         case "GuiltyPleaBeforeTrialOriginalChargeCbx":
                             if fileNumber.disposition == "Guilty Plea Before Trial: Most Serious Original Charge" {
                                 annotation.buttonWidgetState = .onState
@@ -265,6 +265,30 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        case "NoProbableCauseCbx":
+                            if fileNumber.disposition == "No Probable Cause" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "AttorneyWithdrewCbx":
+                            if fileNumber.disposition == "Attorney Withdrew" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "DispositionNoneInterimFeeCbx":
+                            if fileNumber.disposition == "None (Interim Fee)" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "OtherDispositionCbx":
+                            if fileNumber.disposition == "Other" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         default:
                             print("Could not modify PDF")
                         }
@@ -309,21 +333,21 @@ class FeeApplicationVC: UIViewController {
         //            phoneNumberLabel.text = phoneNumber as? String
         //        }
         //
-                if let address = data["address"] {
-                    client.address = address as! String
-                }
+        if let address = data["address"] {
+            client.address = address as! String
+        }
         
-                if let city = data["city"] {
-                    client.city = city as! String
-                }
+        if let city = data["city"] {
+            client.city = city as! String
+        }
         
-                if let state = data["state"] {
-                    client.state = state as! String
-                }
+        if let state = data["state"] {
+            client.state = state as! String
+        }
         
-                if let zip = data["zip"] {
-                    client.zip = zip as! String
-                }
+        if let zip = data["zip"] {
+            client.zip = zip as! String
+        }
         //
         //        if let placeOfEmployment = data["place_of_employment"] {
         //            placeOfEmploymentLabel.text = placeOfEmployment as? String
