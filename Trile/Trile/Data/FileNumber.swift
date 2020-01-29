@@ -21,6 +21,7 @@ class FileNumber {
     var offense: String = ""
     var offenseCategory: String = ""
     var offenseClass: String = ""
+    var offenseTrafficType: String = ""
     var disposition: String = ""
     var judgmentAndSentencing: String = ""
     var sentenceMonths: String = "0"
