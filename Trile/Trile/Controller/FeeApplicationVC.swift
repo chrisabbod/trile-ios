@@ -470,6 +470,12 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        case "TeleNo":
+                            print("WILL IMPLEMENT SOON")
+                        case "EmailAddress":
+                            annotation.setValue(user.email, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }
