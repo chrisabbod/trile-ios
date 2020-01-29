@@ -31,20 +31,12 @@ class CalculationManager {
         return ["total_hours": totalHours, "total_minutes": totalMinutes]
     }
     
-    static func calculateTotalExpenses(_ fileNumber: FileNumber) {
+    static func calculateTotalExpenses(_ fileNumber: FileNumber) -> String {
         let travel = (fileNumber.travel as NSString).integerValue
         let copying = (fileNumber.copying as NSString).integerValue
         let other = (fileNumber.other as NSString).integerValue
 
         let totalFees = travel + copying + other
-        fileNumber.totalFees = String(totalFees)
+        return String(totalFees)
     }
-    
-//    static func calculateTotalExpenses(_ fileNumber : FileNumber) -> Float {
-//        let travel : Float = fileNumber.travelFee
-//        let copying : Float = fileNumber.copyingFee
-//        let other : Float = fileNumber.otherFees
-//
-//        return travel + copying + other
-//    }
 }

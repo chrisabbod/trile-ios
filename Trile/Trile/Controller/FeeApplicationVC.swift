@@ -426,6 +426,11 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(fileNumber.other, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "TotalExpenses":
+                            let totalExpenses = CalculationManager.calculateTotalExpenses(fileNumber)
+                            annotation.setValue(totalExpenses, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }
