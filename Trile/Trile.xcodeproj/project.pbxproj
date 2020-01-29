@@ -36,7 +36,7 @@
 		A575E88923C2E23100006A10 /* DocumentDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E88823C2E23100006A10 /* DocumentDetailsVC.swift */; };
 		A575E88B23C5043900006A10 /* FeeApplicationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E88A23C5043900006A10 /* FeeApplicationVC.swift */; };
 		A5817F1323D22FD9004CB660 /* PickerListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1223D22FD9004CB660 /* PickerListManager.swift */; };
-		A5817F1523D28413004CB660 /* DateFormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1423D28413004CB660 /* DateFormatterManager.swift */; };
+		A5817F1523D28413004CB660 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1423D28413004CB660 /* DateManager.swift */; };
 		A5817F1723D383E0004CB660 /* OffenseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1623D383E0004CB660 /* OffenseTableVC.swift */; };
 		A5817F1D23D3D796004CB660 /* offenses.json in Resources */ = {isa = PBXBuildFile; fileRef = A5817F1C23D3D796004CB660 /* offenses.json */; };
 		A5817F1F23D3DA1E004CB660 /* Offense.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1E23D3DA1E004CB660 /* Offense.swift */; };
@@ -116,7 +116,7 @@
 		A575E88823C2E23100006A10 /* DocumentDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDetailsVC.swift; sourceTree = "<group>"; };
 		A575E88A23C5043900006A10 /* FeeApplicationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeApplicationVC.swift; sourceTree = "<group>"; };
 		A5817F1223D22FD9004CB660 /* PickerListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerListManager.swift; sourceTree = "<group>"; };
-		A5817F1423D28413004CB660 /* DateFormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterManager.swift; sourceTree = "<group>"; };
+		A5817F1423D28413004CB660 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		A5817F1623D383E0004CB660 /* OffenseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffenseTableVC.swift; sourceTree = "<group>"; };
 		A5817F1C23D3D796004CB660 /* offenses.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = offenses.json; sourceTree = "<group>"; };
 		A5817F1E23D3DA1E004CB660 /* Offense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offense.swift; sourceTree = "<group>"; };
@@ -323,7 +323,7 @@
 				A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */,
 				A5817F1223D22FD9004CB660 /* PickerListManager.swift */,
 				A517CB5E23D1533300B2171C /* TextRestrictionManager.swift */,
-				A5817F1423D28413004CB660 /* DateFormatterManager.swift */,
+				A5817F1423D28413004CB660 /* DateManager.swift */,
 				A5817F3823E15724004CB660 /* CalculationManager.swift */,
 			);
 			path = Managers;
@@ -591,7 +591,7 @@
 				A511C1D823B5614900B9A771 /* AppDelegate.swift in Sources */,
 				A5817F1723D383E0004CB660 /* OffenseTableVC.swift in Sources */,
 				A54DC82E23CE747600E09567 /* FirebaseStorageManager.swift in Sources */,
-				A5817F1523D28413004CB660 /* DateFormatterManager.swift in Sources */,
+				A5817F1523D28413004CB660 /* DateManager.swift in Sources */,
 				A5817F3723DFCEC7004CB660 /* ForgotPasswordVC.swift in Sources */,
 				A575E86823C02AB200006A10 /* DocumentCollectionViewCell.swift in Sources */,
 				A517CB5F23D1533300B2171C /* TextRestrictionManager.swift in Sources */,

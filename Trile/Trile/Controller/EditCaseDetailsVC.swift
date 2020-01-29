@@ -335,17 +335,17 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     
     @objc
     func dateAppointedPickerChanged(picker: UIDatePicker) {
-        dateAppointedTextField.text = DateFormatterManager.formatDateToString(picker.date)
+        dateAppointedTextField.text = DateManager.formatDateToString(picker.date)
     }
     
     @objc
     func dateOfFirstClientInterviewPickerChanged(picker: UIDatePicker) {
-        dateOfFirstClientInterviewTextField.text = DateFormatterManager.formatDateToString(picker.date)
+        dateOfFirstClientInterviewTextField.text = DateManager.formatDateToString(picker.date)
     }
     
     @objc
     func dateOfFinalDispositionPickerChanged(picker: UIDatePicker) {
-        dateOfFinalDispositionTextField.text = DateFormatterManager.formatDateToString(picker.date)
+        dateOfFinalDispositionTextField.text = DateManager.formatDateToString(picker.date)
     }
     
     //MARK: Show/Hide Functions

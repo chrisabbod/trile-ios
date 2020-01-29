@@ -492,6 +492,12 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(user.zip, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "ApplicantSignatureDate":
+                            let currentDate = DateManager.getCurrentDate()
+                            
+                            annotation.setValue(currentDate, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }

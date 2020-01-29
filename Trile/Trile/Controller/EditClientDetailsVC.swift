@@ -255,12 +255,12 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     @objc
     func dateStartedPickerChanged(picker: UIDatePicker) {
         
-        dateStartedTextField.text = DateFormatterManager.formatDateToString(picker.date)
+        dateStartedTextField.text = DateManager.formatDateToString(picker.date)
     }
     
     @objc
     func dateEndedPickerChanged(picker: UIDatePicker) {
-        dateEndedTextField.text = DateFormatterManager.formatDateToString(picker.date)
+        dateEndedTextField.text = DateManager.formatDateToString(picker.date)
     }
     
     //MARK: UI Beautification Functions
