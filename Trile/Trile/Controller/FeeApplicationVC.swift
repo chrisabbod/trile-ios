@@ -161,6 +161,12 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        case "MisdemeanorNonTrafficClass":
+                            if fileNumber.offenseTrafficType == "Non Traffic" {
+                                annotation.setValue(fileNumber.offenseClass, forAnnotationKey: .widgetValue)
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         default:
                             print("Could not modify PDF")
                         }
