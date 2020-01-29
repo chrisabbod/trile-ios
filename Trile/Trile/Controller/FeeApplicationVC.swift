@@ -134,6 +134,10 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(fileNumber.dateAppointed, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "AssignedCounselCbx":
+                            annotation.buttonWidgetState = .onState
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }
