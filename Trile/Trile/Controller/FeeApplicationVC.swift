@@ -130,6 +130,10 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(nameAndAdress, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "DateAttorneyAppointed":
+                            annotation.setValue(fileNumber.dateAppointed, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }
@@ -267,11 +271,11 @@ class FeeApplicationVC: UIViewController {
         //        if let nameOfJudgeSettingFee = data["name_of_judge_setting_fee"] {
         //            nameOfJudgeSettingFeeTextField.text = nameOfJudgeSettingFee as? String
         //        }
-        //
-        //        if let dateAppointed = data["date_appointed"] {
-        //            dateAppointedTextField.text = dateAppointed as? String
-        //        }
-        //
+        
+        if let dateAppointed = data["date_appointed"] {
+            fileNumber.dateAppointed = dateAppointed as! String
+        }
+        
         //        if let dateOfFirstClientInterview = data["date_of_first_client_interview"] {
         //            dateOfFirstClientInterviewTextField.text = dateOfFirstClientInterview as? String
         //        }
