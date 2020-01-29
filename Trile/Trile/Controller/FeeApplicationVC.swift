@@ -369,6 +369,11 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        //MARK: Fee Section
+                        case "DispDate":
+                            annotation.setValue(fileNumber.dateOfFinalDisposition, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }
@@ -530,11 +535,11 @@ class FeeApplicationVC: UIViewController {
         //        if let dateOfFirstClientInterview = data["date_of_first_client_interview"] {
         //            dateOfFirstClientInterviewTextField.text = dateOfFirstClientInterview as? String
         //        }
-        //
-        //        if let dateOfFinalDisposition = data["date_of_final_disposition"] {
-        //            dateOfFinalDispositionTextField.text = dateOfFinalDisposition as? String
-        //        }
-        //
+        
+        if let dateOfFinalDisposition = data["date_of_final_disposition"] {
+            fileNumber.dateOfFinalDisposition = dateOfFinalDisposition as! String
+        }
+        
         //        if let timeInCourtHours = data["time_in_court_hours"] {
         //            timeInCourtHoursTextField.text = timeInCourtHours as? String
         //        }
