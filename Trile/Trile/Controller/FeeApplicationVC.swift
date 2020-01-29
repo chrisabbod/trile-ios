@@ -173,6 +173,24 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        case "GuiltyPleaBeforeTrialOriginalChargeCbx":
+                            if fileNumber.disposition == "Guilty Plea Before Trial: Most Serious Original Charge" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "GuiltyPleaBeforeTrialOtherOffenseCbx":
+                            if fileNumber.disposition == "Guilty Plea Before Trial: Other Offense" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "GuiltyPleaBeforeTrialOtherOffense":
+                            if fileNumber.disposition == "Guilty Plea Before Trial: Other Offense" {
+                                annotation.setValue(fileNumber.otherOffense, forAnnotationKey: .widgetValue)
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         default:
                             print("Could not modify PDF")
                         }
@@ -299,10 +317,14 @@ class FeeApplicationVC: UIViewController {
             fileNumber.offenseTrafficType = offenseTrafficType as! String
         }
         
-        //        if let disposition = data["disposition"] {
-        //            dispositionTextField.text = disposition as? String
-        //        }
-        //
+        if let disposition = data["disposition"] {
+            fileNumber.disposition = disposition as! String
+        }
+        
+        if let otherOffense = data["other_offense"] {
+            fileNumber.otherOffense = otherOffense as! String
+        }
+        
         //        if let judgmentAndSentencing = data["judgment_and_sentencing"] {
         //            judgmentAndSentencingTextField.text = judgmentAndSentencing as? String
         //        }
