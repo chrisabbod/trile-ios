@@ -247,6 +247,24 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        case "FTA/OFAWithoutDismissalCbx":
+                            if fileNumber.disposition == "FTA/OFA Without Dismissal" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "DeferredDivertedCbx":
+                            if fileNumber.disposition == "Deferred/Diverted" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "HeldInCriminalContemptCbx":
+                            if fileNumber.disposition == "Held In Criminal Contempt" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         default:
                             print("Could not modify PDF")
                         }
