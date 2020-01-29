@@ -41,5 +41,9 @@ class FileNumber {
     var timeOutOfCourtHours: Int = 0
     var timeOutOfCourtMinutes: Int = 0
     
+    var travel: Int = 0
+    var copying: Int = 0
+    var other: Int = 0
+    
     var pdfData: Data = Data()
 }
