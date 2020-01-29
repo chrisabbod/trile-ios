@@ -22,8 +22,8 @@ class FeeApplicationVC: UIViewController {
     
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
-    var caseData = [String: Any]()
-    
+    var user = User()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,10 +40,17 @@ class FeeApplicationVC: UIViewController {
             dbm.readClientDataFromDatabase(client) { (returnedClientData, success) in
                 if success {
                     self.readClientData(from: returnedClientData)
+                    
                     self.dbm.readCaseDataFromDatabase(client, fileNumber) { (returnedCaseData, success) in
                         if success {
                             self.readCaseData(from: returnedCaseData)
-                            self.setFieldsInPDF()
+                            
+                            self.dbm.readUserDataFromDatabase { (returnedUserData, success) in
+                                if success {
+                                    self.readUserData(from: returnedUserData)
+                                    self.setFieldsInPDF()
+                                }
+                            }
                         }
                     }
                 }
@@ -289,7 +296,7 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
-                        //MARK: Judgment and Sentencing
+                        //MARK: Judgment/Sentencing
                         case "ActiveSentenceCbx":
                             if fileNumber.judgmentAndSentencing == "Active Sentence" {
                                 annotation.buttonWidgetState = .onState
@@ -369,7 +376,7 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
-                        //MARK: Fee Section
+                        //MARK: Dates
                         case "DispDate":
                             annotation.setValue(fileNumber.dateOfFinalDisposition, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
@@ -386,10 +393,12 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(fileNumber.dateOfFirstClientInterview, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        //MARK: Judge
                         case "JudgeSettingFeeName":
                             annotation.setValue(fileNumber.nameOfJudgeSettingFee, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        //MARK: Billable Hours
                         case "TimeInCourt":
                             let timeInCourt = ("\(fileNumber.timeInCourtHours) Hours \(fileNumber.timeInCourtMinutes) Minutes")
                             annotation.setValue(timeInCourt, forAnnotationKey: .widgetValue)
@@ -414,6 +423,7 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        //MARK: Expenses
                         case "TravelCosts":
                             annotation.setValue(fileNumber.travel, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
@@ -429,6 +439,15 @@ class FeeApplicationVC: UIViewController {
                         case "TotalExpenses":
                             let totalExpenses = CalculationManager.calculateTotalExpenses(fileNumber)
                             annotation.setValue(totalExpenses, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
+                        //MARK: User Info
+                        case "NameAppl":
+                            let firstName = user.firstName
+                            let lastName = user.lastName
+                            let fullName = firstName + " " + lastName
+                            
+                            annotation.setValue(fullName, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         default:
@@ -458,23 +477,7 @@ class FeeApplicationVC: UIViewController {
         if let name = data["name"] {
             client.name = name as! String
         }
-        //
-        //        if let age = data["age"] {
-        //            ageLabel.text = age as? String
-        //        }
-        //
-        //        if let highestEducation = data["highest_education"] {
-        //            highestEducationLabel.text = highestEducation as? String
-        //        }
-        //
-        //        if let areaOfStudy = data["area_of_study"] {
-        //            areaOfStudyLabel.text = areaOfStudy as? String
-        //        }
-        //
-        //        if let phoneNumber = data["phone_number"] {
-        //            phoneNumberLabel.text = phoneNumber as? String
-        //        }
-        //
+
         if let address = data["address"] {
             client.address = address as! String
         }
@@ -490,34 +493,7 @@ class FeeApplicationVC: UIViewController {
         if let zip = data["zip"] {
             client.zip = zip as! String
         }
-        //
-        //        if let placeOfEmployment = data["place_of_employment"] {
-        //            placeOfEmploymentLabel.text = placeOfEmployment as? String
-        //        }
-        //
-        //        if let role = data["role"] {
-        //            roleLabel.text = role as? String
-        //        }
-        //
-        //        if let dataStarted = data["date_started"] {
-        //            dateStartedLabel.text = dataStarted as? String
-        //        }
-        //
-        //        if let dateEnded = data["date_ended"] {
-        //            dateEndedLabel.text = dateEnded as? String
-        //        }
-        //
-        //        if let incomeRange = data["income_range"] {
-        //            incomeRangeLabel.text = incomeRange as? String
-        //        }
-        //
-        //        if let totalChildren = data["total_children"] {
-        //            totalChildrenLabel.text = totalChildren as? String
-        //        }
-        //
-        //        if let totalOtherOccupants = data["total_other_occupants"] {
-        //            totalOtherOccupantsLabel.text = totalOtherOccupants as? String
-        //        }
+
     }
     
     //MARK: Read Case Data
@@ -528,19 +504,7 @@ class FeeApplicationVC: UIViewController {
         if let assignedFileNumber = data["assigned_file_number"] {
             fileNumber.assignedFileNumber = assignedFileNumber as! String
         }
-        
-        //        if let bond = data["bond"] {
-        //            bondTextField.text = bond as? String
-        //        }
-        //
-        //        if let continuances = data["continuances"] {
-        //            continuancesTextField.text = continuances as? String
-        //        }
-        //
-        //        if let desiredOutcome = data["desired_outcome"] {
-        //            desiredOutcomeTextField.text = desiredOutcome as? String
-        //        }
-        
+
         if let offense = data["offense"] {
             fileNumber.offense = offense as! String
         }
@@ -631,6 +595,52 @@ class FeeApplicationVC: UIViewController {
         
         if let otherExpenses = data["other_expenses"] {
             fileNumber.other = otherExpenses as! String
+        }
+    }
+    
+    
+    //MARK: Read User Data
+    
+    func readUserData(from data: [String: Any]) {
+        
+//        if let soloPractitioner = data["solo_practitioner"] {
+//            user.soloPractitioner = soloPractitioner as! String
+//        }
+        
+        if let email = data["email"] {
+            user.email = email as! String
+        }
+        
+        if let firstName = data["first_name"] {
+            user.firstName = firstName as! String
+        }
+        
+        if let lastName = data["last_name"] {
+            user.lastName = lastName as! String
+        }
+        
+        if let address = data["address"] {
+            user.address = address as! String
+        }
+        
+        if let city = data["city"] {
+            user.city = city as! String
+        }
+        
+        if let state = data["state"] {
+            user.state = state as! String
+        }
+        
+        if let zip = data["zip"] {
+            user.zip = zip as! String
+        }
+        
+        if let firmName = data["firm_name"] {
+            user.firmName = firmName as! String
+        }
+        
+        if let taxpayerID = data["taxpayer_id"] {
+            user.taxpayerID = taxpayerID as! String
         }
     }
 }

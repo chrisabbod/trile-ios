@@ -44,6 +44,7 @@
 		A5817F3523DEA8B0004CB660 /* EditUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3423DEA8B0004CB660 /* EditUserInfoVC.swift */; };
 		A5817F3723DFCEC7004CB660 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3623DFCEC7004CB660 /* ForgotPasswordVC.swift */; };
 		A5817F3923E15724004CB660 /* CalculationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3823E15724004CB660 /* CalculationManager.swift */; };
+		A5817F3B23E161ED004CB660 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3A23E161ED004CB660 /* User.swift */; };
 		A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C623B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C723B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
@@ -123,6 +124,7 @@
 		A5817F3423DEA8B0004CB660 /* EditUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfoVC.swift; sourceTree = "<group>"; };
 		A5817F3623DFCEC7004CB660 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		A5817F3823E15724004CB660 /* CalculationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationManager.swift; sourceTree = "<group>"; };
+		A5817F3A23E161ED004CB660 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5D6D8CC23B69F4E00F16E27 /* AccountCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVC.swift; sourceTree = "<group>"; };
 		A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				A5D6D8DC23BBDF4200F16E27 /* FileNumber.swift */,
 				A5817F1E23D3DA1E004CB660 /* Offense.swift */,
 				A5817F1C23D3D796004CB660 /* offenses.json */,
+				A5817F3A23E161ED004CB660 /* User.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				A5817F3923E15724004CB660 /* CalculationManager.swift in Sources */,
 				A575E88B23C5043900006A10 /* FeeApplicationVC.swift in Sources */,
 				A575E82523C00ED900006A10 /* Document.swift in Sources */,
+				A5817F3B23E161ED004CB660 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
