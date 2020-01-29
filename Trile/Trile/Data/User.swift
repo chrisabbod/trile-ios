@@ -10,7 +10,7 @@ import Foundation
 
 class User {
     
-    var soloPractitioner: String = ""
+    var soloPractitioner: Bool = false
     
     var email: String = ""
 

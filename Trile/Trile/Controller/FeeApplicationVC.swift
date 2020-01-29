@@ -450,6 +450,19 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(fullName, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "Payee":
+                            if user.soloPractitioner {
+                                let payee = "Same"
+
+                                annotation.setValue(payee, forAnnotationKey: .widgetValue)
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            } else {
+                                let payee = user.firmName
+                                annotation.setValue(payee, forAnnotationKey: .widgetValue)
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         default:
                             print("Could not modify PDF")
                         }
@@ -603,9 +616,9 @@ class FeeApplicationVC: UIViewController {
     
     func readUserData(from data: [String: Any]) {
         
-//        if let soloPractitioner = data["solo_practitioner"] {
-//            user.soloPractitioner = soloPractitioner as! String
-//        }
+        if let soloPractitioner = data["solo_practitioner"] {
+            user.soloPractitioner = soloPractitioner as! Bool
+        }
         
         if let email = data["email"] {
             user.email = email as! String
