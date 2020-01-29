@@ -303,6 +303,24 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        case "SplitSentenceCbx":
+                            if fileNumber.judgmentAndSentencing == "Split Sentence" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "SupervisedProbationCbx":
+                            if fileNumber.judgmentAndSentencing == "Supervised Probation" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "UnsupervisedProbationCbx":
+                            if fileNumber.judgmentAndSentencing == "Unsupervised Probation" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         default:
                             print("Could not modify PDF")
                         }
