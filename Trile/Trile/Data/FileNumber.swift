@@ -39,11 +39,15 @@ class FileNumber {
     var timeInCourtWaitingHours: String = "0"
     var timeInCourtWaitingMinutes: String = "0"
     var timeOutOfCourtHours: String = "0"
-    var timeOutOfCourtMinutes:String = "0"
+    var timeOutOfCourtMinutes: String = "0"
+    
+    var totalHours: String = "0"
+    var totalMinutes: String = "0"
     
     var travel: String = "0"
     var copying: String = "0"
     var other: String = "0"
+    var totalFees: String = "0"
     
     var pdfData: Data = Data()
 }

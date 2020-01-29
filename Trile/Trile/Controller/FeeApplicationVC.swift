@@ -405,6 +405,15 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(timeOutOfCourt, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "TotalTimeClaim":
+                            let totalTime = CalculationManager.calculatedTotalTimeClaimed(fileNumber)
+                            if let totalHours = totalTime["total_hours"], let totalMinutes = totalTime["total_minutes"] {
+                                let totalTimeClaimed = "\(totalHours) Hours \(totalMinutes) Minutes"
+                                
+                                annotation.setValue(totalTimeClaimed, forAnnotationKey: .widgetValue)
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         default:
                             print("Could not modify PDF")
                         }

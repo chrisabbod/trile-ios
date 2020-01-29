@@ -43,6 +43,7 @@
 		A5817F2F23DE3FE0004CB660 /* AdditionalInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F2E23DE3FE0004CB660 /* AdditionalInfoVC.swift */; };
 		A5817F3523DEA8B0004CB660 /* EditUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3423DEA8B0004CB660 /* EditUserInfoVC.swift */; };
 		A5817F3723DFCEC7004CB660 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3623DFCEC7004CB660 /* ForgotPasswordVC.swift */; };
+		A5817F3923E15724004CB660 /* CalculationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3823E15724004CB660 /* CalculationManager.swift */; };
 		A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C623B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C723B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
@@ -121,6 +122,7 @@
 		A5817F2E23DE3FE0004CB660 /* AdditionalInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoVC.swift; sourceTree = "<group>"; };
 		A5817F3423DEA8B0004CB660 /* EditUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfoVC.swift; sourceTree = "<group>"; };
 		A5817F3623DFCEC7004CB660 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		A5817F3823E15724004CB660 /* CalculationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationManager.swift; sourceTree = "<group>"; };
 		A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5D6D8CC23B69F4E00F16E27 /* AccountCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVC.swift; sourceTree = "<group>"; };
 		A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				A5817F1223D22FD9004CB660 /* PickerListManager.swift */,
 				A517CB5E23D1533300B2171C /* TextRestrictionManager.swift */,
 				A5817F1423D28413004CB660 /* DateFormatterManager.swift */,
+				A5817F3823E15724004CB660 /* CalculationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				A511C20D23B564CE00B9A771 /* Client.swift in Sources */,
 				A575E82323C00C9A00006A10 /* DocumentCollectionVC.swift in Sources */,
 				A5817F3523DEA8B0004CB660 /* EditUserInfoVC.swift in Sources */,
+				A5817F3923E15724004CB660 /* CalculationManager.swift in Sources */,
 				A575E88B23C5043900006A10 /* FeeApplicationVC.swift in Sources */,
 				A575E82523C00ED900006A10 /* Document.swift in Sources */,
 			);
