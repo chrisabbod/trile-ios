@@ -333,6 +333,12 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        case "FinesAndCostsOnlyCbx":
+                            if fileNumber.judgmentAndSentencing == "Fines and Costs Only" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         default:
                             print("Could not modify PDF")
                         }
