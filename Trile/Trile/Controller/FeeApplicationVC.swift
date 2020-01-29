@@ -156,14 +156,20 @@ class FeeApplicationVC: UIViewController {
                                 page.addAnnotation(annotation)
                             }
                         case "MisdemeanorOffenseNonTrafficCbx":
-                            if fileNumber.offenseTrafficType == "Non Traffic" {
+                            if fileNumber.offenseCategory == "Misdemeanor" && fileNumber.offenseTrafficType == "Non Traffic" {
                                 annotation.buttonWidgetState = .onState
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
                         case "MisdemeanorNonTrafficClass":
-                            if fileNumber.offenseTrafficType == "Non Traffic" {
+                            if fileNumber.offenseCategory == "Misdemeanor" && fileNumber.offenseTrafficType == "Non Traffic" {
                                 annotation.setValue(fileNumber.offenseClass, forAnnotationKey: .widgetValue)
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "MisdemeanorProbationViolationCbx":
+                            if fileNumber.offenseCategory == "Misdemeanor Probation Violation" {
+                                annotation.buttonWidgetState = .onState
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
