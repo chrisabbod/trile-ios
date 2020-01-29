@@ -382,6 +382,10 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(fileNumber.dateOfFinalDisposition, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "FristSubstantiveClientInterviewDate":
+                            annotation.setValue(fileNumber.dateOfFirstClientInterview, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         default:
                             print("Could not modify PDF")
                         }
@@ -540,9 +544,9 @@ class FeeApplicationVC: UIViewController {
             fileNumber.dateAppointed = dateAppointed as! String
         }
         
-        //        if let dateOfFirstClientInterview = data["date_of_first_client_interview"] {
-        //            dateOfFirstClientInterviewTextField.text = dateOfFirstClientInterview as? String
-        //        }
+        if let dateOfFirstClientInterview = data["date_of_first_client_interview"] {
+            fileNumber.dateOfFirstClientInterview = dateOfFirstClientInterview as! String
+        }
         
         if let dateOfFinalDisposition = data["date_of_final_disposition"] {
             fileNumber.dateOfFinalDisposition = dateOfFinalDisposition as! String
