@@ -289,6 +289,20 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        //MARK: Judgment and Sentencing
+                        case "ActiveSentenceCbx":
+                            if fileNumber.judgmentAndSentencing == "Active Sentence" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
+                        case "ActiveLengthOfSentence":
+                            if fileNumber.judgmentAndSentencing == "Active Sentence" {
+                                let sentenceMonthsAndDays = ("\(fileNumber.sentenceMonths) Months \(fileNumber.sentenceDays) Days")
+                                annotation.setValue(sentenceMonthsAndDays, forAnnotationKey: .widgetValue)
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         default:
                             print("Could not modify PDF")
                         }
@@ -423,10 +437,18 @@ class FeeApplicationVC: UIViewController {
             fileNumber.otherOffense = otherOffense as! String
         }
         
-        //        if let judgmentAndSentencing = data["judgment_and_sentencing"] {
-        //            judgmentAndSentencingTextField.text = judgmentAndSentencing as? String
-        //        }
-        //
+        if let judgmentAndSentencing = data["judgment_and_sentencing"] {
+            fileNumber.judgmentAndSentencing = judgmentAndSentencing as! String
+        }
+        
+        if let sentenceMonths = data["sentence_months"] {
+            fileNumber.sentenceMonths = sentenceMonths as! String
+        }
+        
+        if let sentenceDays = data["sentence_days"] {
+            fileNumber.sentenceDays = sentenceDays as! String
+        }
+        
         if let county = data["county"] {
             fileNumber.county = county as! String
         }
