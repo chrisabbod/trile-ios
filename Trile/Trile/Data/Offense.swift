@@ -23,6 +23,7 @@ struct Offense: Decodable {
     
     enum Category: Decodable {
         case all
+        case none
         case infraction
         case misdemeanor
         case misdemeanorProbation
@@ -61,6 +62,7 @@ extension Offense.Category: RawRepresentable {
     init?(rawValue: RawValue) {
         switch rawValue {
         case "All": self = .all
+        case "None": self = .none
         case "Felony": self = .felony
         case "Misdemeanor": self = .misdemeanor
         case "Probation": self = .misdemeanorProbation
@@ -72,6 +74,7 @@ extension Offense.Category: RawRepresentable {
     var rawValue: RawValue {
         switch self {
         case .all: return "All"
+        case .none: return "None"
         case .felony: return "Felony"
         case .misdemeanor: return "Misdemeanor"
         case .misdemeanorProbation: return "Probation"

@@ -193,6 +193,12 @@ class FeeApplicationVC: UIViewController {
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
                             }
+                        case "CriminalContemptCbx":
+                            if fileNumber.offense == "Criminal Contempt" {
+                                annotation.buttonWidgetState = .onState
+                                page.removeAnnotation(annotation)
+                                page.addAnnotation(annotation)
+                            }
                         //MARK: Disposition
                         case "GuiltyPleaBeforeTrialOriginalChargeCbx":
                             if fileNumber.disposition == "Guilty Plea Before Trial: Most Serious Original Charge" {

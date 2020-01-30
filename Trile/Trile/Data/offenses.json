@@ -240,7 +240,8 @@
     { "name": "No Insurance", "category": "Infraction", "offenseClass": "none", "trafficType": "Traffic" },
     { "name": "Expired/No Registration", "category": "Infraction", "offenseClass": "none", "trafficType": "Traffic" },
 
-    { "name": "Misdemeanor Probation Violaton", "category": "Probation", "offenseClass": "none", "trafficType": "Non Traffic" }
+    { "name": "Misdemeanor Probation Violaton", "category": "Probation", "offenseClass": "none", "trafficType": "Non Traffic" },
+    { "name": "Criminal Contempt", "category": "None", "offenseClass": "none", "trafficType": "Non Traffic" },
 ]
  
 
