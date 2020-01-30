@@ -489,7 +489,9 @@ class FeeApplicationVC: UIViewController {
                                 page.addAnnotation(annotation)
                             }
                         case "TeleNo":
-                            print("WILL IMPLEMENT SOON")
+                            annotation.setValue(user.phoneNumber, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         case "EmailAddress":
                             annotation.setValue(user.email, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
@@ -683,6 +685,10 @@ class FeeApplicationVC: UIViewController {
         
         if let lastName = data["last_name"] {
             user.lastName = lastName as! String
+        }
+        
+        if let phoneNumber = data["phone_number"] {
+            user.phoneNumber = phoneNumber as! String
         }
         
         if let address = data["address"] {

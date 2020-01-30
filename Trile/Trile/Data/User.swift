@@ -17,6 +17,7 @@ class User {
     var firstName: String = ""
     var lastName: String = ""
     
+    var phoneNumber: String = ""
     var address: String = ""
     var city: String = ""
     var state: String = ""
