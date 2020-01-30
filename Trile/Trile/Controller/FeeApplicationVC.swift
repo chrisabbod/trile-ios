@@ -27,10 +27,11 @@ class FeeApplicationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let emailButton = UIBarButtonItem(title: "Email", style: .done, target: self, action: #selector(emailPDF(_:)))
         let printButton = UIBarButtonItem(title: "Print", style: .done, target: self, action: #selector(printPDF(_:)))
         let signOutButton = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOut(_:)))
         
-        navigationItem.rightBarButtonItems = [signOutButton, printButton]
+        navigationItem.rightBarButtonItems = [signOutButton, printButton, emailButton]
         
     }
     
@@ -60,6 +61,11 @@ class FeeApplicationVC: UIViewController {
     }
     
     //MARK: Bar Buttons
+    
+    @objc
+    func emailPDF(_ sender: UIBarButtonItem) {
+        print("Email button wired up")
+    }
     
     @objc
     func printPDF(_ sender: UIBarButtonItem) {
