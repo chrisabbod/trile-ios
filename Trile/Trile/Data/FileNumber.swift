@@ -41,11 +41,12 @@ class FileNumber {
     var timeOutOfCourtHours: String = "0"
     var timeOutOfCourtMinutes: String = "0"
     
-    var totalHours: String = "0"
-    var totalMinutes: String = "0"
+    var totalTime: String = "0"
     
     var travel: String = "0"
+    var travelMiles: String = "0"
     var copying: String = "0"
+    var numberOfCopies: String = "0"
     var other: String = "0"
     var totalFees: String = "0"
     

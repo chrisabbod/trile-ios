@@ -422,29 +422,25 @@ class FeeApplicationVC: UIViewController {
                             page.addAnnotation(annotation)
                         //MARK: Billable Hours
                         case "TimeInCourt":
-                            let timeInCourt = ("\(fileNumber.timeInCourtHours) Hours \(fileNumber.timeInCourtMinutes) Minutes")
+                            let timeInCourt = CalculationManager.formatTimeInCourt(fileNumber)
                             annotation.setValue(timeInCourt, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "TimeInCourtWaiting":
-                            let timeInCourtWaiting = ("\(fileNumber.timeInCourtWaitingHours) Hours \(fileNumber.timeInCourtWaitingMinutes) Minutes")
+                            let timeInCourtWaiting = CalculationManager.formatTimeInCourtWaiting(fileNumber)
                             annotation.setValue(timeInCourtWaiting, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "TimeOutOfCourt":
-                            let timeOutOfCourt = ("\(fileNumber.timeOutOfCourtHours) Hours \(fileNumber.timeOutOfCourtMinutes) Minutes")
+                            let timeOutOfCourt = CalculationManager.formatTimeOutOfCourt(fileNumber)
                             annotation.setValue(timeOutOfCourt, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "TotalTimeClaim":
-                            let totalTime = CalculationManager.calculatedTotalTimeClaimed(fileNumber)
-                            if let totalHours = totalTime["total_hours"], let totalMinutes = totalTime["total_minutes"] {
-                                let totalTimeClaimed = "\(totalHours) Hours \(totalMinutes) Minutes"
-                                
-                                annotation.setValue(totalTimeClaimed, forAnnotationKey: .widgetValue)
-                                page.removeAnnotation(annotation)
-                                page.addAnnotation(annotation)
-                            }
+                            let totalTime = CalculationManager.calculateTotalTimeClaimed(fileNumber)
+                            annotation.setValue(totalTime, forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         //MARK: Expenses
                         case "TravelCosts":
                             annotation.setValue(fileNumber.travel, forAnnotationKey: .widgetValue)

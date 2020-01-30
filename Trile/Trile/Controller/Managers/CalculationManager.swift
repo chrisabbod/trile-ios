@@ -10,7 +10,43 @@ import Foundation
 
 class CalculationManager {
     
-    static func calculatedTotalTimeClaimed(_ fileNumber: FileNumber) -> [String: Int] {
+    static func formatTimeInCourt(_ fileNumber: FileNumber) -> String {
+        let courtHours = (fileNumber.timeInCourtHours as NSString).integerValue
+        let courtMinutes = (fileNumber.timeInCourtMinutes as NSString).integerValue
+        
+        let minutesDecimalConversion: Double = Double(courtMinutes) / 60
+        let hoursAndMinutes = Double(courtHours) + minutesDecimalConversion
+        
+        let formattedTime = String(format: "%.1f", hoursAndMinutes)
+        
+        return formattedTime
+    }
+    
+    static func formatTimeInCourtWaiting(_ fileNumber: FileNumber) -> String {
+        let courtWaitingHours = (fileNumber.timeInCourtWaitingHours as NSString).integerValue
+        let courtWaitingMinutes = (fileNumber.timeInCourtWaitingMinutes as NSString).integerValue
+
+        let minutesDecimalConversion: Double = Double(courtWaitingMinutes) / 60
+        let hoursAndMinutes = Double(courtWaitingHours) + minutesDecimalConversion
+        
+        let formattedTime = String(format: "%.1f", hoursAndMinutes)
+        
+        return formattedTime
+    }
+    
+    static func formatTimeOutOfCourt(_ fileNumber: FileNumber) -> String {
+        let outOfCourtHours = (fileNumber.timeOutOfCourtHours as NSString).integerValue
+        let outOfCourtMinutes = (fileNumber.timeOutOfCourtMinutes as NSString).integerValue
+
+        let minutesDecimalConversion: Double = Double(outOfCourtMinutes) / 60
+        let hoursAndMinutes = Double(outOfCourtHours) + minutesDecimalConversion
+        
+        let formattedTime = String(format: "%.1f", hoursAndMinutes)
+        
+        return formattedTime
+    }
+    
+    static func calculateTotalTimeClaimed(_ fileNumber: FileNumber) -> String {
         
         let courtHours = (fileNumber.timeInCourtHours as NSString).integerValue
         let courtWaitingHours = (fileNumber.timeInCourtWaitingHours as NSString).integerValue
@@ -28,7 +64,12 @@ class CalculationManager {
         totalHours = totalHours + hoursFromMinutes
         totalMinutes = remainingMinutes
         
-        return ["total_hours": totalHours, "total_minutes": totalMinutes]
+        let decimalConversion: Double = Double(remainingMinutes) / 60
+        let convertedTime = Double(totalHours) + decimalConversion
+        
+        let totalTime = String(format: "%.1f", convertedTime)
+        
+        return totalTime
     }
     
     static func calculateTotalExpenses(_ fileNumber: FileNumber) -> String {
@@ -40,3 +81,4 @@ class CalculationManager {
         return String(totalFees)
     }
 }
+
