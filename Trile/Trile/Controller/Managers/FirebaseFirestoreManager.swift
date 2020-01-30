@@ -14,11 +14,11 @@ import PDFKit
 class FirebaseFirestoreManager {
     
     var db = Firestore.firestore()
-    let uid: String = Auth.auth().currentUser!.uid
     
     //MARK: User Functions
     
     func addUserDataToDatabase(_ userData: [String: Any]) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
         
         db.collection("users").document(uid).setData(userData, merge: true) { (error) in
             if let error = error {
@@ -30,7 +30,8 @@ class FirebaseFirestoreManager {
     }
     
     func readUserDataFromDatabase(completion: @escaping ((_ userData: [String: Any], _ success: Bool) -> Void)) {
-        
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let query = db.collection("users").whereField("uid", isEqualTo: uid as Any)
         
         query.getDocuments { (querySnapshot, error) in
@@ -48,6 +49,8 @@ class FirebaseFirestoreManager {
     //MARK: Client Functions
     
     func addClientToDatabase(_ client: Client) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientRef = db.collection("users").document(uid).collection("clients")
         
         let newID = clientRef.document().documentID
@@ -66,6 +69,8 @@ class FirebaseFirestoreManager {
     }
     
     func readClientsFromDatabase(completion: @escaping ((_ clientArray: [Client], _ success: Bool) -> Void)) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientRef = db.collection("users").document(uid).collection("clients")
         
         var clientArray = [Client]()
@@ -96,6 +101,8 @@ class FirebaseFirestoreManager {
     }
     
     func deleteClientFromDatabase(_ clientArray: [Client], _ indexPath: IndexPath) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientRef = db.collection("users").document(uid).collection("clients")
         let documentID = clientArray[indexPath.row].documentID
         clientRef.document(documentID).delete()
@@ -104,6 +111,8 @@ class FirebaseFirestoreManager {
     //MARK: Client Data Functions
     
     func addClientDataToDatabase(_ client: Client, _ clientData: [String: Any]) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientRef = db.collection("users").document(uid).collection("clients")
         let clientDocumentID = client.documentID
         
@@ -118,6 +127,8 @@ class FirebaseFirestoreManager {
     }
     
     func addClientImageDataToDatabase(_ client: Client) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientRef = db.collection("users").document(uid).collection("clients")
         let clientDocumentID = client.documentID
         
@@ -137,7 +148,8 @@ class FirebaseFirestoreManager {
     }
     
     func readClientDataFromDatabase(_ client: Client, completion: @escaping ((_ documentData: [String: Any], _ success: Bool) -> Void)) {
-        
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientRef = db.collection("users").document(uid).collection("clients")
         let clientDocumentID = client.documentID
         let query = clientRef.whereField("document_id", isEqualTo: clientDocumentID as Any)
@@ -158,6 +170,8 @@ class FirebaseFirestoreManager {
     //MARK: File Number Functions
     
     func addFileNumberToDatabase(_ client: Client, _ fileNumber : FileNumber) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientDocumentID = client.documentID
         let fileNumberRef = db.collection("users").document(uid).collection("clients").document(clientDocumentID).collection("file_numbers")
         let newID = fileNumberRef.document().documentID
@@ -180,7 +194,8 @@ class FirebaseFirestoreManager {
     }
     
     func readFileNumbersFromDatabase(_ client: Client, completion: @escaping ((_ fileNumberArray: [FileNumber], _ success: Bool) -> Void)) {
-        
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientDocumentID = client.documentID
         let fileNumberRef = db.collection("users").document(uid).collection("clients").document(clientDocumentID).collection("file_numbers")
         
@@ -220,6 +235,8 @@ class FirebaseFirestoreManager {
     }
     
     func deleteFileNumberFromDatabase(_ client: Client, _ fileNumberArray: [FileNumber], _ indexPath: IndexPath) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientDocumentID = client.documentID
         let fileNumberRef = db.collection("users").document(uid).collection("clients").document(clientDocumentID).collection("file_numbers")
         let fileNumberDocumentID = fileNumberArray[indexPath.row].documentID
@@ -229,6 +246,8 @@ class FirebaseFirestoreManager {
     //MARK: Case Functions
     
     func addCaseDataToDatabase(_ client: Client, _ fileNumber: FileNumber, _ caseData: [String: Any]) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientDocumentID = client.documentID
         let fileNumberDocumentID = fileNumber.documentID
         
@@ -246,7 +265,8 @@ class FirebaseFirestoreManager {
     }
     
     func readCaseDataFromDatabase(_ client: Client, _ fileNumber: FileNumber, completion: @escaping ((_ documentData: [String: Any], _ success: Bool) -> Void)) {
-        
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientDocumentID = client.documentID
         let fileNumberDocumentID = fileNumber.documentID
         
@@ -272,6 +292,8 @@ class FirebaseFirestoreManager {
     //MARK: Document Functions
     
     func addDocumentToDatabase(_ client: Client, _ fileNumber: FileNumber, _ document: Document) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientDocumentID = client.documentID
         let fileNumberDocumentID = fileNumber.documentID
         
@@ -297,7 +319,8 @@ class FirebaseFirestoreManager {
     }
     
     func readDocumentsFromDatabase(_ client: Client, _ fileNumber: FileNumber, completion: @escaping ((_ documentArray: [Document], _ success: Bool) -> Void)) {
-        
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientDocumentID = client.documentID
         let fileNumberDocumentID = fileNumber.documentID
         
@@ -336,6 +359,8 @@ class FirebaseFirestoreManager {
     }
     
     func deleteDocumentFromDatabase(_ client: Client, _ fileNumber: FileNumber, _ documentArray: [Document], _ indexPath: IndexPath) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientDocumentID = client.documentID
         let fileNumberDocumentID = fileNumber.documentID
         
@@ -350,6 +375,8 @@ class FirebaseFirestoreManager {
     //MARK: Fee Application Functions
     
     func addPDFToDatabase(_ client: Client, _ fileNumber: FileNumber, PDF pdfDocument: PDFDocument) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientDocumentID = client.documentID
         let fileNumberDocumentID = fileNumber.documentID
         
@@ -369,6 +396,8 @@ class FirebaseFirestoreManager {
     }
     
     func readPDFDataFromDatabase(_ client: Client, _ fileNumber: FileNumber, completion: @escaping ((_ fileNumber: FileNumber, _ success: Bool) -> Void)) {
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Cannot retrieve uid")}
+
         let clientDocumentID = client.documentID
         let fileNumberDocumentID = fileNumber.documentID
         
