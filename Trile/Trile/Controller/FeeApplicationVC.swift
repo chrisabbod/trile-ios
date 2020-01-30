@@ -411,6 +411,10 @@ class FeeApplicationVC: UIViewController {
                             annotation.setValue(fileNumber.dateOfFirstClientInterview, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
+                        case "PriorTotalFeesAndExpensesAllowed":
+                            annotation.setValue("0", forAnnotationKey: .widgetValue)
+                            page.removeAnnotation(annotation)
+                            page.addAnnotation(annotation)
                         //MARK: Judge
                         case "JudgeSettingFeeName":
                             annotation.setValue(fileNumber.nameOfJudgeSettingFee, forAnnotationKey: .widgetValue)
