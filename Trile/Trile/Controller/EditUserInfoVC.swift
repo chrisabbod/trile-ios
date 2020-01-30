@@ -16,6 +16,7 @@ class EditUserInfoVC: UIViewController {
     @IBOutlet weak var firmNameTextField: UITextField!
     @IBOutlet weak var taxpayerIDTextField: UITextField!
     
+    @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var stateTextField: UITextField!
@@ -81,6 +82,10 @@ class EditUserInfoVC: UIViewController {
             taxpayerIDTextField.text = taxpayerID as? String
         }
         
+        if let phoneNumber = userData["phone_number"] {
+            phoneNumberTextField.text = phoneNumber as? String
+        }
+        
         if let address = userData["address"] {
             addressTextField.text = address as? String
         }
@@ -120,6 +125,10 @@ class EditUserInfoVC: UIViewController {
         
         userDataArray["solo_practitioner"] = soloPractitioner
         
+        if let phoneNumber = phoneNumberTextField.text {
+            userDataArray["phone_number"] = phoneNumber
+        }
+        
         if let address = addressTextField.text {
             userDataArray["address"] = address
         }
@@ -153,6 +162,7 @@ extension EditUserInfoVC: UITextFieldDelegate, UIPickerViewDelegate, UIPickerVie
     func setDelegates() {
         firmNameTextField.delegate = self
         taxpayerIDTextField.delegate = self
+        phoneNumberTextField.delegate = self
         addressTextField.delegate = self
         cityTextField.delegate = self
         zipTextField.delegate = self
@@ -167,6 +177,8 @@ extension EditUserInfoVC: UITextFieldDelegate, UIPickerViewDelegate, UIPickerVie
             return TextRestrictionManager.restrictTextLength(by: 40, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == addressTextField || textField == cityTextField {
             return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
+        } else if textField == phoneNumberTextField {
+            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == taxpayerIDTextField {
             return TextRestrictionManager.restrictTextLengthAndCharacters(by: 9, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == zipTextField {

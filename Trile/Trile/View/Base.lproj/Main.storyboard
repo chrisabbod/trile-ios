@@ -171,7 +171,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ivk-Sy-Uju">
-                                <rect key="frame" x="362" y="183.5" width="300" height="385"/>
+                                <rect key="frame" x="362" y="183.5" width="300" height="430"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="72e-Wc-x1Y" userLabel="Firm Info">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="201"/>
@@ -210,26 +210,31 @@
                                             <constraint firstAttribute="width" constant="300" id="3bL-e8-Fpq"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rSV-eh-zSz" userLabel="Address Info">
-                                        <rect key="frame" x="0.0" y="213" width="300" height="172"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rSV-eh-zSz" userLabel="Basic Info">
+                                        <rect key="frame" x="0.0" y="213" width="300" height="217"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gia-J6-tbi" userLabel="Address">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kvO-ox-pN6" userLabel="Phone Number">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="37"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R3K-aW-bH2" userLabel="City">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gia-J6-tbi" userLabel="Address">
                                                 <rect key="frame" x="0.0" y="45" width="300" height="37"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dwb-FZ-RHa">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R3K-aW-bH2" userLabel="City">
                                                 <rect key="frame" x="0.0" y="90" width="300" height="37"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nXy-MN-bje">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dwb-FZ-RHa">
                                                 <rect key="frame" x="0.0" y="135" width="300" height="37"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nXy-MN-bje">
+                                                <rect key="frame" x="0.0" y="180" width="300" height="37"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -252,7 +257,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Atk-ax-7qP">
-                                <rect key="frame" x="427" y="576.5" width="170" height="41"/>
+                                <rect key="frame" x="427" y="621.5" width="170" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Save and Return">
                                     <color key="titleColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -279,6 +284,7 @@
                         <outlet property="cityTextField" destination="R3K-aW-bH2" id="w8b-6u-JWF"/>
                         <outlet property="firmNameTextField" destination="ewc-kM-hDy" id="2uu-LP-vzb"/>
                         <outlet property="firmSegmentedControl" destination="JRm-KV-ef9" id="kFb-k0-uMr"/>
+                        <outlet property="phoneNumberTextField" destination="kvO-ox-pN6" id="px3-EF-Fff"/>
                         <outlet property="stateTextField" destination="Dwb-FZ-RHa" id="fUU-gT-7aL"/>
                         <outlet property="taxpayerIDTextField" destination="jXd-Ro-gre" id="QEG-ts-R7F"/>
                         <outlet property="zipTextField" destination="nXy-MN-bje" id="7lt-LP-aAF"/>
