@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 import PDFKit
+import MessageUI
 
 class FeeApplicationVC: UIViewController {
     
@@ -19,6 +20,7 @@ class FeeApplicationVC: UIViewController {
     let uid: String = Auth.auth().currentUser!.uid
     
     let dbm = FirebaseFirestoreManager()
+    let alert = AlertPresenterManager()
     
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
@@ -63,8 +65,8 @@ class FeeApplicationVC: UIViewController {
     //MARK: Bar Buttons
     
     @objc
-    func emailPDF(_ sender: UIBarButtonItem) {
-        print("Email button wired up")
+    func signOut(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc
@@ -73,10 +75,10 @@ class FeeApplicationVC: UIViewController {
     }
     
     @objc
-    func signOut(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+    func emailPDF(_ sender: UIBarButtonItem) {
+        sendEmail()
     }
-    
+        
     //MARK: PDF Functions
     
     func showPDF() {
@@ -525,7 +527,8 @@ class FeeApplicationVC: UIViewController {
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         default:
-                            print("Could not modify PDF")
+                            break
+                            //print("Could not modify PDF")
                         }
                     }
                 }
@@ -722,3 +725,37 @@ class FeeApplicationVC: UIViewController {
         }
     }
 }
+
+extension FeeApplicationVC: MFMailComposeViewControllerDelegate {
+    
+    func sendEmail() {
+        guard let client = selectedClient else {return print("Could not retrieve client information")}
+        guard let fileNumber = selectedFileNumber else {return print("Could not retrieve file Number information")}
+
+        let SUBJECT = "Fee Application for Client: \(client.name) File Number: \(fileNumber.assignedFileNumber)"
+        let MESSAGE = "Please find the attached fee application for \(client.name) concerning File Number:\(fileNumber.assignedFileNumber) for \(fileNumber.offense)"
+        if MFMailComposeViewController.canSendMail() {
+            let mailComposer = MFMailComposeViewController()
+            mailComposer.mailComposeDelegate = self
+            mailComposer.setSubject(SUBJECT)
+            mailComposer.setMessageBody(MESSAGE, isHTML: false)
+            mailComposer.setToRecipients([user.email])
+            self.present(mailComposer, animated: true, completion: nil)
+        } else {
+            let title = "Problem Sending Email"
+            let message = "Email is not configured on your device"
+            alert.messageAlertDialog(fromViewController: self, withTitle: title, withMessage: message)
+            print("Email is not configured in settings app or we are not able to send an email")
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+
+        let title = "Success!"
+        let message = "Email sent to \(user.email)"
+        alert.messageAlertDialog(fromViewController: self, withTitle: title, withMessage: message)
+    }
+}
+
+
