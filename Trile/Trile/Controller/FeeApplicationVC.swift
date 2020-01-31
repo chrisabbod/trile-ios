@@ -25,7 +25,7 @@ class FeeApplicationVC: UIViewController {
     var selectedClient: Client?
     var selectedFileNumber: FileNumber?
     var user = User()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,7 +78,7 @@ class FeeApplicationVC: UIViewController {
     func emailPDF(_ sender: UIBarButtonItem) {
         sendEmail()
     }
-        
+    
     //MARK: PDF Functions
     
     func showPDF() {
@@ -479,7 +479,7 @@ class FeeApplicationVC: UIViewController {
                         case "Payee":
                             if user.soloPractitioner {
                                 let payee = "Same"
-
+                                
                                 annotation.setValue(payee, forAnnotationKey: .widgetValue)
                                 page.removeAnnotation(annotation)
                                 page.addAnnotation(annotation)
@@ -554,7 +554,7 @@ class FeeApplicationVC: UIViewController {
         if let name = data["name"] {
             client.name = name as! String
         }
-
+        
         if let address = data["address"] {
             client.address = address as! String
         }
@@ -570,7 +570,7 @@ class FeeApplicationVC: UIViewController {
         if let zip = data["zip"] {
             client.zip = zip as! String
         }
-
+        
     }
     
     //MARK: Read Case Data
@@ -581,7 +581,7 @@ class FeeApplicationVC: UIViewController {
         if let assignedFileNumber = data["assigned_file_number"] {
             fileNumber.assignedFileNumber = assignedFileNumber as! String
         }
-
+        
         if let offense = data["offense"] {
             fileNumber.offense = offense as! String
         }
@@ -731,7 +731,7 @@ extension FeeApplicationVC: MFMailComposeViewControllerDelegate {
     func sendEmail() {
         guard let client = selectedClient else {return print("Could not retrieve client information")}
         guard let fileNumber = selectedFileNumber else {return print("Could not retrieve file Number information")}
-
+        
         let SUBJECT = "Fee Application for Client: \(client.name) File Number: \(fileNumber.assignedFileNumber)"
         let MESSAGE = "Please find the attached fee application for \(client.name) concerning File Number:\(fileNumber.assignedFileNumber) for \(fileNumber.offense)"
         if MFMailComposeViewController.canSendMail() {
@@ -740,7 +740,22 @@ extension FeeApplicationVC: MFMailComposeViewControllerDelegate {
             mailComposer.setSubject(SUBJECT)
             mailComposer.setMessageBody(MESSAGE, isHTML: false)
             mailComposer.setToRecipients([user.email])
-            self.present(mailComposer, animated: true, completion: nil)
+            
+            if let client = selectedClient, let fileNumber = selectedFileNumber {
+                dbm.readPDFDataFromDatabase(client, fileNumber) { (returnedFileNumber, success) in
+                    if success {
+                        self.selectedFileNumber = returnedFileNumber
+                        
+                        if let pdfData = self.selectedFileNumber?.pdfData {
+                            let pdfName = "Fee Application #\(fileNumber.assignedFileNumber)"
+                            mailComposer.addAttachmentData(pdfData, mimeType: "application/pdf", fileName: pdfName)
+                        }
+                        
+                        self.present(mailComposer, animated: true, completion: nil)
+                    }
+                }
+            }
+            
         } else {
             let title = "Problem Sending Email"
             let message = "Email is not configured on your device"
@@ -751,7 +766,7 @@ extension FeeApplicationVC: MFMailComposeViewControllerDelegate {
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
-
+        
         let title = "Success!"
         let message = "Email sent to \(user.email)"
         alert.messageAlertDialog(fromViewController: self, withTitle: title, withMessage: message)
