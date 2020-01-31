@@ -71,15 +71,35 @@ class FeeApplicationVC: UIViewController {
     
     @objc
     func printPDF(_ sender: UIBarButtonItem) {
-        print("Print button wired up")
+        guard let client = selectedClient else {return print("Could not retrieve client information")}
+        guard let fileNumber = selectedFileNumber else {return print("Could not retrieve file Number information")}
+        dbm.readPDFDataFromDatabase(client, fileNumber) { (returnedFileNumber, success) in
+            if success {
+                self.selectedFileNumber = returnedFileNumber
+                
+                if let pdfData = self.selectedFileNumber?.pdfData {
+                    if UIPrintInteractionController.canPrint(pdfData) {
+                        let printInfo = UIPrintInfo(dictionary: nil)
+                        printInfo.jobName = "Fee Application \(fileNumber.assignedFileNumber)"
+                        printInfo.outputType = .general
+                        
+                        let printController = UIPrintInteractionController.shared
+                        printController.printInfo = printInfo
+                        printController.showsNumberOfCopies = false
+                        
+                        printController.printingItem = pdfData
+                        
+                        printController.present(animated: true, completionHandler: nil)
+                    }
+                }
+            }
+        }
     }
     
     @objc
     func emailPDF(_ sender: UIBarButtonItem) {
         sendEmail()
     }
-    
-    //MARK: PDF Functions
     
     func showPDF() {
         let pdfView = PDFView()
@@ -741,18 +761,16 @@ extension FeeApplicationVC: MFMailComposeViewControllerDelegate {
             mailComposer.setMessageBody(MESSAGE, isHTML: false)
             mailComposer.setToRecipients([user.email])
             
-            if let client = selectedClient, let fileNumber = selectedFileNumber {
-                dbm.readPDFDataFromDatabase(client, fileNumber) { (returnedFileNumber, success) in
-                    if success {
-                        self.selectedFileNumber = returnedFileNumber
-                        
-                        if let pdfData = self.selectedFileNumber?.pdfData {
-                            let pdfName = "Fee Application #\(fileNumber.assignedFileNumber)"
-                            mailComposer.addAttachmentData(pdfData, mimeType: "application/pdf", fileName: pdfName)
-                        }
-                        
-                        self.present(mailComposer, animated: true, completion: nil)
+            dbm.readPDFDataFromDatabase(client, fileNumber) { (returnedFileNumber, success) in
+                if success {
+                    self.selectedFileNumber = returnedFileNumber
+                    
+                    if let pdfData = self.selectedFileNumber?.pdfData {
+                        let pdfName = "Fee Application #\(fileNumber.assignedFileNumber)"
+                        mailComposer.addAttachmentData(pdfData, mimeType: "application/pdf", fileName: pdfName)
                     }
+                    
+                    self.present(mailComposer, animated: true, completion: nil)
                 }
             }
             
@@ -768,7 +786,7 @@ extension FeeApplicationVC: MFMailComposeViewControllerDelegate {
         controller.dismiss(animated: true)
         
         let title = "Success!"
-        let message = "Email sent to \(user.email)"
+        let message = "Email Sent"
         alert.messageAlertDialog(fromViewController: self, withTitle: title, withMessage: message)
     }
 }
