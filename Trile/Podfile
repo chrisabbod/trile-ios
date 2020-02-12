@@ -7,6 +7,7 @@ target 'Trile' do
 
   # Pods for Trile
   pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'

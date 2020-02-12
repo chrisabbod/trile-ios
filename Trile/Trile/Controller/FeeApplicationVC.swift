@@ -71,29 +71,7 @@ class FeeApplicationVC: UIViewController {
     
     @objc
     func printPDF(_ sender: UIBarButtonItem) {
-        guard let client = selectedClient else {return print("Could not retrieve client information")}
-        guard let fileNumber = selectedFileNumber else {return print("Could not retrieve file Number information")}
-        dbm.readPDFDataFromDatabase(client, fileNumber) { (returnedFileNumber, success) in
-            if success {
-                self.selectedFileNumber = returnedFileNumber
-                
-                if let pdfData = self.selectedFileNumber?.pdfData {
-                    if UIPrintInteractionController.canPrint(pdfData) {
-                        let printInfo = UIPrintInfo(dictionary: nil)
-                        printInfo.jobName = "Fee Application \(fileNumber.assignedFileNumber)"
-                        printInfo.outputType = .general
-                        
-                        let printController = UIPrintInteractionController.shared
-                        printController.printInfo = printInfo
-                        printController.showsNumberOfCopies = false
-                        
-                        printController.printingItem = pdfData
-                        
-                        printController.present(animated: true, completionHandler: nil)
-                    }
-                }
-            }
-        }
+        sendToPrinter()
     }
     
     @objc
@@ -743,6 +721,46 @@ class FeeApplicationVC: UIViewController {
         if let taxpayerID = data["taxpayer_id"] {
             user.taxpayerID = taxpayerID as! String
         }
+    }
+}
+
+extension FeeApplicationVC: UIPrintInteractionControllerDelegate {
+    
+    func sendToPrinter() {
+        guard let client = selectedClient else {return print("Could not retrieve client information")}
+        guard let fileNumber = selectedFileNumber else {return print("Could not retrieve file Number information")}
+        
+        dbm.readPDFDataFromDatabase(client, fileNumber) { (returnedFileNumber, success) in
+            if success {
+                self.selectedFileNumber = returnedFileNumber
+                
+                if let pdfData = self.selectedFileNumber?.pdfData {
+                    if UIPrintInteractionController.canPrint(pdfData) {
+                        let printInfo = UIPrintInfo(dictionary: nil)
+                        printInfo.jobName = "Fee Application \(fileNumber.assignedFileNumber)"
+                        printInfo.outputType = .general
+                        
+                        let printController = UIPrintInteractionController.shared
+                        
+                        printController.delegate = self
+                        
+                        printController.printInfo = printInfo
+                        printController.showsNumberOfCopies = false
+                        
+                        printController.printingItem = pdfData
+                        
+                        printController.present(animated: true) { (printController, success, error) in
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    func printInteractionControllerDidDismissPrinterOptions(_ printInteractionController: UIPrintInteractionController) {
+        
     }
 }
 

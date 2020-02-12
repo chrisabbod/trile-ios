@@ -351,6 +351,7 @@
 				A511C1D123B5614900B9A771 /* Frameworks */,
 				A511C1D223B5614900B9A771 /* Resources */,
 				8ECC4C31A8C301ACDC6998ED /* [CP] Embed Pods Frameworks */,
+				A53B328923F3891D004D4EA8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -533,6 +534,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Trile/Pods-Trile-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A53B328923F3891D004D4EA8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 		AD301DAB8BDCB62092D65C33 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
