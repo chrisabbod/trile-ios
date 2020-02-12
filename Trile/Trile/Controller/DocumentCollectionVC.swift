@@ -193,7 +193,7 @@ extension DocumentCollectionVC: ImageScannerControllerDelegate {
     func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
         
         if let client = selectedClient, let fileNumber = selectedFileNumber {
-            imageManager.uploadDocumentToStorage(client, fileNumber, results.scannedImage) { (success) in
+            imageManager.uploadDocumentToStorage(client, fileNumber, results.croppedScan.image) { (success) in
                 if success {
                     print("Successfully uploaded document after scanning")
                     self.loadDocuments()
