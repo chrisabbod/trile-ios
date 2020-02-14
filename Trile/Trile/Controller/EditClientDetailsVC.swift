@@ -313,8 +313,8 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     
     func readClientData(from data: [String: Any]) {
         
-        if let name = data["name"] {
-            nameTextField.text = name as? String
+        if let firstName = data["first_name"] {
+            nameTextField.text = firstName as? String
         }
         
         if let age = data["age"] {
@@ -383,8 +383,8 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     func saveClientData() {
         var clientDataArray = [String: Any]()
         
-        if let name = nameTextField.text {
-            clientDataArray["name"] = name
+        if let firstName = nameTextField.text {
+            clientDataArray["first_name"] = firstName
         }
         
         if let age = ageTextField.text {
