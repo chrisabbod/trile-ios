@@ -15,7 +15,9 @@ class Client {
     var imagePath: String = ""
     var imageData: Data = Data()
     
-    var name: String = ""
+    var firstName: String = ""
+    var middleName: String = ""
+    var lastName: String = ""
     var age: Int = 0
     var address: String = ""
     var city: String = ""

@@ -36,8 +36,8 @@ class AlertPresenterManager {
             
             let newClient = Client()
             
-            if let name = textField.text {
-                newClient.name = name
+            if let firstName = textField.text {
+                newClient.firstName = firstName
                 
                 self.dbm.addClientToDatabase(newClient)
                 self.dbm.readClientsFromDatabase(completion: { (clientArray, success) in

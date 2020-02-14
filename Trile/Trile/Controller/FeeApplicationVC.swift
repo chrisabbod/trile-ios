@@ -138,7 +138,7 @@ class FeeApplicationVC: UIViewController {
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "NameAddrAppl":
-                            let nameAndAdress = ("\(client.name)\n\(client.address)\n\(client.state) \(client.zip)")
+                            let nameAndAdress = ("\(client.firstName)\n\(client.address)\n\(client.state) \(client.zip)")
                             annotation.setValue(nameAndAdress, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
@@ -549,8 +549,8 @@ class FeeApplicationVC: UIViewController {
     func readClientData(from data: [String: Any]) {
         guard let client = selectedClient else { return print("Could not get client information")}
         
-        if let name = data["name"] {
-            client.name = name as! String
+        if let firstName = data["first_name"] {
+            client.firstName = firstName as! String
         }
         
         if let address = data["address"] {
@@ -770,8 +770,8 @@ extension FeeApplicationVC: MFMailComposeViewControllerDelegate {
         guard let client = selectedClient else {return print("Could not retrieve client information")}
         guard let fileNumber = selectedFileNumber else {return print("Could not retrieve file Number information")}
         
-        let SUBJECT = "Fee Application for Client: \(client.name) File Number: \(fileNumber.assignedFileNumber)"
-        let MESSAGE = "Please find the attached fee application for \(client.name) concerning File Number:\(fileNumber.assignedFileNumber) for \(fileNumber.offense)"
+        let SUBJECT = "Fee Application for Client: \(client.firstName) File Number: \(fileNumber.assignedFileNumber)"
+        let MESSAGE = "Please find the attached fee application for \(client.firstName) concerning File Number:\(fileNumber.assignedFileNumber) for \(fileNumber.offense)"
         if MFMailComposeViewController.canSendMail() {
             let mailComposer = MFMailComposeViewController()
             mailComposer.mailComposeDelegate = self
