@@ -110,8 +110,8 @@ class ClientDetailsVC: UIViewController {
     
     func readClientData(from data: [String: Any]) {
         
-        if let name = data["name"] {
-            nameLabel.text = name as? String
+        if let firstName = data["first_name"] {
+            nameLabel.text = firstName as? String
         }
         
         if let age = data["age"] {
