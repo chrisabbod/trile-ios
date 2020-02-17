@@ -14,7 +14,9 @@ import FirebaseStorage
 class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var clientPictureImageView: UIImageView!
-    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var middleNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var highestEducationTextField: UITextField!
     @IBOutlet weak var areaOfStudyTextField: UITextField!
@@ -175,7 +177,7 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == addressTextField || textField == cityTextField || textField == placeOfEmploymentTextField || textField == roleTextField {
             return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
-        } else if textField == nameTextField || textField == areaOfStudyTextField {
+        } else if textField == firstNameTextField || textField == areaOfStudyTextField {
             return TextRestrictionManager.restrictTextLengthAndNumbers(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == phoneNumberTextField {
             return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
@@ -314,7 +316,7 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     func readClientData(from data: [String: Any]) {
         
         if let firstName = data["first_name"] {
-            nameTextField.text = firstName as? String
+            firstNameTextField.text = firstName as? String
         }
         
         if let age = data["age"] {
@@ -383,7 +385,7 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     func saveClientData() {
         var clientDataArray = [String: Any]()
         
-        if let firstName = nameTextField.text {
+        if let firstName = firstNameTextField.text {
             clientDataArray["first_name"] = firstName
         }
         
@@ -456,7 +458,7 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     
     func createTextFieldAndPickerViewArrays() {
         //Append textfields so other functions can iterate through them when setting properties
-        textFieldArray.append(nameTextField)
+        textFieldArray.append(firstNameTextField)
         textFieldArray.append(ageTextField)
         textFieldArray.append(highestEducationTextField)
         textFieldArray.append(areaOfStudyTextField)
