@@ -138,7 +138,8 @@ class FeeApplicationVC: UIViewController {
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "NameAddrAppl":
-                            let nameAndAdress = ("\(client.firstName)\n\(client.address)\n\(client.state) \(client.zip)")
+                            let fullName = Utils.formatFullName(firstName: client.firstName, middleName: client.middleName, lastname: client.lastName)
+                            let nameAndAdress = ("\(fullName)\n\(client.address)\n\(client.state) \(client.zip)")
                             annotation.setValue(nameAndAdress, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
@@ -551,6 +552,14 @@ class FeeApplicationVC: UIViewController {
         
         if let firstName = data["first_name"] {
             client.firstName = firstName as! String
+        }
+        
+        if let middleName = data["middle_name"] {
+            client.middleName = middleName as! String
+        }
+        
+        if let lastName = data["last_name"] {
+            client.lastName = lastName as! String
         }
         
         if let address = data["address"] {
