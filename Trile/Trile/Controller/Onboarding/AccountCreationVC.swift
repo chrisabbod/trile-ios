@@ -17,7 +17,7 @@ class AccountCreationVC: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
         
-    let NOTIFICATION_VALUE = "showAdditionalInfoVC"
+    let NOTIFICATION_VALUE = "accountCreatedDialog"
     let MESSAGE_TITLE = "Missing Information"
     
     let db = Firestore.firestore()
@@ -68,16 +68,16 @@ class AccountCreationVC: UIViewController {
                         "email": email,
                         "uid": result!.user.uid])
                     
-                    self.showAdditionalInfoVC()
+                    self.showAccountCreatedDialog()
                 }
             }
         }
     }
     
-    func showAdditionalInfoVC() {
+    func showAccountCreatedDialog() {
         self.dismiss(animated: true, completion: nil);
         
-        //Calls Notification Function in LoginVC to go to AdditionalInfoVC
+        //Calls Notification Function in LoginVC to show alert dialog
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_VALUE), object: nil)
     }
 }
