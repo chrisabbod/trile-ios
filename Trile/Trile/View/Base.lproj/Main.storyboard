@@ -12,8 +12,8 @@
         <scene sceneID="pY4-Hu-kfo">
             <objects>
                 <navigationController title="Master" id="RMx-3f-FxP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" largeTitles="YES" id="Pmd-2v-anx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -2045,7 +2045,7 @@
             <objects>
                 <viewController title="EditClientDetailsVC" id="YCB-bz-aOe" customClass="EditClientDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PYz-wy-B8i" userLabel="Root View">
-                        <rect key="frame" x="0.0" y="0.0" width="704" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703.5" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFb-aM-85S">
@@ -2285,15 +2285,15 @@
                                                                         <exclude reference="8WZ-uH-heW"/>
                                                                     </mask>
                                                                     <mask key="constraints">
-                                                                        <exclude reference="TTx-n4-GPA"/>
-                                                                        <exclude reference="am1-x0-peN"/>
-                                                                        <exclude reference="Khq-uZ-Fmf"/>
-                                                                        <exclude reference="GEW-lp-MFN"/>
-                                                                        <exclude reference="dBH-1S-MPE"/>
                                                                         <exclude reference="uh9-6I-eZh"/>
                                                                         <exclude reference="PLM-qW-2yg"/>
                                                                         <exclude reference="CwF-aV-9M8"/>
                                                                         <exclude reference="hZ7-ha-Gi0"/>
+                                                                        <exclude reference="Khq-uZ-Fmf"/>
+                                                                        <exclude reference="GEW-lp-MFN"/>
+                                                                        <exclude reference="dBH-1S-MPE"/>
+                                                                        <exclude reference="TTx-n4-GPA"/>
+                                                                        <exclude reference="am1-x0-peN"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="heightClass=regular-widthClass=regular">
@@ -2303,15 +2303,15 @@
                                                                         <include reference="8WZ-uH-heW"/>
                                                                     </mask>
                                                                     <mask key="constraints">
-                                                                        <include reference="TTx-n4-GPA"/>
-                                                                        <include reference="am1-x0-peN"/>
-                                                                        <include reference="Khq-uZ-Fmf"/>
-                                                                        <include reference="GEW-lp-MFN"/>
-                                                                        <include reference="dBH-1S-MPE"/>
                                                                         <include reference="uh9-6I-eZh"/>
                                                                         <include reference="PLM-qW-2yg"/>
                                                                         <include reference="CwF-aV-9M8"/>
                                                                         <include reference="hZ7-ha-Gi0"/>
+                                                                        <include reference="Khq-uZ-Fmf"/>
+                                                                        <include reference="GEW-lp-MFN"/>
+                                                                        <include reference="dBH-1S-MPE"/>
+                                                                        <include reference="TTx-n4-GPA"/>
+                                                                        <include reference="am1-x0-peN"/>
                                                                     </mask>
                                                                 </variation>
                                                             </stackView>
