@@ -163,15 +163,15 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == fileNumberTextField || textField == countyTextField || textField == nameOfJudgeSettingFeeTextField {
-            return TextRestrictionManager.restrictTextLength(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return Utils.restrictTextLength(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == bondTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return Utils.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == travelExpensesTextField || textField == copyingExpensesTextField || textField == otherExpensesTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 6, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return Utils.restrictTextLengthAndCharacters(by: 6, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == sentenceMonthsTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 4, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return Utils.restrictTextLengthAndCharacters(by: 4, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == continuancesTextField || textField == sentenceDaysTextField || textField == timeInCourtHoursTextField || textField == timeInCourtMinutesTextField || textField == timeInCourtWaitingHoursTextField || textField == timeInCourtWaitingMinutesTextField || textField == timeOutOfCourtHoursTextField || textField == timeOutOfCourtMinutesTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 2, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return Utils.restrictTextLengthAndCharacters(by: 2, textField, shouldChangeCharactersIn: range, replacementString: string)
         }
         
         return true
@@ -335,17 +335,17 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
     
     @objc
     func dateAppointedPickerChanged(picker: UIDatePicker) {
-        dateAppointedTextField.text = DateManager.formatDateToString(picker.date)
+        dateAppointedTextField.text = Utils.formatDateToString(picker.date)
     }
     
     @objc
     func dateOfFirstClientInterviewPickerChanged(picker: UIDatePicker) {
-        dateOfFirstClientInterviewTextField.text = DateManager.formatDateToString(picker.date)
+        dateOfFirstClientInterviewTextField.text = Utils.formatDateToString(picker.date)
     }
     
     @objc
     func dateOfFinalDispositionPickerChanged(picker: UIDatePicker) {
-        dateOfFinalDispositionTextField.text = DateManager.formatDateToString(picker.date)
+        dateOfFinalDispositionTextField.text = Utils.formatDateToString(picker.date)
     }
     
     //MARK: Show/Hide Functions

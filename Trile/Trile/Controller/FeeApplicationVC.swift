@@ -428,22 +428,22 @@ class FeeApplicationVC: UIViewController {
                             page.addAnnotation(annotation)
                         //MARK: Billable Hours
                         case "TimeInCourt":
-                            let timeInCourt = CalculationManager.formatTimeInCourt(fileNumber)
+                            let timeInCourt = Utils.formatTimeInCourt(fileNumber)
                             annotation.setValue(timeInCourt, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "TimeInCourtWaiting":
-                            let timeInCourtWaiting = CalculationManager.formatTimeInCourtWaiting(fileNumber)
+                            let timeInCourtWaiting = Utils.formatTimeInCourtWaiting(fileNumber)
                             annotation.setValue(timeInCourtWaiting, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "TimeOutOfCourt":
-                            let timeOutOfCourt = CalculationManager.formatTimeOutOfCourt(fileNumber)
+                            let timeOutOfCourt = Utils.formatTimeOutOfCourt(fileNumber)
                             annotation.setValue(timeOutOfCourt, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "TotalTimeClaim":
-                            let totalTime = CalculationManager.calculateTotalTimeClaimed(fileNumber)
+                            let totalTime = Utils.calculateTotalTimeClaimed(fileNumber)
                             annotation.setValue(totalTime, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
@@ -461,7 +461,7 @@ class FeeApplicationVC: UIViewController {
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "TotalExpenses":
-                            let totalExpenses = CalculationManager.calculateTotalExpenses(fileNumber)
+                            let totalExpenses = Utils.calculateTotalExpenses(fileNumber)
                             annotation.setValue(totalExpenses, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
@@ -519,7 +519,7 @@ class FeeApplicationVC: UIViewController {
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "ApplicantSignatureDate":
-                            let currentDate = DateManager.getCurrentDate()
+                            let currentDate = Utils.getCurrentDate()
                             
                             annotation.setValue(currentDate, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)

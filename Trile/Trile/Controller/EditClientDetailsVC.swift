@@ -176,17 +176,17 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == addressTextField || textField == cityTextField || textField == placeOfEmploymentTextField || textField == roleTextField {
-            return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return Utils.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == firstNameTextField || textField == middleNameTextField || textField == lastNameTextField || textField == areaOfStudyTextField {
-            return TextRestrictionManager.restrictTextLengthAndNumbers(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return Utils.restrictTextLengthAndNumbers(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == phoneNumberTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return Utils.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == zipTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 5, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return Utils.restrictTextLengthAndCharacters(by: 5, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == ageTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 3, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return Utils.restrictTextLengthAndCharacters(by: 3, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == totalChildrenTextField || textField == totalOtherOccupantsTextField {
-            return TextRestrictionManager.restrictTextLengthAndCharacters(by: 2, textField, shouldChangeCharactersIn: range, replacementString: string)
+            return Utils.restrictTextLengthAndCharacters(by: 2, textField, shouldChangeCharactersIn: range, replacementString: string)
         }
         
         return true
@@ -257,12 +257,12 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     @objc
     func dateStartedPickerChanged(picker: UIDatePicker) {
         
-        dateStartedTextField.text = DateManager.formatDateToString(picker.date)
+        dateStartedTextField.text = Utils.formatDateToString(picker.date)
     }
     
     @objc
     func dateEndedPickerChanged(picker: UIDatePicker) {
-        dateEndedTextField.text = DateManager.formatDateToString(picker.date)
+        dateEndedTextField.text = Utils.formatDateToString(picker.date)
     }
     
     //MARK: UI Beautification Functions

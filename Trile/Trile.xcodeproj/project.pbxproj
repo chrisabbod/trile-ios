@@ -22,7 +22,7 @@
 		A517CB5523D0CB6400B2171C /* ClientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A517CB5323D0CB6400B2171C /* ClientTableViewCell.xib */; };
 		A517CB5B23D1351E00B2171C /* FileNumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517CB5923D1351E00B2171C /* FileNumberTableViewCell.swift */; };
 		A517CB5C23D1351E00B2171C /* FileNumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A517CB5A23D1351E00B2171C /* FileNumberTableViewCell.xib */; };
-		A517CB5F23D1533300B2171C /* TextRestrictionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517CB5E23D1533300B2171C /* TextRestrictionManager.swift */; };
+		A53B328C23FA1B5C004D4EA8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B328B23FA1B5C004D4EA8 /* Utils.swift */; };
 		A54DC82C23CE302000E09567 /* DatabaseManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */; };
 		A54DC82E23CE747600E09567 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */; };
 		A54DC83023CE7E5A00E09567 /* AlertPresenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */; };
@@ -36,14 +36,12 @@
 		A575E88923C2E23100006A10 /* DocumentDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E88823C2E23100006A10 /* DocumentDetailsVC.swift */; };
 		A575E88B23C5043900006A10 /* FeeApplicationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E88A23C5043900006A10 /* FeeApplicationVC.swift */; };
 		A5817F1323D22FD9004CB660 /* PickerListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1223D22FD9004CB660 /* PickerListManager.swift */; };
-		A5817F1523D28413004CB660 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1423D28413004CB660 /* DateManager.swift */; };
 		A5817F1723D383E0004CB660 /* OffenseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1623D383E0004CB660 /* OffenseTableVC.swift */; };
 		A5817F1D23D3D796004CB660 /* offenses.json in Resources */ = {isa = PBXBuildFile; fileRef = A5817F1C23D3D796004CB660 /* offenses.json */; };
 		A5817F1F23D3DA1E004CB660 /* Offense.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F1E23D3DA1E004CB660 /* Offense.swift */; };
 		A5817F2F23DE3FE0004CB660 /* AdditionalInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F2E23DE3FE0004CB660 /* AdditionalInfoVC.swift */; };
 		A5817F3523DEA8B0004CB660 /* EditUserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3423DEA8B0004CB660 /* EditUserInfoVC.swift */; };
 		A5817F3723DFCEC7004CB660 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3623DFCEC7004CB660 /* ForgotPasswordVC.swift */; };
-		A5817F3923E15724004CB660 /* CalculationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3823E15724004CB660 /* CalculationManager.swift */; };
 		A5817F3B23E161ED004CB660 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5817F3A23E161ED004CB660 /* User.swift */; };
 		A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
 		A5D6D8C623B64E1700F16E27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */; };
@@ -102,7 +100,7 @@
 		A517CB5323D0CB6400B2171C /* ClientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientTableViewCell.xib; sourceTree = "<group>"; };
 		A517CB5923D1351E00B2171C /* FileNumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNumberTableViewCell.swift; sourceTree = "<group>"; };
 		A517CB5A23D1351E00B2171C /* FileNumberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileNumberTableViewCell.xib; sourceTree = "<group>"; };
-		A517CB5E23D1533300B2171C /* TextRestrictionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRestrictionManager.swift; sourceTree = "<group>"; };
+		A53B328B23FA1B5C004D4EA8 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerTests.swift; sourceTree = "<group>"; };
 		A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterManager.swift; sourceTree = "<group>"; };
@@ -116,14 +114,12 @@
 		A575E88823C2E23100006A10 /* DocumentDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDetailsVC.swift; sourceTree = "<group>"; };
 		A575E88A23C5043900006A10 /* FeeApplicationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeeApplicationVC.swift; sourceTree = "<group>"; };
 		A5817F1223D22FD9004CB660 /* PickerListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerListManager.swift; sourceTree = "<group>"; };
-		A5817F1423D28413004CB660 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		A5817F1623D383E0004CB660 /* OffenseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffenseTableVC.swift; sourceTree = "<group>"; };
 		A5817F1C23D3D796004CB660 /* offenses.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = offenses.json; sourceTree = "<group>"; };
 		A5817F1E23D3DA1E004CB660 /* Offense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offense.swift; sourceTree = "<group>"; };
 		A5817F2E23DE3FE0004CB660 /* AdditionalInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoVC.swift; sourceTree = "<group>"; };
 		A5817F3423DEA8B0004CB660 /* EditUserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfoVC.swift; sourceTree = "<group>"; };
 		A5817F3623DFCEC7004CB660 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
-		A5817F3823E15724004CB660 /* CalculationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationManager.swift; sourceTree = "<group>"; };
 		A5817F3A23E161ED004CB660 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A5D6D8C423B64E1700F16E27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5D6D8CC23B69F4E00F16E27 /* AccountCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVC.swift; sourceTree = "<group>"; };
@@ -322,9 +318,7 @@
 				A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */,
 				A5D6D8CE23B8005F00F16E27 /* FirebaseAuthManager.swift */,
 				A5817F1223D22FD9004CB660 /* PickerListManager.swift */,
-				A517CB5E23D1533300B2171C /* TextRestrictionManager.swift */,
-				A5817F1423D28413004CB660 /* DateManager.swift */,
-				A5817F3823E15724004CB660 /* CalculationManager.swift */,
+				A53B328B23FA1B5C004D4EA8 /* Utils.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -609,10 +603,9 @@
 				A511C1D823B5614900B9A771 /* AppDelegate.swift in Sources */,
 				A5817F1723D383E0004CB660 /* OffenseTableVC.swift in Sources */,
 				A54DC82E23CE747600E09567 /* FirebaseStorageManager.swift in Sources */,
-				A5817F1523D28413004CB660 /* DateManager.swift in Sources */,
 				A5817F3723DFCEC7004CB660 /* ForgotPasswordVC.swift in Sources */,
 				A575E86823C02AB200006A10 /* DocumentCollectionViewCell.swift in Sources */,
-				A517CB5F23D1533300B2171C /* TextRestrictionManager.swift in Sources */,
+				A53B328C23FA1B5C004D4EA8 /* Utils.swift in Sources */,
 				A5D6D8CF23B8005F00F16E27 /* FirebaseAuthManager.swift in Sources */,
 				A5D6D8DD23BBDF4200F16E27 /* FileNumber.swift in Sources */,
 				A5D6D8D723B872DD00F16E27 /* LoginVC.swift in Sources */,
@@ -632,7 +625,6 @@
 				A511C20D23B564CE00B9A771 /* Client.swift in Sources */,
 				A575E82323C00C9A00006A10 /* DocumentCollectionVC.swift in Sources */,
 				A5817F3523DEA8B0004CB660 /* EditUserInfoVC.swift in Sources */,
-				A5817F3923E15724004CB660 /* CalculationManager.swift in Sources */,
 				A575E88B23C5043900006A10 /* FeeApplicationVC.swift in Sources */,
 				A575E82523C00ED900006A10 /* Document.swift in Sources */,
 				A5817F3B23E161ED004CB660 /* User.swift in Sources */,
