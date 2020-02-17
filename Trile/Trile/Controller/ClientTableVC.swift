@@ -17,6 +17,7 @@ class ClientTableVC: UITableViewController {
     let FILE_NUMBER_SEGUE = "goToFileNumberTableVC"
     let LOAD_TABLEVIEW_NOTIFICATION = "loadClientTableVC"
     let EDIT_USER_INFO_IDENTIFIER = "editUserInfoVC"
+    let EDIT_USER_INFO_BAR_BUTTON = "User Info"
 
     let dbm = FirebaseFirestoreManager()
     let imageManager = FirebaseStorageManager()
@@ -31,7 +32,7 @@ class ClientTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let addEditUserInfoButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(addEditUserInfoButton(_:)))
+        let addEditUserInfoButton = UIBarButtonItem(title: EDIT_USER_INFO_BAR_BUTTON, style: .done, target: self, action: #selector(addEditUserInfoButton(_:)))
         let addClientButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClientButton(_:)))
         navigationItem.rightBarButtonItems = [addClientButton, addEditUserInfoButton]
         

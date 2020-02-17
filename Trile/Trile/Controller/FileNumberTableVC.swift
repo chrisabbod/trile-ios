@@ -17,6 +17,8 @@ class FileNumberTableVC: UITableViewController {
     let TAB_SEGUE = "goToTabBarVC"
     let LOAD_FILE_NUMBER_NOTIFICATION = "loadFileNumberTableVC"
     let EDIT_USER_INFO_IDENTIFIER = "editUserInfoVC"
+    let EDIT_USER_INFO_BAR_BUTTON = "User Info"
+
 
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
@@ -31,7 +33,7 @@ class FileNumberTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let addEditUserInfoButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(addEditUserInfoButton(_:)))
+        let addEditUserInfoButton = UIBarButtonItem(title: EDIT_USER_INFO_BAR_BUTTON, style: .done, target: self, action: #selector(addEditUserInfoButton(_:)))
         let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFileNumberButton(_:)))
         navigationItem.rightBarButtonItems = [addFileNumberButton, addEditUserInfoButton]
         
