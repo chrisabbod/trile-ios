@@ -389,6 +389,14 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
             clientDataArray["first_name"] = firstName
         }
         
+        if let middleName = middleNameTextField.text {
+            clientDataArray["middle_name"] = middleName
+        }
+        
+        if let lastName = lastNameTextField.text {
+            clientDataArray["last_name"] = lastName
+        }
+        
         if let age = ageTextField.text {
             clientDataArray["age"] = age
         }
