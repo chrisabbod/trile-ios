@@ -319,6 +319,14 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
             firstNameTextField.text = firstName as? String
         }
         
+        if let middleName = data["middle_name"] {
+            middleNameTextField.text = middleName as? String
+        }
+        
+        if let lastName = data["last_name"] {
+            lastNameTextField.text = lastName as? String
+        }
+        
         if let age = data["age"] {
             ageTextField.text = age as? String
         }
