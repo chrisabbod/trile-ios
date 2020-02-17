@@ -61,6 +61,9 @@
                                                         <segment title="Firm"/>
                                                         <segment title="Solo Practitioner"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="firmSegmentedControl:" destination="-1" eventType="valueChanged" id="5hg-HM-Int"/>
+                                                    </connections>
                                                 </segmentedControl>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Firm Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uDq-qq-kRE">
                                                     <rect key="frame" x="0.0" y="119" width="300" height="37"/>
@@ -132,6 +135,9 @@
                                     <state key="normal" title="Save and Return">
                                         <color key="titleColor" red="0.46274509800000002" green="0.7725490196" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="saveAndReturnButton:" destination="-1" eventType="touchUpInside" id="bgt-c7-0XB"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
