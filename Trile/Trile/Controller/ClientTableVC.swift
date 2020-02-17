@@ -16,7 +16,7 @@ class ClientTableVC: UITableViewController {
     let REUSE_IDENTIFIER = "customClientCell"
     let FILE_NUMBER_SEGUE = "goToFileNumberTableVC"
     let LOAD_TABLEVIEW_NOTIFICATION = "loadClientTableVC"
-    let EDIT_USER_INFO_IDENTIFIER = "editUserInfoVC"
+    let EDIT_USER_INFO_IDENTIFIER = "EditUserInfoVC"
     let EDIT_USER_INFO_BAR_BUTTON = "User Info"
 
     let dbm = FirebaseFirestoreManager()
@@ -62,9 +62,12 @@ class ClientTableVC: UITableViewController {
     
     @objc
     func addEditUserInfoButton(_ sender: UIBarButtonItem) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: EDIT_USER_INFO_IDENTIFIER) as! EditUserInfoVC
-        self.present(newViewController, animated: true, completion: nil)
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let newViewController = storyBoard.instantiateViewController(withIdentifier: EDIT_USER_INFO_IDENTIFIER) as! EditUserInfoVC
+//        self.present(newViewController, animated: true, completion: nil)
+        
+        let editUserInfoVC = EditUserInfoVC(nibName: EDIT_USER_INFO_IDENTIFIER, bundle: nil)
+        self.navigationController?.splitViewController?.showDetailViewController(editUserInfoVC, sender: self)
     }
     
     @objc

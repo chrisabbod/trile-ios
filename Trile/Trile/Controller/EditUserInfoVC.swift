@@ -16,6 +16,8 @@ class EditUserInfoVC: UIViewController {
     @IBOutlet weak var firmNameTextField: UITextField!
     @IBOutlet weak var taxpayerIDTextField: UITextField!
     
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var cityTextField: UITextField!
