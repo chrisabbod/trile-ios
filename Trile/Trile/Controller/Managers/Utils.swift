@@ -136,6 +136,16 @@ class Utils {
         return updatedText.count <= amount
     }
     
+    //MARK: Format Name
+    
+    static func formatFullName(firstName first: String, lastName last: String) -> String {
+        return first + " " + last
+    }
+    
+    static func formatFullName(firstName first: String, middleName middle: String, lastname last: String) -> String {
+        return first + " " + middle + " " + last
+    }
+    
     static func restrictTextLengthAndCharacters(by amount : Int, _ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         //Only allow type Integer to be entered in TextFields and limit to number passed in
         

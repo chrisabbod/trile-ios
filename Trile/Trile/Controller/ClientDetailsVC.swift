@@ -110,10 +110,22 @@ class ClientDetailsVC: UIViewController {
     
     func readClientData(from data: [String: Any]) {
         
+        var first = "", middle = "", last = ""
+        
         if let firstName = data["first_name"] {
-            nameLabel.text = firstName as? String
+            first = firstName as! String
         }
         
+        if let middleName = data["middle_name"] {
+            middle = middleName as! String
+        }
+        
+        if let lastName = data["last_name"] {
+            last = lastName as! String
+        }
+        
+        nameLabel.text = Utils.formatFullName(firstName: first, middleName: middle, lastname: last)
+
         if let age = data["age"] {
             ageLabel.text = age as? String
         }
