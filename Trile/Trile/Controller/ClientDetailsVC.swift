@@ -124,7 +124,7 @@ class ClientDetailsVC: UIViewController {
             last = lastName as! String
         }
         
-        nameLabel.text = Utils.formatFullName(firstName: first, middleName: middle, lastname: last)
+        nameLabel.text = Utils.formatFullName(firstName: first, middleName: middle, lastName: last)
 
         if let age = data["age"] {
             ageLabel.text = age as? String

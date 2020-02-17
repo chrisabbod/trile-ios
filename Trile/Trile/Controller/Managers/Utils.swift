@@ -126,7 +126,8 @@ class Utils {
     static func formatFullName(firstName first: String, lastName last: String) -> String {
         return first + " " + last
     }
-    static func formatFullName(firstName first: String, middleName middle: String, lastname last: String) -> String {
+    
+    static func formatFullName(firstName first: String, middleName middle: String, lastName last: String) -> String {
         return first + " " + middle + " " + last
     }
     

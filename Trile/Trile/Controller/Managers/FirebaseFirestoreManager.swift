@@ -56,7 +56,10 @@ class FirebaseFirestoreManager {
         let newID = clientRef.document().documentID
         client.documentID = newID
         
-        let clientData: [String: Any] = ["first_name": client.firstName, "document_id": client.documentID]
+        let clientData: [String: Any] = [
+            "first_name": client.firstName,
+            "last_name": client.lastName,
+            "document_id": client.documentID]
         
         clientRef.document(newID).setData(clientData) { (error) in
             if let error = error {
@@ -85,6 +88,10 @@ class FirebaseFirestoreManager {
                     
                     if let firstName = document.get("first_name") {
                         newClient.firstName = firstName as! String
+                    }
+                    
+                    if let lastName = document.get("last_name") {
+                        newClient.lastName = lastName as! String
                     }
                     
                     if let imagePath = document.get("image_path") {

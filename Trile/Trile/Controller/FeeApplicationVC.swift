@@ -138,7 +138,7 @@ class FeeApplicationVC: UIViewController {
                             page.removeAnnotation(annotation)
                             page.addAnnotation(annotation)
                         case "NameAddrAppl":
-                            let fullName = Utils.formatFullName(firstName: client.firstName, middleName: client.middleName, lastname: client.lastName)
+                            let fullName = Utils.formatFullName(firstName: client.firstName, middleName: client.middleName, lastName: client.lastName)
                             let nameAndAdress = ("\(fullName)\n\(client.address)\n\(client.state) \(client.zip)")
                             annotation.setValue(nameAndAdress, forAnnotationKey: .widgetValue)
                             page.removeAnnotation(annotation)

@@ -29,15 +29,17 @@ class AlertPresenterManager {
     
     func addClientAlertDialog(fromViewController vc: UIViewController, completion: @escaping ((_ clientArray: [Client], _ success: Bool) -> Void)) {
         
-        var textField = UITextField()
+        var firstNameTextField = UITextField()
+        var lastNameTextField = UITextField()
         
         let alert = UIAlertController(title: "Add New Client", message: "Enter Client Name", preferredStyle: .alert)
         let addClientAction = UIAlertAction(title: "Add", style: .default) { (action) in
             
             let newClient = Client()
             
-            if let firstName = textField.text {
+            if let firstName = firstNameTextField.text, let lastName = lastNameTextField.text {
                 newClient.firstName = firstName
+                newClient.lastName = lastName
                 
                 self.dbm.addClientToDatabase(newClient)
                 self.dbm.readClientsFromDatabase(completion: { (clientArray, success) in
@@ -58,8 +60,12 @@ class AlertPresenterManager {
         alert.addAction(cancelAction)
         alert.addAction(addClientAction)
         alert.addTextField { (field) in
-            textField = field
-            field.placeholder = "Enter Client Name"
+            firstNameTextField = field
+            field.placeholder = "First Name"
+        }
+        alert.addTextField { (field) in
+            lastNameTextField = field
+            field.placeholder = "Last Name"
         }
         
         vc.present(alert, animated: true, completion: nil)
