@@ -177,7 +177,7 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == addressTextField || textField == cityTextField || textField == placeOfEmploymentTextField || textField == roleTextField {
             return TextRestrictionManager.restrictTextLength(by: 30, textField, shouldChangeCharactersIn: range, replacementString: string)
-        } else if textField == firstNameTextField || textField == areaOfStudyTextField {
+        } else if textField == firstNameTextField || textField == middleNameTextField || textField == lastNameTextField || textField == areaOfStudyTextField {
             return TextRestrictionManager.restrictTextLengthAndNumbers(by: 20, textField, shouldChangeCharactersIn: range, replacementString: string)
         } else if textField == phoneNumberTextField {
             return TextRestrictionManager.restrictTextLengthAndCharacters(by: 10, textField, shouldChangeCharactersIn: range, replacementString: string)
@@ -459,6 +459,8 @@ class EditClientDetailsVC: UIViewController, UINavigationControllerDelegate, UII
     func createTextFieldAndPickerViewArrays() {
         //Append textfields so other functions can iterate through them when setting properties
         textFieldArray.append(firstNameTextField)
+        textFieldArray.append(middleNameTextField)
+        textFieldArray.append(lastNameTextField)
         textFieldArray.append(ageTextField)
         textFieldArray.append(highestEducationTextField)
         textFieldArray.append(areaOfStudyTextField)
