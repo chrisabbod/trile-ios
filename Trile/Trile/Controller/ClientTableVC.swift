@@ -102,7 +102,7 @@ class ClientTableVC: UITableViewController {
         let first = clients[indexPath.row].firstName
         let last = clients[indexPath.row].lastName
 
-        cell.clientNameLabel.text = Utils.formatFullName(firstName: first, lastName: last)
+        cell.clientNameLabel.text = Utils.formatNameForClientTableView(firstName: first, lastName: last)
         
         self.tableView.backgroundColor = UIColor(red: 118/255, green: 197/255, blue: 142/255, alpha: 1)
         

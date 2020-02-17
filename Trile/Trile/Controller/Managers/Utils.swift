@@ -123,6 +123,10 @@ class Utils {
     
     //MARK: Format Name
     
+    static func formatNameForClientTableView(firstName first: String, lastName last: String) -> String {
+        return last + ", " + first
+    }
+    
     static func formatFullName(firstName first: String, lastName last: String) -> String {
         return first + " " + last
     }
