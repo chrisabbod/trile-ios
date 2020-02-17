@@ -27,6 +27,10 @@
 		A54DC82E23CE747600E09567 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */; };
 		A54DC83023CE7E5A00E09567 /* AlertPresenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */; };
 		A553631A23FB400B00B5D788 /* EditUserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A553631923FB400B00B5D788 /* EditUserInfoVC.xib */; };
+		A553631C23FB4F8F00B5D788 /* SelectClientVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A553631B23FB4F8F00B5D788 /* SelectClientVC.xib */; };
+		A553632023FB4FB300B5D788 /* SelectFileNumberVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A553631F23FB4FB300B5D788 /* SelectFileNumberVC.xib */; };
+		A553632223FB4FC400B5D788 /* NoClientsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A553632123FB4FC400B5D788 /* NoClientsVC.xib */; };
+		A553632423FB4FD400B5D788 /* NoFileNumbersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A553632323FB4FD400B5D788 /* NoFileNumbersVC.xib */; };
 		A5695AFE23BE58B90010E40C /* EditClientDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */; };
 		A5695B0023BEF0130010E40C /* CaseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5695AFF23BEF0130010E40C /* CaseDetailsVC.swift */; };
 		A575E81F23BFB2DF00006A10 /* EditCaseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E81E23BFB2DF00006A10 /* EditCaseDetailsVC.swift */; };
@@ -105,6 +109,10 @@
 		A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterManager.swift; sourceTree = "<group>"; };
 		A553631923FB400B00B5D788 /* EditUserInfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditUserInfoVC.xib; sourceTree = "<group>"; };
+		A553631B23FB4F8F00B5D788 /* SelectClientVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectClientVC.xib; sourceTree = "<group>"; };
+		A553631F23FB4FB300B5D788 /* SelectFileNumberVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectFileNumberVC.xib; sourceTree = "<group>"; };
+		A553632123FB4FC400B5D788 /* NoClientsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoClientsVC.xib; sourceTree = "<group>"; };
+		A553632323FB4FD400B5D788 /* NoFileNumbersVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFileNumbersVC.xib; sourceTree = "<group>"; };
 		A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClientDetailsVC.swift; sourceTree = "<group>"; };
 		A5695AFF23BEF0130010E40C /* CaseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseDetailsVC.swift; sourceTree = "<group>"; };
 		A575E81E23BFB2DF00006A10 /* EditCaseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCaseDetailsVC.swift; sourceTree = "<group>"; };
@@ -244,6 +252,10 @@
 				A575E82223C00C9A00006A10 /* DocumentCollectionVC.swift */,
 				A575E88823C2E23100006A10 /* DocumentDetailsVC.swift */,
 				A575E88A23C5043900006A10 /* FeeApplicationVC.swift */,
+				A553631B23FB4F8F00B5D788 /* SelectClientVC.xib */,
+				A553631F23FB4FB300B5D788 /* SelectFileNumberVC.xib */,
+				A553632123FB4FC400B5D788 /* NoClientsVC.xib */,
+				A553632323FB4FD400B5D788 /* NoFileNumbersVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -449,7 +461,11 @@
 				A517CB5C23D1351E00B2171C /* FileNumberTableViewCell.xib in Resources */,
 				A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */,
 				A511C1E323B5614E00B9A771 /* Assets.xcassets in Resources */,
+				A553632023FB4FB300B5D788 /* SelectFileNumberVC.xib in Resources */,
 				A5817F1D23D3D796004CB660 /* offenses.json in Resources */,
+				A553632223FB4FC400B5D788 /* NoClientsVC.xib in Resources */,
+				A553632423FB4FD400B5D788 /* NoFileNumbersVC.xib in Resources */,
+				A553631C23FB4F8F00B5D788 /* SelectClientVC.xib in Resources */,
 				A553631A23FB400B00B5D788 /* EditUserInfoVC.xib in Resources */,
 				A511C1E123B5614900B9A771 /* Main.storyboard in Resources */,
 			);
