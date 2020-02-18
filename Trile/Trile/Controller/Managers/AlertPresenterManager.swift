@@ -10,6 +10,8 @@ import UIKit
 
 class AlertPresenterManager {
     
+    let CHOOSE_CLIENT_PLACEHOLDER_NOTIFICATION = "showChooseClientPlaceholder"
+
     let dbm = FirebaseFirestoreManager()
     let imageManager = FirebaseStorageManager()
     
@@ -44,6 +46,10 @@ class AlertPresenterManager {
                 self.dbm.addClientToDatabase(newClient)
                 self.dbm.readClientsFromDatabase(completion: { (clientArray, success) in
                     if success {
+                        
+                        //Calls Notification Function in ClientTableVC to reload data
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.CHOOSE_CLIENT_PLACEHOLDER_NOTIFICATION), object: nil)
+                        
                         completion(clientArray, true)
                     } else {
                         print("Unable to read client data from database")

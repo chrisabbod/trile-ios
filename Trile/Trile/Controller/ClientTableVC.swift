@@ -19,6 +19,7 @@ class ClientTableVC: UITableViewController {
     let EDIT_USER_INFO_IDENTIFIER = "EditUserInfoVC"
     let EDIT_USER_INFO_BAR_BUTTON = "User Info"
     let PLACEHOLDER_VC_IDENTIFIER = "PlaceholderVC"
+    let LOAD_CHOOSE_CLIENT_NOTIFICATION = "showChooseClientPlaceholder"
 
     let dbm = FirebaseFirestoreManager()
     let imageManager = FirebaseStorageManager()
@@ -42,7 +43,7 @@ class ClientTableVC: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loadClients), name: NSNotification.Name(rawValue: LOAD_TABLEVIEW_NOTIFICATION), object: nil)
         
         //Display Choose A Client screen when a client is added
-        NotificationCenter.default.addObserver(self, selector: #selector(loadClients), name: NSNotification.Name(rawValue: LOAD_TABLEVIEW_NOTIFICATION), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showChooseClientPlaceholder), name: NSNotification.Name(rawValue: LOAD_CHOOSE_CLIENT_NOTIFICATION), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,8 +93,9 @@ class ClientTableVC: UITableViewController {
         }
     }
     
-    //MARK: Show Placeholder Screen
+    //MARK: Show Placeholder Functions
     
+    @objc
     func showAddClientPlaceholder() {
         let placeholderVC = PlaceholderVC(nibName: PLACEHOLDER_VC_IDENTIFIER, bundle: nil)
         placeholderVC.addClient = true
@@ -101,6 +103,7 @@ class ClientTableVC: UITableViewController {
         self.splitViewController?.showDetailViewController(placeholderVC, sender: self)
     }
     
+    @objc
     func showChooseClientPlaceholder() {
         let placeholderVC = PlaceholderVC(nibName: PLACEHOLDER_VC_IDENTIFIER, bundle: nil)
         placeholderVC.chooseClient = true
