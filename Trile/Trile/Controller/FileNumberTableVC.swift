@@ -51,7 +51,6 @@ class FileNumberTableVC: UITableViewController {
         loadFileNumbers { (success) in
             if success {
                 if self.fileNumbers.isEmpty {
-                    print("ADD FILE NUMBER")
                     self.showAddFileNumberPlaceholder()
                 } else {
                     self.showChooseFileNumberPlaceholder()
@@ -82,7 +81,7 @@ class FileNumberTableVC: UITableViewController {
     @objc
     func addEditUserInfoButton(_ sender: UIBarButtonItem) {
         let editUserInfoVC = EditUserInfoVC(nibName: EDIT_USER_INFO_IDENTIFIER, bundle: nil)
-        self.splitViewController?.showDetailViewController(editUserInfoVC, sender: self)
+        self.present(editUserInfoVC, animated: true, completion: nil)
     }
     
     @objc

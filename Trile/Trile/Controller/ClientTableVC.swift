@@ -78,7 +78,7 @@ class ClientTableVC: UITableViewController {
     @objc
     func addEditUserInfoButton(_ sender: UIBarButtonItem) {
         let editUserInfoVC = EditUserInfoVC(nibName: EDIT_USER_INFO_IDENTIFIER, bundle: nil)
-        self.splitViewController?.showDetailViewController(editUserInfoVC, sender: self)
+        self.present(editUserInfoVC, animated: true, completion: nil)
     }
     
     @objc

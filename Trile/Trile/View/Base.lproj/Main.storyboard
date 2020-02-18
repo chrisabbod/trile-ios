@@ -1151,7 +1151,7 @@
         <!--ClientDetailsVC-->
         <scene sceneID="2O6-lO-Tag">
             <objects>
-                <viewController title="ClientDetailsVC" id="aZb-Va-hwO" customClass="ClientDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ClientDetailsID" title="ClientDetailsVC" id="aZb-Va-hwO" customClass="ClientDetailsVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DnI-Lo-ozX" userLabel="Root View">
                         <rect key="frame" x="0.0" y="0.0" width="703.5" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
