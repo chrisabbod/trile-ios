@@ -40,20 +40,21 @@ class ClientTableVC: UITableViewController {
         
         //Reload ClientTableVC when changes are made in EditClientDetailsVC
         NotificationCenter.default.addObserver(self, selector: #selector(loadClients), name: NSNotification.Name(rawValue: LOAD_TABLEVIEW_NOTIFICATION), object: nil)
+        
+        //Display Choose A Client screen when a client is added
+        NotificationCenter.default.addObserver(self, selector: #selector(loadClients), name: NSNotification.Name(rawValue: LOAD_TABLEVIEW_NOTIFICATION), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         loadClients { (success) in
             if success {
                 if self.clients.isEmpty {
-                    self.showPlaceholder(onClientScreen: true, arrayHasItems: false)
+                    self.showAddClientPlaceholder()
                 } else {
-                    self.showPlaceholder(onClientScreen: true, arrayHasItems: true)
+                    self.showChooseClientPlaceholder()
                 }
             }
         }
-        
-
     }
     
     //MARK: Load Clients Function
@@ -93,10 +94,16 @@ class ClientTableVC: UITableViewController {
     
     //MARK: Show Placeholder Screen
     
-    func showPlaceholder(onClientScreen client: Bool, arrayHasItems items: Bool) {
+    func showAddClientPlaceholder() {
         let placeholderVC = PlaceholderVC(nibName: PLACEHOLDER_VC_IDENTIFIER, bundle: nil)
-        placeholderVC.client = client
-        placeholderVC.hasItems = items
+        placeholderVC.addClient = true
+        
+        self.splitViewController?.showDetailViewController(placeholderVC, sender: self)
+    }
+    
+    func showChooseClientPlaceholder() {
+        let placeholderVC = PlaceholderVC(nibName: PLACEHOLDER_VC_IDENTIFIER, bundle: nil)
+        placeholderVC.chooseClient = true
         
         self.splitViewController?.showDetailViewController(placeholderVC, sender: self)
     }
@@ -140,7 +147,7 @@ class ClientTableVC: UITableViewController {
         tableView.deleteRows(at: [indexPath], with: .fade)
         
         if clients.isEmpty {
-            showPlaceholder(onClientScreen: true, arrayHasItems: false)
+            showAddClientPlaceholder()
         }
     }
     

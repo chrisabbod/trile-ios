@@ -23,28 +23,33 @@ class PlaceholderVC: UIViewController {
     let CHOOSE_A_CLIENT = "Choose A Client"
     let CHOOSE_A_FILE_NUMBER = "Choose A File Number"
     
-    var client: Bool = true //Check if user is on client or file number screen
-    var hasItems: Bool = false  //Check if there are any clients/file numbers
+    //Determine which screen will be displayed
+    var addClient: Bool = false
+    var chooseClient: Bool = false
+    var addFileNumber: Bool = false
+    var chooseFileNumber: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if client == true && hasItems == true {
-            print("SHOW CHOOSE CLIENT SCREEN")
-            placeholderImage.image = UIImage(named: CHOOSE_CLIENT)
-            placeholderText.text = CHOOSE_A_CLIENT
-        } else if client == true && hasItems == false {
+        if addClient == true {
             print("SHOW ADD CLIENT SCREEN")
             placeholderImage.image = UIImage(named: ADD_CLIENT)
             placeholderText.text = ADD_A_CLIENT
-        } else if client == false && hasItems == true {
-            print("SHOW CHOOSE FILE NUMBER SCREEN")
-            placeholderImage.image = UIImage(named: CHOOSE_FILE_NUMBER)
-            placeholderText.text = CHOOSE_A_FILE_NUMBER
-        } else if client == false && hasItems == false {
+        } else if chooseClient == true {
+            print("SHOW CHOOSE CLIENT SCREEN")
+            placeholderImage.image = UIImage(named: CHOOSE_CLIENT)
+            placeholderText.text = CHOOSE_A_CLIENT
+        } else if addFileNumber == true {
             print("SHOW ADD FILE NUMBER SCREEN")
             placeholderImage.image = UIImage(named: ADD_FILE_NUMBER)
             placeholderText.text = ADD_A_FILE_NUMBER
+        } else if chooseFileNumber == true {
+            print("SHOW CHOOSE FILE NUMBER SCREEN")
+            placeholderImage.image = UIImage(named: CHOOSE_FILE_NUMBER)
+            placeholderText.text = CHOOSE_A_FILE_NUMBER
+        } else {
+            print("Error determining which image to display")
         }
     }
 }
