@@ -68,7 +68,7 @@ class FileNumberTableVC: UITableViewController {
     @objc
     func addEditUserInfoButton(_ sender: UIBarButtonItem) {
         let editUserInfoVC = EditUserInfoVC(nibName: EDIT_USER_INFO_IDENTIFIER, bundle: nil)
-        self.navigationController?.splitViewController?.showDetailViewController(editUserInfoVC, sender: self)
+        self.splitViewController?.showDetailViewController(editUserInfoVC, sender: self)
     }
     
     @objc

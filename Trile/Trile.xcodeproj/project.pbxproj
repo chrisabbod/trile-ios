@@ -23,14 +23,12 @@
 		A517CB5B23D1351E00B2171C /* FileNumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517CB5923D1351E00B2171C /* FileNumberTableViewCell.swift */; };
 		A517CB5C23D1351E00B2171C /* FileNumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A517CB5A23D1351E00B2171C /* FileNumberTableViewCell.xib */; };
 		A53B328C23FA1B5C004D4EA8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B328B23FA1B5C004D4EA8 /* Utils.swift */; };
+		A54572E423FB6434002C0BF1 /* PlaceholderVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A54572E323FB6434002C0BF1 /* PlaceholderVC.xib */; };
 		A54DC82C23CE302000E09567 /* DatabaseManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */; };
 		A54DC82E23CE747600E09567 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */; };
 		A54DC83023CE7E5A00E09567 /* AlertPresenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */; };
 		A553631A23FB400B00B5D788 /* EditUserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A553631923FB400B00B5D788 /* EditUserInfoVC.xib */; };
-		A553631C23FB4F8F00B5D788 /* SelectClientVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A553631B23FB4F8F00B5D788 /* SelectClientVC.xib */; };
-		A553632023FB4FB300B5D788 /* SelectFileNumberVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A553631F23FB4FB300B5D788 /* SelectFileNumberVC.xib */; };
-		A553632223FB4FC400B5D788 /* NoClientsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A553632123FB4FC400B5D788 /* NoClientsVC.xib */; };
-		A553632423FB4FD400B5D788 /* NoFileNumbersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A553632323FB4FD400B5D788 /* NoFileNumbersVC.xib */; };
+		A553632723FB57FE00B5D788 /* PlaceholderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553632623FB57FE00B5D788 /* PlaceholderVC.swift */; };
 		A5695AFE23BE58B90010E40C /* EditClientDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */; };
 		A5695B0023BEF0130010E40C /* CaseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5695AFF23BEF0130010E40C /* CaseDetailsVC.swift */; };
 		A575E81F23BFB2DF00006A10 /* EditCaseDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A575E81E23BFB2DF00006A10 /* EditCaseDetailsVC.swift */; };
@@ -105,14 +103,12 @@
 		A517CB5923D1351E00B2171C /* FileNumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNumberTableViewCell.swift; sourceTree = "<group>"; };
 		A517CB5A23D1351E00B2171C /* FileNumberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileNumberTableViewCell.xib; sourceTree = "<group>"; };
 		A53B328B23FA1B5C004D4EA8 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A54572E323FB6434002C0BF1 /* PlaceholderVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderVC.xib; sourceTree = "<group>"; };
 		A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerTests.swift; sourceTree = "<group>"; };
 		A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterManager.swift; sourceTree = "<group>"; };
 		A553631923FB400B00B5D788 /* EditUserInfoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditUserInfoVC.xib; sourceTree = "<group>"; };
-		A553631B23FB4F8F00B5D788 /* SelectClientVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectClientVC.xib; sourceTree = "<group>"; };
-		A553631F23FB4FB300B5D788 /* SelectFileNumberVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectFileNumberVC.xib; sourceTree = "<group>"; };
-		A553632123FB4FC400B5D788 /* NoClientsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoClientsVC.xib; sourceTree = "<group>"; };
-		A553632323FB4FD400B5D788 /* NoFileNumbersVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFileNumbersVC.xib; sourceTree = "<group>"; };
+		A553632623FB57FE00B5D788 /* PlaceholderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderVC.swift; sourceTree = "<group>"; };
 		A5695AFD23BE58B90010E40C /* EditClientDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClientDetailsVC.swift; sourceTree = "<group>"; };
 		A5695AFF23BEF0130010E40C /* CaseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseDetailsVC.swift; sourceTree = "<group>"; };
 		A575E81E23BFB2DF00006A10 /* EditCaseDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCaseDetailsVC.swift; sourceTree = "<group>"; };
@@ -238,6 +234,7 @@
 		A511C20923B5618D00B9A771 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A553632523FB509D00B5D788 /* Placeholder Screens */,
 				A5D6D8D523B872A100F16E27 /* Managers */,
 				A5817F2D23DE3FA6004CB660 /* Onboarding */,
 				A5817F3423DEA8B0004CB660 /* EditUserInfoVC.swift */,
@@ -252,10 +249,6 @@
 				A575E82223C00C9A00006A10 /* DocumentCollectionVC.swift */,
 				A575E88823C2E23100006A10 /* DocumentDetailsVC.swift */,
 				A575E88A23C5043900006A10 /* FeeApplicationVC.swift */,
-				A553631B23FB4F8F00B5D788 /* SelectClientVC.xib */,
-				A553631F23FB4FB300B5D788 /* SelectFileNumberVC.xib */,
-				A553632123FB4FC400B5D788 /* NoClientsVC.xib */,
-				A553632323FB4FD400B5D788 /* NoFileNumbersVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -301,6 +294,15 @@
 				A517CB5A23D1351E00B2171C /* FileNumberTableViewCell.xib */,
 			);
 			path = CustomFileNumberTableViewCell;
+			sourceTree = "<group>";
+		};
+		A553632523FB509D00B5D788 /* Placeholder Screens */ = {
+			isa = PBXGroup;
+			children = (
+				A553632623FB57FE00B5D788 /* PlaceholderVC.swift */,
+				A54572E323FB6434002C0BF1 /* PlaceholderVC.xib */,
+			);
+			path = "Placeholder Screens";
 			sourceTree = "<group>";
 		};
 		A575E86A23C02ABB00006A10 /* CustomDocumentCollectionViewCell */ = {
@@ -461,11 +463,8 @@
 				A517CB5C23D1351E00B2171C /* FileNumberTableViewCell.xib in Resources */,
 				A5D6D8C523B64E1700F16E27 /* GoogleService-Info.plist in Resources */,
 				A511C1E323B5614E00B9A771 /* Assets.xcassets in Resources */,
-				A553632023FB4FB300B5D788 /* SelectFileNumberVC.xib in Resources */,
 				A5817F1D23D3D796004CB660 /* offenses.json in Resources */,
-				A553632223FB4FC400B5D788 /* NoClientsVC.xib in Resources */,
-				A553632423FB4FD400B5D788 /* NoFileNumbersVC.xib in Resources */,
-				A553631C23FB4F8F00B5D788 /* SelectClientVC.xib in Resources */,
+				A54572E423FB6434002C0BF1 /* PlaceholderVC.xib in Resources */,
 				A553631A23FB400B00B5D788 /* EditUserInfoVC.xib in Resources */,
 				A511C1E123B5614900B9A771 /* Main.storyboard in Resources */,
 			);
@@ -644,6 +643,7 @@
 				A575E88B23C5043900006A10 /* FeeApplicationVC.swift in Sources */,
 				A575E82523C00ED900006A10 /* Document.swift in Sources */,
 				A5817F3B23E161ED004CB660 /* User.swift in Sources */,
+				A553632723FB57FE00B5D788 /* PlaceholderVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

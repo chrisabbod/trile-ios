@@ -18,6 +18,7 @@ class ClientTableVC: UITableViewController {
     let LOAD_TABLEVIEW_NOTIFICATION = "loadClientTableVC"
     let EDIT_USER_INFO_IDENTIFIER = "EditUserInfoVC"
     let EDIT_USER_INFO_BAR_BUTTON = "User Info"
+    let PLACEHOLDER_VC_IDENTIFIER = "PlaceholderVC"
 
     let dbm = FirebaseFirestoreManager()
     let imageManager = FirebaseStorageManager()
@@ -28,7 +29,6 @@ class ClientTableVC: UITableViewController {
     
     var clients = [Client]()
     
-        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,17 +43,31 @@ class ClientTableVC: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadClients()
+        loadClients { (success) in
+            if success {
+                if self.clients.isEmpty {
+                    print("EMPTY")
+                } else {
+                    print("SHOW PLACEHOLDER")
+                    self.showPlaceholder()
+                }
+            }
+        }
+        
+
     }
     
     //MARK: Load Clients Function
     
     @objc
-    func loadClients() {
+    func loadClients(completion: @escaping (_ success: Bool) -> Void) {
         dbm.readClientsFromDatabase(completion: { (clientArray, success) in
             if success {
                 self.clients = clientArray
                 self.tableView.reloadData()
+                completion(true)
+            } else {
+                completion(false)
             }
         })
     }
@@ -63,7 +77,7 @@ class ClientTableVC: UITableViewController {
     @objc
     func addEditUserInfoButton(_ sender: UIBarButtonItem) {
         let editUserInfoVC = EditUserInfoVC(nibName: EDIT_USER_INFO_IDENTIFIER, bundle: nil)
-        self.navigationController?.splitViewController?.showDetailViewController(editUserInfoVC, sender: self)
+        self.splitViewController?.showDetailViewController(editUserInfoVC, sender: self)
     }
     
     @objc
@@ -76,6 +90,13 @@ class ClientTableVC: UITableViewController {
                 print("Unable to present alert")
             }
         }
+    }
+    
+    //MARK: Show Placeholder Screen
+    
+    func showPlaceholder() {
+        let placeholderVC = PlaceholderVC(nibName: PLACEHOLDER_VC_IDENTIFIER, bundle: nil)
+        self.splitViewController?.showDetailViewController(placeholderVC, sender: self)
     }
     
     // MARK: Table View
@@ -130,5 +151,4 @@ class ClientTableVC: UITableViewController {
             destinationVC.selectedClient = clients[indexPath.row]
         }
     }
-    
 }
