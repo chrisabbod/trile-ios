@@ -18,7 +18,8 @@ class FileNumberTableVC: UITableViewController {
     let LOAD_FILE_NUMBER_NOTIFICATION = "loadFileNumberTableVC"
     let EDIT_USER_INFO_IDENTIFIER = "EditUserInfoVC"
     let EDIT_USER_INFO_BAR_BUTTON = "User Info"
-
+    let PLACEHOLDER_VC_IDENTIFIER = "PlaceholderVC"
+    let SHOW_CHOOSE_FILE_NUMBER_PLACEHOLDER = "showChooseFileNumberPlaceholder"
 
     var db = Firestore.firestore()
     let uid: String = Auth.auth().currentUser!.uid
@@ -41,21 +42,34 @@ class FileNumberTableVC: UITableViewController {
         
         //Reload FileNumberTableVC when changes are made in EditCaseDetailsVC
         NotificationCenter.default.addObserver(self, selector: #selector(loadFileNumbers), name: NSNotification.Name(rawValue: LOAD_FILE_NUMBER_NOTIFICATION), object: nil)
+        
+        //Display Choose A File Number screen when a file number is added
+        NotificationCenter.default.addObserver(self, selector: #selector(showChooseFileNumberPlaceholder), name: NSNotification.Name(rawValue: SHOW_CHOOSE_FILE_NUMBER_PLACEHOLDER), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadFileNumbers()
+        loadFileNumbers { (success) in
+            if success {
+                if self.fileNumbers.isEmpty {
+                    print("ADD FILE NUMBER")
+                    self.showAddFileNumberPlaceholder()
+                } else {
+                    self.showChooseFileNumberPlaceholder()
+                }
+            }
+        }
     }
     
     //MARK: Load File Numbers
     
     @objc
-    func loadFileNumbers() {
+    func loadFileNumbers(completion: @escaping (_ success: Bool) -> Void) {
         if let client = self.selectedClient {
             self.dbm.readFileNumbersFromDatabase(client) { (fileNumberArray, success) in
                 if success {
                     self.fileNumbers = fileNumberArray
                     self.tableView.reloadData()
+                    completion(true)
                 } else {
                     print("Unable to read file number data from database")
                 }
@@ -83,6 +97,24 @@ class FileNumberTableVC: UITableViewController {
                 }
             }
         }
+    }
+    
+    //MARK: Show Placeholder Functions
+    
+    @objc
+    func showAddFileNumberPlaceholder() {
+        let placeholderVC = PlaceholderVC(nibName: PLACEHOLDER_VC_IDENTIFIER, bundle: nil)
+        placeholderVC.addFileNumber = true
+        
+        self.splitViewController?.showDetailViewController(placeholderVC, sender: self)
+    }
+    
+    @objc
+    func showChooseFileNumberPlaceholder() {
+        let placeholderVC = PlaceholderVC(nibName: PLACEHOLDER_VC_IDENTIFIER, bundle: nil)
+        placeholderVC.chooseFileNumber = true
+        
+        self.splitViewController?.showDetailViewController(placeholderVC, sender: self)
     }
     
     // MARK: Table View
@@ -123,6 +155,10 @@ class FileNumberTableVC: UITableViewController {
         
         fileNumbers.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
+        
+        if fileNumbers.isEmpty {
+            showAddFileNumberPlaceholder()
+        }
     }
     
     //MARK: Segues

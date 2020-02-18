@@ -10,7 +10,8 @@ import UIKit
 
 class AlertPresenterManager {
     
-    let CHOOSE_CLIENT_PLACEHOLDER_NOTIFICATION = "showChooseClientPlaceholder"
+    let SHOW_CHOOSE_CLIENT_PLACEHOLDER = "showChooseClientPlaceholder"
+    let SHOW_CHOOSE_FILE_NUMBER_PLACEHOLDER = "showChooseFileNumberPlaceholder"
 
     let dbm = FirebaseFirestoreManager()
     let imageManager = FirebaseStorageManager()
@@ -48,7 +49,7 @@ class AlertPresenterManager {
                     if success {
                         
                         //Calls Notification Function in ClientTableVC to reload data
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.CHOOSE_CLIENT_PLACEHOLDER_NOTIFICATION), object: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.SHOW_CHOOSE_CLIENT_PLACEHOLDER), object: nil)
                         
                         completion(clientArray, true)
                     } else {
@@ -93,6 +94,10 @@ class AlertPresenterManager {
                 self.dbm.addFileNumberToDatabase(client, newFileNumber)
                 self.dbm.readFileNumbersFromDatabase(client) { (fileNumberArray, success) in
                     if success {
+                        
+                        //Calls Notification Function in FileNumberTableVC to reload data
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.SHOW_CHOOSE_FILE_NUMBER_PLACEHOLDER), object: nil)
+                        
                         completion(fileNumberArray, true)
                     } else {
                         print("Unable to read file number data from database")

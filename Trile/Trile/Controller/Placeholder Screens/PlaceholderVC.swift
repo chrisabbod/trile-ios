@@ -51,5 +51,6 @@ class PlaceholderVC: UIViewController {
         } else {
             print("Error determining which image to display")
         }
+        
     }
 }
