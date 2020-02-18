@@ -46,10 +46,9 @@ class ClientTableVC: UITableViewController {
         loadClients { (success) in
             if success {
                 if self.clients.isEmpty {
-                    print("EMPTY")
+                    self.showPlaceholder(onClientScreen: true, arrayHasItems: false)
                 } else {
-                    print("SHOW PLACEHOLDER")
-                    self.showPlaceholder()
+                    self.showPlaceholder(onClientScreen: true, arrayHasItems: true)
                 }
             }
         }
@@ -94,8 +93,11 @@ class ClientTableVC: UITableViewController {
     
     //MARK: Show Placeholder Screen
     
-    func showPlaceholder() {
+    func showPlaceholder(onClientScreen client: Bool, arrayHasItems items: Bool) {
         let placeholderVC = PlaceholderVC(nibName: PLACEHOLDER_VC_IDENTIFIER, bundle: nil)
+        placeholderVC.client = client
+        placeholderVC.hasItems = items
+        
         self.splitViewController?.showDetailViewController(placeholderVC, sender: self)
     }
     
