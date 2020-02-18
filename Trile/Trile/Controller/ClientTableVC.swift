@@ -138,6 +138,10 @@ class ClientTableVC: UITableViewController {
         
         clients.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
+        
+        if clients.isEmpty {
+            showPlaceholder(onClientScreen: true, arrayHasItems: false)
+        }
     }
     
     // MARK: Segues
