@@ -17,6 +17,7 @@ class EditUserInfoVC: UIViewController {
     @IBOutlet weak var taxpayerIDTextField: UITextField!
     
     @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var middleNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
@@ -84,6 +85,18 @@ class EditUserInfoVC: UIViewController {
             taxpayerIDTextField.text = taxpayerID as? String
         }
         
+        if let firstName = userData["first_name"] {
+            firstNameTextField.text = firstName as? String
+        }
+        
+        if let middleName = userData["middle_name"] {
+            middleNameTextField.text = middleName as? String
+        }
+        
+        if let lastName = userData["last_name"] {
+            lastNameTextField.text = lastName as? String
+        }
+        
         if let phoneNumber = userData["phone_number"] {
             phoneNumberTextField.text = phoneNumber as? String
         }
@@ -126,6 +139,18 @@ class EditUserInfoVC: UIViewController {
         }
         
         userDataArray["solo_practitioner"] = soloPractitioner
+        
+        if let firstName = firstNameTextField.text {
+            userDataArray["first_name"] = firstName
+        }
+        
+        if let middleName = middleNameTextField.text {
+            userDataArray["middle_name"] = middleName
+        }
+        
+        if let lastName = lastNameTextField.text {
+            userDataArray["last_name"] = lastName
+        }
         
         if let phoneNumber = phoneNumberTextField.text {
             userDataArray["phone_number"] = phoneNumber

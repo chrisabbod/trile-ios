@@ -14,6 +14,7 @@
                 <outlet property="firmSegmentedControl" destination="J5D-zX-fWY" id="j1Y-Fg-9tw"/>
                 <outlet property="firstNameTextField" destination="Usj-Z9-bus" id="QLm-M4-vre"/>
                 <outlet property="lastNameTextField" destination="oqi-q3-Fdy" id="jkh-bJ-Kiy"/>
+                <outlet property="middleNameTextField" destination="ssU-n0-D5s" id="l9Z-LM-Rya"/>
                 <outlet property="phoneNumberTextField" destination="8Se-rB-pm3" id="TVQ-65-f9Y"/>
                 <outlet property="stateTextField" destination="BrW-nA-gaH" id="VWb-hb-v58"/>
                 <outlet property="taxpayerIDTextField" destination="jfd-YG-636" id="fJs-1u-JNC"/>
