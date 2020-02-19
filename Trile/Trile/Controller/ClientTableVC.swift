@@ -40,7 +40,7 @@ class ClientTableVC: UITableViewController {
         tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: REUSE_IDENTIFIER)
         
         //Reload ClientTableVC when changes are made in EditClientDetailsVC
-        NotificationCenter.default.addObserver(self, selector: #selector(loadClients), name: NSNotification.Name(rawValue: LOAD_TABLEVIEW_NOTIFICATION), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadClientsWhenNotificationPosted), name: NSNotification.Name(rawValue: LOAD_TABLEVIEW_NOTIFICATION), object: nil)
         
         //Display Choose A Client screen when a client is added
         NotificationCenter.default.addObserver(self, selector: #selector(showChooseClientPlaceholder), name: NSNotification.Name(rawValue: SHOW_CHOOSE_CLIENT_PLACEHOLDER), object: nil)
@@ -59,6 +59,20 @@ class ClientTableVC: UITableViewController {
     }
     
     //MARK: Load Clients Function
+    
+    //This function only used when NSNotification makes a call because the completion handler in
+    //loadClients causes crashes due to EXC_BAD_ACCESS (Bad memory location)
+    @objc
+    func loadClientsWhenNotificationPosted() {
+        dbm.readClientsFromDatabase(completion: { (clientArray, success) in
+            if success {
+                self.clients = clientArray
+                self.tableView.reloadData()
+            } else {
+                print("Unable to read client data from database")
+            }
+        })
+    }
     
     @objc
     func loadClients(completion: @escaping (_ success: Bool) -> Void) {

@@ -41,7 +41,7 @@ class FileNumberTableVC: UITableViewController {
         tableView.register(UINib(nibName: CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: REUSE_IDENTIFIER)
         
         //Reload FileNumberTableVC when changes are made in EditCaseDetailsVC
-        NotificationCenter.default.addObserver(self, selector: #selector(loadFileNumbers), name: NSNotification.Name(rawValue: LOAD_FILE_NUMBER_NOTIFICATION), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadFileNumbersWhenNotificationPosted), name: NSNotification.Name(rawValue: LOAD_FILE_NUMBER_NOTIFICATION), object: nil)
         
         //Display Choose A File Number screen when a file number is added
         NotificationCenter.default.addObserver(self, selector: #selector(showChooseFileNumberPlaceholder), name: NSNotification.Name(rawValue: SHOW_CHOOSE_FILE_NUMBER_PLACEHOLDER), object: nil)
@@ -60,6 +60,22 @@ class FileNumberTableVC: UITableViewController {
     }
     
     //MARK: Load File Numbers
+    
+    //This function only used when NSNotification makes a call because the completion handler in
+    //loadFileNumbers causes crashes due to EXC_BAD_ACCESS (Bad memory location)
+    @objc
+    func loadFileNumbersWhenNotificationPosted() {
+        if let client = self.selectedClient {
+            self.dbm.readFileNumbersFromDatabase(client) { (fileNumberArray, success) in
+                if success {
+                    self.fileNumbers = fileNumberArray
+                    self.tableView.reloadData()
+                } else {
+                    print("Unable to read file number data from database")
+                }
+            }
+        }
+    }
     
     @objc
     func loadFileNumbers(completion: @escaping (_ success: Bool) -> Void) {
