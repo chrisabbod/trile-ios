@@ -104,6 +104,7 @@
 		A517CB5A23D1351E00B2171C /* FileNumberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileNumberTableViewCell.xib; sourceTree = "<group>"; };
 		A53B328B23FA1B5C004D4EA8 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A54572E323FB6434002C0BF1 /* PlaceholderVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderVC.xib; sourceTree = "<group>"; };
+		A54572E52400CDB9002C0BF1 /* Trile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Trile.entitlements; sourceTree = "<group>"; };
 		A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerTests.swift; sourceTree = "<group>"; };
 		A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterManager.swift; sourceTree = "<group>"; };
@@ -201,6 +202,7 @@
 		A511C1D623B5614900B9A771 /* Trile */ = {
 			isa = PBXGroup;
 			children = (
+				A54572E52400CDB9002C0BF1 /* Trile.entitlements */,
 				A511C1D723B5614900B9A771 /* AppDelegate.swift */,
 				A511C1D923B5614900B9A771 /* SceneDelegate.swift */,
 				A511C20A23B5619600B9A771 /* Data */,
@@ -817,6 +819,7 @@
 			baseConfigurationReference = 76C1D35EF168B403F613D6CF /* Pods-Trile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Trile/Trile.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ULD22A2WJA;
 				INFOPLIST_FILE = Trile/Info.plist;
@@ -836,6 +839,7 @@
 			baseConfigurationReference = 31A8FB3DE7473EF11030635F /* Pods-Trile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Trile/Trile.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ULD22A2WJA;
 				INFOPLIST_FILE = Trile/Info.plist;
