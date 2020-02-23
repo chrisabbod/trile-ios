@@ -162,6 +162,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
                         
                         if self.documents.isEmpty {
                             self.showAddDocumentPlaceholder()
+                            self.isEditing = false
                         }
                     }
                 }
