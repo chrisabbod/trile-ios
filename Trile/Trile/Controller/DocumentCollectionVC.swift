@@ -15,6 +15,7 @@ import FirebaseStorage
 class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var documentCollectionView: UICollectionView!
+    @IBOutlet weak var placeholderView: UIView!
     
     private let REUSE_IDENTIFIER = "customDocumentCell"
     private let DOCUMENT_DETAIL_SEGUE = "goToDocumentDetailsVC"
@@ -35,7 +36,7 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         setBackgroundColor()
         
         navigationItem.leftBarButtonItem = editButtonItem
@@ -89,6 +90,13 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
                     self.imageManager.downloadDocumentsFromStorage(self.documents) { (success) in
                         if success {
                             self.documentCollectionView.reloadData()
+                            
+                            //Show or hide document placeholder after determining if there are any documents
+                            if self.documents.isEmpty {
+                                self.showAddDocumentPlaceholder()
+                            } else {
+                                self.hideAddDocumentPlaceholder()
+                            }
                         } else {
                             print("Failure")
                         }
@@ -98,6 +106,14 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
                 }
             }
         }
+    }
+    
+    func showAddDocumentPlaceholder() {
+        placeholderView.isHidden = false
+    }
+    
+    func hideAddDocumentPlaceholder() {
+        placeholderView.isHidden = true
     }
     
     //MARK: Collectionview Functions
@@ -134,6 +150,8 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
+    //MARK: Document Editing/Deletion
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isEditing {
             if let client = selectedClient, let fileNumber = selectedFileNumber {
@@ -141,6 +159,10 @@ class DocumentCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
                     if success {
                         self.documents.remove(at: indexPath.item)
                         self.documentCollectionView.reloadData()
+                        
+                        if self.documents.isEmpty {
+                            self.showAddDocumentPlaceholder()
+                        }
                     }
                 }
             }
