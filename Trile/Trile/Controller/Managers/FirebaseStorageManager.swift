@@ -13,12 +13,12 @@ import FirebaseStorage
 class FirebaseStorageManager {
     
     let dbm = FirebaseFirestoreManager()
-    let uid: String = Auth.auth().currentUser!.uid
     
     //MARK: Client Functions
     
     func uploadClientImageToStorage(_ client: Client, _ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
-        
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Could not retrieve current user uid")}
+
         let clientDocumentID = client.documentID
         
         let imagePath = "\(uid)/client_image/\(clientDocumentID).jpeg"
@@ -74,7 +74,8 @@ class FirebaseStorageManager {
     //MARK: Document Functions
     
     func uploadDocumentToStorage(_ client: Client, _ fileNumber: FileNumber, _ scannedImage: UIImage, completion: @escaping ((_ success: Bool) -> Void)) {
-        
+        guard let uid: String = Auth.auth().currentUser?.uid else { return print("Could not retrieve current user uid")}
+
         let clientDocumentID = client.documentID
         
         let randomUUID = UUID.init().uuidString

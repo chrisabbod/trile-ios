@@ -80,6 +80,7 @@ class CaseDetailsVC: UIViewController {
     
     @objc
     func signOut(_ sender: UIBarButtonItem) {
+        try! Auth.auth().signOut()
         dismiss(animated: true, completion: nil)
     }
     
