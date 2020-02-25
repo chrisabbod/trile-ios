@@ -34,6 +34,8 @@ class FileNumberTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadFileNumbersAndShowPlaceholder() //Show placeholder only when initially displaying FileNumberTableVC
+        
         let addEditUserInfoButton = UIBarButtonItem(title: EDIT_USER_INFO_BAR_BUTTON, style: .done, target: self, action: #selector(addEditUserInfoButton(_:)))
         let addFileNumberButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFileNumberButton(_:)))
         navigationItem.rightBarButtonItems = [addFileNumberButton, addEditUserInfoButton]
@@ -45,18 +47,6 @@ class FileNumberTableVC: UITableViewController {
         
         //Display Choose A File Number screen when a file number is added
         NotificationCenter.default.addObserver(self, selector: #selector(showChooseFileNumberPlaceholder), name: NSNotification.Name(rawValue: SHOW_CHOOSE_FILE_NUMBER_PLACEHOLDER), object: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        loadFileNumbers { (success) in
-            if success {
-                if self.fileNumbers.isEmpty {
-                    self.showAddFileNumberPlaceholder()
-                } else {
-                    self.showChooseFileNumberPlaceholder()
-                }
-            }
-        }
     }
     
     //MARK: Load File Numbers
@@ -130,6 +120,18 @@ class FileNumberTableVC: UITableViewController {
         placeholderVC.chooseFileNumber = true
         
         self.splitViewController?.showDetailViewController(placeholderVC, sender: self)
+    }
+    
+    func loadFileNumbersAndShowPlaceholder() {
+        loadFileNumbers { (success) in
+            if success {
+                if self.fileNumbers.isEmpty {
+                    self.showAddFileNumberPlaceholder()
+                } else {
+                    self.showChooseFileNumberPlaceholder()
+                }
+            }
+        }
     }
     
     // MARK: Table View
