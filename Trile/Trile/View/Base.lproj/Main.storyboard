@@ -3290,11 +3290,11 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" id="bJf-04-JJI" userLabel="Placeholder View">
-                                <rect key="frame" x="0.0" y="53" width="1024" height="901"/>
+                                <rect key="frame" x="0.0" y="53" width="991" height="901"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="97y-GU-3wq" userLabel="placeholder stack view">
-                                        <rect key="frame" x="438" y="357.5" width="148.5" height="186"/>
+                                        <rect key="frame" x="421.5" y="357.5" width="148.5" height="186"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_document" translatesAutoresizingMaskIntoConstraints="NO" id="G6R-ms-U8Q" userLabel="placeholder image">
                                                 <rect key="frame" x="4" y="0.0" width="140" height="154"/>
@@ -3306,27 +3306,39 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="186" id="1BH-Nf-XbA"/>
+                                            <constraint firstAttribute="width" constant="148.5" id="UVu-uO-tRl"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="1BH-Nf-XbA"/>
+                                                <exclude reference="UVu-uO-tRl"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <mask key="constraints">
+                                                <include reference="1BH-Nf-XbA"/>
+                                                <include reference="UVu-uO-tRl"/>
+                                            </mask>
+                                        </variation>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90588235289999997" green="0.8980392157" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="97y-GU-3wq" firstAttribute="centerX" secondItem="bJf-04-JJI" secondAttribute="centerX" id="8KH-gr-SDa"/>
-                                    <constraint firstItem="97y-GU-3wq" firstAttribute="centerY" secondItem="bJf-04-JJI" secondAttribute="centerY" id="Cae-5x-n4B"/>
-                                    <constraint firstItem="97y-GU-3wq" firstAttribute="centerY" secondItem="bJf-04-JJI" secondAttribute="centerY" id="Dgc-Eb-xYB"/>
-                                    <constraint firstItem="97y-GU-3wq" firstAttribute="centerX" secondItem="bJf-04-JJI" secondAttribute="centerX" id="M1F-yR-QJR"/>
+                                    <constraint firstItem="97y-GU-3wq" firstAttribute="centerY" secondItem="bJf-04-JJI" secondAttribute="centerY" id="26q-SU-y6Q"/>
+                                    <constraint firstItem="97y-GU-3wq" firstAttribute="centerX" secondItem="bJf-04-JJI" secondAttribute="centerX" id="PYD-Yt-G3R"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="Dgc-Eb-xYB"/>
-                                        <exclude reference="M1F-yR-QJR"/>
+                                        <exclude reference="26q-SU-y6Q"/>
+                                        <exclude reference="PYD-Yt-G3R"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
-                                        <exclude reference="8KH-gr-SDa"/>
-                                        <exclude reference="Cae-5x-n4B"/>
-                                        <include reference="Dgc-Eb-xYB"/>
-                                        <include reference="M1F-yR-QJR"/>
+                                        <include reference="26q-SU-y6Q"/>
+                                        <include reference="PYD-Yt-G3R"/>
                                     </mask>
                                 </variation>
                             </view>
