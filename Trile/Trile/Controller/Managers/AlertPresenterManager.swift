@@ -48,7 +48,7 @@ class AlertPresenterManager {
                 self.dbm.readClientsFromDatabase(completion: { (clientArray, success) in
                     if success {
                         
-                        //Calls Notification Function in ClientTableVC to reload data
+                        //Calls Notification Function in ClientTableVC to show placeholder
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.SHOW_CHOOSE_CLIENT_PLACEHOLDER), object: nil)
                         
                         completion(clientArray, true)
@@ -95,7 +95,7 @@ class AlertPresenterManager {
                 self.dbm.readFileNumbersFromDatabase(client) { (fileNumberArray, success) in
                     if success {
                         
-                        //Calls Notification Function in FileNumberTableVC to reload data
+                        //Calls Notification Function in FileNumberTableVC to show placeholder
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.SHOW_CHOOSE_FILE_NUMBER_PLACEHOLDER), object: nil)
                         
                         completion(fileNumberArray, true)

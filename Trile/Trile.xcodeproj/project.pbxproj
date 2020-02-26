@@ -24,6 +24,7 @@
 		A517CB5C23D1351E00B2171C /* FileNumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A517CB5A23D1351E00B2171C /* FileNumberTableViewCell.xib */; };
 		A53B328C23FA1B5C004D4EA8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B328B23FA1B5C004D4EA8 /* Utils.swift */; };
 		A54572E423FB6434002C0BF1 /* PlaceholderVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A54572E323FB6434002C0BF1 /* PlaceholderVC.xib */; };
+		A54572E724063992002C0BF1 /* ClientDetailSplitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54572E624063992002C0BF1 /* ClientDetailSplitVC.swift */; };
 		A54DC82C23CE302000E09567 /* DatabaseManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */; };
 		A54DC82E23CE747600E09567 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */; };
 		A54DC83023CE7E5A00E09567 /* AlertPresenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */; };
@@ -105,6 +106,7 @@
 		A53B328B23FA1B5C004D4EA8 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A54572E323FB6434002C0BF1 /* PlaceholderVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderVC.xib; sourceTree = "<group>"; };
 		A54572E52400CDB9002C0BF1 /* Trile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Trile.entitlements; sourceTree = "<group>"; };
+		A54572E624063992002C0BF1 /* ClientDetailSplitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDetailSplitVC.swift; sourceTree = "<group>"; };
 		A54DC82B23CE302000E09567 /* DatabaseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerTests.swift; sourceTree = "<group>"; };
 		A54DC82D23CE747600E09567 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		A54DC82F23CE7E5A00E09567 /* AlertPresenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenterManager.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				A5817F2D23DE3FA6004CB660 /* Onboarding */,
 				A5817F3423DEA8B0004CB660 /* EditUserInfoVC.swift */,
 				A553631923FB400B00B5D788 /* EditUserInfoVC.xib */,
+				A54572E624063992002C0BF1 /* ClientDetailSplitVC.swift */,
 				A511C1DB23B5614900B9A771 /* ClientTableVC.swift */,
 				A5D6D8DA23BBBD9F00F16E27 /* FileNumberTableVC.swift */,
 				A5D6D8DE23BD419200F16E27 /* ClientDetailsVC.swift */,
@@ -626,6 +629,7 @@
 				A53B328C23FA1B5C004D4EA8 /* Utils.swift in Sources */,
 				A5D6D8CF23B8005F00F16E27 /* FirebaseAuthManager.swift in Sources */,
 				A5D6D8DD23BBDF4200F16E27 /* FileNumber.swift in Sources */,
+				A54572E724063992002C0BF1 /* ClientDetailSplitVC.swift in Sources */,
 				A5D6D8D723B872DD00F16E27 /* LoginVC.swift in Sources */,
 				A517CB5423D0CB6400B2171C /* ClientTableViewCell.swift in Sources */,
 				A5D6D8DB23BBBD9F00F16E27 /* FileNumberTableVC.swift in Sources */,

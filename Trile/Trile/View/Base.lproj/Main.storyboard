@@ -106,10 +106,10 @@
             </objects>
             <point key="canvasLocation" x="-856" y="426"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Client Detail SplitVC-->
         <scene sceneID="Nki-YV-4Qg">
             <objects>
-                <splitViewController modalPresentationStyle="fullScreen" id="H1p-Uh-vWS" sceneMemberID="viewController">
+                <splitViewController modalPresentationStyle="fullScreen" id="H1p-Uh-vWS" customClass="ClientDetailSplitVC" customModule="Trile" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="a0L-Pi-b7h"/>
                     <connections>
