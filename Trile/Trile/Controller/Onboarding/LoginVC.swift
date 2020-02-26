@@ -10,6 +10,8 @@ import UIKit
 
 class LoginVC: UIViewController {
     
+    var testCounter = 0 //Remove when no longer testing
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -85,8 +87,13 @@ class LoginVC: UIViewController {
     //MARK: Test Functions
     
     @IBAction func testLogin(_ sender: Any) {
-        emailTextField.text = "chrisabbod@gmail.com"
-        passwordTextField.text = "Seraphim88"
+        testCounter = testCounter + 1
+        
+        if testCounter == 4 {
+            emailTextField.text = "chrisabbod@gmail.com"
+            passwordTextField.text = "Seraphim88"
+            testCounter = 0
+        }
     }
     
 }
