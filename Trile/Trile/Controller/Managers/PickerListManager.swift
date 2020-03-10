@@ -43,7 +43,7 @@ class PickerListManager {
         "H",
         "I"
     ]
-
+    
     static let dispositionList = [
         "Guilty Plea Before Trial: Most Serious Original Charge",
         "Guilty Plea Before Trial: Other Offense",
@@ -81,7 +81,8 @@ class PickerListManager {
     static let countyList = [
         "Cleveland",
         "Gaston",
-        "Lincoln"
+        "Lincoln",
+        "Mecklenburg"
     ]
     
     static let clevelandLincolnJudgeList = [
@@ -101,11 +102,36 @@ class PickerListManager {
         "Hon. James Jackson",
         "Hon. Craig Collins"
     ]
-        
+    
+    static let mecklenburgJudgeList = [
+        "Hon. Michael Stading",
+        "Hon. Paulina Havelka",
+        "Hon. Roy Wiggins",
+        "Hon. Faith Fickling",
+        "Hon. Johnathon Marvel",
+        "Hon. Matt Osman",
+        "Hon. Jena Culler",
+        "Hon. Elizabeth Trosch",
+        "Hon. Christy Mann",
+        "Hon. Gary Henderson",
+        "Hon. Donald Cureton",
+        "Hon. Robert Wilkins",
+        "Hon. Regan Miller",
+        "Hon. Tracy Hewett",
+        "Hon. Sean Smith",
+        "Hon. Rickye Mckoy-Mitchell",
+        "Hon. Scott Etheridge",
+        "Hon. Paige Mcthenia",
+        "Hon. Karen McCallum",
+        "Hon. Kimberly Best",
+        "Hon. Aretha Blake",
+        "Hon. Tyyawdi Hands",
+    ]
+    
     static func hoursPickerList() -> [String] {
         let hoursArray = Array(0...99)
         let hoursStringArray = hoursArray.map { String($0) }  //Turn Int array into String array
-
+        
         return hoursStringArray
     }
     

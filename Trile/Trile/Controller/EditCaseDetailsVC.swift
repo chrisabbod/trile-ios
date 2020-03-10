@@ -221,6 +221,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         case nameOfJudgeSettingFeePickerView:
             if countyTextField.text == "Gaston" {
                 return PickerListManager.gastonJudgeList.count
+            } else if countyTextField.text == "Mecklenburg" {
+                return PickerListManager.mecklenburgJudgeList.count
             } else {
                 return PickerListManager.clevelandLincolnJudgeList.count
             }
@@ -258,6 +260,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         case nameOfJudgeSettingFeePickerView:
             if countyTextField.text == "Gaston" {
                 return PickerListManager.gastonJudgeList[row]
+            } else if countyTextField.text == "Mecklenburg" {
+                return PickerListManager.mecklenburgJudgeList[row]
             } else {
                 return PickerListManager.clevelandLincolnJudgeList[row]
             }
@@ -301,6 +305,8 @@ class EditCaseDetailsVC: UIViewController, UITextFieldDelegate, UIPickerViewDele
         case nameOfJudgeSettingFeePickerView:
             if countyTextField.text == "Gaston" {
                 nameOfJudgeSettingFeeTextField.text = PickerListManager.gastonJudgeList[row]
+            } else if countyTextField.text == "Mecklenburg" {
+                nameOfJudgeSettingFeeTextField.text = PickerListManager.mecklenburgJudgeList[row]
             } else {
                 nameOfJudgeSettingFeeTextField.text = PickerListManager.clevelandLincolnJudgeList[row]
             }
