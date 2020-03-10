@@ -80,6 +80,8 @@ class FeeApplicationVC: UIViewController {
         sendEmail()
     }
     
+    //MARK: PDF Functions
+    
     func showPDF() {
         let pdfView = PDFView()
         
@@ -112,7 +114,7 @@ class FeeApplicationVC: UIViewController {
             pdfView.document = document
         }
     }
-    
+        
     func setFieldsInPDF() {
         guard let client = selectedClient else { return print("Could not get client information")}
         guard let fileNumber = selectedFileNumber else { return print("Could not get file number information")}
@@ -774,8 +776,12 @@ extension FeeApplicationVC: UIPrintInteractionControllerDelegate {
     }
 }
 
+//MARK: FeeApp Extension
+
 extension FeeApplicationVC: MFMailComposeViewControllerDelegate {
     
+    //MARK: Email Functions
+
     func sendEmail() {
         guard let client = selectedClient else {return print("Could not retrieve client information")}
         guard let fileNumber = selectedFileNumber else {return print("Could not retrieve file Number information")}
@@ -813,9 +819,27 @@ extension FeeApplicationVC: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
         
-        let title = "Success!"
-        let message = "Email Sent"
-        alert.messageAlertDialog(fromViewController: self, withTitle: title, withMessage: message)
+        switch result {
+        case .cancelled:
+            let title = "Cancelled!"
+            let message = "Email Cancelled"
+            alert.messageAlertDialog(fromViewController: self, withTitle: title, withMessage: message)
+        case .failed:
+            let title = "Failure!"
+            let message = "Unable to Send Email"
+            alert.messageAlertDialog(fromViewController: self, withTitle: title, withMessage: message)
+        case .saved:
+            let title = "Success!"
+            let message = "Email Saved"
+            alert.messageAlertDialog(fromViewController: self, withTitle: title, withMessage: message)
+        case .sent:
+            let title = "Success!"
+            let message = "Email Sent"
+            alert.messageAlertDialog(fromViewController: self, withTitle: title, withMessage: message)
+        default:
+            print("No result")
+        }
+        
     }
 }
 
